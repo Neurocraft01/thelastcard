@@ -7,8 +7,12 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from profiles.views import PublicProfileView, DownloadVCardView, QRCodeView, MobilePreviewView
+from .views import health_check
 
 urlpatterns = [
+    # Health check endpoint for monitoring
+    path('healthz', health_check, name='health_check'),
+    
     # Admin
     path('admin/', admin.site.urls),
     
