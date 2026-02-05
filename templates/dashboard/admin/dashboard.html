@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Admin Dashboard - The Last Card{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold">Admin Dashboard</h1>
+                <p class="text-slate-500 dark:text-slate-400">Manage users and cards across the platform</p>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                            <span class="material-icons-round text-blue-600">group</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold">{{ user_count }}</p>
+                            <p class="text-sm text-slate-500">Team Members</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                            <span class="material-icons-round text-primary">credit_card</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold">{{ card_count }}</p>
+                            <p class="text-sm text-slate-500">Total Cards</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+                            <span class="material-icons-round text-green-600">check_circle</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold">{{ active_cards }}</p>
+                            <p class="text-sm text-slate-500">Active Cards</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-purple-100 dark:bg-purple-900/30 rounded-xl flex items-center justify-center">
+                            <span class="material-icons-round text-purple-600">admin_panel_settings</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold">Admin</p>
+                            <p class="text-sm text-slate-500">Role</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="grid lg:grid-cols-2 gap-6">
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                    <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                        <h3 class="font-semibold">Quick Actions</h3>
+                    </div>
+                    <div class="p-6 grid grid-cols-2 gap-4">
+                        <a href="{% url 'accounts:admin_users' %}" class="flex flex-col items-center gap-2 p-4 bg-slate-50 dark:bg-zinc-800 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+                            <span class="material-icons-round text-primary text-2xl">person_add</span>
+                            <span class="text-sm font-medium">Add User</span>
+                        </a>
+                        <a href="{% url 'accounts:admin_cards' %}" class="flex flex-col items-center gap-2 p-4 bg-slate-50 dark:bg-zinc-800 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+                            <span class="material-icons-round text-primary text-2xl">add_card</span>
+                            <span class="text-sm font-medium">Manage Cards</span>
+                        </a>
+                        <a href="{% url 'accounts:admin_analytics' %}" class="flex flex-col items-center gap-2 p-4 bg-slate-50 dark:bg-zinc-800 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+                            <span class="material-icons-round text-primary text-2xl">analytics</span>
+                            <span class="text-sm font-medium">View Analytics</span>
+                        </a>
+                        <a href="{% url 'accounts:admin_settings' %}" class="flex flex-col items-center gap-2 p-4 bg-slate-50 dark:bg-zinc-800 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-700 transition-colors">
+                            <span class="material-icons-round text-primary text-2xl">settings</span>
+                            <span class="text-sm font-medium">Settings</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                    <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                        <h3 class="font-semibold">Platform Stats</h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-500">Your Role</span>
+                            <span class="font-medium">Admin</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-500">Total Users</span>
+                            <span class="font-medium">{{ user_count }}</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-500">Total Cards</span>
+                            <span class="font-medium">{{ card_count }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

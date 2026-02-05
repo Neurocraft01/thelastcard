@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Analytics - The Last Card{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold">Analytics</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Track your profile performance and engagement.</p>
+                </div>
+                <select class="px-4 py-2 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 outline-none">
+                    <option value="7">Last 7 Days</option>
+                    <option value="30">Last 30 Days</option>
+                    <option value="90">Last 3 Months</option>
+                </select>
+            </div>
+
+            <!-- Key Metrics -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center">
+                            <span class="material-icons-round text-primary">visibility</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold">{{ summary.total_views|default:0 }}</p>
+                            <p class="text-sm text-slate-500">Total Views</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-green-100 dark:bg-green-900/30 rounded-xl flex items-center justify-center">
+                            <span class="material-icons-round text-green-600">ads_click</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold">{{ summary.total_clicks|default:0 }}</p>
+                            <p class="text-sm text-slate-500">Link Clicks</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 rounded-xl flex items-center justify-center">
+                            <span class="material-icons-round text-blue-600">person_add</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold">{{ summary.contact_saves|default:0 }}</p>
+                            <p class="text-sm text-slate-500">Contact Saves</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                    <div class="flex items-center gap-4">
+                        <div class="w-12 h-12 bg-amber-100 dark:bg-amber-900/30 rounded-xl flex items-center justify-center">
+                            <span class="material-icons-round text-amber-600">percent</span>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold">{{ summary.ctr|default:0 }}%</p>
+                            <p class="text-sm text-slate-500">Click Rate</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Grid -->
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Views Over Time -->
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                    <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                        <h3 class="font-semibold">Views Over Time</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="h-64 flex flex-col items-center justify-center text-slate-400">
+                            <span class="material-icons-round text-5xl mb-4 opacity-50">bar_chart</span>
+                            <p>Chart visualization coming soon</p>
+                            <p class="text-xs mt-2">Data points: {{ time_series|length|default:0 }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Top Platforms -->
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                    <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                        <h3 class="font-semibold">Top Platforms</h3>
+                    </div>
+                    <div class="p-6">
+                        <table class="w-full">
+                            <thead>
+                                <tr class="text-left text-sm text-slate-500">
+                                    <th class="pb-3">Platform</th>
+                                    <th class="pb-3">Interactions</th>
+                                    <th class="pb-3">%</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-sm">
+                                {% for item in platform_breakdown %}
+                                <tr class="border-t border-slate-100 dark:border-zinc-800">
+                                    <td class="py-3 capitalize">{{ item.platform|default:'Unknown' }}</td>
+                                    <td class="py-3">{{ item.count }}</td>
+                                    <td class="py-3">{{ item.percentage }}%</td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3" class="py-8 text-center text-slate-400">No data available yet</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

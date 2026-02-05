@@ -1,0 +1,339 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}The Last Card - Smart NFC Business Cards{% endblock %}
+{% block meta_description %}The Last Business Card You'll Ever Need. Smart. Tap. Connect. Share your contact info, social media, and portfolio in a single tap using luxury NFC technology.{% endblock %}
+
+{% block navigation %}{% endblock %}
+
+{% block content %}
+<!-- Fixed Navigation for Landing -->
+<nav class="fixed w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <a href="{% url 'landing:home' %}" class="flex items-center gap-2">
+                <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
+                    <span class="material-icons-round text-black font-bold">contactless</span>
+                </div>
+                <span class="font-display text-xl tracking-wider hidden sm:block gold-text uppercase font-bold">The Last Card</span>
+            </a>
+            
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#how-it-works" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">How it Works</a>
+                <a href="#features" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">Features</a>
+                <a href="#pricing" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">Pricing</a>
+                <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
+                    <span class="material-icons-round text-xl">dark_mode</span>
+                </button>
+                {% if user.is_authenticated %}
+                <a href="{% url 'accounts:dashboard_redirect' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Dashboard</a>
+                {% else %}
+                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Get Your Card</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 overflow-hidden bg-gradient-to-b from-slate-50 to-white dark:from-background-dark dark:to-zinc-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+        <div class="flex-1 text-center lg:text-left z-10">
+            <h1 class="font-display text-5xl md:text-7xl mb-6 leading-tight">
+                The <span class="gold-text">Last Business Card</span> You'll Ever Need.
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto lg:mx-0">
+                Smart. Tap. Connect. Share your contact info, social media, and portfolio in a single tap using luxury NFC technology.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg flex items-center justify-center gap-2">
+                    Get Your Card <span class="material-icons-round">shopping_bag</span>
+                </a>
+                <a href="#how-it-works" class="border-2 border-primary/30 text-primary py-4 px-10 rounded-full hover:bg-primary/10 transition-all text-lg font-bold flex items-center justify-center gap-2">
+                    View Demo <span class="material-icons-round">play_circle</span>
+                </a>
+            </div>
+            <div class="mt-12 flex items-center gap-4 justify-center lg:justify-start">
+                <div class="flex -space-x-3">
+                    <div class="w-10 h-10 rounded-full border-2 border-background-light dark:border-background-dark bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center text-black text-xs font-bold">JD</div>
+                    <div class="w-10 h-10 rounded-full border-2 border-background-light dark:border-background-dark bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white text-xs font-bold">AK</div>
+                    <div class="w-10 h-10 rounded-full border-2 border-background-light dark:border-background-dark bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center text-white text-xs font-bold">SM</div>
+                </div>
+                <span class="text-sm font-medium text-slate-500">Trusted by 10,000+ Professionals</span>
+            </div>
+        </div>
+        
+        <div class="flex-1 relative">
+            <div class="relative w-full max-w-lg mx-auto h-[600px] flex items-center justify-center">
+                <!-- Phone Mockup -->
+                <div class="phone-mockup relative z-10">
+                    <div class="w-[280px] h-[560px] bg-zinc-900 rounded-[48px] border-8 border-zinc-800 shadow-2xl relative overflow-hidden">
+                        <!-- Phone Screen -->
+                        <div class="absolute inset-4 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-[36px] overflow-hidden">
+                            <!-- Status Bar -->
+                            <div class="h-8 bg-zinc-900/50 backdrop-blur-sm flex items-center justify-between px-6 text-white text-xs">
+                                <span>9:41</span>
+                                <div class="flex gap-1">
+                                    <span class="material-icons-round text-sm">signal_cellular_alt</span>
+                                    <span class="material-icons-round text-sm">wifi</span>
+                                    <span class="material-icons-round text-sm">battery_full</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Screen Content -->
+                            <div class="flex flex-col items-center justify-center h-full px-8 pb-12">
+                                <div id="nfcRipple" class="w-32 h-32 rounded-full border-4 border-primary/30 flex items-center justify-center mb-6 relative">
+                                    <span class="material-icons-round text-primary text-6xl animate-pulse">contactless</span>
+                                    <div class="absolute inset-0 rounded-full border-4 border-primary/20 animate-ping"></div>
+                                </div>
+                                <p class="text-white text-center text-sm mb-2">Ready to Connect</p>
+                                <p class="text-zinc-500 text-xs text-center">Tap your card to share profile</p>
+                            </div>
+                            
+                            <!-- NFC Success Indicator (animated via CSS) -->
+                            <div id="nfcSuccess" class="absolute inset-0 bg-primary/95 backdrop-blur-sm flex items-center justify-center flex-col opacity-0 pointer-events-none">
+                                <div class="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mb-4">
+                                    <span class="material-icons-round text-white text-5xl">check_circle</span>
+                                </div>
+                                <p class="text-white font-bold text-lg">Connected!</p>
+                                <p class="text-white/80 text-sm">Profile Shared</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Notch -->
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-800 rounded-b-2xl"></div>
+                    </div>
+                </div>
+                
+                <!-- NFC Card with Tap Animation -->
+                <div class="nfc-card absolute top-0 right-0">
+                    <div class="bg-gradient-to-br from-zinc-800 to-black p-1 rounded-[28px] gold-border card-shadow w-[280px] relative">
+                        <div class="aspect-[1.586/1] w-full rounded-[26px] bg-zinc-900 relative overflow-hidden flex flex-col items-center justify-center p-8">
+                            <div class="w-20 h-20 gold-gradient rounded-2xl flex items-center justify-center mb-4 opacity-90 shadow-lg">
+                                <span class="material-icons-round text-black text-4xl">contactless</span>
+                            </div>
+                            <div class="absolute bottom-6 left-8">
+                                <p class="text-primary tracking-widest text-[10px] mb-1 uppercase opacity-60">NFC Enabled</p>
+                                <p class="font-display text-white text-sm uppercase tracking-widest">James Sterling</p>
+                            </div>
+                            <div class="absolute top-6 right-8 text-primary">
+                                <span class="material-icons-round text-2xl">nfc</span>
+                            </div>
+                        </div>
+                        <!-- Motion Trail Effect -->
+                        <div class="card-trail absolute inset-0 rounded-[28px] pointer-events-none"></div>
+                    </div>
+                </div>
+                
+                <!-- Glow Effects -->
+                <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 blur-3xl rounded-full"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-24 bg-slate-50 dark:bg-zinc-950" id="how-it-works">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-4xl mb-4 gold-text uppercase">The 3-Step Success</h2>
+            <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="text-center p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 transition-all hover:-translate-y-2 hover:shadow-xl">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="material-icons-round text-3xl">tap_and_play</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide">1. Tap</h3>
+                <p class="text-slate-500 dark:text-zinc-400">Simply tap your physical card on any modern smartphone. No apps required for your clients.</p>
+            </div>
+            <div class="text-center p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 transition-all hover:-translate-y-2 hover:shadow-xl">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="material-icons-round text-3xl">share</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide">2. Share</h3>
+                <p class="text-slate-500 dark:text-zinc-400">Instantly share your digital profile containing contact info, social links, and media.</p>
+            </div>
+            <div class="text-center p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 transition-all hover:-translate-y-2 hover:shadow-xl">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="material-icons-round text-3xl">save</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide">3. Save</h3>
+                <p class="text-slate-500 dark:text-zinc-400">The recipient saves your contact information directly to their phone's contact list.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-24" id="features">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <div class="h-48 rounded-2xl bg-zinc-800 dark:bg-zinc-900 border border-primary/20 flex items-center justify-center overflow-hidden">
+                            <div class="text-center p-4">
+                                <span class="material-icons-round text-primary text-5xl mb-2">credit_card</span>
+                                <p class="text-sm text-slate-400">Matte Black</p>
+                            </div>
+                        </div>
+                        <div class="h-64 rounded-2xl bg-gradient-to-br from-primary/40 to-primary/5 p-6 border border-primary/30 flex flex-col justify-end">
+                            <p class="text-xs uppercase tracking-[0.2em] mb-2 text-slate-600 dark:text-slate-400">Exclusive</p>
+                            <h4 class="text-2xl font-display font-bold">24K Metal Series</h4>
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-12">
+                        <div class="h-64 rounded-2xl bg-zinc-900 border border-zinc-700 p-6 flex flex-col justify-end shadow-2xl">
+                            <div class="bg-white p-2 w-fit rounded-lg mb-4">
+                                <span class="material-icons-round text-black text-3xl">qr_code_2</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white">Dynamic QR Codes</h4>
+                        </div>
+                        <div class="h-48 rounded-2xl bg-zinc-800 dark:bg-zinc-900 border border-primary/20 flex items-center justify-center">
+                            <div class="text-center p-4">
+                                <span class="material-icons-round text-primary text-5xl mb-2">analytics</span>
+                                <p class="text-sm text-slate-400">Dashboard</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="font-display text-4xl mb-8 gold-text">Next-Gen Networking Features</h2>
+                <ul class="space-y-8">
+                    <li class="flex gap-4">
+                        <div class="mt-1 text-primary"><span class="material-icons-round">insights</span></div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Advanced Analytics</h4>
+                            <p class="text-slate-500 dark:text-zinc-400">Track how many times your card is tapped, which links are clicked, and where your leads are coming from.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="mt-1 text-primary"><span class="material-icons-round">group</span></div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Lead Capture CRM</h4>
+                            <p class="text-slate-500 dark:text-zinc-400">Collect visitor information instantly and export it to your favorite CRM tools or Zapier.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="mt-1 text-primary"><span class="material-icons-round">sync</span></div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Real-Time Updates</h4>
+                            <p class="text-slate-500 dark:text-zinc-400">Changed your phone number or job title? Update your profile instantly without ordering a new card.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="py-24 bg-zinc-50 dark:bg-zinc-950/50" id="pricing">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-animate>
+            <h2 class="font-display text-4xl mb-4 gold-text uppercase">Choose Your Card</h2>
+            <p class="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto">One-time payment. Lifetime digital profile. No subscriptions.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- PVC Standard -->
+            <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800 relative hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 scroll-reveal delay-100 pricing-card card-tilt" data-animate>
+                <h3 class="text-2xl font-bold mb-2">PVC Standard</h3>
+                <p class="text-slate-500 dark:text-zinc-400 text-sm mb-6">High-Quality PVC Card</p>
+                <div class="flex items-baseline mb-8">
+                    <span class="text-5xl font-bold text-gradient">₹449</span>
+                    <span class="text-slate-500 dark:text-zinc-400 ml-2">One-time</span>
+                </div>
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center gap-3 scroll-reveal delay-100">
+                        <span class="material-icons-round text-primary text-xl pulse">check_circle</span>
+                        <span class="text-sm">High-Quality PVC Material</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-200">
+                        <span class="material-icons-round text-primary text-xl pulse">check_circle</span>
+                        <span class="text-sm">Water Resistant Coating</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-300">
+                        <span class="material-icons-round text-primary text-xl pulse">check_circle</span>
+                        <span class="text-sm">Smart QR + NFC Technology</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-400">
+                        <span class="material-icons-round text-primary text-xl pulse">check_circle</span>
+                        <span class="text-sm">Full Color Printing</span>
+                    </li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-4 border-2 border-primary rounded-xl hover:bg-primary hover:text-black font-bold transition-all stagger-item">Order Standard</a>
+            </div>
+            
+            <!-- Metallic Premium - PREMIUM -->
+            <div class="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 p-8 rounded-3xl border-2 border-primary relative transform md:scale-105 shadow-2xl z-10 hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 scroll-reveal delay-200 pricing-card glow card-tilt" data-animate>
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-yellow-400 text-black text-[10px] font-black uppercase py-2 px-6 rounded-full tracking-widest shadow-lg">
+                    ⭐ PREMIUM CHOICE
+                </div>
+                <h3 class="text-2xl font-bold mb-2 text-white">Metallic Premium</h3>
+                <p class="text-zinc-400 text-sm mb-6">Luxury Metal Finish</p>
+                <div class="flex items-baseline mb-8">
+                    <span class="text-5xl font-bold text-gradient">₹649</span>
+                    <span class="text-zinc-400 ml-2">One-time</span>
+                </div>
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center gap-3 scroll-reveal delay-100">
+                        <span class="material-icons-round text-yellow-400 text-xl pulse">check_circle</span>
+                        <span class="text-sm text-white">Brushed Metal Finish</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-200">
+                        <span class="material-icons-round text-yellow-400 text-xl pulse">check_circle</span>
+                        <span class="text-sm text-white">Laser Engraved Details</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-300">
+                        <span class="material-icons-round text-yellow-400 text-xl pulse">check_circle</span>
+                        <span class="text-sm text-white">Heavyweight Premium Feel</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-400">
+                        <span class="material-icons-round text-yellow-400 text-xl pulse">check_circle</span>
+                        <span class="text-sm text-white">Advanced Analytics Dashboard</span>
+                    </li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-4 bg-primary text-black rounded-xl hover:brightness-110 font-bold transition-all shadow-lg glow stagger-item">Get Metal Card</a>
+            </div>
+        </div>
+        
+        <!-- Trust Badges -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
+            <div class="text-center scroll-reveal delay-100" data-animate>
+                <div class="text-4xl mb-2">🚀</div>
+                <p class="text-sm font-semibold">Fast Delivery</p>
+            </div>
+            <div class="text-center scroll-reveal delay-200" data-animate>
+                <div class="text-4xl mb-2">🔒</div>
+                <p class="text-sm font-semibold">Secure Payment</p>
+            </div>
+            <div class="text-center scroll-reveal delay-300" data-animate>
+                <div class="text-4xl mb-2">♻️</div>
+                <p class="text-sm font-semibold">Eco-Friendly</p>
+            </div>
+            <div class="text-center scroll-reveal delay-400" data-animate>
+                <div class="text-4xl mb-2">✨</div>
+                <p class="text-sm font-semibold">Premium Quality</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-24 bg-zinc-900 dark:bg-black">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-display text-4xl md:text-5xl mb-6 text-white">Ready to Make Your <span class="gold-text">Last</span> Impression?</h2>
+        <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">Join thousands of professionals who have upgraded their networking game with luxury NFC digital business cards.</p>
+        <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg shadow-primary/20">
+            Get Started Now <span class="material-icons-round">arrow_forward</span>
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+{% include 'components/footer.html' %}
+{% endblock %}

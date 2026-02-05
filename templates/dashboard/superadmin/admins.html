@@ -1,0 +1,234 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Manage Admins - Super Admin{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <div class="mb-8 flex items-center justify-between">
+                <div>
+                    <h1 class="text-2xl font-bold">Admins</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Manage platform administrators.</p>
+                </div>
+                <button onclick="openCreateAdminModal()" class="flex items-center gap-2 px-4 py-2 bg-primary text-black dark:text-white rounded-xl hover:bg-primary/90 transition-colors">
+                    <span class="material-icons-round text-lg">add</span>
+                    Create Admin
+                </button>
+            </div>
+
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-slate-50 dark:bg-zinc-800">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Email</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Name</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Joined</th>
+                                <th class="px-6 py-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-zinc-800">
+                            {% for admin in admins %}
+                            <tr class="hover:bg-slate-50 dark:hover:bg-zinc-800/50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                                            <span class="material-icons-round text-primary text-sm">admin_panel_settings</span>
+                                        </div>
+                                        <span class="font-medium">{{ admin.email }}</span>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">{{ admin.first_name }} {{ admin.last_name }}</td>
+                                <td class="px-6 py-4">
+                                    {% if admin.is_active %}
+                                    <span class="px-2 py-1 bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 rounded-lg text-xs font-medium">Active</span>
+                                    {% else %}
+                                    <span class="px-2 py-1 bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400 rounded-lg text-xs font-medium">Inactive</span>
+                                    {% endif %}
+                                </td>
+                                <td class="px-6 py-4 text-sm text-slate-500">{{ admin.created_at|date:"M d, Y" }}</td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <button onclick="openEditAdminModal('{{ admin.id }}', '{{ admin.email }}', '{{ admin.first_name }}', '{{ admin.last_name }}', {{ admin.is_active|yesno:'true,false' }})" 
+                                                class="p-2 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-lg transition-colors" title="Edit">
+                                            <span class="material-icons-round text-lg text-slate-600 dark:text-slate-400">edit</span>
+                                        </button>
+                                        <button onclick="confirmDelete('{{ admin.id }}', '{{ admin.email }}')" 
+                                                class="p-2 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition-colors" title="Delete">
+                                            <span class="material-icons-round text-lg text-red-600">delete</span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr><td colspan="5" class="px-6 py-12 text-center text-slate-500">No admins found.</td></tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Create Admin Modal -->
+<div id="createAdminModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50" onclick="closeModal(event, 'createAdminModal')">
+    <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 max-w-md w-full mx-4" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold">Create New Admin</h3>
+            <button onclick="closeModal(event, 'createAdminModal')" class="p-2 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-lg">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        
+        <form method="POST" action="{% url 'accounts:superadmin_create_admin' %}" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label class="block text-sm font-medium mb-2">Email*</label>
+                <input type="email" name="email" required class="w-full px-4 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-primary">
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Username*</label>
+                <input type="text" name="username" required class="w-full px-4 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-primary">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">First Name</label>
+                    <input type="text" name="first_name" class="w-full px-4 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Last Name</label>
+                    <input type="text" name="last_name" class="w-full px-4 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-primary">
+                </div>
+            </div>
+            <div>
+                <label class="block text-sm font-medium mb-2">Default Password</label>
+                <input type="text" name="password" value="Admin@123" class="w-full px-4 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-primary">
+                <p class="text-xs text-slate-500 mt-1">Admin can change this after first login</p>
+            </div>
+            <div class="flex gap-3 pt-4">
+                <button type="button" onclick="closeModal(event, 'createAdminModal')" class="flex-1 px-4 py-2 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+                    Cancel
+                </button>
+                <button type="submit" class="flex-1 px-4 py-2 bg-primary text-black dark:text-white rounded-xl hover:bg-primary/90 transition-colors">
+                    Create Admin
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Edit Admin Modal -->
+<div id="editAdminModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50" onclick="closeModal(event, 'editAdminModal')">
+    <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 max-w-md w-full mx-4" onclick="event.stopPropagation()">
+        <div class="flex items-center justify-between mb-6">
+            <h3 class="text-xl font-bold">Edit Admin</h3>
+            <button onclick="closeModal(event, 'editAdminModal')" class="p-2 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-lg">
+                <span class="material-icons-round">close</span>
+            </button>
+        </div>
+        
+        <form method="POST" id="editAdminForm" class="space-y-4">
+            {% csrf_token %}
+            <div>
+                <label class="block text-sm font-medium mb-2">Email*</label>
+                <input type="email" name="email" id="edit_email" required class="w-full px-4 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-primary">
+            </div>
+            <div class="grid grid-cols-2 gap-4">
+                <div>
+                    <label class="block text-sm font-medium mb-2">First Name</label>
+                    <input type="text" name="first_name" id="edit_first_name" class="w-full px-4 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-primary">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium mb-2">Last Name</label>
+                    <input type="text" name="last_name" id="edit_last_name" class="w-full px-4 py-2 bg-slate-50 dark:bg-zinc-800 border border-slate-200 dark:border-zinc-700 rounded-xl focus:ring-2 focus:ring-primary">
+                </div>
+            </div>
+            <div class="flex items-center gap-2">
+                <input type="checkbox" name="is_active" id="edit_is_active" class="w-4 h-4 text-primary rounded focus:ring-2 focus:ring-primary">
+                <label for="edit_is_active" class="text-sm font-medium">Active</label>
+            </div>
+            <div class="flex gap-3 pt-4">
+                <button type="button" onclick="closeModal(event, 'editAdminModal')" class="flex-1 px-4 py-2 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+                    Cancel
+                </button>
+                <button type="submit" class="flex-1 px-4 py-2 bg-primary text-black dark:text-white rounded-xl hover:bg-primary/90 transition-colors">
+                    Save Changes
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Delete Confirmation Modal -->
+<div id="deleteModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50" onclick="closeModal(event, 'deleteModal')">
+    <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 max-w-md w-full mx-4" onclick="event.stopPropagation()">
+        <div class="flex items-center gap-3 mb-4">
+            <div class="w-12 h-12 rounded-full bg-red-100 dark:bg-red-900/30 flex items-center justify-center">
+                <span class="material-icons-round text-red-600 text-xl">warning</span>
+            </div>
+            <h3 class="text-xl font-bold">Delete Admin</h3>
+        </div>
+        <p class="text-slate-600 dark:text-slate-400 mb-6">Are you sure you want to delete admin <strong id="deleteAdminEmail"></strong>? This action cannot be undone.</p>
+        <form method="POST" id="deleteAdminForm" class="flex gap-3">
+            {% csrf_token %}
+            <button type="button" onclick="closeModal(event, 'deleteModal')" class="flex-1 px-4 py-2 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors">
+                Cancel
+            </button>
+            <button type="submit" class="flex-1 px-4 py-2 bg-red-600 text-white rounded-xl hover:bg-red-700 transition-colors">
+                Delete Admin
+            </button>
+        </form>
+    </div>
+</div>
+
+<script>
+function openCreateAdminModal() {
+    document.getElementById('createAdminModal').classList.remove('hidden');
+    document.getElementById('createAdminModal').classList.add('flex');
+}
+
+function openEditAdminModal(id, email, firstName, lastName, isActive) {
+    document.getElementById('editAdminModal').classList.remove('hidden');
+    document.getElementById('editAdminModal').classList.add('flex');
+    document.getElementById('editAdminForm').action = `/accounts/superadmin/admins/${id}/update/`;
+    document.getElementById('edit_email').value = email;
+    document.getElementById('edit_first_name').value = firstName;
+    document.getElementById('edit_last_name').value = lastName;
+    document.getElementById('edit_is_active').checked = isActive;
+}
+
+function confirmDelete(id, email) {
+    document.getElementById('deleteModal').classList.remove('hidden');
+    document.getElementById('deleteModal').classList.add('flex');
+    document.getElementById('deleteAdminEmail').textContent = email;
+    document.getElementById('deleteAdminForm').action = `/accounts/superadmin/admins/${id}/delete/`;
+}
+
+function closeModal(event, modalId) {
+    const modal = document.getElementById(modalId);
+    if (event.target.id === modalId || event.currentTarget.tagName === 'BUTTON') {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+// Close modals on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        ['createAdminModal', 'editAdminModal', 'deleteModal'].forEach(id => {
+            const modal = document.getElementById(id);
+            if (modal && !modal.classList.contains('hidden')) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+            }
+        });
+    }
+});
+</script>
+{% endblock %}

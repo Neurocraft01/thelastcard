@@ -1,0 +1,181 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pricing - The Last Card{% endblock %}
+
+{% block content %}
+<!-- Fixed Navigation -->
+<nav class="fixed w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-20">
+            <a href="{% url 'landing:home' %}" class="flex items-center gap-2">
+                <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
+                    <span class="material-icons-round text-black font-bold">contactless</span>
+                </div>
+                <span class="font-display text-xl tracking-wider hidden sm:block gold-text uppercase font-bold">The Last Card</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="{% url 'landing:home' %}#features" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">Features</a>
+                <a href="{% url 'landing:pricing' %}" class="text-primary transition-colors font-medium text-sm uppercase tracking-widest">Pricing</a>
+                <a href="{% url 'landing:about' %}" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">About</a>
+                <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
+                    <span class="material-icons-round text-xl">dark_mode</span>
+                </button>
+                {% if user.is_authenticated %}
+                <a href="{% url 'accounts:dashboard_redirect' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Dashboard</a>
+                {% else %}
+                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Get Started</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Pricing Hero -->
+<section class="pt-32 pb-12 bg-gradient-to-b from-slate-50 to-white dark:from-background-dark dark:to-zinc-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="font-display text-5xl md:text-6xl mb-6">
+            Choose Your <span class="gold-text">Luxury</span>
+        </h1>
+        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">One-time payment for the card. No monthly subscriptions for basic features.</p>
+    </div>
+</section>
+
+<!-- Pricing Cards -->
+<section class="py-12 pb-24">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- PVC Standard -->
+            <div data-animate class="pricing-card stagger-item bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800 relative hover:shadow-xl transition-all card-tilt">
+                <h3 class="text-2xl font-bold mb-2">PVC Standard</h3>
+                <p class="text-slate-500 text-sm mb-6">Durable, lightweight, and vibrant.</p>
+                <div class="flex items-baseline mb-8">
+                    <span class="text-5xl font-bold text-gradient">₹449</span>
+                    <span class="text-slate-500 ml-2">INR</span>
+                </div>
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center gap-3 scroll-reveal delay-100">
+                        <span class="material-icons-round text-primary text-2xl pulse">check_circle</span> 
+                        <span>High-Quality PVC Plastic</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-200">
+                        <span class="material-icons-round text-primary text-2xl pulse">check_circle</span> 
+                        <span>Water & Scratch Resistant</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-300">
+                        <span class="material-icons-round text-primary text-2xl pulse">check_circle</span> 
+                        <span>Smart QR + NFC Chip</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-400">
+                        <span class="material-icons-round text-primary text-2xl pulse">check_circle</span> 
+                        <span>Full Color Printing</span>
+                    </li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-4 btn btn-secondary text-base">
+                    Order Standard
+                </a>
+            </div>
+            
+            <!-- Metallic Premium - Most Popular -->
+            <div data-animate class="pricing-card stagger-item bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-black dark:via-zinc-900 dark:to-black p-8 rounded-3xl border-2 border-primary relative transform md:scale-105 shadow-2xl z-10 glow">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black text-[10px] font-black uppercase py-1 px-4 rounded-full tracking-widest shadow-lg">
+                    ⭐ PREMIUM CHOICE
+                </div>
+                <h3 class="text-2xl font-bold mb-2 text-white">Metallic Premium</h3>
+                <p class="text-slate-400 text-sm mb-6">Laser-engraved luxury finish.</p>
+                <div class="flex items-baseline mb-8">
+                    <span class="text-5xl font-bold text-gradient">₹649</span>
+                    <span class="text-slate-400 ml-2">INR</span>
+                </div>
+                <ul class="space-y-4 mb-10 text-white">
+                    <li class="flex items-center gap-3 scroll-reveal delay-100">
+                        <span class="material-icons-round text-yellow-400 text-2xl pulse">check_circle</span> 
+                        <span>Premium Metal Finish</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-200">
+                        <span class="material-icons-round text-yellow-400 text-2xl pulse">check_circle</span> 
+                        <span>Laser Engraved Name</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-300">
+                        <span class="material-icons-round text-yellow-400 text-2xl pulse">check_circle</span> 
+                        <span>Heavyweight Luxury Feel</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-400">
+                        <span class="material-icons-round text-yellow-400 text-2xl pulse">check_circle</span> 
+                        <span>Advanced Analytics Dashboard</span>
+                    </li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-4 btn btn-primary text-base glow">
+                    Get Metal Card
+                </a>
+            </div>
+        </div>
+        
+        <!-- Trust Badges -->
+        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
+            <div data-animate class="scroll-reveal">
+                <div class="text-3xl mb-2">🚀</div>
+                <div class="font-bold text-sm">Fast Delivery</div>
+                <div class="text-xs text-slate-500">5-7 days</div>
+            </div>
+            <div data-animate class="scroll-reveal delay-100">
+                <div class="text-3xl mb-2">🔒</div>
+                <div class="font-bold text-sm">Secure Payment</div>
+                <div class="text-xs text-slate-500">100% Safe</div>
+            </div>
+            <div data-animate class="scroll-reveal delay-200">
+                <div class="text-3xl mb-2">♻️</div>
+                <div class="font-bold text-sm">Eco-Friendly</div>
+                <div class="text-xs text-slate-500">Sustainable</div>
+            </div>
+            <div data-animate class="scroll-reveal delay-300">
+                <div class="text-3xl mb-2">✨</div>
+                <div class="font-bold text-sm">Premium Quality</div>
+                <div class="text-xs text-slate-500">Guaranteed</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ Section -->
+<section class="py-24 bg-slate-50 dark:bg-zinc-950">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <h2 class="font-display text-3xl mb-4">Frequently Asked <span class="gold-text">Questions</span></h2>
+        </div>
+        <div class="space-y-4">
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                <h3 class="font-bold mb-2">Is there a monthly subscription fee?</h3>
+                <p class="text-slate-500">No! The price you see is a one-time payment for your physical card. Basic digital profile features are included forever.</p>
+            </div>
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                <h3 class="font-bold mb-2">Can I update my information after purchase?</h3>
+                <p class="text-slate-500">Yes, you can update your digital profile unlimited times without ordering a new card. That's the beauty of NFC!</p>
+            </div>
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                <h3 class="font-bold mb-2">Do recipients need an app to view my card?</h3>
+                <p class="text-slate-500">No app needed! When someone taps your card, your profile opens directly in their phone's web browser.</p>
+            </div>
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                <h3 class="font-bold mb-2">How long does shipping take?</h3>
+                <p class="text-slate-500">Standard shipping is 5-7 business days. Express shipping (2-3 days) is available at checkout.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-24 bg-zinc-900 dark:bg-black">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-display text-4xl md:text-5xl mb-6 text-white">Ready to Stand <span class="gold-text">Out</span>?</h2>
+        <p class="text-xl text-slate-400 mb-10">Join thousands of professionals making unforgettable first impressions.</p>
+        <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg shadow-primary/20">
+            Get Your Card <span class="material-icons-round">arrow_forward</span>
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+{% include 'components/footer.html' %}
+{% endblock %}

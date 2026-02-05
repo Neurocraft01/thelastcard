@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Set Up Your Profile - The Last Card{% endblock %}
+
+{% block navigation %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen flex">
+    <!-- Left Side - Progress -->
+    <div class="hidden lg:flex lg:w-1/3 bg-zinc-900 relative overflow-hidden items-center justify-center p-12">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 max-w-md">
+            <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-3 mb-12">
+                <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="material-icons-round text-black text-2xl">contactless</span>
+                </div>
+                <span class="font-display text-2xl tracking-wider gold-text uppercase font-bold">The Last Card</span>
+            </a>
+            
+            <!-- Progress Steps -->
+            <div class="space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold">1</div>
+                    <div>
+                        <p class="text-white font-semibold">Profile Information</p>
+                        <p class="text-slate-400 text-sm">Tell us about yourself</p>
+                    </div>
+                </div>
+                <div class="ml-5 h-8 border-l-2 border-slate-700"></div>
+                <div class="flex items-center gap-4 opacity-50">
+                    <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-white font-bold">2</div>
+                    <div>
+                        <p class="text-white font-semibold">Choose Theme</p>
+                        <p class="text-slate-400 text-sm">Customize your look</p>
+                    </div>
+                </div>
+                <div class="ml-5 h-8 border-l-2 border-slate-700"></div>
+                <div class="flex items-center gap-4 opacity-50">
+                    <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-white font-bold">3</div>
+                    <div>
+                        <p class="text-white font-semibold">Your Profile URL</p>
+                        <p class="text-slate-400 text-sm">Ready to share</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side - Form -->
+    <div class="w-full lg:w-2/3 flex items-center justify-center p-8 bg-background-light dark:bg-background-dark overflow-y-auto">
+        <div class="w-full max-w-xl">
+            <!-- Mobile Logo -->
+            <a href="{% url 'landing:home' %}" class="lg:hidden flex items-center justify-center gap-2 mb-6">
+                <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center">
+                    <span class="material-icons-round text-black">contactless</span>
+                </div>
+                <span class="font-display text-xl tracking-wider gold-text uppercase font-bold">The Last Card</span>
+            </a>
+
+            <!-- Mobile Progress -->
+            <div class="lg:hidden flex items-center justify-center gap-2 mb-6">
+                <div class="w-8 h-8 rounded-full gold-gradient flex items-center justify-center text-black text-sm font-bold">1</div>
+                <div class="w-8 h-1 bg-slate-200 dark:bg-zinc-700 rounded"></div>
+                <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-zinc-700 flex items-center justify-center text-sm font-bold">2</div>
+                <div class="w-8 h-1 bg-slate-200 dark:bg-zinc-700 rounded"></div>
+                <div class="w-8 h-8 rounded-full bg-slate-200 dark:bg-zinc-700 flex items-center justify-center text-sm font-bold">3</div>
+            </div>
+
+            <div class="mb-8">
+                <h1 class="font-display text-3xl mb-2">Set Up Your Profile</h1>
+                <p class="text-slate-500 dark:text-slate-400">This information will appear on your digital business card</p>
+            </div>
+
+            <form method="post" enctype="multipart/form-data" class="space-y-6">
+                {% csrf_token %}
+                
+                <!-- Profile Photo -->
+                <div class="flex items-center gap-6">
+                    <div class="relative">
+                        <div id="photoPreview" class="w-24 h-24 rounded-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center overflow-hidden border-2 border-dashed border-slate-300 dark:border-zinc-600">
+                            {% if profile.profile_photo %}
+                            <img src="{{ profile.profile_photo.url }}" alt="Profile" class="w-full h-full object-cover">
+                            {% else %}
+                            <span class="material-icons-round text-3xl text-slate-400">person</span>
+                            {% endif %}
+                        </div>
+                        <label for="profile_photo" class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full gold-gradient flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-transform">
+                            <span class="material-icons-round text-black text-sm">add_a_photo</span>
+                        </label>
+                        <input type="file" id="profile_photo" name="profile_photo" accept="image/*" class="hidden" onchange="previewPhoto(this)">
+                    </div>
+                    <div>
+                        <p class="font-medium">Profile Photo</p>
+                        <p class="text-sm text-slate-500">Recommended: Square image, at least 200x200px</p>
+                    </div>
+                </div>
+
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <!-- Full Name -->
+                    <div class="sm:col-span-2">
+                        <label for="full_name" class="block text-sm font-medium mb-2">Full Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="full_name" name="full_name" required
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                            placeholder="John Doe"
+                            value="{{ profile.full_name }}">
+                    </div>
+
+                    <!-- First Name -->
+                    <div>
+                        <label for="first_name" class="block text-sm font-medium mb-2">First Name</label>
+                        <input type="text" id="first_name" name="first_name"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                            placeholder="John"
+                            value="{{ profile.first_name }}">
+                    </div>
+
+                    <!-- Last Name -->
+                    <div>
+                        <label for="last_name" class="block text-sm font-medium mb-2">Last Name</label>
+                        <input type="text" id="last_name" name="last_name"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                            placeholder="Doe"
+                            value="{{ profile.last_name }}">
+                    </div>
+
+                    <!-- Company -->
+                    <div>
+                        <label for="company" class="block text-sm font-medium mb-2">Company</label>
+                        <input type="text" id="company" name="company"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                            placeholder="Acme Inc."
+                            value="{{ profile.company }}">
+                    </div>
+
+                    <!-- Job Title / Designation -->
+                    <div>
+                        <label for="designation" class="block text-sm font-medium mb-2">Job Title</label>
+                        <input type="text" id="designation" name="designation"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                            placeholder="Marketing Director"
+                            value="{{ profile.designation }}">
+                    </div>
+
+                    <!-- Phone -->
+                    <div>
+                        <label for="phone" class="block text-sm font-medium mb-2">Phone Number</label>
+                        <input type="tel" id="phone" name="phone"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                            placeholder="+1 (555) 123-4567"
+                            value="{{ profile.phone_primary }}">
+                    </div>
+
+                    <!-- Public Email -->
+                    <div>
+                        <label for="email_public" class="block text-sm font-medium mb-2">Public Email</label>
+                        <input type="email" id="email_public" name="email_public"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                            placeholder="john@company.com"
+                            value="{{ profile.email_public|default:request.user.email }}">
+                    </div>
+
+                    <!-- Website -->
+                    <div class="sm:col-span-2">
+                        <label for="website" class="block text-sm font-medium mb-2">Website</label>
+                        <input type="url" id="website" name="website"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all"
+                            placeholder="https://yourwebsite.com"
+                            value="{{ profile.website }}">
+                    </div>
+
+                    <!-- Bio -->
+                    <div class="sm:col-span-2">
+                        <label for="bio" class="block text-sm font-medium mb-2">Short Bio</label>
+                        <textarea id="bio" name="bio" rows="3"
+                            class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all resize-none"
+                            placeholder="Tell people a bit about yourself...">{{ profile.bio }}</textarea>
+                        <p class="mt-1 text-xs text-slate-500">Max 500 characters</p>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 pt-4">
+                    <button type="submit" class="flex-1 py-4 bg-primary text-black font-bold rounded-xl hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                        Continue to Theme Selection
+                        <span class="material-icons-round">arrow_forward</span>
+                    </button>
+                </div>
+            </form>
+
+            <p class="mt-6 text-center text-sm text-slate-500">
+                You can always update this information later from your dashboard
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+function previewPhoto(input) {
+    if (input.files && input.files[0]) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.getElementById('photoPreview');
+            preview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="w-full h-full object-cover">`;
+        };
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
+{% endblock %}

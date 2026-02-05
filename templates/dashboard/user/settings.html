@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Settings - The Last Card{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <!-- Header -->
+            <div class="mb-8">
+                <h1 class="text-2xl font-bold">Account Settings</h1>
+                <p class="text-slate-500 dark:text-slate-400">Manage your login preferences and security.</p>
+            </div>
+
+            <div class="space-y-6 max-w-3xl">
+                <!-- Security Section -->
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                    <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                        <h3 class="font-semibold flex items-center gap-2">
+                            <span class="material-icons-round text-primary">shield</span>
+                            Security
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium">Password</p>
+                                <p class="text-sm text-slate-500">Last changed: {{ user.password_changed_at|timesince|default:"Never" }} ago</p>
+                            </div>
+                            <a href="{% url 'accounts:change_password' %}" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all text-sm font-medium">
+                                <span class="material-icons-round text-lg">key</span>
+                                Change Password
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Email Preferences -->
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                    <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                        <h3 class="font-semibold flex items-center gap-2">
+                            <span class="material-icons-round text-primary">mail</span>
+                            Email Preferences
+                        </h3>
+                    </div>
+                    <div class="p-6 space-y-4">
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" checked>
+                            <div>
+                                <p class="font-medium">Marketing Emails</p>
+                                <p class="text-sm text-slate-500">Receive updates about new features and promotions</p>
+                            </div>
+                        </label>
+                        <label class="flex items-center gap-3 cursor-pointer">
+                            <input type="checkbox" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary" checked>
+                            <div>
+                                <p class="font-medium">Usage Notifications</p>
+                                <p class="text-sm text-slate-500">Get notified when someone views your card</p>
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Theme Preferences -->
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                    <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                        <h3 class="font-semibold flex items-center gap-2">
+                            <span class="material-icons-round text-primary">palette</span>
+                            Appearance
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium">Dark Mode</p>
+                                <p class="text-sm text-slate-500">Toggle dark mode for the dashboard</p>
+                            </div>
+                            <button onclick="toggleDarkMode()" class="w-12 h-6 bg-slate-200 dark:bg-primary rounded-full relative transition-colors">
+                                <span class="absolute top-1 left-1 dark:left-6 w-4 h-4 bg-white rounded-full transition-all"></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Danger Zone -->
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-red-200 dark:border-red-900/50">
+                    <div class="px-6 py-4 border-b border-red-200 dark:border-red-900/50">
+                        <h3 class="font-semibold text-red-600 flex items-center gap-2">
+                            <span class="material-icons-round">warning</span>
+                            Danger Zone
+                        </h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <p class="font-medium">Log Out</p>
+                                <p class="text-sm text-slate-500">Sign out of your account on this device</p>
+                            </div>
+                            <a href="{% url 'accounts:logout' %}" class="inline-flex items-center gap-2 px-4 py-2 border border-red-300 dark:border-red-800 text-red-600 rounded-xl hover:bg-red-50 dark:hover:bg-red-900/20 transition-all text-sm font-medium">
+                                <span class="material-icons-round text-lg">logout</span>
+                                Log Out
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

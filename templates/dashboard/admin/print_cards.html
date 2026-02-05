@@ -1,0 +1,158 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Print Cards - Admin Dashboard{% endblock %}
+
+{% block navigation %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-white">
+    <!-- Print Header (hidden on screen) -->
+    <div class="print-only hidden print:block print:mb-8">
+        <div class="flex items-center justify-between border-b-2 border-primary pb-4">
+            <div class="flex items-center gap-3">
+                <span class="text-2xl font-display font-bold">THE LAST CARD</span>
+            </div>
+            <div class="text-sm text-slate-500">
+                Generated on: {% now "F d, Y H:i" %}
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen Header -->
+    <div class="print:hidden p-6 bg-slate-50 border-b border-slate-200">
+        <div class="max-w-6xl mx-auto flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <div>
+                <h1 class="text-2xl font-display font-bold">Print Cards</h1>
+                <p class="text-slate-500">{{ cards|length }} card{{ cards|length|pluralize }} ready for printing</p>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="{% url 'accounts:admin_cards' %}" class="flex items-center gap-2 px-4 py-2 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors font-medium">
+                    <span class="material-icons-round text-lg">arrow_back</span>
+                    Back
+                </a>
+                <button onclick="window.print()" class="flex items-center gap-2 px-6 py-2 bg-primary text-black rounded-xl hover:brightness-110 transition-all font-bold">
+                    <span class="material-icons-round text-lg">print</span>
+                    Print All
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cards Grid -->
+    <div class="max-w-6xl mx-auto p-6 print:p-0">
+        {% if cards %}
+        <div class="grid md:grid-cols-2 gap-8 print:gap-6">
+            {% for card in cards %}
+            <div class="print-card bg-white border border-slate-200 rounded-xl p-6 print:border-2 print:break-inside-avoid print:mb-6">
+                <!-- Card Header -->
+                <div class="flex items-start justify-between mb-6">
+                    <div>
+                        <span class="text-xs font-medium text-slate-500 uppercase tracking-wider">Card #{{ forloop.counter }}</span>
+                        <h3 class="text-xl font-bold">{{ card.url_slug }}</h3>
+                    </div>
+                    <span class="px-3 py-1 rounded-full text-xs font-medium {% if card.status == 'ACTIVE' %}bg-green-100 text-green-700{% else %}bg-amber-100 text-amber-700{% endif %}">
+                        {{ card.get_status_display }}
+                    </span>
+                </div>
+
+                <div class="grid grid-cols-2 gap-6">
+                    <!-- Card Info -->
+                    <div class="space-y-4">
+                        <div>
+                            <label class="text-xs font-medium text-slate-500 uppercase">Card UID</label>
+                            <p class="font-mono text-sm font-medium">{{ card.card_uid }}</p>
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500 uppercase">Public URL</label>
+                            <p class="text-sm text-primary font-medium break-all">{{ card.public_url }}</p>
+                        </div>
+                        {% if card.user %}
+                        <div>
+                            <label class="text-xs font-medium text-slate-500 uppercase">User</label>
+                            <p class="text-sm font-medium">{% if card.user.profile %}{{ card.user.profile.full_name }}{% else %}{{ card.user.email }}{% endif %}</p>
+                            <p class="text-xs text-slate-500">{{ card.user.email }}</p>
+                        </div>
+                        {% if card.user.profile %}
+                        <div>
+                            <label class="text-xs font-medium text-slate-500 uppercase">Company</label>
+                            <p class="text-sm font-medium">{{ card.user.profile.company|default:"-" }}</p>
+                        </div>
+                        <div>
+                            <label class="text-xs font-medium text-slate-500 uppercase">Phone</label>
+                            <p class="text-sm font-medium">{{ card.user.profile.phone_primary|default:"-" }}</p>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+
+                    <!-- QR Code -->
+                    <div class="text-center">
+                        <div class="qr-code-container mb-2" data-url="{{ card.public_url }}"></div>
+                        <p class="text-xs text-slate-500">Scan for digital card</p>
+                    </div>
+                </div>
+
+                <!-- Card Preview -->
+                <div class="mt-6 pt-6 border-t border-slate-200">
+                    <label class="text-xs font-medium text-slate-500 uppercase mb-3 block">Physical Card Preview</label>
+                    <div class="aspect-[1.6/1] bg-gradient-to-br from-[#BF953F] via-[#FCF6BA] to-[#AA771C] rounded-lg p-3 flex flex-col justify-between text-black text-xs max-w-xs">
+                        <div class="flex items-center justify-between">
+                            <span class="font-display text-[10px] font-bold tracking-wider">THE LAST CARD</span>
+                            <span class="material-icons-round text-black/50 text-sm">contactless</span>
+                        </div>
+                        <div>
+                            <p class="font-bold text-sm leading-tight">{% if card.user and card.user.profile %}{{ card.user.profile.full_name|truncatewords:3 }}{% elif card.user %}{{ card.user.email|truncatewords:1 }}{% else %}-{% endif %}</p>
+                            <p class="text-[10px] opacity-75">{% if card.user and card.user.profile %}{{ card.user.profile.designation|default:"" }}{% endif %}</p>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <p class="font-mono text-[10px]">{{ card.url_slug }}</p>
+                            <p class="text-[10px]">NFC</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="text-center py-20">
+            <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-slate-100 flex items-center justify-center">
+                <span class="material-icons-round text-slate-400 text-4xl">print</span>
+            </div>
+            <h3 class="text-xl font-bold mb-2">No Cards Selected</h3>
+            <p class="text-slate-500 mb-6">Please select cards from the cards list to print.</p>
+            <a href="{% url 'accounts:admin_cards' %}" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black rounded-xl hover:brightness-110 transition-all font-bold">
+                <span class="material-icons-round">arrow_back</span>
+                Go to Cards
+            </a>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- QR Code Library -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.querySelectorAll('.qr-code-container').forEach(function(container) {
+            const url = container.dataset.url;
+            QRCode.toCanvas(document.createElement('canvas'), url, { width: 120, margin: 2 }, function(error, canvas) {
+                if (error) console.error(error);
+                container.appendChild(canvas);
+            });
+        });
+    });
+</script>
+
+<!-- Print Styles -->
+<style>
+    @media print {
+        body { background: white !important; }
+        .print\\:hidden { display: none !important; }
+        .print-only { display: block !important; }
+        .print-card { page-break-inside: avoid; }
+        @page { margin: 1cm; }
+    }
+</style>
+{% endblock %}

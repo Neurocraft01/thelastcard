@@ -1,0 +1,262 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Card - The Last Card{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold">My Digital Card</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Manage and share your NFC business card.</p>
+                </div>
+                {% if card %}
+                <div class="flex gap-3">
+                    <a href="{% url 'cards:edit' card.id %}" class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-black font-semibold rounded-xl hover:brightness-110 transition-all">
+                        <span class="material-icons-round text-lg">edit</span>
+                        Edit Card
+                    </a>
+                    <a href="{{ card.public_url }}" target="_blank" class="inline-flex items-center gap-2 px-4 py-2 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all">
+                        <span class="material-icons-round text-lg">open_in_new</span>
+                        View Public
+                    </a>
+                </div>
+                {% endif %}
+            </div>
+
+            {% if card %}
+            <div class="grid lg:grid-cols-2 gap-6">
+                <!-- Card Status -->
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                    <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                        <h3 class="font-semibold">Card Status</h3>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <div>
+                                <p class="text-lg font-semibold">{{ card.url_slug }}</p>
+                                <p class="text-sm text-slate-500">{{ card.public_url }}</p>
+                            </div>
+                            <span class="px-3 py-1 rounded-full text-xs font-semibold {% if card.is_active %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% else %}bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400{% endif %}">
+                                {{ card.get_status_display }}
+                            </span>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4 mb-6">
+                            <div class="bg-slate-50 dark:bg-zinc-800 rounded-xl p-4 text-center">
+                                <p class="text-2xl font-bold">{{ card.view_count }}</p>
+                                <p class="text-sm text-slate-500">Total Views</p>
+                            </div>
+                            <div class="bg-slate-50 dark:bg-zinc-800 rounded-xl p-4 text-center">
+                                <p class="text-2xl font-bold">{{ interactions_today|default:0 }}</p>
+                                <p class="text-sm text-slate-500">Views Today</p>
+                            </div>
+                        </div>
+
+                        <!-- Share Options -->
+                        <div class="space-y-3">
+                            <button onclick="shareCard()" class="w-full flex items-center justify-center gap-2 px-4 py-3 gold-gradient text-black rounded-xl font-bold hover:opacity-90 transition-all shadow-lg">
+                                <span class="material-icons-round text-lg">share</span>
+                                Share Profile
+                            </button>
+                            <div class="grid grid-cols-2 gap-3">
+                                <button onclick="navigator.clipboard.writeText('{{ card.public_url }}'); showToast('Link copied!')" class="flex items-center justify-center gap-2 px-4 py-2 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all text-sm">
+                                    <span class="material-icons-round text-lg">content_copy</span>
+                                    Copy Link
+                                </button>
+                                <button onclick="openMobileView()" class="flex items-center justify-center gap-2 px-4 py-2 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all text-sm">
+                                    <span class="material-icons-round text-lg">phone_iphone</span>
+                                    Mobile
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QR Code -->
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                    <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                        <h3 class="font-semibold">Quick Share</h3>
+                    </div>
+                    <div class="p-6 text-center">
+                        <div class="inline-block p-4 bg-white rounded-2xl border border-slate-200 dark:border-zinc-700 mb-4">
+                            <img src="{% url 'profiles:qr_code' card.url_slug %}" alt="QR Code" class="w-40 h-40">
+                        </div>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="showQRModal()" class="flex items-center justify-center gap-2 px-4 py-3 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all text-sm">
+                                <span class="material-icons-round text-lg">fullscreen</span>
+                                View Full
+                            </button>
+                            <a href="{% url 'profiles:qr_code' card.url_slug %}?download=true" class="flex items-center justify-center gap-2 px-4 py-3 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-100 dark:hover:bg-zinc-800 transition-all text-sm">
+                                <span class="material-icons-round text-lg">download</span>
+                                Download QR
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% else %}
+            <!-- Empty State -->
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 p-12 text-center">
+                <div class="w-20 h-20 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+                    <span class="material-icons-round text-primary text-4xl">credit_card</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">No Active Card</h3>
+                <p class="text-slate-500 dark:text-slate-400 mb-6">You don't have an active digital business card yet.</p>
+                <a href="{% url 'cards:create' %}" class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-semibold rounded-xl hover:brightness-110 transition-all">
+                    <span class="material-icons-round">add</span>
+                    Create Your Card
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+</div>
+
+<!-- QR Code Modal -->
+{% if card %}
+<div id="qrModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+    <div class="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-zinc-900 dark:to-zinc-950 max-w-md w-full rounded-2xl p-6 relative border border-slate-700 dark:border-zinc-800 shadow-2xl animate-scale-in">
+        <button onclick="closeQRModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-lg bg-slate-700/50 hover:bg-slate-700 text-white transition-colors">
+            <span class="material-icons-round">close</span>
+        </button>
+        
+        <div class="text-center">
+            <div class="w-16 h-16 mx-auto mb-4 gold-gradient rounded-2xl flex items-center justify-center shadow-lg">
+                <span class="material-icons-round text-3xl text-black">qr_code_2</span>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-2">Scan QR Code</h3>
+            <p class="text-slate-400 text-sm mb-6">Share this code to let others view your profile</p>
+            
+            <div class="bg-white p-6 rounded-xl mb-6">
+                <img src="{% url 'profiles:qr_code' card.url_slug %}" alt="QR Code" class="w-full h-auto">
+            </div>
+            
+            <div class="grid grid-cols-2 gap-3">
+                <a href="{% url 'profiles:qr_code' card.url_slug %}?download=true" class="flex items-center justify-center gap-2 px-4 py-3 bg-slate-700/50 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
+                    <span class="material-icons-round text-lg">download</span>
+                    Download
+                </a>
+                <button onclick="shareQRCode()" class="flex items-center justify-center gap-2 px-4 py-3 gold-gradient text-black rounded-xl font-bold hover:opacity-90 transition-all shadow-lg">
+                    <span class="material-icons-round text-lg">share</span>
+                    Share
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+<style>
+@keyframes scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+.animate-scale-in {
+    animation: scale-in 0.2s ease-out;
+}
+</style>
+
+<script>
+{% if card %}
+// QR Modal Functions
+function showQRModal() {
+    document.getElementById('qrModal').classList.remove('hidden');
+    document.getElementById('qrModal').classList.add('flex');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeQRModal() {
+    document.getElementById('qrModal').classList.add('hidden');
+    document.getElementById('qrModal').classList.remove('flex');
+    document.body.style.overflow = '';
+}
+
+// Share Card
+function shareCard() {
+    const shareData = {
+        title: 'My Digital Business Card',
+        text: 'Check out my digital business card!',
+        url: '{{ card.public_url }}'
+    };
+
+    if (navigator.share) {
+        navigator.share(shareData).catch((error) => {
+            if (error.name !== 'AbortError') {
+                navigator.clipboard.writeText('{{ card.public_url }}');
+                showToast('Link copied to clipboard!');
+            }
+        });
+    } else {
+        navigator.clipboard.writeText('{{ card.public_url }}');
+        showToast('Link copied to clipboard!');
+    }
+}
+
+// Share QR Code
+function shareQRCode() {
+    if (navigator.share) {
+        navigator.share({
+            title: 'My QR Code',
+            text: 'Scan this QR code to view my profile',
+            url: '{{ card.public_url }}'
+        }).catch((error) => {
+            if (error.name !== 'AbortError') {
+                navigator.clipboard.writeText('{{ card.public_url }}');
+                showToast('Link copied to clipboard!');
+            }
+        });
+    } else {
+        navigator.clipboard.writeText('{{ card.public_url }}');
+        showToast('Link copied to clipboard!');
+    }
+}
+
+// Open Mobile View
+function openMobileView() {
+    window.open("/u/{{ card.url_slug }}/mobile/", '_blank');
+}
+
+// Toast Notification
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.className = 'fixed bottom-4 right-4 bg-slate-900 text-white px-6 py-3 rounded-xl shadow-2xl z-50 animate-scale-in border border-slate-700 flex items-center gap-2';
+    toast.innerHTML = `
+        <span class="material-icons-round text-primary">check_circle</span>
+        <span>${message}</span>
+    `;
+    document.body.appendChild(toast);
+    
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transition = 'opacity 0.3s';
+        setTimeout(() => toast.remove(), 300);
+    }, 2500);
+}
+
+// Close modal when clicking outside
+document.getElementById('qrModal')?.addEventListener('click', (e) => {
+    if (e.target.id === 'qrModal') closeQRModal();
+});
+
+// Close modal with Escape key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeQRModal();
+    }
+});
+{% endif %}
+</script>
+{% endblock %}

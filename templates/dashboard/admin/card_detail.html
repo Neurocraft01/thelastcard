@@ -1,0 +1,278 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Card Details - Admin Dashboard{% endblock %}
+
+{% block navigation %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-zinc-950">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <!-- Main Content -->
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <!-- Header -->
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-8">
+                <div>
+                    <nav class="flex items-center gap-2 text-sm text-slate-500 mb-2">
+                        <a href="{% url 'accounts:admin_dashboard' %}" class="hover:text-primary">Dashboard</a>
+                        <span class="material-icons-round text-xs">chevron_right</span>
+                        <a href="{% url 'accounts:admin_cards' %}" class="hover:text-primary">Cards</a>
+                        <span class="material-icons-round text-xs">chevron_right</span>
+                        <span class="text-slate-700 dark:text-slate-300">{{ card.url_slug }}</span>
+                    </nav>
+                    <h1 class="text-2xl font-display font-bold">Card Details</h1>
+                    <p class="text-slate-500 dark:text-slate-400">View and print card information</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="{% url 'accounts:admin_export_card' card.id %}" class="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors font-medium">
+                        <span class="material-icons-round text-lg">download</span>
+                        Export PDF
+                    </a>
+                    <button onclick="window.print()" class="flex items-center gap-2 px-4 py-2 bg-primary text-black rounded-xl hover:brightness-110 transition-all font-medium">
+                        <span class="material-icons-round text-lg">print</span>
+                        Print
+                    </button>
+                </div>
+            </div>
+
+            <!-- Card Information -->
+            <div class="grid lg:grid-cols-3 gap-6">
+                <!-- Main Card Info -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Card Details -->
+                    <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                        <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                            <h3 class="font-bold text-lg flex items-center gap-2">
+                                <span class="material-icons-round text-primary">credit_card</span>
+                                Card Information
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Card UID</label>
+                                    <p class="font-mono font-medium text-lg">{{ card.card_uid }}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">URL Slug</label>
+                                    <p class="font-medium">{{ card.url_slug }}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Status</label>
+                                    <span class="inline-flex px-3 py-1 rounded-full text-sm font-medium {% if card.status == 'ACTIVE' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif card.status == 'PENDING' %}bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400{% else %}bg-slate-100 text-slate-700 dark:bg-zinc-800 dark:text-slate-400{% endif %}">
+                                        {{ card.get_status_display }}
+                                    </span>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Created</label>
+                                    <p class="font-medium">{{ card.created_at|date:"M d, Y H:i" }}</p>
+                                </div>
+                                <div class="sm:col-span-2">
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Public URL</label>
+                                    <div class="flex items-center gap-2">
+                                        <p class="font-medium text-primary">{{ card.public_url }}</p>
+                                        <button onclick="copyToClipboard('{{ card.public_url }}')" class="p-1 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded">
+                                            <span class="material-icons-round text-slate-400 text-lg">content_copy</span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- User Information -->
+                    {% if user %}
+                    <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                        <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                            <h3 class="font-bold text-lg flex items-center gap-2">
+                                <span class="material-icons-round text-primary">person</span>
+                                User Information
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="flex items-start gap-4 mb-6">
+                                <div class="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                                    {% if profile and profile.profile_photo %}
+                                    <img src="{{ profile.profile_photo.url }}" alt="Profile" class="w-full h-full object-cover">
+                                    {% else %}
+                                    <span class="text-2xl font-bold text-primary">{{ user.email|slice:":2"|upper }}</span>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold">{% if profile %}{{ profile.full_name }}{% else %}{{ user.email }}{% endif %}</h4>
+                                    <p class="text-slate-500">{{ user.email }}</p>
+                                    {% if profile and profile.designation %}
+                                    <p class="text-sm text-slate-400">{{ profile.designation }}{% if profile.company %} at {{ profile.company }}{% endif %}</p>
+                                    {% endif %}
+                                </div>
+                            </div>
+                            
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Company</label>
+                                    <p class="font-medium">{% if profile %}{{ profile.company|default:"-" }}{% else %}-{% endif %}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Designation</label>
+                                    <p class="font-medium">{% if profile %}{{ profile.designation|default:"-" }}{% else %}-{% endif %}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Phone</label>
+                                    <p class="font-medium">{% if profile %}{{ profile.phone_primary|default:"-" }}{% else %}-{% endif %}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Website</label>
+                                    <p class="font-medium">{% if profile %}{{ profile.website|default:"-" }}{% else %}-{% endif %}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Public Email</label>
+                                    <p class="font-medium">{% if profile %}{{ profile.email_public|default:"-" }}{% else %}-{% endif %}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Location</label>
+                                    <p class="font-medium">{% if profile and profile.location %}{{ profile.location }}{% else %}-{% endif %}</p>
+                                </div>
+                            </div>
+                            
+                            {% if profile and profile.bio %}
+                            <div class="mt-6 pt-6 border-t border-slate-200 dark:border-zinc-800">
+                                <label class="text-sm text-slate-500 dark:text-slate-400 mb-2 block">Bio</label>
+                                <p class="text-slate-700 dark:text-slate-300">{{ profile.bio }}</p>
+                            </div>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <!-- Customization -->
+                    <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                        <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                            <h3 class="font-bold text-lg flex items-center gap-2">
+                                <span class="material-icons-round text-primary">palette</span>
+                                Card Customization
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <div class="grid sm:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Theme</label>
+                                    <p class="font-medium">{% if card.theme %}{{ card.theme.name }}{% else %}Default{% endif %}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Privacy</label>
+                                    <p class="font-medium">{% if card.is_private %}Password Protected{% else %}Public{% endif %}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Hide from Search</label>
+                                    <p class="font-medium">{% if card.hide_from_search %}Yes{% else %}No{% endif %}</p>
+                                </div>
+                                <div>
+                                    <label class="text-sm text-slate-500 dark:text-slate-400">Custom CSS</label>
+                                    <p class="font-medium">{% if card.custom_css %}Yes{% else %}No{% endif %}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- QR Code Section -->
+                <div class="space-y-6">
+                    <!-- QR Code -->
+                    <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                        <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                            <h3 class="font-bold text-lg flex items-center gap-2">
+                                <span class="material-icons-round text-primary">qr_code_2</span>
+                                QR Code
+                            </h3>
+                        </div>
+                        <div class="p-6 text-center">
+                            <div id="qrcode" class="mx-auto mb-4 inline-block bg-white p-4 rounded-xl"></div>
+                            <p class="text-sm text-slate-500 mb-4">Scan to view the digital card</p>
+                            <button onclick="downloadQR()" class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-slate-100 dark:bg-zinc-800 rounded-xl hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors font-medium">
+                                <span class="material-icons-round text-lg">download</span>
+                                Download QR Code
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Print Preview -->
+                    <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
+                        <div class="px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
+                            <h3 class="font-bold text-lg flex items-center gap-2">
+                                <span class="material-icons-round text-primary">badge</span>
+                                Card Preview
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <!-- NFC Card Preview -->
+                            <div class="aspect-[1.6/1] bg-gradient-to-br from-[#BF953F] via-[#FCF6BA] to-[#AA771C] rounded-xl p-4 flex flex-col justify-between text-black shadow-xl">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-2">
+                                        <div class="w-8 h-8 bg-black/20 rounded-lg flex items-center justify-center">
+                                            <span class="material-icons-round text-black text-sm">contactless</span>
+                                        </div>
+                                        <span class="font-display text-xs font-bold tracking-wider">THE LAST CARD</span>
+                                    </div>
+                                    <span class="material-icons-round text-black/50 text-xl">wifi</span>
+                                </div>
+                                <div>
+                                    <p class="font-bold text-lg leading-tight">{% if profile %}{{ profile.full_name|truncatewords:3 }}{% else %}{{ user.email|truncatewords:1 }}{% endif %}</p>
+                                    <p class="text-xs opacity-75">{% if profile %}{{ profile.designation|default:"" }}{% endif %}</p>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <p class="text-xs font-mono">{{ card.url_slug }}</p>
+                                    <p class="text-xs">NFC</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 p-6">
+                        <a href="{% url 'accounts:admin_cards' %}" class="flex items-center justify-center gap-2 px-4 py-2 border border-slate-200 dark:border-zinc-700 rounded-xl hover:bg-slate-50 dark:hover:bg-zinc-800 transition-colors font-medium">
+                            <span class="material-icons-round text-lg">arrow_back</span>
+                            Back to Cards
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- QR Code Library -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script>
+    // Generate QR Code
+    QRCode.toCanvas(document.createElement('canvas'), '{{ card.public_url }}', { width: 180 }, function(error, canvas) {
+        if (error) console.error(error);
+        document.getElementById('qrcode').appendChild(canvas);
+    });
+
+    function downloadQR() {
+        QRCode.toDataURL('{{ card.public_url }}', { width: 400 }, function(error, url) {
+            if (error) console.error(error);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'qr_{{ card.url_slug }}.png';
+            a.click();
+        });
+    }
+
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text);
+        alert('Copied to clipboard!');
+    }
+</script>
+
+<!-- Print Styles -->
+<style>
+    @media print {
+        .lg\\:ml-\\[280px\\] { margin-left: 0 !important; }
+        aside, button, a[href*="export"], nav { display: none !important; }
+    }
+</style>
+{% endblock %}

@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Team Members - Admin Dashboard{% endblock %}
+
+{% block navigation %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-zinc-950">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+                <div>
+                    <h1 class="text-2xl font-display font-bold">Users</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Manage platform users and their cards</p>
+                </div>
+                <button class="inline-flex items-center gap-2 px-4 py-2 bg-primary text-black font-semibold rounded-xl hover:brightness-110 transition-all">
+                    <span class="material-icons-round text-lg">person_add</span>
+                    Invite Member
+                </button>
+            </div>
+
+            <!-- Users Grid -->
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6">
+                {% for user in users %}
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 overflow-hidden hover:shadow-lg transition-shadow">
+                    <!-- User Header -->
+                    <div class="p-6 text-center border-b border-slate-200 dark:border-zinc-800">
+                        <div class="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center overflow-hidden mb-4">
+                            {% if user.profile and user.profile.profile_photo %}
+                            <img src="{{ user.profile.profile_photo.url }}" alt="Profile" class="w-full h-full object-cover">
+                            {% else %}
+                            <span class="text-3xl font-bold text-primary">{{ user.email|slice:":2"|upper }}</span>
+                            {% endif %}
+                        </div>
+                        <h3 class="text-lg font-bold">{% if user.profile %}{{ user.profile.full_name }}{% else %}{{ user.email|truncatechars:25 }}{% endif %}</h3>
+                        <p class="text-sm text-slate-500">{{ user.email }}</p>
+                        {% if user.profile and user.profile.designation %}
+                        <p class="text-xs text-primary mt-1">{{ user.profile.designation }}</p>
+                        {% endif %}
+                        <div class="flex items-center justify-center gap-2 mt-3">
+                            <span class="px-2 py-1 rounded-full text-xs font-medium {% if user.is_active %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% else %}bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-400{% endif %}">
+                                {% if user.is_active %}Active{% else %}Inactive{% endif %}
+                            </span>
+                        </div>
+                    </div>
+
+                    <!-- User Info -->
+                    <div class="p-4 space-y-3">
+                        {% if user.profile %}
+                        {% if user.profile.company %}
+                        <div class="flex items-center gap-3 text-sm">
+                            <span class="material-icons-round text-slate-400 text-lg">business</span>
+                            <span class="truncate">{{ user.profile.company }}</span>
+                        </div>
+                        {% endif %}
+                        {% if user.profile.phone_primary %}
+                        <div class="flex items-center gap-3 text-sm">
+                            <span class="material-icons-round text-slate-400 text-lg">phone</span>
+                            <span>{{ user.profile.phone_primary }}</span>
+                        </div>
+                        {% endif %}
+                        {% if user.profile.location %}
+                        <div class="flex items-center gap-3 text-sm">
+                            <span class="material-icons-round text-slate-400 text-lg">location_on</span>
+                            <span class="truncate">{{ user.profile.location }}</span>
+                        </div>
+                        {% endif %}
+                        {% endif %}
+                        <div class="flex items-center gap-3 text-sm">
+                            <span class="material-icons-round text-slate-400 text-lg">credit_card</span>
+                            <span>{{ user.cards.count }} card{{ user.cards.count|pluralize }}</span>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm text-slate-500">
+                            <span class="material-icons-round text-slate-400 text-lg">calendar_today</span>
+                            <span>Joined {{ user.created_at|date:"M d, Y" }}</span>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="p-4 border-t border-slate-200 dark:border-zinc-800 flex items-center gap-2">
+                        <a href="{% url 'accounts:admin_user_detail' user.id %}" class="flex-1 text-center py-2 bg-primary text-black font-medium rounded-lg hover:brightness-110 transition-all text-sm">
+                            View Details
+                        </a>
+                        {% if user.cards.exists %}
+                        <button onclick="showQuickQR('{{ user.cards.first.url_slug }}', '{{ user.cards.first.public_url }}')" class="p-2 bg-slate-100 dark:bg-zinc-800 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors" title="View QR Code">
+                            <span class="material-icons-round text-lg">qr_code_2</span>
+                        </button>
+                        <a href="{% url 'accounts:admin_cards' %}?user={{ user.id }}" class="p-2 bg-slate-100 dark:bg-zinc-800 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors" title="View Cards">
+                            <span class="material-icons-round text-lg">credit_card</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <div class="md:col-span-2 xl:col-span-3 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 p-12 text-center">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center">
+                        <span class="material-icons-round text-slate-400 text-4xl">group</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">No Team Members Yet</h3>
+                    <p class="text-slate-500 mb-6">Create new user accounts.</p>
+                    <button class="inline-flex items-center gap-2 px-6 py-3 bg-primary text-black font-bold rounded-xl hover:brightness-110 transition-all">
+                        <span class="material-icons-round">person_add</span>
+                        Invite Member
+                    </button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- QR Code Modal -->
+<div id="qrModal" class="fixed inset-0 bg-black/50 backdrop-blur-sm hidden items-center justify-center z-50" onclick="closeQRModal(event)">
+    <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 max-w-md w-full mx-4 relative" onclick="event.stopPropagation()">
+        <button onclick="closeQRModal()" class="absolute top-4 right-4 p-2 hover:bg-slate-100 dark:hover:bg-zinc-800 rounded-lg transition-colors">
+            <span class="material-icons-round">close</span>
+        </button>
+        
+        <div class="text-center">
+            <h3 class="text-2xl font-bold mb-2">QR Code</h3>
+            <p class="text-slate-500 dark:text-slate-400 mb-6 break-all text-sm" id="qrModalUrl"></p>
+            
+            <div class="bg-white p-6 rounded-xl border-2 border-slate-200 dark:border-zinc-700 inline-block mb-6">
+                <img id="qrCodeImage" src="" alt="QR Code" class="w-64 h-64">
+            </div>
+            
+            <div class="flex gap-3">
+                <button onclick="downloadQRCode()" class="flex-1 flex items-center justify-center gap-2 py-3 bg-primary text-black font-bold rounded-xl hover:brightness-110 transition-all">
+                    <span class="material-icons-round">download</span>
+                    Download
+                </button>
+                <button onclick="copyProfileLink()" class="flex-1 flex items-center justify-center gap-2 py-3 border-2 border-primary text-primary font-bold rounded-xl hover:bg-primary/10 transition-all">
+                    <span class="material-icons-round">content_copy</span>
+                    Copy Link
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+let currentQRUrl = '';
+let currentSlug = '';
+
+function showQuickQR(slug, profileUrl) {
+    currentSlug = slug;
+    currentQRUrl = profileUrl;
+    
+    // Generate QR code URL
+    const qrUrl = `/profiles/${slug}/qr/`;
+    
+    // Update modal content
+    document.getElementById('qrModalUrl').textContent = profileUrl;
+    document.getElementById('qrCodeImage').src = qrUrl;
+    
+    // Show modal
+    const modal = document.getElementById('qrModal');
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+}
+
+function closeQRModal(event) {
+    if (!event || event.target.id === 'qrModal' || event.type === 'click') {
+        const modal = document.getElementById('qrModal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+    }
+}
+
+function downloadQRCode() {
+    const qrImage = document.getElementById('qrCodeImage');
+    const link = document.createElement('a');
+    link.href = qrImage.src;
+    link.download = `qr_${currentSlug}.png`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+}
+
+function copyProfileLink() {
+    navigator.clipboard.writeText(currentQRUrl).then(() => {
+        // Show success message
+        const btn = event.target.closest('button');
+        const originalHTML = btn.innerHTML;
+        btn.innerHTML = '<span class="material-icons-round">check</span> Copied!';
+        setTimeout(() => {
+            btn.innerHTML = originalHTML;
+        }, 2000);
+    }).catch(err => {
+        console.error('Failed to copy:', err);
+    });
+}
+
+// Close modal on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeQRModal();
+    }
+});
+</script>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% load static %}
+<footer class="bg-white dark:bg-black border-t border-slate-200 dark:border-zinc-900 pt-20 pb-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid md:grid-cols-4 gap-12 mb-16">
+            <!-- Brand Column -->
+            <div class="col-span-1 md:col-span-2">
+                <a href="{% url 'landing:home' %}" class="flex items-center gap-3 mb-6">
+                    <div class="w-12 h-12 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
+                        <span class="material-icons-round text-black text-2xl">contactless</span>
+                    </div>
+                    <span class="font-display text-2xl gold-text uppercase font-bold">The Last Card</span>
+                </a>
+                <p class="text-slate-500 max-w-sm mb-6">
+                    The Last Card is revolutionizing how professionals connect. Luxury design meets cutting-edge NFC technology.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="w-10 h-10 rounded-full border border-slate-200 dark:border-zinc-800 flex items-center justify-center hover:bg-primary/10 hover:text-primary hover:border-primary transition-all">
+                        <span class="material-icons-round text-lg">facebook</span>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-slate-200 dark:border-zinc-800 flex items-center justify-center hover:bg-primary/10 hover:text-primary hover:border-primary transition-all">
+                        <span class="material-icons-round text-lg">camera_alt</span>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-slate-200 dark:border-zinc-800 flex items-center justify-center hover:bg-primary/10 hover:text-primary hover:border-primary transition-all">
+                        <span class="material-icons-round text-lg">alternate_email</span>
+                    </a>
+                    <a href="#" class="w-10 h-10 rounded-full border border-slate-200 dark:border-zinc-800 flex items-center justify-center hover:bg-primary/10 hover:text-primary hover:border-primary transition-all">
+                        <span class="material-icons-round text-lg">link</span>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Quick Links -->
+            <div>
+                <h5 class="font-bold mb-6 uppercase tracking-widest text-sm">Quick Links</h5>
+                <ul class="space-y-4 text-slate-500">
+                    <li><a href="{% url 'accounts:register' %}" class="hover:text-primary transition-colors">Order Now</a></li>
+                    <li><a href="{% url 'landing:features' %}" class="hover:text-primary transition-colors">How it Works</a></li>
+                    <li><a href="{% url 'landing:features' %}" class="hover:text-primary transition-colors">Features</a></li>
+                    <li><a href="{% url 'landing:pricing' %}" class="hover:text-primary transition-colors">Pricing</a></li>
+                </ul>
+            </div>
+            
+            <!-- Legal & Support -->
+            <div>
+                <h5 class="font-bold mb-6 uppercase tracking-widest text-sm">Legal & Support</h5>
+                <ul class="space-y-4 text-slate-500">
+                    <li><a href="{% url 'landing:privacy' %}" class="hover:text-primary transition-colors">Privacy Policy</a></li>
+                    <li><a href="{% url 'landing:terms' %}" class="hover:text-primary transition-colors">Terms of Service</a></li>
+                    <li><a href="{% url 'landing:contact' %}" class="hover:text-primary transition-colors">Contact Us</a></li>
+                    <li><a href="{% url 'landing:about' %}" class="hover:text-primary transition-colors">About Us</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="border-t border-slate-200 dark:border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+            <p>&copy; {% now "Y" %} The Last Card. All rights reserved.</p>
+            <p class="flex items-center gap-2">
+                <span class="material-icons-round text-primary text-sm">verified</span>
+                Designed for the Modern Executive.
+            </p>
+        </div>
+    </div>
+</footer>

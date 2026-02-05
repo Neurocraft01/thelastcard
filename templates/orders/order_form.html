@@ -1,0 +1,227 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Order PVC Cards - TLC{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-5xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8">
+            <div class="flex items-center gap-3 mb-4">
+                <a href="{% url 'accounts:dashboard_redirect' %}" class="inline-flex items-center justify-center size-10 rounded-xl bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 transition-colors">
+                    <span class="material-symbols-rounded text-xl">arrow_back</span>
+                </a>
+                <div>
+                    <h1 class="text-3xl font-bold text-slate-900 tracking-tight">Order PVC Cards</h1>
+                    <p class="text-slate-500 mt-1">Customize your physical NFC business card with your digital profile</p>
+                </div>
+            </div>
+        </div>
+
+        <form method="post" enctype="multipart/form-data" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {% csrf_token %}
+
+            <!-- Left Column: Customization -->
+            <div class="lg:col-span-2 space-y-8">
+                
+                <!-- Step 1: Choose Material -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="size-10 rounded-full bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white flex items-center justify-center font-bold text-lg">1</div>
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900">Choose Material</h2>
+                            <p class="text-xs text-slate-500">Select card type and quantity</p>
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <!-- Card Type Selection -->
+                        <div class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-rounded text-base text-[#0284c7]">credit_card</span>
+                                    Card Type
+                                </label>
+                                {{ form.card_type }}
+                            </div>
+                            <div>
+                                <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                                    <span class="material-symbols-rounded text-base text-[#0284c7]">numbers</span>
+                                    Quantity
+                                </label>
+                                {{ form.quantity }}
+                            </div>
+                        </div>
+                        
+                        <!-- Material Information -->
+                        <div class="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl p-4 text-xs text-slate-600 space-y-2 border border-slate-200">
+                            <p class="font-bold text-slate-900 text-sm mb-3 flex items-center gap-2">
+                                <span class="material-symbols-rounded text-base">info</span>
+                                Material Guide
+                            </p>
+                            <div class="space-y-2">
+                                <p><span class="font-semibold text-slate-700">Standard PVC (₹499):</span> Durable plastic, classic finish</p>
+                                <p><span class="font-semibold text-slate-700">Premium Matte (₹799):</span> Soft-touch, elegant look</p>
+                                <p><span class="font-semibold text-slate-700">Metal Hybrid (₹1,299):</span> Premium metal face</p>
+                                <p><span class="font-semibold text-slate-700">Eco Wood (₹999):</span> Sustainable bamboo</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: Customize Design -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="size-10 rounded-full bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white flex items-center justify-center font-bold text-lg">2</div>
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900">Customize Design</h2>
+                            <p class="text-xs text-slate-500">Add your personal touch</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-6">
+                        <!-- Custom Text -->
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                                <span class="material-symbols-rounded text-base text-[#0284c7]">text_fields</span>
+                                Name/Text on Card
+                                <span class="text-slate-400 font-normal ml-1">(Optional)</span>
+                            </label>
+                            {{ form.custom_text }}
+                            <p class="text-xs text-slate-500 mt-2 flex items-center gap-1">
+                                <span class="material-symbols-rounded text-sm">lightbulb</span>
+                                This text will be laser engraved or printed on the card
+                            </p>
+                        </div>
+
+                        <!-- Logo Upload -->
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                                <span class="material-symbols-rounded text-base text-[#0284c7]">upload_file</span>
+                                Upload Logo / Design
+                                <span class="text-slate-400 font-normal ml-1">(Optional)</span>
+                            </label>
+                            <div class="flex items-center justify-center w-full">
+                                <label for="{{ form.custom_design.id_for_label }}" class="flex flex-col items-center justify-center w-full h-36 border-2 border-slate-300 border-dashed rounded-xl cursor-pointer bg-slate-50 hover:bg-slate-100 transition-all hover:border-[#0284c7]">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <span class="material-symbols-rounded text-slate-400 text-4xl mb-2">cloud_upload</span>
+                                        <p class="text-sm text-slate-600"><span class="font-semibold">Click to upload</span> or drag and drop</p>
+                                        <p class="text-xs text-slate-500 mt-1">SVG, PNG, JPG (Max 5MB)</p>
+                                    </div>
+                                    {{ form.custom_design }}
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Info Banner -->
+                        <div class="bg-blue-50 border border-blue-200 p-4 rounded-xl flex gap-3 text-blue-800 text-sm">
+                            <span class="material-symbols-rounded text-blue-600 flex-shrink-0">verified</span>
+                            <p>We'll email you a digital proof for approval before printing your cards.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Shipping & Summary -->
+            <div class="space-y-8">
+                <!-- Step 3: Shipping Details -->
+                <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm hover:shadow-md transition-shadow">
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="size-10 rounded-full bg-gradient-to-br from-[#0f172a] to-[#1e293b] text-white flex items-center justify-center font-bold text-lg">3</div>
+                        <div>
+                            <h2 class="text-lg font-bold text-slate-900">Shipping</h2>
+                            <p class="text-xs text-slate-500">Where should we send your cards?</p>
+                        </div>
+                    </div>
+                    
+                    <div class="space-y-4">
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                                <span class="material-symbols-rounded text-base text-[#0284c7]">location_on</span>
+                                Delivery Address
+                            </label>
+                            {{ form.shipping_address }}
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold text-slate-700 mb-2 flex items-center gap-2">
+                                <span class="material-symbols-rounded text-base text-[#0284c7]">note</span>
+                                Order Notes
+                                <span class="text-slate-400 font-normal ml-1">(Optional)</span>
+                            </label>
+                            {{ form.notes }}
+                        </div>
+
+                        <!-- Delivery Info -->
+                        <div class="bg-green-50 border border-green-200 rounded-lg p-3 text-xs text-green-800">
+                            <div class="flex items-center gap-2 font-semibold mb-1">
+                                <span class="material-symbols-rounded text-sm">local_shipping</span>
+                                Delivery Information
+                            </div>
+                            <p class="text-green-700">• Standard shipping: 5-7 business days</p>
+                            <p class="text-green-700">• Express shipping available at checkout</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full group relative overflow-hidden flex items-center justify-center gap-2 py-4 px-6 bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-white rounded-xl font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                    <span class="relative z-10">Place Order</span>
+                    <span class="material-symbols-rounded relative z-10 group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    <div class="absolute inset-0 bg-gradient-to-r from-[#0284c7] to-[#0369a1] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                </button>
+                
+                <p class="text-center text-xs text-slate-500 flex items-center justify-center gap-2">
+                    <span class="material-symbols-rounded text-sm">lock</span>
+                    Secure payment processing
+                </p>
+            </div>
+        </form>
+    </div>
+</div>
+
+<style>
+    /* Style form fields */
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea {
+        @apply w-full px-4 py-3 bg-white border border-slate-300 rounded-xl text-sm text-slate-700 outline-none transition-all;
+        @apply focus:ring-2 focus:ring-[#0284c7]/20 focus:border-[#0284c7];
+        @apply placeholder:text-slate-400;
+    }
+
+    textarea {
+        @apply min-h-[80px] resize-none;
+    }
+
+    input[type="file"] {
+        @apply hidden;
+    }
+
+    select {
+        @apply cursor-pointer appearance-none bg-[url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e")] bg-[length:1.2em] bg-[right_0.5rem_center] bg-no-repeat;
+        @apply pr-10;
+    }
+</style>
+
+<script>
+    // File upload preview
+    const fileInput = document.getElementById('{{ form.custom_design.id_for_label }}');
+    if (fileInput) {
+        fileInput.addEventListener('change', function(e) {
+            const fileName = e.target.files[0]?.name;
+            if (fileName) {
+                const label = document.querySelector('label[for="{{ form.custom_design.id_for_label }}"]');
+                label.innerHTML = `
+                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                        <span class="material-symbols-rounded text-green-500 text-4xl mb-2">check_circle</span>
+                        <p class="text-sm text-slate-600 font-semibold">${fileName}</p>
+                        <p class="text-xs text-slate-500 mt-1">Click to change file</p>
+                    </div>
+                `;
+            }
+        });
+    }
+</script>
+{% endblock %}

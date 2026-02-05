@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block title %}Privacy Policy - The Last Card{% endblock %}
+
+{% block body %}
+{% include 'components/navbar.html' %}
+
+<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4">Privacy Policy</h1>
+            <p class="text-slate-500 dark:text-slate-400">Last updated: {% now "F j, Y" %}</p>
+        </div>
+
+        <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 p-8 lg:p-12">
+            <div class="prose prose-slate dark:prose-invert max-w-none">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-icons-round text-primary">security</span>
+                    Information We Collect
+                </h2>
+                <p class="mb-6 text-slate-600 dark:text-slate-400">We collect information you provide directly to us, such as when you create an account, create or edit a digital card, or contact us for support.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-icons-round text-primary">analytics</span>
+                    How We Use Your Information
+                </h2>
+                <p class="mb-6 text-slate-600 dark:text-slate-400">We use information we collect to provide, maintain, and improve our services, to process transactions, and to communicate with you.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-icons-round text-primary">share</span>
+                    Information Sharing
+                </h2>
+                <p class="mb-6 text-slate-600 dark:text-slate-400">We do not share your personal information with third parties except as described in this privacy policy or with your consent.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-icons-round text-primary">cookie</span>
+                    Cookies
+                </h2>
+                <p class="mb-6 text-slate-600 dark:text-slate-400">We use cookies and similar tracking technologies to track activity on our service and hold certain information to improve and analyze our service.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <span class="material-icons-round text-primary">email</span>
+                    Contact Us
+                </h2>
+                <p class="text-slate-600 dark:text-slate-400">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:support@thelastcard.com" class="text-primary hover:underline">support@thelastcard.com</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% include 'components/footer.html' %}
+{% endblock %}
