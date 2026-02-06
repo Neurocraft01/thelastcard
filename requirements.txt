@@ -8,6 +8,7 @@ gunicorn
 whitenoise
 dj-database-url
 django-allauth
+PyJWT
 psycopg2-binary
 
 # Neon PostgreSQL
