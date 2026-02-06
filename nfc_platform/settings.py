@@ -363,43 +363,48 @@ SITE_URL = config('SITE_URL', default='http://localhost:8000')
 
 
 # =============================================================================
-# LOGGING (Production)
+# LOGGING
 # =============================================================================
 
-if not DEBUG:
-    LOGGING = {
-        'version': 1,
-        'disable_existing_loggers': False,
-        'formatters': {
-            'verbose': {
-                'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
-                'style': '{',
-            },
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime} {module} {process:d} {thread:d} {message}',
+            'style': '{',
         },
-        'handlers': {
-            'file': {
-                'level': 'WARNING',
-                'class': 'logging.FileHandler',
-                'filename': BASE_DIR / 'logs' / 'django.log',
-                'formatter': 'verbose',
-            },
-            'security': {
-                'level': 'INFO',
-                'class': 'logging.FileHandler',
-                'filename': BASE_DIR / 'logs' / 'security.log',
-                'formatter': 'verbose',
-            },
+        'simple': {
+            'format': '{levelname} {message}',
+            'style': '{',
         },
-        'loggers': {
-            'django': {
-                'handlers': ['file'],
-                'level': 'WARNING',
-                'propagate': True,
-            },
-            'django.security': {
-                'handlers': ['security'],
-                'level': 'INFO',
-                'propagate': False,
-            },
+    },
+    'handlers': {
+        'console': {
+            'level': 'INFO',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
         },
-    }
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django.security': {
+            'handlers': ['console'],
+            'level': 'INFO',
+            'propagate': False,
+        },
+        'django.request': {
+            'handlers': ['console'],
+            'level': 'ERROR',
+            'propagate': False,
+        },
+    },
+    'root': {
+        'handlers': ['console'],
+        'level': 'INFO',
+    },
+}
