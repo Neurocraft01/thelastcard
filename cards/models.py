@@ -111,12 +111,48 @@ class NFCCard(models.Model):
         ordering = ['-created_at']
     
     def save(self, *args, **kwargs):
-        """Auto-generate slug from user's username if not set."""
+        """Auto-generate slug and QR code."""
         if not self.url_slug and self.user and hasattr(self.user, 'username'):
             self.url_slug = self.user.username
         elif not self.url_slug:
             # Fallback to random slug if no username
             self.url_slug = generate_card_slug()
+            
+        # Auto-generate QR code if missing
+        if not self.qr_code and self.url_slug:
+            try:
+                import qrcode
+                from io import BytesIO
+                from django.core.files import File
+                from django.conf import settings
+
+                # Create QR code instance
+                qr = qrcode.QRCode(
+                    version=1,
+                    error_correction=qrcode.constants.ERROR_CORRECT_M,
+                    box_size=10,
+                    border=4,
+                )
+                
+                # Add data (public URL)
+                url = f"{settings.SITE_URL}/u/{self.url_slug}"
+                qr.add_data(url)
+                qr.make(fit=True)
+
+                # Create image
+                img = qr.make_image(fill_color="black", back_color="white")
+                
+                # Save to buffer
+                buffer = BytesIO()
+                img.save(buffer, format='PNG')
+                
+                # Save to model field
+                filename = f'qr_{self.url_slug}.png'
+                self.qr_code.save(filename, File(buffer), save=False)
+            except Exception as e:
+                # Log error or silence it to prevent save failure
+                print(f"Error generating QR code: {e}")
+
         super().save(*args, **kwargs)
     
     def __str__(self):
