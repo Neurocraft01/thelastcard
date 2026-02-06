@@ -18,7 +18,7 @@ urlpatterns = [
     
     # Authentication
     path('', include('accounts.urls', namespace='accounts')),
-    path('accounts/', include('allauth.urls')), # Social Login URLs
+    path('accounts/', include('allauth.urls')),  # Allauth URLs
     
     # Landing pages (home, about, pricing, etc.)
     path('', include('landing.urls', namespace='landing')),

@@ -77,8 +77,6 @@ INSTALLED_APPS = [
     # Allauth
     'allauth',
     'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.google',
     
     # Third-party apps
     'rest_framework',
@@ -195,18 +193,6 @@ ACCOUNT_USER_MODEL_USERNAME_FIELD = 'username'
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_UNIQUE_EMAIL = True
-
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': [
-            'profile',
-            'email',
-        ],
-        'AUTH_PARAMS': {
-            'access_type': 'online',
-        }
-    }
-}
 
 # Password reset token expiry (in seconds) - 1 hour
 PASSWORD_RESET_TIMEOUT = 3600
