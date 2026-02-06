@@ -300,24 +300,110 @@
             </div>
         </div>
         
-        <!-- Trust Badges -->
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto">
-            <div class="text-center scroll-reveal delay-100" data-animate>
-                <div class="text-4xl mb-2">🚀</div>
-                <p class="text-sm font-semibold">Fast Delivery</p>
+        <!-- Special Launch Offer -->
+        <div class="mt-16 max-w-5xl mx-auto">
+            <div class="bg-zinc-900 border border-primary/30 rounded-3xl p-8 md:p-12 relative overflow-hidden group">
+                <!-- Background Effects -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/20 transition-all duration-700"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
+                
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+                    <!-- Offer Details -->
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 text-xs font-bold uppercase tracking-wider mb-6 animate-pulse">
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                            Limited Time Launch Offer
+                        </div>
+                        
+                        <h3 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+                            Get 30% OFF <br>
+                            <span class="text-gradient">Premium Metal Cards</span>
+                        </h3>
+                        
+                        <p class="text-slate-400 mb-8 max-w-md mx-auto md:mx-0">
+                            Upgrade your networking game today. Includes verified profile badge, advanced analytics, and priority shipping.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            <a href="{% url 'accounts:register' %}" class="px-8 py-4 bg-primary text-black font-bold rounded-xl hover:scale-105 transition-transform shadow-lg shadow-primary/25">
+                                Claim Offer Now
+                            </a>
+                            <div class="flex items-center gap-2 text-sm text-slate-400 px-4 py-4">
+                                <span class="material-icons-round text-base">verified</span>
+                                30-Day Money Back
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Countdown UI -->
+                    <div class="md:w-auto">
+                        <div class="p-6 bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 text-center">
+                            <p class="text-sm font-medium text-slate-400 mb-6 uppercase tracking-widest">Offer Expires In</p>
+                            
+                            <div class="flex gap-4" id="countdown-timer">
+                                <div class="flex flex-col gap-2">
+                                    <div class="w-16 h-20 bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-x-0 h-[1px] bg-black/50 top-1/2"></div>
+                                        <span class="text-3xl font-mono font-bold text-white" id="days">02</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 font-medium">DAYS</span>
+                                </div>
+                                <span class="text-2xl font-bold text-primary mt-6">:</span>
+                                <div class="flex flex-col gap-2">
+                                    <div class="w-16 h-20 bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-x-0 h-[1px] bg-black/50 top-1/2"></div>
+                                        <span class="text-3xl font-mono font-bold text-white" id="hours">14</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 font-medium">HOURS</span>
+                                </div>
+                                <span class="text-2xl font-bold text-primary mt-6">:</span>
+                                <div class="flex flex-col gap-2">
+                                    <div class="w-16 h-20 bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-x-0 h-[1px] bg-black/50 top-1/2"></div>
+                                        <span class="text-3xl font-mono font-bold text-white" id="minutes">45</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 font-medium">MINS</span>
+                                </div>
+                                <span class="text-2xl font-bold text-primary mt-6">:</span>
+                                <div class="flex flex-col gap-2">
+                                    <div class="w-16 h-20 bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-x-0 h-[1px] bg-black/50 top-1/2"></div>
+                                        <span class="text-3xl font-mono font-bold text-primary" id="seconds">12</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 font-medium">SECS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="text-center scroll-reveal delay-200" data-animate>
-                <div class="text-4xl mb-2">🔒</div>
-                <p class="text-sm font-semibold">Secure Payment</p>
-            </div>
-            <div class="text-center scroll-reveal delay-300" data-animate>
-                <div class="text-4xl mb-2">♻️</div>
-                <p class="text-sm font-semibold">Eco-Friendly</p>
-            </div>
-            <div class="text-center scroll-reveal delay-400" data-animate>
-                <div class="text-4xl mb-2">✨</div>
-                <p class="text-sm font-semibold">Premium Quality</p>
-            </div>
+        
+            <!-- Simple script for the countdown -->
+            <script>
+                (function() {
+                    // Set end date to 48 hours from now
+                    const endDate = new Date();
+                    endDate.setHours(endDate.getHours() + 48);
+
+                    function updateClock() {
+                        const t = Date.parse(endDate) - Date.parse(new Date());
+                        const seconds = Math.floor((t / 1000) % 60);
+                        const minutes = Math.floor((t / 1000 / 60) % 60);
+                        const hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+                        const days = Math.floor(t / (1000 * 60 * 60 * 24));
+
+                        if (t <= 0) return;
+
+                        document.getElementById('days').innerText = ('0' + days).slice(-2);
+                        document.getElementById('hours').innerText = ('0' + hours).slice(-2);
+                        document.getElementById('minutes').innerText = ('0' + minutes).slice(-2);
+                        document.getElementById('seconds').innerText = ('0' + seconds).slice(-2);
+                    }
+
+                    updateClock();
+                    setInterval(updateClock, 1000);
+                })();
+            </script>
         </div>
     </div>
 </section>
