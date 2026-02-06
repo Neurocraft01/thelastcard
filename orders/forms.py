@@ -10,9 +10,7 @@ class OrderForm(forms.ModelForm):
         model = CardOrder
         fields = ['card_type', 'quantity', 'custom_design', 'custom_text', 'shipping_address', 'notes']
         widgets = {
-            'card_type': forms.Select(attrs={
-                'class': 'w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all'
-            }),
+            'card_type': forms.HiddenInput(),
             'quantity': forms.NumberInput(attrs={
                 'class': 'w-full px-4 py-3 bg-white border border-slate-200 rounded-xl text-sm text-slate-700 focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none transition-all',
                 'min': '1',
@@ -74,6 +72,6 @@ class OrderForm(forms.ModelForm):
     def clean_shipping_address(self):
         """Validate shipping address is not empty."""
         address = self.cleaned_data.get('shipping_address')
-        if not address or len(address.strip()) < 20:
-            raise ValidationError('Please provide a complete shipping address with at least 20 characters.')
+        if not address or len(address.strip()) < 10:
+            raise ValidationError('Please provide a valid shipping address.')
         return address.strip()

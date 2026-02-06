@@ -408,6 +408,68 @@
     </div>
 </section>
 
+<!-- Cards for Everyone Section -->
+<section class="py-24 bg-white dark:bg-zinc-900" id="for-everyone">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-4xl md:text-5xl mb-4 gold-text uppercase">Cards for Everyone</h2>
+            <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+            <p class="text-slate-500 dark:text-zinc-400 max-w-2xl mx-auto text-lg">Your premium visiting card, no matter who you are. Built for professionals, loved by everyone.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Creators -->
+            <div class="group text-center p-8 bg-slate-50 dark:bg-zinc-800 rounded-3xl border border-slate-200 dark:border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-white text-4xl">brush</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 uppercase tracking-wide">Creators</h3>
+                <p class="text-slate-500 dark:text-zinc-400 mb-4 text-sm leading-relaxed">Artists, designers, photographers, influencers. Share your portfolio, social links, and creative identity with a single tap.</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs font-medium">Artists</span>
+                    <span class="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full text-xs font-medium">Designers</span>
+                    <span class="px-3 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full text-xs font-medium">Influencers</span>
+                </div>
+            </div>
+
+            <!-- Business Professionals -->
+            <div class="group text-center p-8 bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl border-2 border-primary/40 transform md:scale-105 shadow-2xl transition-all hover:-translate-y-3 hover:shadow-primary/20 relative">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-yellow-400 text-black text-[10px] font-black uppercase py-1.5 px-4 rounded-full tracking-widest">Most Popular</div>
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-black text-4xl">business_center</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 uppercase tracking-wide text-white">Businessmen</h3>
+                <p class="text-zinc-400 mb-4 text-sm leading-relaxed">Entrepreneurs, CEOs, sales teams, consultants. Make every handshake count. Instant contact exchange that impresses.</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">Entrepreneurs</span>
+                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">CEOs</span>
+                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">Consultants</span>
+                </div>
+            </div>
+
+            <!-- Everyday People -->
+            <div class="group text-center p-8 bg-slate-50 dark:bg-zinc-800 rounded-3xl border border-slate-200 dark:border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-white text-4xl">people</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 uppercase tracking-wide">Everyone</h3>
+                <p class="text-slate-500 dark:text-zinc-400 mb-4 text-sm leading-relaxed">Students, freelancers, everyday professionals. One card for all your contacts, socials, and personal brand. Simple &amp; affordable.</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">Students</span>
+                    <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full text-xs font-medium">Freelancers</span>
+                    <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full text-xs font-medium">Professionals</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg shadow-primary/20">
+                Get Your Card Now <span class="material-icons-round">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
+
 <!-- CTA Section -->
 <section class="py-24 bg-zinc-900 dark:bg-black">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

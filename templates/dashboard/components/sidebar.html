@@ -48,6 +48,12 @@
                             Analytics
                         </a>
                     </li>
+                    <li>
+                        <a href="{% url 'orders:create' %}" class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all {% if current_url == 'order_create' %}bg-primary/10 text-primary{% else %}hover:bg-slate-100 dark:hover:bg-zinc-800{% endif %}">
+                            <span class="material-icons-round text-xl">shopping_bag</span>
+                            Order PVC Cards
+                        </a>
+                    </li>
                 </ul>
             </div>
 

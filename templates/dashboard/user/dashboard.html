@@ -390,6 +390,10 @@
                 <span class="material-icons-round">credit_card</span>
                 My Cards
             </a>
+            <a href="{% url 'orders:create' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800">
+                <span class="material-icons-round">shopping_bag</span>
+                Order PVC Cards
+            </a>
             {% if cards.first %}
             <a href="/u/{{ request.user.username }}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800">
                 <span class="material-icons-round">visibility</span>

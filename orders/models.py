@@ -15,8 +15,9 @@ class CardOrder(models.Model):
     )
     
     CARD_TYPE_CHOICES = (
-        ('standard', 'Standard PVC - ₹449'),
-        ('premium', 'Metallic Premium - ₹649'),
+        ('white_pvc', 'White PVC Card - ₹449'),
+        ('pink_pvc', 'Pink PVC Card - ₹449'),
+        ('metallic', 'Metallic Premium Card - ₹649'),
     )
     
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -30,7 +31,7 @@ class CardOrder(models.Model):
     card_type = models.CharField(
         max_length=20,
         choices=CARD_TYPE_CHOICES,
-        default='standard'
+        default='white_pvc'
     )
     quantity = models.PositiveIntegerField(default=1)
     
@@ -79,8 +80,9 @@ class CardOrder(models.Model):
     def total_price(self):
         """Calculate total price based on card type and quantity."""
         PRICES = {
-            'standard': 449,
-            'premium': 649,
+            'white_pvc': 449,
+            'pink_pvc': 449,
+            'metallic': 649,
         }
         base_price = PRICES.get(self.card_type, 449)
         return base_price * self.quantity

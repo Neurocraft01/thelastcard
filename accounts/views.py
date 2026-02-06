@@ -791,7 +791,7 @@ class UserProfileView(UserRequiredMixin, UpdateView):
     """User - Edit profile."""
     model = UserProfile
     template_name = 'dashboard/user/profile.html'
-    fields = ['first_name', 'last_name', 'bio', 'company', 'designation', 'phone_primary', 'email_public', 'website', 'city', 'profile_photo']
+    fields = ['first_name', 'last_name', 'bio', 'company', 'designation', 'phone_primary', 'email_public', 'website', 'city', 'profile_photo', 'cover_photo']
     success_url = reverse_lazy('accounts:user_profile')
     
     def get_object(self, queryset=None):
@@ -812,7 +812,9 @@ class UserCardView(UserRequiredMixin, TemplateView):
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['cards'] = self.request.user.cards.all()
+        cards = self.request.user.cards.all()
+        context['cards'] = cards
+        context['card'] = cards.first()
         
         from themes.models import Theme
         context['themes'] = Theme.objects.filter(is_active=True)
