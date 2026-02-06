@@ -236,7 +236,9 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        "BACKEND": "whitenoise.storage.CompressedManifestStaticFilesStorage",
+        # Using CompressedStaticFilesStorage instead of ManifestStaticFilesStorage
+        # to avoid 500 errors when referenced files are missing (common in free tier/dev)
+        "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
 

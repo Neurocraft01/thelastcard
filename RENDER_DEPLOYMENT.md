@@ -53,7 +53,7 @@ Start Command: gunicorn nfc_platform.wsgi:application --bind 0.0.0.0:$PORT --wor
 
 #### Plan Selection:
 ```
-Instance Type: Starter ($7/month)
+Instance Type: Free (for hobby/dev) or Starter ($7/month)
 ```
 
 ---
@@ -198,7 +198,8 @@ Already configured in your `settings.py`:
 DEBUG = False
 SECURE_SSL_REDIRECT = True
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+# Using CompressedStaticFilesStorage for better stability on free tier
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
 ```
 
 ---
