@@ -158,6 +158,8 @@ body {
   font-size: var(--text-base);
   font-weight: var(--font-normal);
   line-height: 1.6;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
   min-height: 100vh;
 }
 
@@ -171,6 +173,7 @@ h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-bold);
   line-height: 1.25;
+  color: var(--text-primary);
   margin-bottom: var(--space-4);
 }
 
@@ -200,11 +203,17 @@ h6 {
 
 p {
   margin-bottom: var(--space-4);
+  color: var(--text-secondary);
 }
 
 a {
+  color: var(--primary-500);
   text-decoration: none;
   transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--primary-600);
 }
 
 /* Lists */
@@ -1297,8 +1306,15 @@ li {
 }
 
 /* =============================================================================
+   PREMIUM GLASS THEME OVERRIDES - DISABLED
+   These were overriding Tailwind classes. Styling now handled by Tailwind in templates.
+   ============================================================================= */
+
+/* =============================================================================
    ANIMATIONS & MICROINTERACTIONS
    ============================================================================= */
+
+/* Smooth Page Load Animation - handled by base.html inline styles */
 
 /* Button Ripple Effect */
 .btn {
