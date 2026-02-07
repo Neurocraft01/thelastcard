@@ -37,46 +37,47 @@
 
 
 <!-- Hero Section -->
-<section class="relative pt-32 pb-20 overflow-hidden bg-zinc-950">
+<section class="relative pt-32 pb-20 overflow-hidden" style="background: #09090b;">
     <!-- Background Gradient for Luxurious Feel -->
-    <div class="absolute inset-0 bg-gradient-to-br from-zinc-900 via-black to-zinc-950 opacity-90"></div>
-    <div class="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-[128px]"></div>
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at top right, rgba(212,175,55,0.15), transparent 60%), linear-gradient(to bottom right, #18181b, #000, #09090b); opacity: 0.9;"></div>
     
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12 relative z-10">
-        <div class="flex-1 text-center md:text-left">
-            <h1 class="font-display text-5xl md:text-7xl mb-6 leading-tight text-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style="display: flex; flex-direction: row; align-items: center; gap: 3rem;">
+        <!-- LEFT SIDE: Text + Buttons -->
+        <div style="flex: 1; text-align: left;">
+            <h1 class="font-display mb-6 leading-tight" style="font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff;">
                 The <span class="gold-text">Last Business Card</span> You'll Ever Need.
             </h1>
-            <p class="text-xl md:text-2xl text-slate-300 mb-10 max-w-2xl mx-auto md:mx-0">
+            <p class="mb-10" style="font-size: 1.25rem; color: #cbd5e1; max-width: 36rem;">
                 Smart. Tap. Connect. Share your contact info, social media, and portfolio in a single tap using luxury NFC technology.
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg flex items-center justify-center gap-2">
+            <div style="display: flex; flex-direction: row; gap: 1rem; flex-wrap: wrap;">
+                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-extrabold rounded-full hover:scale-105 transition-transform shadow-lg" style="padding: 1rem 2.5rem; font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem;">
                     Get Your Card <span class="material-icons-round">shopping_bag</span>
                 </a>
-                <a href="#how-it-works" class="border-2 border-primary/30 text-primary py-4 px-10 rounded-full hover:bg-primary/10 transition-all text-lg font-bold flex items-center justify-center gap-2">
+                <a href="#how-it-works" class="text-primary font-bold rounded-full hover:bg-primary/10 transition-all" style="padding: 1rem 2.5rem; font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 2px solid rgba(212,175,55,0.3);">
                     View Demo <span class="material-icons-round">play_circle</span>
                 </a>
             </div>
-            <div class="mt-12 flex items-center gap-4 justify-center md:justify-start">
+            <div style="margin-top: 3rem; display: flex; align-items: center; gap: 1rem;">
                 <div class="flex -space-x-3">
-                    <div class="w-10 h-10 rounded-full border-2 border-zinc-900 bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center text-black text-xs font-bold">JD</div>
-                    <div class="w-10 h-10 rounded-full border-2 border-zinc-900 bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white text-xs font-bold">AK</div>
-                    <div class="w-10 h-10 rounded-full border-2 border-zinc-900 bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center text-white text-xs font-bold">SM</div>
+                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center text-black text-xs font-bold" style="border-color: #18181b;">JD</div>
+                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">AK</div>
+                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">SM</div>
                 </div>
-                <span class="text-sm font-medium text-slate-400">Trusted by 10,000+ Professionals</span>
+                <span style="font-size: 0.875rem; font-weight: 500; color: #94a3b8;">Trusted by 10,000+ Professionals</span>
             </div>
         </div>
         
-        <div class="flex-1 relative">
+        <!-- RIGHT SIDE: Card Animation -->
+        <div style="flex: 1; position: relative;">
             <div class="relative w-full max-w-lg mx-auto flex items-center justify-center" style="height: 600px;">
                 <!-- Phone Mockup -->
                 <div class="phone-mockup relative z-10">
-                    <div class="bg-zinc-900 rounded-[48px] border-8 border-zinc-800 shadow-2xl relative overflow-hidden" style="width: 280px; height: 560px;">
+                    <div class="bg-zinc-900 shadow-2xl relative overflow-hidden" style="width: 280px; height: 560px; border-radius: 48px; border: 8px solid #27272a;">
                         <!-- Phone Screen -->
-                        <div class="absolute inset-4 bg-gradient-to-br from-zinc-800 to-zinc-900 rounded-[36px] overflow-hidden">
+                        <div class="absolute bg-gradient-to-br from-zinc-800 to-zinc-900 overflow-hidden" style="inset: 1rem; border-radius: 36px;">
                             <!-- Status Bar -->
-                            <div class="h-8 bg-zinc-900/50 backdrop-blur-sm flex items-center justify-between px-6 text-white text-xs">
+                            <div class="flex items-center justify-between text-white" style="height: 2rem; background: rgba(24,24,27,0.5); padding: 0 1.5rem; font-size: 0.75rem;">
                                 <span>9:41</span>
                                 <div class="flex gap-1">
                                     <span class="material-icons-round text-sm">signal_cellular_alt</span>
@@ -95,44 +96,43 @@
                                 <p class="text-zinc-500 text-xs text-center">Tap your card to share profile</p>
                             </div>
                             
-                            <!-- NFC Success Indicator (animated via CSS) -->
-                            <div id="nfcSuccess" class="absolute inset-0 bg-primary/95 backdrop-blur-sm flex items-center justify-center flex-col opacity-0 pointer-events-none">
-                                <div class="w-20 h-20 rounded-full bg-white/20 flex items-center justify-center mb-4">
+                            <!-- NFC Success Indicator -->
+                            <div id="nfcSuccess" class="absolute inset-0 flex items-center justify-center flex-col pointer-events-none" style="background: rgba(212,175,55,0.95); opacity: 0;">
+                                <div class="w-20 h-20 rounded-full flex items-center justify-center mb-4" style="background: rgba(255,255,255,0.2);">
                                     <span class="material-icons-round text-white text-5xl">check_circle</span>
                                 </div>
                                 <p class="text-white font-bold text-lg">Connected!</p>
-                                <p class="text-white/80 text-sm">Profile Shared</p>
+                                <p style="color: rgba(255,255,255,0.8); font-size: 0.875rem;">Profile Shared</p>
                             </div>
                         </div>
                         
                         <!-- Notch -->
-                        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 bg-zinc-800 rounded-b-2xl"></div>
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-zinc-800" style="width: 8rem; height: 1.5rem; border-radius: 0 0 1rem 1rem;"></div>
                     </div>
                 </div>
                 
                 <!-- NFC Card with Tap Animation -->
                 <div class="nfc-card absolute top-0 right-0">
-                    <div class="bg-gradient-to-br from-zinc-800 to-black p-1 rounded-[28px] gold-border card-shadow relative" style="width: 280px;">
-                        <div class="w-full rounded-[26px] bg-zinc-900 relative overflow-hidden flex flex-col items-center justify-center p-8" style="aspect-ratio: 1.586/1;">
-                            <div class="w-20 h-20 gold-gradient rounded-2xl flex items-center justify-center mb-4 opacity-90 shadow-lg">
+                    <div class="bg-gradient-to-br from-zinc-800 to-black p-1 gold-border card-shadow relative" style="width: 280px; border-radius: 28px;">
+                        <div class="w-full bg-zinc-900 relative overflow-hidden flex flex-col items-center justify-center p-8" style="border-radius: 26px; aspect-ratio: 1.586/1;">
+                            <div class="w-20 h-20 gold-gradient flex items-center justify-center mb-4 shadow-lg" style="border-radius: 1rem; opacity: 0.9;">
                                 <span class="material-icons-round text-black text-4xl">contactless</span>
                             </div>
-                            <div class="absolute bottom-6 left-8">
-                                <p class="text-primary tracking-widest text-[10px] mb-1 uppercase opacity-60">NFC Enabled</p>
-                                <p class="font-display text-white text-sm uppercase tracking-widest">James Sterling</p>
+                            <div class="absolute" style="bottom: 1.5rem; left: 2rem;">
+                                <p class="text-primary uppercase" style="letter-spacing: 0.1em; font-size: 10px; margin-bottom: 0.25rem; opacity: 0.6;">NFC Enabled</p>
+                                <p class="font-display text-white uppercase" style="font-size: 0.875rem; letter-spacing: 0.1em;">James Sterling</p>
                             </div>
-                            <div class="absolute top-6 right-8 text-primary">
+                            <div class="absolute text-primary" style="top: 1.5rem; right: 2rem;">
                                 <span class="material-icons-round text-2xl">nfc</span>
                             </div>
                         </div>
-                        <!-- Motion Trail Effect -->
-                        <div class="card-trail absolute inset-0 rounded-[28px] pointer-events-none"></div>
+                        <div class="card-trail absolute inset-0 pointer-events-none" style="border-radius: 28px;"></div>
                     </div>
                 </div>
                 
                 <!-- Glow Effects -->
-                <div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full"></div>
-                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 blur-3xl rounded-full"></div>
+                <div class="absolute rounded-full" style="top: -2.5rem; right: -2.5rem; width: 10rem; height: 10rem; background: rgba(212,175,55,0.2); filter: blur(48px);"></div>
+                <div class="absolute rounded-full" style="bottom: -2.5rem; left: -2.5rem; width: 10rem; height: 10rem; background: rgba(212,175,55,0.1); filter: blur(48px);"></div>
             </div>
         </div>
     </div>
