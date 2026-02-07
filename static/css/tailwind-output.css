@@ -4764,11 +4764,6 @@ input:where([type='file']):focus {
     grid-column: span 2 / span 2;
   }
 
-  .lg\:mx-0 {
-    margin-left: 0px;
-    margin-right: 0px;
-  }
-
   .lg\:ml-\[280px\] {
     margin-left: 280px;
   }
@@ -4826,10 +4821,6 @@ input:where([type='file']):focus {
     align-items: center;
   }
 
-  .lg\:justify-start {
-    justify-content: flex-start;
-  }
-
   .lg\:justify-between {
     justify-content: space-between;
   }
@@ -4845,10 +4836,6 @@ input:where([type='file']):focus {
   .lg\:px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
-  }
-
-  .lg\:text-left {
-    text-align: left;
   }
 }
 
