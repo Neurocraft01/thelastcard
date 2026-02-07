@@ -28,37 +28,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=block" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block" rel="stylesheet">
     
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
-    <script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#D4AF37",
-                        "gold-light": "#F9F295",
-                        "gold-dark": "#B38728",
-                        "background-light": "#FDFCFB",
-                        "background-dark": "#0A0A0A",
-                        "card-dark": "#161616",
-                        "surface-dark": "#1A1A1A",
-                    },
-                    fontFamily: {
-                        display: ["Playfair Display", "Montserrat", "serif"],
-                        sans: ["Montserrat", "Inter", "sans-serif"],
-                        body: ["Inter", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.75rem",
-                        "xl": "1rem",
-                        "2xl": "1.5rem",
-                        "3xl": "2rem",
-                    },
-                },
-            },
-        };
-    </script>
+    <!-- Tailwind CSS (Local Build) -->
+    <link rel="stylesheet" href="{% static 'css/tailwind-output.css' %}">
     
     <!-- Custom Styles -->
     <style>
