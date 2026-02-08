@@ -1413,10 +1413,6 @@ input:where([type='file']):focus {
   inset: 0px;
 }
 
-.inset-4 {
-  inset: 1rem;
-}
-
 .inset-x-0 {
   left: 0px;
   right: 0px;
@@ -1426,16 +1422,8 @@ input:where([type='file']):focus {
   bottom: -0.25rem;
 }
 
-.-bottom-10 {
-  bottom: -2.5rem;
-}
-
 .-bottom-6 {
   bottom: -1.5rem;
-}
-
-.-left-10 {
-  left: -2.5rem;
 }
 
 .-left-6 {
@@ -1446,14 +1434,6 @@ input:where([type='file']):focus {
   right: -0.25rem;
 }
 
-.-right-10 {
-  right: -2.5rem;
-}
-
-.-right-40 {
-  right: -10rem;
-}
-
 .-right-6 {
   right: -1.5rem;
 }
@@ -1462,20 +1442,12 @@ input:where([type='file']):focus {
   top: -0.25rem;
 }
 
-.-top-10 {
-  top: -2.5rem;
-}
-
 .-top-3 {
   top: -0.75rem;
 }
 
 .-top-4 {
   top: -1rem;
-}
-
-.-top-40 {
-  top: -10rem;
 }
 
 .-top-6 {
@@ -1492,10 +1464,6 @@ input:where([type='file']):focus {
 
 .bottom-4 {
   bottom: 1rem;
-}
-
-.bottom-6 {
-  bottom: 1.5rem;
 }
 
 .left-0 {
@@ -1518,10 +1486,6 @@ input:where([type='file']):focus {
   left: 1rem;
 }
 
-.left-8 {
-  left: 2rem;
-}
-
 .right-0 {
   right: 0px;
 }
@@ -1532,10 +1496,6 @@ input:where([type='file']):focus {
 
 .right-4 {
   right: 1rem;
-}
-
-.right-8 {
-  right: 2rem;
 }
 
 .top-0 {
@@ -1560,10 +1520,6 @@ input:where([type='file']):focus {
 
 .top-4 {
   top: 1rem;
-}
-
-.top-6 {
-  top: 1.5rem;
 }
 
 .z-10 {
@@ -2284,22 +2240,6 @@ input:where([type='file']):focus {
   border-radius: 2rem;
 }
 
-.rounded-\[26px\] {
-  border-radius: 26px;
-}
-
-.rounded-\[28px\] {
-  border-radius: 28px;
-}
-
-.rounded-\[36px\] {
-  border-radius: 36px;
-}
-
-.rounded-\[48px\] {
-  border-radius: 48px;
-}
-
 .rounded-full {
   border-radius: 9999px;
 }
@@ -2310,11 +2250,6 @@ input:where([type='file']):focus {
 
 .rounded-xl {
   border-radius: 1rem;
-}
-
-.rounded-b-2xl {
-  border-bottom-right-radius: 1.5rem;
-  border-bottom-left-radius: 1.5rem;
 }
 
 .rounded-l-xl {
@@ -2345,10 +2280,6 @@ input:where([type='file']):focus {
 
 .border-4 {
   border-width: 4px;
-}
-
-.border-8 {
-  border-width: 8px;
 }
 
 .border-\[6px\] {
@@ -2505,16 +2436,6 @@ input:where([type='file']):focus {
 .border-zinc-700 {
   --tw-border-opacity: 1;
   border-color: rgb(63 63 70 / var(--tw-border-opacity, 1));
-}
-
-.border-zinc-800 {
-  --tw-border-opacity: 1;
-  border-color: rgb(39 39 42 / var(--tw-border-opacity, 1));
-}
-
-.border-zinc-900 {
-  --tw-border-opacity: 1;
-  border-color: rgb(24 24 27 / var(--tw-border-opacity, 1));
 }
 
 .bg-\[\#0A0A0A\] {
@@ -2674,10 +2595,6 @@ input:where([type='file']):focus {
   background-color: rgb(212 175 55 / 0.05);
 }
 
-.bg-primary\/95 {
-  background-color: rgb(212 175 55 / 0.95);
-}
-
 .bg-purple-100 {
   --tw-bg-opacity: 1;
   background-color: rgb(243 232 255 / var(--tw-bg-opacity, 1));
@@ -2756,10 +2673,6 @@ input:where([type='file']):focus {
   background-color: rgb(255 255 255 / var(--tw-bg-opacity, 1));
 }
 
-.bg-white\/20 {
-  background-color: rgb(255 255 255 / 0.2);
-}
-
 .bg-white\/5 {
   background-color: rgb(255 255 255 / 0.05);
 }
@@ -2786,15 +2699,6 @@ input:where([type='file']):focus {
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity, 1));
-}
-
-.bg-zinc-900\/50 {
-  background-color: rgb(24 24 27 / 0.5);
-}
-
-.bg-zinc-950 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(9 9 11 / var(--tw-bg-opacity, 1));
 }
 
 .bg-gradient-to-b {
@@ -2945,11 +2849,6 @@ input:where([type='file']):focus {
   --tw-gradient-stops: var(--tw-gradient-from), #FCF6BA var(--tw-gradient-via-position), var(--tw-gradient-to);
 }
 
-.via-black {
-  --tw-gradient-to: rgb(0 0 0 / 0)  var(--tw-gradient-to-position);
-  --tw-gradient-stops: var(--tw-gradient-from), #000 var(--tw-gradient-via-position), var(--tw-gradient-to);
-}
-
 .via-orange-500 {
   --tw-gradient-to: rgb(249 115 22 / 0)  var(--tw-gradient-to-position);
   --tw-gradient-stops: var(--tw-gradient-from), #f97316 var(--tw-gradient-via-position), var(--tw-gradient-to);
@@ -3077,10 +2976,6 @@ input:where([type='file']):focus {
 
 .to-zinc-900 {
   --tw-gradient-to: #18181b var(--tw-gradient-to-position);
-}
-
-.to-zinc-950 {
-  --tw-gradient-to: #09090b var(--tw-gradient-to-position);
 }
 
 .bg-clip-text {
@@ -3703,10 +3598,6 @@ input:where([type='file']):focus {
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
 }
 
-.text-white\/80 {
-  color: rgb(255 255 255 / 0.8);
-}
-
 .text-white\/90 {
   color: rgb(255 255 255 / 0.9);
 }
@@ -3744,20 +3635,12 @@ input:where([type='file']):focus {
   opacity: 0.5;
 }
 
-.opacity-60 {
-  opacity: 0.6;
-}
-
 .opacity-70 {
   opacity: 0.7;
 }
 
 .opacity-75 {
   opacity: 0.75;
-}
-
-.opacity-90 {
-  opacity: 0.9;
 }
 
 .shadow {
@@ -3852,13 +3735,12 @@ input:where([type='file']):focus {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.blur-\[128px\] {
-  --tw-blur: blur(128px);
+.blur-\[80px\] {
+  --tw-blur: blur(80px);
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
-.blur-\[80px\] {
-  --tw-blur: blur(80px);
+.filter {
   filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
 }
 
@@ -4725,11 +4607,6 @@ input:where([type='file']):focus {
     text-align: left;
   }
 
-  .md\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
-  }
-
   .md\:text-4xl {
     font-size: 2.25rem;
     line-height: 2.5rem;
@@ -4742,11 +4619,6 @@ input:where([type='file']):focus {
 
   .md\:text-6xl {
     font-size: 3.75rem;
-    line-height: 1;
-  }
-
-  .md\:text-7xl {
-    font-size: 4.5rem;
     line-height: 1;
   }
 }
