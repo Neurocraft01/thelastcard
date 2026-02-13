@@ -9,9 +9,9 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#D4AF37",
+        primary: "#ffcc00",
         "gold-light": "#F9F295",
-        "gold-dark": "#B38728",
+        "gold-dark": "#fbad05",
         "background-light": "#FDFCFB",
         "background-dark": "#0A0A0A",
         "card-dark": "#161616",

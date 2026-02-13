@@ -97,7 +97,7 @@
 
                 <!-- Profile Info -->
                 <div class="text-center mt-4">
-                    <h1 class="text-2xl font-extrabold gold-text flex items-center justify-center gap-2">
+                    <h1 class="text-2xl font-extrabold flex items-center justify-center gap-2" style="color: #fbad05;">
                         {{ profile.full_name }}
                         {% if card.user.is_verified %}
                         <span class="material-symbols-rounded text-primary text-xl">verified</span>
@@ -173,7 +173,7 @@
             <!-- Social Presence -->
             {% if profile.social_links %}
             <div class="glass-card p-5 rounded-2xl shadow-lg">
-                <h3 class="font-bold gold-text mb-4 uppercase text-xs tracking-widest">Social Presence</h3>
+                <h3 class="font-bold mb-4 uppercase text-xs tracking-widest" style="color: #fbad05;">Social Presence</h3>
                 <div class="flex justify-center gap-4">
                     {% for platform, url in profile.social_links.items %}
                     {% if url %}
@@ -223,7 +223,7 @@
             <!-- About Section -->
             {% if profile.bio %}
             <div class="glass-card p-5 rounded-2xl shadow-lg">
-                <h3 class="text-lg font-bold gold-text mb-3">About{% if profile.company %} {{ profile.company }}{% endif %}</h3>
+                <h3 class="text-lg font-bold mb-3" style="color: #fbad05;">About{% if profile.company %} {{ profile.company }}{% endif %}</h3>
                 <p class="text-slate-300 leading-relaxed text-sm">{{ profile.bio }}</p>
             </div>
             {% endif %}
@@ -231,7 +231,7 @@
             <!-- Contact Information -->
             {% if profile.phone_primary or profile.email_public %}
             <div class="glass-card p-5 rounded-2xl shadow-lg">
-                <h3 class="font-bold gold-text mb-4 uppercase text-xs tracking-widest">Contact Details</h3>
+                <h3 class="font-bold mb-4 uppercase text-xs tracking-widest" style="color: #fbad05;">Contact Details</h3>
                 <div class="space-y-3">
                     {% if profile.phone_primary %}
                     <a href="tel:{{ profile.phone_primary }}" class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors">
@@ -269,7 +269,7 @@
                 <div class="w-16 h-16 mx-auto mb-4 gold-gradient rounded-2xl flex items-center justify-center">
                     <span class="material-symbols-rounded text-3xl text-black">qr_code_2</span>
                 </div>
-                <h3 class="text-xl font-bold gold-text mb-2">Scan QR Code</h3>
+                <h3 class="text-xl font-bold mb-2" style="color: #fbad05;">Scan QR Code</h3>
                 <p class="text-slate-400 text-sm mb-6">Scan to view profile instantly</p>
                 
                 <div class="bg-white p-4 rounded-xl mb-4">

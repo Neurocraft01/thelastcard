@@ -10,60 +10,62 @@
     <!-- Background Gradient for Luxurious Feel -->
     <div class="absolute inset-0" style="background: radial-gradient(ellipse at top right, rgba(255,195,50,0.15), transparent 60%), linear-gradient(to bottom right, #18181b, #000, #09090b); opacity: 0.9;"></div>
     
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style="display: flex; flex-direction: row; align-items: center; gap: 3rem;">
-        <!-- LEFT SIDE: Text + Buttons -->
-        <div style="flex: 1; text-align: left;">
-            <h1 class="font-display mb-6 leading-tight" style="font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff;">
-                The <span class="gold-text">Last Business Card</span> You'll Ever Need.
-            </h1>
-            <p class="mb-6" style="font-size: 1.25rem; color: #cbd5e1; max-width: 36rem;">
-              | Smart | Tap | Connect |  
-            </p>
-            <p class="mb-10" style="font-size: 1rem; color: #94a3b8; max-width: 36rem;">
-                Share your contact info, social media handles, website, and portfolio in a single tap using <span class="gold-text font-bold">'THELASTCARD'</span>.
-            </p>
-            <div style="display: flex; flex-direction: row; gap: 1rem; flex-wrap: wrap;">
-                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-extrabold rounded-full hover:scale-105 transition-transform shadow-lg" style="padding: 1rem 2.5rem; font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem;">
-                    Get Your Card <span class="material-icons-round">shopping_bag</span>
-                </a>
-                <a href="#free-preview" class="text-primary font-bold rounded-full hover:bg-primary/10 transition-all" style="padding: 1rem 2.5rem; font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 2px solid rgba(255,195,50,0.3);">
-                    Get free preview<span class="material-icons-round">preview</span>
-                </a>
-            </div>
-            <div style="margin-top: 3rem; display: flex; align-items: center; gap: 1rem;">
-                <div class="flex -space-x-3">
-                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center text-black text-xs font-bold" style="border-color: #18181b;">JD</div>
-                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">AK</div>
-                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">SM</div>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+            <!-- LEFT SIDE: Text + Buttons -->
+            <div class="flex-1 text-center lg:text-left w-full">
+                <h1 class="font-display mb-4 sm:mb-6 leading-tight" style="font-size: clamp(2rem, 6vw, 4.5rem); color: #fff;">
+                    The <span style="color: #fbad05;">Last Business Card</span> You'll Ever Need.
+                </h1>
+                <p class="mb-4 sm:mb-6 text-lg sm:text-xl" style="color: #cbd5e1;">
+                  | Smart | Tap | Connect |  
+                </p>
+                <p class="mb-6 sm:mb-10 text-sm sm:text-base" style="color: #94a3b8;">
+                    Share your contact info, social media handles, website, and portfolio in a single tap using <span class="font-bold" style="color: #fbad05;">'THELASTCARD'</span>.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
+                    <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-extrabold rounded-full hover:scale-105 transition-transform shadow-lg px-6 py-3 sm:px-10 sm:py-4 text-base sm:text-lg inline-flex items-center justify-center gap-2">
+                        Get Your Card <span class="material-icons-round text-xl">shopping_bag</span>
+                    </a>
+                    <a href="#free-preview" class="text-primary font-bold rounded-full hover:bg-primary/10 transition-all px-6 py-3 sm:px-10 sm:py-4 text-base sm:text-lg inline-flex items-center justify-center gap-2" style="border: 2px solid rgba(255,195,50,0.3);">
+                        Free Preview <span class="material-icons-round text-xl">preview</span>
+                    </a>
                 </div>
-                <span style="font-size: 0.875rem; font-weight: 500; color: #94a3b8;">Trusted by 10,000+ Professionals</span>
+                <div class="mt-6 sm:mt-8 lg:mt-12 flex items-center justify-center lg:justify-start gap-3">
+                    <div class="flex -space-x-2 sm:-space-x-3">
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center text-black text-xs font-bold" style="border-color: #18181b;">JD</div>
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">AK</div>
+                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border-2 bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">SM</div>
+                    </div>
+                    <span class="text-xs sm:text-sm font-medium" style="color: #94a3b8;">Trusted by 10,000+ Professionals</span>
+                </div>
             </div>
-        </div>
-        
-        <!-- RIGHT SIDE: Card Animation GIF -->
-        <div style="flex: 1; position: relative;">
-            <div class="relative w-full max-w-lg mx-auto flex items-center justify-center" style="min-height: 400px;">
-                <video src="{% static 'video/home1.mp4' %}" autoplay muted loop playsinline class="w-full max-w-md rounded-2xl shadow-2xl" style="border: 2px solid rgba(255,195,50,0.2);"></video>
-                <!-- Glow Effects -->
-                <div class="absolute rounded-full" style="top: -2.5rem; right: -2.5rem; width: 10rem; height: 10rem; background: rgba(255,195,50,0.2); filter: blur(48px); pointer-events: none;"></div>
-                <div class="absolute rounded-full" style="bottom: -2.5rem; left: -2.5rem; width: 10rem; height: 10rem; background: rgba(255,195,50,0.1); filter: blur(48px); pointer-events: none;"></div>
+            
+            <!-- RIGHT SIDE: Card Animation Video -->
+            <div class="flex-1 w-full relative">
+                <div class="relative w-full max-w-md mx-auto flex items-center justify-center" style="min-height: 280px; lg:min-height: 400px;">
+                    <video src="{% static 'video/home1.mp4' %}" autoplay muted loop playsinline class="w-full rounded-2xl shadow-2xl" style="border: 2px solid rgba(255,195,50,0.2);"></video>
+                    <!-- Glow Effects -->
+                    <div class="absolute rounded-full hidden sm:block" style="top: -2rem; right: -2rem; width: 8rem; height: 8rem; background: rgba(255,195,50,0.2); filter: blur(48px); pointer-events: none;"></div>
+                    <div class="absolute rounded-full hidden sm:block" style="bottom: -2rem; left: -2rem; width: 8rem; height: 8rem; background: rgba(255,195,50,0.1); filter: blur(48px); pointer-events: none;"></div>
+                </div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Free Preview Section -->
-<section class="py-24 bg-zinc-950" id="free-preview">
+<section class="py-16 sm:py-24 bg-zinc-950" id="free-preview">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-[.2em] mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Free Preview</span>
-            <h2 class="font-display text-4xl md:text-5xl mb-4 gold-text uppercase">Get Free Preview of Your Card</h2>
-            <p class="text-zinc-400 max-w-2xl mx-auto text-lg">Enter your details below to see how your digital business card will look. No payment required!</p>
+        <div class="text-center mb-8 sm:mb-12">
+            <span class="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.2em] mb-4 sm:mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Free Preview</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 uppercase px-4" style="color: #fbad05;">Get Free Preview of Your Card</h2>
+            <p class="text-zinc-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">Enter your details below to see how your digital business card will look. No payment required!</p>
         </div>
         
-        <div class="bg-zinc-900 rounded-3xl p-8 md:p-12 border border-zinc-800">
-            <form action="{% url 'accounts:register' %}" method="get" class="space-y-6">
-                <div class="grid md:grid-cols-2 gap-6">
+        <div class="bg-zinc-900 rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-12 border border-zinc-800">
+            <form action="{% url 'accounts:register' %}" method="get" class="space-y-5 sm:space-y-6">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
                     <div>
                         <label class="block text-sm font-medium text-zinc-300 mb-2">Full Name</label>
                         <input type="text" name="name" placeholder="John Doe" class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
@@ -81,65 +83,65 @@
                         <input type="text" name="company" placeholder="CEO at Company" class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
                     </div>
                 </div>
-                <button type="submit" class="w-full py-4 bg-primary text-black font-extrabold rounded-xl hover:scale-[1.02] transition-transform text-lg shadow-lg" style="box-shadow: 0 8px 30px -6px rgba(255,195,50,.35);">
-                    Generate Free Preview <span class="material-icons-round align-middle ml-1">arrow_forward</span>
+                <button type="submit" class="w-full py-3 sm:py-4 bg-primary text-black font-extrabold rounded-xl hover:scale-[1.02] transition-transform text-base sm:text-lg shadow-lg" style="box-shadow: 0 8px 30px -6px rgba(255,195,50,.35);">
+                    Generate Free Preview <span class="material-icons-round align-middle ml-1 text-xl">arrow_forward</span>
                 </button>
-                <p class="text-center text-zinc-500 text-sm">No credit card required. See your card design instantly.</p>
+                <p class="text-center text-zinc-500 text-xs sm:text-sm">No credit card required. See your card design instantly.</p>
             </form>
         </div>
     </div>
 </section>
 
 <!-- How It Works / Process Section -->
-<section class="py-24 bg-zinc-900" id="how-it-works">
+<section class="py-16 sm:py-24 bg-zinc-900" id="how-it-works">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-[.2em] mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Process</span>
-            <h2 class="font-display text-4xl md:text-5xl mb-4 gold-text uppercase">The 3-Step Success</h2>
-            <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+        <div class="text-center mb-12 sm:mb-16">
+            <span class="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.2em] mb-4 sm:mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Process</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 uppercase px-4" style="color: #fbad05;">The 3-Step Success</h2>
+            <div class="w-16 sm:w-24 h-1 bg-primary mx-auto mb-4 sm:mb-6"></div>
         </div>
-        <div class="grid md:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
             <!-- Step 1: Tap -->
-            <div class="text-center p-8 bg-zinc-800/50 rounded-3xl border border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-primary/30">
-                <div class="mb-6 rounded-2xl overflow-hidden flex items-center justify-center" style="aspect-ratio: 4/3; background: rgba(255, 255, 255, 1);">
+            <div class="text-center p-6 sm:p-8 bg-zinc-800/50 rounded-2xl sm:rounded-3xl border border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-primary/30">
+                <div class="mb-4 sm:mb-6 rounded-2xl overflow-hidden flex items-center justify-center" style="aspect-ratio: 4/3; background: rgba(255, 255, 255, 1);">
                     <dotlottie-player src="{% static 'animation/Link Tap.lottie' %}" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></dotlottie-player>
                 </div>
-                <div class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
-                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide text-white">Tap</h3>
-                <p class="text-zinc-400">Simply tap your physical card on any modern smartphone. No apps required for your clients.</p>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-lg sm:text-xl font-bold">1</div>
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 uppercase tracking-wide text-white">Tap</h3>
+                <p class="text-sm sm:text-base text-zinc-400">Simply tap your physical card on any modern smartphone. No apps required for your clients.</p>
             </div>
             <!-- Step 2: Share -->
-            <div class="text-center p-8 bg-zinc-800/50 rounded-3xl border border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-primary/30">
-                <div class="mb-6 rounded-2xl overflow-hidden flex items-center justify-center" style="aspect-ratio: 4/3; background: rgba(255, 255, 255, 1);">
+            <div class="text-center p-6 sm:p-8 bg-zinc-800/50 rounded-2xl sm:rounded-3xl border border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-primary/30">
+                <div class="mb-4 sm:mb-6 rounded-2xl overflow-hidden flex items-center justify-center" style="aspect-ratio: 4/3; background: rgba(255, 255, 255, 1);">
                     <dotlottie-player src="{% static 'animation/Card Sharing.lottie' %}" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></dotlottie-player>
                 </div>
-                <div class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
-                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide text-white">Share</h3>
-                <p class="text-zinc-400">Instantly share your digital profile containing contact info, social links, and media.</p>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-lg sm:text-xl font-bold">2</div>
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 uppercase tracking-wide text-white">Share</h3>
+                <p class="text-sm sm:text-base text-zinc-400">Instantly share your digital profile containing contact info, social links, and media.</p>
             </div>
             <!-- Step 3: Save -->
-            <div class="text-center p-8 bg-zinc-800/50 rounded-3xl border border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-primary/30">
-                <div class="mb-6 rounded-2xl overflow-hidden flex items-center justify-center" style="aspect-ratio: 4/3; background: rgba(255, 255, 255, 1);">
+            <div class="text-center p-6 sm:p-8 bg-zinc-800/50 rounded-2xl sm:rounded-3xl border border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-primary/30">
+                <div class="mb-4 sm:mb-6 rounded-2xl overflow-hidden flex items-center justify-center" style="aspect-ratio: 4/3; background: rgba(255, 255, 255, 1);">
                     <dotlottie-player src="{% static 'animation/Link Connect.lottie' %}" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></dotlottie-player>
                 </div>
-                <div class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
-                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide text-white">Save</h3>
-                <p class="text-zinc-400">The recipient saves your contact information directly to their phone's contact list.</p>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-3 sm:mb-4 text-lg sm:text-xl font-bold">3</div>
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 uppercase tracking-wide text-white">Save</h3>
+                <p class="text-sm sm:text-base text-zinc-400">The recipient saves your contact information directly to their phone's contact list.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- Pricing Section -->
-<section class="py-24 bg-zinc-950" id="pricing" style="overflow: visible;">
+<section class="py-16 sm:py-24 bg-zinc-950" id="pricing" style="overflow: visible;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="overflow: visible;">
-        <div class="text-center mb-16">
-            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-[.2em] mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Pricing</span>
-            <h2 class="font-display text-4xl md:text-5xl mb-4 gold-text uppercase">Choose Your Card</h2>
-            <p class="text-zinc-400 max-w-xl mx-auto">One-time payment. Lifetime digital profile. No subscriptions.</p>
+        <div class="text-center mb-12 sm:mb-16">
+            <span class="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.2em] mb-4 sm:mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Pricing</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 uppercase px-4" style="color: #fbad05;">Choose Your Card</h2>
+            <p class="text-zinc-400 max-w-xl mx-auto text-sm sm:text-base px-4">One-time payment. Lifetime digital profile. No subscriptions.</p>
         </div>
         
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" style="padding-top: 1rem;">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 max-w-6xl mx-auto" style="padding-top: 1rem;">
             <!-- Gloss Finish (Golden Black) - 10% OFF -->
             <div class="relative p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);">
                 <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold" style="background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.2);z-index:10;">10% OFF</div>
@@ -150,7 +152,7 @@
                 <p class="text-zinc-500 text-xs mb-4">(Golden Black)</p>
                 <div class="flex items-baseline gap-2 mb-5">
                     <span class="text-lg line-through text-zinc-600">₹𝟺̶𝟺̶𝟿̶ </span>
-                    <span class="text-3xl font-extrabold gold-text">₹449</span>
+                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹449</span>
                 </div>
                 <ul class="space-y-2.5 mb-6">
                     <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
@@ -170,7 +172,7 @@
                 <p class="text-zinc-500 text-xs mb-4">(White and Colour)</p>
                 <div class="flex items-baseline gap-2 mb-5">
                     <span class="text-lg line-through text-zinc-600">₹𝟺̶𝟺̶𝟿̶ </span>
-                    <span class="text-3xl font-extrabold gold-text">₹449</span>
+                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹449</span>
                 </div>
                 <ul class="space-y-2.5 mb-6">
                     <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
@@ -191,7 +193,7 @@
                 <p class="text-zinc-500 text-xs mb-4">(Golden Black)</p>
                 <div class="flex items-baseline gap-2 mb-5">
                     <span class="text-lg line-through text-zinc-600">₹𝟾̶𝟺̶𝟿̶ </span>
-                    <span class="text-3xl font-extrabold gold-text">₹599</span>
+                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹599</span>
                 </div>
                 <ul class="space-y-2.5 mb-6">
                     <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
@@ -211,7 +213,7 @@
                 <p class="text-zinc-500 text-xs mb-4">(White and Colour)</p>
                 <div class="flex items-baseline gap-2 mb-5">
                     <span class="text-lg line-through text-zinc-600">₹𝟾̶𝟺̶𝟿̶ </span>
-                    <span class="text-3xl font-extrabold gold-text">₹599</span>
+                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹599</span>
                 </div>
                 <ul class="space-y-2.5 mb-6">
                     <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
@@ -225,56 +227,56 @@
 </section>
 
 <!-- Cards for Everyone Section (Black & Gold Theme) -->
-<section class="py-24 bg-zinc-900" id="for-everyone">
+<section class="py-16 sm:py-24 bg-zinc-900" id="for-everyone">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-16">
-            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-[.2em] mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">For Everyone</span>
-            <h2 class="font-display text-4xl md:text-5xl mb-4 gold-text uppercase">Cards for Everyone</h2>
-            <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
-            <p class="text-zinc-400 max-w-2xl mx-auto text-lg">Your premium visiting card, no matter who you are. Built for professionals, loved by everyone.</p>
+        <div class="text-center mb-12 sm:mb-16">
+            <span class="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.2em] mb-4 sm:mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">For Everyone</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 uppercase px-4" style="color: #fbad05;">Cards for Everyone</h2>
+            <div class="w-16 sm:w-24 h-1 bg-primary mx-auto mb-4 sm:mb-6"></div>
+            <p class="text-zinc-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">Your premium visiting card, no matter who you are. Built for professionals, loved by everyone.</p>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
             <!-- Creators -->
-            <div class="group text-center p-8 bg-zinc-800/60 rounded-3xl border border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
-                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <span class="material-icons-round text-black text-4xl">brush</span>
+            <div class="group text-center p-6 sm:p-8 bg-zinc-800/60 rounded-2xl sm:rounded-3xl border border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-xl sm:rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-black text-3xl sm:text-4xl">brush</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3 uppercase tracking-wide text-white">Creators</h3>
-                <p class="text-zinc-400 mb-4 text-sm leading-relaxed">Artists, designers, photographers, influencers. Share your portfolio, social links, and creative identity with a single tap.</p>
+                <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 uppercase tracking-wide text-white">Creators</h3>
+                <p class="text-zinc-400 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed">Artists, designers, photographers, influencers. Share your portfolio, social links, and creative identity with a single tap.</p>
                 <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Artists</span>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Designers</span>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Influencers</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Artists</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Designers</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Influencers</span>
                 </div>
             </div>
 
             <!-- Business Professionals -->
-            <div class="group text-center p-8 rounded-3xl border-2 border-primary/40 transform md:scale-105 shadow-2xl transition-all hover:-translate-y-3 hover:shadow-primary/20 relative" style="background:linear-gradient(135deg,rgba(255,195,50,.08),rgba(255,195,50,.02));">
-                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;">Most Popular</div>
-                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <span class="material-icons-round text-black text-4xl">business_center</span>
+            <div class="group text-center p-6 sm:p-8 rounded-2xl sm:rounded-3xl border-2 border-primary/40 md:scale-105 shadow-2xl transition-all hover:-translate-y-3 hover:shadow-primary/20 relative" style="background:linear-gradient(135deg,rgba(255,195,50,.08),rgba(255,195,50,.02));">
+                <div class="absolute -top-2 sm:-top-3 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest whitespace-nowrap" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;">Most Popular</div>
+                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-xl sm:rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-black text-3xl sm:text-4xl">business_center</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3 uppercase tracking-wide text-white">Businessmen</h3>
-                <p class="text-zinc-400 mb-4 text-sm leading-relaxed">Entrepreneurs, CEOs, sales teams, consultants. Make every handshake count. Instant contact exchange that impresses.</p>
+                <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 uppercase tracking-wide text-white">Businessmen</h3>
+                <p class="text-zinc-400 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed">Entrepreneurs, CEOs, sales teams, consultants. Make every handshake count. Instant contact exchange that impresses.</p>
                 <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.15);color:#FFC332;border:1px solid rgba(255,195,50,.3);">Entrepreneurs</span>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.15);color:#FFC332;border:1px solid rgba(255,195,50,.3);">CEOs</span>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.15);color:#FFC332;border:1px solid rgba(255,195,50,.3);">Consultants</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.15);color:#FFC332;border:1px solid rgba(255,195,50,.3);">Entrepreneurs</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.15);color:#FFC332;border:1px solid rgba(255,195,50,.3);">CEOs</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.15);color:#FFC332;border:1px solid rgba(255,195,50,.3);">Consultants</span>
                 </div>
             </div>
 
             <!-- Everyday People -->
-            <div class="group text-center p-8 bg-zinc-800/60 rounded-3xl border border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
-                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
-                    <span class="material-icons-round text-black text-4xl">people</span>
+            <div class="group text-center p-6 sm:p-8 bg-zinc-800/60 rounded-2xl sm:rounded-3xl border border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-xl sm:rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-black text-3xl sm:text-4xl">people</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3 uppercase tracking-wide text-white">Everyone</h3>
-                <p class="text-zinc-400 mb-4 text-sm leading-relaxed">Students, freelancers, everyday professionals. One card for all your contacts, socials, and personal brand. Simple &amp; affordable.</p>
+                <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 uppercase tracking-wide text-white">Everyone</h3>
+                <p class="text-zinc-400 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed">Students, freelancers, everyday professionals. One card for all your contacts, socials, and personal brand. Simple &amp; affordable.</p>
                 <div class="flex flex-wrap justify-center gap-2">
-                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Students</span>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Freelancers</span>
-                    <span class="px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Professionals</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Students</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Freelancers</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Professionals</span>
                 </div>
             </div>
         </div>
@@ -282,19 +284,19 @@
 </section>
 
 <!-- FAQs Section -->
-<section class="py-24 bg-zinc-950" id="faqs">
+<section class="py-16 sm:py-24 bg-zinc-950" id="faqs">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-14">
-            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-[.2em] mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">FAQs</span>
-            <h2 class="font-display text-4xl mb-4 gold-text">Frequently Asked Questions</h2>
+        <div class="text-center mb-10 sm:mb-14">
+            <span class="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.2em] mb-4 sm:mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">FAQs</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 px-4" style="color: #fbad05;">Frequently Asked Questions</h2>
         </div>
-        <div class="space-y-3">
-            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+        <div class="space-y-2 sm:space-y-3">
+            <div class="faq-item rounded-xl sm:rounded-2xl p-4 sm:p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
                 <div class="flex items-center justify-between">
-                    <h3 class="font-bold text-white text-sm pr-4">Is there a monthly subscription fee?</h3>
-                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                    <h3 class="font-bold text-white text-xs sm:text-sm pr-3 sm:pr-4">Is there a monthly subscription fee?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform flex-shrink-0" style="font-size:18px;">expand_more</span>
                 </div>
-                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">No! The price you see is a one-time payment for your physical card. Basic digital profile features are included forever with no recurring fees.</p></div>
+                <div class="faq-answer"><p class="text-zinc-400 text-xs sm:text-sm leading-relaxed pt-2 sm:pt-3">No! The price you see is a one-time payment for your physical card. Basic digital profile features are included forever with no recurring fees.</p></div>
             </div>
             <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
                 <div class="flex items-center justify-between">
@@ -336,17 +338,17 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-24 bg-zinc-900">
+<section class="py-16 sm:py-24 bg-zinc-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <div class="absolute inset-0 rounded-full" style="background:rgba(255,195,50,.06);filter:blur(100px);pointer-events:none;"></div>
-        <h2 class="font-display text-4xl md:text-5xl mb-6 text-white relative">Ready to Make Your <span class="gold-text">Last</span> Impression?</h2>
-        <p class="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto relative">Join thousands of professionals who have upgraded their networking game with luxury NFC digital business cards.</p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center relative">
-            <a href="{% url 'accounts:register' %}" class="inline-flex items-center justify-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg" style="box-shadow:0 8px 30px -6px rgba(255,195,50,.35);">
-                Get Your Card Now <span class="material-icons-round">arrow_forward</span>
+        <div class="absolute inset-0 rounded-full hidden sm:block" style="background:rgba(255,195,50,.06);filter:blur(100px);pointer-events:none;"></div>
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 text-white relative leading-tight px-4">Ready to Make Your <span style="color: #fbad05;">Last</span> Impression?</h2>
+        <p class="text-base sm:text-lg md:text-xl text-zinc-400 mb-6 sm:mb-10 max-w-2xl mx-auto relative px-4">Join thousands of professionals who have upgraded their networking game with luxury NFC digital business cards.</p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center relative px-4">
+            <a href="{% url 'accounts:register' %}" class="inline-flex items-center justify-center gap-2 bg-primary text-black font-extrabold py-3 sm:py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-transform text-base sm:text-lg shadow-lg" style="box-shadow:0 8px 30px -6px rgba(255,195,50,.35);">
+                Get Your Card Now <span class="material-icons-round text-xl">arrow_forward</span>
             </a>
-            <a href="#free-preview" class="inline-flex items-center justify-center gap-2 font-bold py-4 px-10 rounded-full hover:bg-white/5 transition-all text-lg" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">
-                <span class="material-icons-round">palette</span> Design your card for free
+            <a href="#free-preview" class="inline-flex items-center justify-center gap-2 font-bold py-3 sm:py-4 px-8 sm:px-10 rounded-full hover:bg-white/5 transition-all text-base sm:text-lg" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">
+                <span class="material-icons-round text-xl">palette</span> Design for free
             </a>
         </div>
     </div>

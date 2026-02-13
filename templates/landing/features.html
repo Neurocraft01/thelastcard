@@ -5,25 +5,25 @@
 
 {% block content %}
 <!-- Hero Section -->
-<section class="pt-32 pb-20" style="background: linear-gradient(to bottom, #09090b, #18181b);">
+<section class="pt-24 pb-12 sm:pt-32 sm:pb-20" style="background: linear-gradient(to bottom, #09090b, #18181b);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="font-display text-5xl md:text-6xl mb-6 text-white">
-            Powerful <span class="gold-text">Features</span>
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-white leading-tight">
+            Powerful <span style="color: #fbad05;">Features</span>
         </h1>
-        <p class="text-xl text-zinc-400 max-w-2xl mx-auto">Everything you need to make unforgettable first impressions and track your networking success.</p>
+        <p class="text-base sm:text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto px-4">Everything you need to make unforgettable first impressions and track your networking success.</p>
     </div>
 </section>
 
 <!-- Core Features -->
-<section class="py-24" style="background: #09090b;">
+<section class="py-16 sm:py-24" style="background: #09090b;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
-                <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
-                    <span class="material-icons-round text-primary text-2xl">tap_and_play</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 lg:gap-8">
+            <div class="bg-zinc-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
+                <div class="w-12 h-12 sm:w-14 sm:h-14 bg-primary/10 rounded-lg sm:rounded-xl flex items-center justify-center mb-4 sm:mb-6">
+                    <span class="material-icons-round text-primary text-xl sm:text-2xl">tap_and_play</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3 text-white">NFC Technology</h3>
-                <p class="text-zinc-400">Tap to share. Works with all modern smartphones instantly without any app required.</p>
+                <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-white">NFC Technology</h3>
+                <p class="text-sm sm:text-base text-zinc-400">Tap to share. Works with all modern smartphones instantly without any app required.</p>
             </div>
             
             <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
@@ -94,12 +94,12 @@
 </section>
 
 <!-- CTA Section -->
-<section class="py-24 bg-zinc-900">
+<section class="py-16 sm:py-24 bg-zinc-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="font-display text-4xl md:text-5xl mb-6 text-white">Ready to <span class="gold-text">Upgrade</span> Your Networking?</h2>
-        <p class="text-xl text-zinc-400 mb-10">Get your luxury NFC business card and start making connections that last.</p>
-        <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg shadow-primary/20">
-            Get Started <span class="material-icons-round">arrow_forward</span>
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 text-white leading-tight px-4">Ready to <span style="color: #fbad05;">Upgrade</span> Your Networking?</h2>
+        <p class="text-base sm:text-lg md:text-xl text-zinc-400 mb-6 sm:mb-10 px-4">Get your luxury NFC business card and start making connections that last.</p>
+        <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-3 sm:py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-transform text-base sm:text-lg shadow-lg shadow-primary/20">
+            Get Started <span class="material-icons-round text-xl">arrow_forward</span>
         </a>
     </div>
 </section>

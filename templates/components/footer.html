@@ -1,38 +1,38 @@
 {% load static %}
-<footer class="pt-20 pb-10" style="background:#09090b;border-top:1px solid rgba(255,255,255,.06);">
+<footer class="pt-12 sm:pt-20 pb-8 sm:pb-10" style="background:#09090b;border-top:1px solid rgba(255,255,255,.06);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-4 gap-12 mb-16">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 sm:gap-12 mb-12 sm:mb-16">
             <!-- Brand Column -->
-            <div class="col-span-1 md:col-span-2">
-                <a href="{% url 'landing:home' %}" class="flex items-center gap-3 mb-6">
-                    <div class="w-12 h-12 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
-                        <span class="material-icons-round text-black text-2xl">contactless</span>
+            <div class="col-span-1 sm:col-span-2">
+                <a href="{% url 'landing:home' %}" class="flex items-center gap-2 sm:gap-3 mb-4 sm:mb-6">
+                    <div class="w-10 h-10 sm:w-12 sm:h-12 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
+                        <span class="material-icons-round text-black text-xl sm:text-2xl">contactless</span>
                     </div>
-                    <span class="font-display text-2xl gold-text uppercase font-bold">The Last Card</span>
+                    <span class="font-display text-lg sm:text-2xl uppercase font-bold" style="color: #fbad05;">The Last Card</span>
                 </a>
-                <p class="text-zinc-500 max-w-sm mb-6">
+                <p class="text-sm sm:text-base text-zinc-500 max-w-sm mb-4 sm:mb-6">
                     The Last Card is revolutionizing how professionals connect. Luxury design meets cutting-edge NFC technology.
                 </p>
-                <div class="flex gap-4">
-                    <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center text-zinc-500 hover:text-primary transition-all" style="border:1px solid rgba(255,255,255,.08);">
-                        <span class="material-icons-round text-lg">facebook</span>
+                <div class="flex gap-3 sm:gap-4">
+                    <a href="#" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-zinc-500 hover:text-primary transition-all" style="border:1px solid rgba(255,255,255,.08);">
+                        <span class="material-icons-round text-base sm:text-lg">facebook</span>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center text-zinc-500 hover:text-primary transition-all" style="border:1px solid rgba(255,255,255,.08);">
-                        <span class="material-icons-round text-lg">camera_alt</span>
+                    <a href="#" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-zinc-500 hover:text-primary transition-all" style="border:1px solid rgba(255,255,255,.08);">
+                        <span class="material-icons-round text-base sm:text-lg">camera_alt</span>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center text-zinc-500 hover:text-primary transition-all" style="border:1px solid rgba(255,255,255,.08);">
-                        <span class="material-icons-round text-lg">alternate_email</span>
+                    <a href="#" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-zinc-500 hover:text-primary transition-all" style="border:1px solid rgba(255,255,255,.08);">
+                        <span class="material-icons-round text-base sm:text-lg">alternate_email</span>
                     </a>
-                    <a href="#" class="w-10 h-10 rounded-full flex items-center justify-center text-zinc-500 hover:text-primary transition-all" style="border:1px solid rgba(255,255,255,.08);">
-                        <span class="material-icons-round text-lg">link</span>
+                    <a href="#" class="w-9 h-9 sm:w-10 sm:h-10 rounded-full flex items-center justify-center text-zinc-500 hover:text-primary transition-all" style="border:1px solid rgba(255,255,255,.08);">
+                        <span class="material-icons-round text-base sm:text-lg">link</span>
                     </a>
                 </div>
             </div>
             
             <!-- Quick Links -->
             <div>
-                <h5 class="font-bold mb-6 uppercase tracking-widest text-sm text-white">Quick Links</h5>
-                <ul class="space-y-4 text-zinc-500">
+                <h5 class="font-bold mb-4 sm:mb-6 uppercase tracking-widest text-xs sm:text-sm text-white">Quick Links</h5>
+                <ul class="space-y-3 sm:space-y-4 text-sm sm:text-base text-zinc-500">
                     <li><a href="{% url 'accounts:register' %}" class="hover:text-primary transition-colors">Order Now</a></li>
                     <li><a href="{% url 'landing:features' %}" class="hover:text-primary transition-colors">How it Works</a></li>
                     <li><a href="{% url 'landing:features' %}" class="hover:text-primary transition-colors">Features</a></li>
@@ -42,8 +42,8 @@
             
             <!-- Legal & Support -->
             <div>
-                <h5 class="font-bold mb-6 uppercase tracking-widest text-sm text-white">Legal &amp; Support</h5>
-                <ul class="space-y-4 text-zinc-500">
+                <h5 class="font-bold mb-4 sm:mb-6 uppercase tracking-widest text-xs sm:text-sm text-white">Legal &amp; Support</h5>
+                <ul class="space-y-3 sm:space-y-4 text-sm sm:text-base text-zinc-500">
                     <li><a href="{% url 'landing:privacy' %}" class="hover:text-primary transition-colors">Privacy Policy</a></li>
                     <li><a href="{% url 'landing:terms' %}" class="hover:text-primary transition-colors">Terms of Service</a></li>
                     <li><a href="{% url 'landing:contact' %}" class="hover:text-primary transition-colors">Contact Us</a></li>
@@ -52,11 +52,11 @@
             </div>
         </div>
         
-        <div class="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-zinc-500" style="border-top:1px solid rgba(255,255,255,.06);">
+        <div class="pt-6 sm:pt-8 flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4 text-xs sm:text-sm text-zinc-500" style="border-top:1px solid rgba(255,255,255,.06);">
             <p>&copy; {% now "Y" %} The Last Card. All rights reserved.</p>
             <p class="flex items-center gap-2">
-                <span class="material-icons-round text-primary text-sm">verified</span>
-                Designed for the Modern Executive.
+                <span class="material-icons-round text-primary text-xs sm:text-sm">verified</span>
+                <span class="text-center">Designed for the Modern Executive.</span>
             </p>
         </div>
     </div>

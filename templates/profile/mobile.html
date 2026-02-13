@@ -71,7 +71,7 @@
                     {% endif %}
                 </div>
                 
-                <h1 class="text-2xl font-bold gold-text text-center">{{ profile.full_name }}</h1>
+                <h1 class="text-2xl font-bold text-center" style="color: #fbad05;">{{ profile.full_name }}</h1>
                 {% if profile.designation %}
                 <p class="text-slate-300 text-center mt-1">{{ profile.designation }}</p>
                 {% endif %}
@@ -124,14 +124,14 @@
             <!-- Bio Section -->
             {% if profile.bio %}
             <div class="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
-                <h3 class="text-sm font-semibold gold-text mb-2 uppercase tracking-wider">About</h3>
+                <h3 class="text-sm font-semibold mb-2 uppercase tracking-wider" style="color: #fbad05;">About</h3>
                 <p class="text-slate-300 text-sm leading-relaxed">{{ profile.bio }}</p>
             </div>
             {% endif %}
 
             <!-- Contact Info -->
             <div class="bg-white/5 border border-white/10 rounded-xl p-4 mb-4">
-                <h3 class="text-sm font-semibold gold-text mb-3 uppercase tracking-wider">Contact</h3>
+                <h3 class="text-sm font-semibold mb-3 uppercase tracking-wider" style="color: #fbad05;">Contact</h3>
                 <div class="space-y-3">
                     {% if profile.phone_primary %}
                     <a href="tel:{{ profile.phone_primary }}" class="flex items-center gap-3 text-slate-300 hover:text-primary transition-colors">
@@ -157,7 +157,7 @@
             <!-- Social Links -->
             {% if profile.social_links %}
             <div class="bg-white/5 border border-white/10 rounded-xl p-4">
-                <h3 class="text-sm font-semibold gold-text mb-3 uppercase tracking-wider">Connect</h3>
+                <h3 class="text-sm font-semibold mb-3 uppercase tracking-wider" style="color: #fbad05;">Connect</h3>
                 <div class="grid grid-cols-4 gap-3">
                     {% for platform, url in profile.social_links.items %}
                     {% if url %}

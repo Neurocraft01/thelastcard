@@ -2,178 +2,235 @@
 {% load static %}
 
 {% block title %}Pricing - The Last Card{% endblock %}
+{% block meta_description %}One-time payment. Lifetime digital profile. No subscriptions. Choose your premium NFC business card - Gloss or Matte finish.{% endblock %}
 
 {% block content %}
-<!-- Fixed Navigation -->
-<nav class="fixed w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-            <a href="{% url 'landing:home' %}" class="flex items-center gap-2">
-                <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
-                    <span class="material-icons-round text-black font-bold">contactless</span>
-                </div>
-                <span class="font-display text-xl tracking-wider hidden sm:block gold-text uppercase font-bold">The Last Card</span>
-            </a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="{% url 'landing:home' %}#features" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">Features</a>
-                <a href="{% url 'landing:pricing' %}" class="text-primary transition-colors font-medium text-sm uppercase tracking-widest">Pricing</a>
-                <a href="{% url 'landing:about' %}" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">About</a>
-                <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
-                    <span class="material-icons-round text-xl">dark_mode</span>
-                </button>
-                {% if user.is_authenticated %}
-                <a href="{% url 'accounts:dashboard_redirect' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Dashboard</a>
-                {% else %}
-                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Get Started</a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</nav>
-
-<!-- Pricing Hero -->
-<section class="pt-32 pb-12 bg-gradient-to-b from-slate-50 to-white dark:from-background-dark dark:to-zinc-950">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="font-display text-5xl md:text-6xl mb-6">
-            Choose Your <span class="gold-text">Luxury</span>
+<!-- Hero Section -->
+<section class="relative pt-24 pb-12 sm:pt-32 sm:pb-20 overflow-hidden" style="background: #09090b;">
+    <!-- Background Gradient -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at top right, rgba(255,195,50,0.15), transparent 60%), linear-gradient(to bottom right, #18181b, #000, #09090b); opacity: 0.9;"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <span class="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.2em] mb-4 sm:mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Pricing</span>
+        <h1 class="font-display mb-4 sm:mb-6 leading-tight" style="font-size: clamp(2rem, 6vw, 4rem); color: #fff;">
+            Choose Your <span style="color: #fbad05;">Premium Card</span>
         </h1>
-        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">One-time payment for the card. No monthly subscriptions for basic features.</p>
+        <p class="mb-4 sm:mb-6 text-base sm:text-lg md:text-xl px-4" style="color: #cbd5e1; max-width: 42rem; margin-left: auto; margin-right: auto;">
+            One-time payment. Lifetime digital profile. No subscriptions.
+        </p>
     </div>
 </section>
 
-<!-- Pricing Cards -->
-<section class="py-12 pb-24">
+<!-- Pricing Section -->
+<section class="py-24 bg-zinc-950" id="pricing" style="overflow: visible;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="overflow: visible;">
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" style="padding-top: 1rem;">
+            <!-- Gloss Finish (Golden Black) - 10% OFF -->
+            <div class="relative p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);">
+                <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold" style="background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.2);z-index:10;">10% OFF</div>
+                <div class="mb-5 rounded-2xl overflow-hidden" style="aspect-ratio: 1.586/1; border:1px solid rgba(255,195,50,.2);">
+                    <img src="{% static 'img/blackgoldcard.jpeg' %}" alt="Gloss Golden Black Card" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Gloss Finish</h3>
+                <p class="text-zinc-500 text-xs mb-4">(Golden Black)</p>
+                <div class="flex items-baseline gap-2 mb-5">
+                    <span class="text-lg line-through text-zinc-600">₹499</span>
+                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹449</span>
+                </div>
+                <ul class="space-y-2.5 mb-6">
+                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
+                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Non-Erasable Printing</span></li>
+                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Edit Info Anytime (Unlimited)</span></li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-3 rounded-xl font-bold text-sm transition-all hover:scale-[1.02]" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">Order Now</a>
+            </div>
+
+            <!-- Gloss Finish (White and Colour) - 10% OFF -->
+            <div class="relative p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);">
+                <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold" style="background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.2);z-index:10;">10% OFF</div>
+                <div class="mb-5 rounded-2xl overflow-hidden" style="aspect-ratio: 1.586/1; border:1px solid rgba(255,255,255,.12);">
+                    <img src="{% static 'img/whitecard.png' %}" alt="Gloss White Card" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Gloss Finish</h3>
+                <p class="text-zinc-500 text-xs mb-4">(White and Colour)</p>
+                <div class="flex items-baseline gap-2 mb-5">
+                    <span class="text-lg line-through text-zinc-600">₹499</span>
+                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹449</span>
+                </div>
+                <ul class="space-y-2.5 mb-6">
+                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
+                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Non-Erasable Printing</span></li>
+                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Edit Info Anytime (Unlimited)</span></li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-3 rounded-xl font-bold text-sm transition-all hover:scale-[1.02]" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">Order Now</a>
+            </div>
+
+            <!-- Matte Finish (Golden Black) - 30% OFF - MOST POPULAR -->
+            <div class="relative p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20" style="background:linear-gradient(135deg,rgba(255,195,50,.06),rgba(255,195,50,.02));border:2px solid rgba(255,195,50,.3);">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;z-index:10;">MOST POPULAR</div>
+                <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold" style="background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.2);z-index:10;">30% OFF</div>
+                <div class="mb-5 rounded-2xl overflow-hidden" style="aspect-ratio: 1.586/1; border:2px solid rgba(255,195,50,.35);box-shadow:0 8px 30px -8px rgba(255,195,50,.2);">
+                    <img src="{% static 'img/blackgoldcard.jpeg' %}" alt="Matte Golden Black Card" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Matte Finish</h3>
+                <p class="text-zinc-500 text-xs mb-4">(Golden Black)</p>
+                <div class="flex items-baseline gap-2 mb-5">
+                    <span class="text-lg line-through text-zinc-600">₹849</span>
+                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹599</span>
+                </div>
+                <ul class="space-y-2.5 mb-6">
+                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
+                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Non-Erasable Printing</span></li>
+                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Edit Info Anytime (Unlimited)</span></li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-3 rounded-xl font-bold text-sm transition-all hover:scale-[1.02]" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">Order Now</a>
+            </div>
+
+            <!-- Matte Finish (White and Colour) - 30% OFF -->
+            <div class="relative p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20" style="background:linear-gradient(135deg,rgba(255,195,50,.04),rgba(255,195,50,.01));border:2px solid rgba(255,195,50,.2);">
+                <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold" style="background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.2);z-index:10;">30% OFF</div>
+                <div class="mb-5 rounded-2xl overflow-hidden" style="aspect-ratio: 1.586/1; border:2px solid rgba(255,195,50,.25);box-shadow:0 8px 30px -8px rgba(255,195,50,.15);">
+                    <img src="{% static 'img/pinkcard.jpeg' %}" alt="Matte White and Colour Card" class="w-full h-full object-cover">
+                </div>
+                <h3 class="text-lg font-bold text-white mb-1">Matte Finish</h3>
+                <p class="text-zinc-500 text-xs mb-4">(White and Colour)</p>
+                <div class="flex items-baseline gap-2 mb-5">
+                    <span class="text-lg line-through text-zinc-600">₹849</span>
+                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹599</span>
+                </div>
+                <ul class="space-y-2.5 mb-6">
+                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
+                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Non-Erasable Printing</span></li>
+                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Edit Info Anytime (Unlimited)</span></li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-3 rounded-xl font-bold text-sm transition-all hover:scale-[1.02]" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">Order Now</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Trust Badges Section -->
+<section class="py-16 bg-zinc-900">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <!-- PVC Standard -->
-            <div data-animate class="pricing-card stagger-item bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800 relative hover:shadow-xl transition-all card-tilt">
-                <h3 class="text-2xl font-bold mb-2">PVC Standard</h3>
-                <p class="text-slate-500 text-sm mb-6">Durable, lightweight, and vibrant.</p>
-                <div class="flex items-baseline mb-8">
-                    <span class="text-5xl font-bold text-gradient">₹449</span>
-                    <span class="text-slate-500 ml-2">INR</span>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
+            <div class="text-center">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl gold-gradient flex items-center justify-center shadow-lg">
+                    <span class="material-icons-round text-black text-3xl">rocket_launch</span>
                 </div>
-                <ul class="space-y-4 mb-10">
-                    <li class="flex items-center gap-3 scroll-reveal delay-100">
-                        <span class="material-icons-round text-primary text-2xl pulse">check_circle</span> 
-                        <span>High-Quality PVC Plastic</span>
-                    </li>
-                    <li class="flex items-center gap-3 scroll-reveal delay-200">
-                        <span class="material-icons-round text-primary text-2xl pulse">check_circle</span> 
-                        <span>Water & Scratch Resistant</span>
-                    </li>
-                    <li class="flex items-center gap-3 scroll-reveal delay-300">
-                        <span class="material-icons-round text-primary text-2xl pulse">check_circle</span> 
-                        <span>Smart QR + NFC Chip</span>
-                    </li>
-                    <li class="flex items-center gap-3 scroll-reveal delay-400">
-                        <span class="material-icons-round text-primary text-2xl pulse">check_circle</span> 
-                        <span>Full Color Printing</span>
-                    </li>
-                </ul>
-                <a href="{% url 'accounts:register' %}" class="block text-center py-4 btn btn-secondary text-base">
-                    Order Standard
-                </a>
+                <div class="font-bold text-white text-sm mb-1">Fast Delivery</div>
+                <div class="text-xs text-zinc-500">5-7 business days</div>
             </div>
-            
-            <!-- Metallic Premium - Most Popular -->
-            <div data-animate class="pricing-card stagger-item bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 dark:from-black dark:via-zinc-900 dark:to-black p-8 rounded-3xl border-2 border-primary relative transform md:scale-105 shadow-2xl z-10 glow">
-                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-yellow-400 via-yellow-500 to-yellow-600 text-black text-[10px] font-black uppercase py-1 px-4 rounded-full tracking-widest shadow-lg">
-                    ⭐ PREMIUM CHOICE
+            <div class="text-center">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl gold-gradient flex items-center justify-center shadow-lg">
+                    <span class="material-icons-round text-black text-3xl">lock</span>
                 </div>
-                <h3 class="text-2xl font-bold mb-2 text-white">Metallic Premium</h3>
-                <p class="text-slate-400 text-sm mb-6">Laser-engraved luxury finish.</p>
-                <div class="flex items-baseline mb-8">
-                    <span class="text-5xl font-bold text-gradient">₹649</span>
-                    <span class="text-slate-400 ml-2">INR</span>
+                <div class="font-bold text-white text-sm mb-1">Secure Payment</div>
+                <div class="text-xs text-zinc-500">100% Safe & Encrypted</div>
+            </div>
+            <div class="text-center">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl gold-gradient flex items-center justify-center shadow-lg">
+                    <span class="material-icons-round text-black text-3xl">autorenew</span>
                 </div>
-                <ul class="space-y-4 mb-10 text-white">
-                    <li class="flex items-center gap-3 scroll-reveal delay-100">
-                        <span class="material-icons-round text-yellow-400 text-2xl pulse">check_circle</span> 
-                        <span>Premium Metal Finish</span>
-                    </li>
-                    <li class="flex items-center gap-3 scroll-reveal delay-200">
-                        <span class="material-icons-round text-yellow-400 text-2xl pulse">check_circle</span> 
-                        <span>Laser Engraved Name</span>
-                    </li>
-                    <li class="flex items-center gap-3 scroll-reveal delay-300">
-                        <span class="material-icons-round text-yellow-400 text-2xl pulse">check_circle</span> 
-                        <span>Heavyweight Luxury Feel</span>
-                    </li>
-                    <li class="flex items-center gap-3 scroll-reveal delay-400">
-                        <span class="material-icons-round text-yellow-400 text-2xl pulse">check_circle</span> 
-                        <span>Advanced Analytics Dashboard</span>
-                    </li>
-                </ul>
-                <a href="{% url 'accounts:register' %}" class="block text-center py-4 btn btn-primary text-base glow">
-                    Get Metal Card
-                </a>
+                <div class="font-bold text-white text-sm mb-1">Unlimited Edits</div>
+                <div class="text-xs text-zinc-500">Update anytime</div>
             </div>
-        </div>
-        
-        <!-- Trust Badges -->
-        <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto text-center">
-            <div data-animate class="scroll-reveal">
-                <div class="text-3xl mb-2">🚀</div>
-                <div class="font-bold text-sm">Fast Delivery</div>
-                <div class="text-xs text-slate-500">5-7 days</div>
-            </div>
-            <div data-animate class="scroll-reveal delay-100">
-                <div class="text-3xl mb-2">🔒</div>
-                <div class="font-bold text-sm">Secure Payment</div>
-                <div class="text-xs text-slate-500">100% Safe</div>
-            </div>
-            <div data-animate class="scroll-reveal delay-200">
-                <div class="text-3xl mb-2">♻️</div>
-                <div class="font-bold text-sm">Eco-Friendly</div>
-                <div class="text-xs text-slate-500">Sustainable</div>
-            </div>
-            <div data-animate class="scroll-reveal delay-300">
-                <div class="text-3xl mb-2">✨</div>
-                <div class="font-bold text-sm">Premium Quality</div>
-                <div class="text-xs text-slate-500">Guaranteed</div>
+            <div class="text-center">
+                <div class="w-16 h-16 mx-auto mb-4 rounded-2xl gold-gradient flex items-center justify-center shadow-lg">
+                    <span class="material-icons-round text-black text-3xl">verified</span>
+                </div>
+                <div class="font-bold text-white text-sm mb-1">Premium Quality</div>
+                <div class="text-xs text-zinc-500">Guaranteed</div>
             </div>
         </div>
     </div>
 </section>
 
-<!-- FAQ Section -->
-<section class="py-24 bg-slate-50 dark:bg-zinc-950">
+<!-- FAQs Section -->
+<section class="py-16 sm:py-24 bg-zinc-950" id="faqs">
     <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center mb-12">
-            <h2 class="font-display text-3xl mb-4">Frequently Asked <span class="gold-text">Questions</span></h2>
+        <div class="text-center mb-10 sm:mb-14">
+            <span class="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.2em] mb-4 sm:mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">FAQs</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 px-4" style="color: #fbad05;">Frequently Asked Questions</h2>
         </div>
-        <div class="space-y-4">
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
-                <h3 class="font-bold mb-2">Is there a monthly subscription fee?</h3>
-                <p class="text-slate-500">No! The price you see is a one-time payment for your physical card. Basic digital profile features are included forever.</p>
+        <div class="space-y-2 sm:space-y-3">
+            <div class="faq-item rounded-xl sm:rounded-2xl p-4 sm:p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-xs sm:text-sm pr-3 sm:pr-4">Is there a monthly subscription fee?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform flex-shrink-0" style="font-size:18px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-xs sm:text-sm leading-relaxed pt-2 sm:pt-3">No! The price you see is a one-time payment for your physical card. Basic digital profile features are included forever with no recurring fees.</p></div>
             </div>
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
-                <h3 class="font-bold mb-2">Can I update my information after purchase?</h3>
-                <p class="text-slate-500">Yes, you can update your digital profile unlimited times without ordering a new card. That's the beauty of NFC!</p>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">Can I update my information after purchase?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">Yes, you can update your digital profile unlimited times without ordering a new card. That's the beauty of NFC technology!</p></div>
             </div>
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
-                <h3 class="font-bold mb-2">Do recipients need an app to view my card?</h3>
-                <p class="text-slate-500">No app needed! When someone taps your card, your profile opens directly in their phone's web browser.</p>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">Do recipients need an app to view my card?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">No app needed! When someone taps your card, your profile opens directly in their phone's web browser. It works on all modern smartphones.</p></div>
             </div>
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
-                <h3 class="font-bold mb-2">How long does shipping take?</h3>
-                <p class="text-slate-500">Standard shipping is 5-7 business days. Express shipping (2-3 days) is available at checkout.</p>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">What's the difference between Matte and Gloss?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">Matte finish has a smooth, non-reflective surface that feels premium. Gloss finish has a high-shine, reflective coating that makes colors pop and adds a luxury feel.</p></div>
+            </div>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">How long does shipping take?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">Standard shipping is 5-7 business days. Express shipping (2-3 days) is available at checkout for an additional fee.</p></div>
+            </div>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">What information can I share with my card?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">You can share your contact info, social media handles, website, portfolio, and more - all in a single tap using 'THELASTCARD'.</p></div>
             </div>
         </div>
     </div>
 </section>
 
 <!-- CTA Section -->
-<section class="py-24 bg-zinc-900 dark:bg-black">
+<section class="py-16 sm:py-24 bg-zinc-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="font-display text-4xl md:text-5xl mb-6 text-white">Ready to Stand <span class="gold-text">Out</span>?</h2>
-        <p class="text-xl text-slate-400 mb-10">Join thousands of professionals making unforgettable first impressions.</p>
-        <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg shadow-primary/20">
-            Get Your Card <span class="material-icons-round">arrow_forward</span>
-        </a>
+        <div class="absolute inset-0 rounded-full hidden sm:block" style="background:rgba(255,195,50,.06);filter:blur(100px);pointer-events:none;"></div>
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 text-white relative leading-tight px-4">Ready to Make Your <span style="color: #fbad05;">Last</span> Impression?</h2>
+        <p class="text-base sm:text-lg md:text-xl text-zinc-400 mb-6 sm:mb-10 max-w-2xl mx-auto relative px-4">Join thousands of professionals who have upgraded their networking game with luxury NFC digital business cards.</p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center relative px-4">
+            <a href="{% url 'accounts:register' %}" class="inline-flex items-center justify-center gap-2 bg-primary text-black font-extrabold py-3 sm:py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-transform text-base sm:text-lg shadow-lg" style="box-shadow:0 8px 30px -6px rgba(255,195,50,.35);">
+                Get Your Card Now <span class="material-icons-round text-xl">arrow_forward</span>
+            </a>
+            <a href="{% url 'landing:home' %}#free-preview" class="inline-flex items-center justify-center gap-2 font-bold py-3 sm:py-4 px-8 sm:px-10 rounded-full hover:bg-white/5 transition-all text-base sm:text-lg" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">
+                <span class="material-icons-round text-xl">palette</span> Design for free
+            </a>
+        </div>
     </div>
 </section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+    .faq-item.active .faq-answer {
+        max-height: 200px;
+    }
+    .faq-item.active .faq-chevron {
+        transform: rotate(180deg);
+    }
+</style>
 {% endblock %}
 
 {% block footer %}
