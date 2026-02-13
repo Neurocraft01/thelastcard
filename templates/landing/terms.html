@@ -2,57 +2,57 @@
 
 {% block title %}Terms of Service - The Last Card{% endblock %}
 
-{% block body %}
-{% include 'components/navbar.html' %}
-
-<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+{% block content %}
+<div class="min-h-screen pt-24" style="background: #09090b;">
     <div class="max-w-4xl mx-auto px-4 py-16">
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold mb-4">Terms of Service</h1>
-            <p class="text-slate-500 dark:text-slate-400">Last updated: {% now "F j, Y" %}</p>
+            <h1 class="text-4xl font-bold mb-4 text-white">Terms of Service</h1>
+            <p class="text-zinc-400">Last updated: {% now "F j, Y" %}</p>
         </div>
 
-        <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 p-8 lg:p-12">
-            <div class="prose prose-slate dark:prose-invert max-w-none">
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+        <div class="bg-zinc-900 rounded-2xl border border-zinc-800 p-8 lg:p-12">
+            <div class="prose prose-invert max-w-none">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                     <span class="material-icons-round text-primary">gavel</span>
                     Acceptance of Terms
                 </h2>
-                <p class="mb-6 text-slate-600 dark:text-slate-400">By accessing and using The Last Card platform, you accept and agree to be bound by the terms and provisions of this agreement.</p>
+                <p class="mb-6 text-zinc-400">By accessing and using The Last Card platform, you accept and agree to be bound by the terms and provisions of this agreement.</p>
 
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                     <span class="material-icons-round text-primary">person</span>
                     User Accounts
                 </h2>
-                <p class="mb-6 text-slate-600 dark:text-slate-400">You are responsible for safeguarding the password that you use to access the service and for any activities or actions under your password.</p>
+                <p class="mb-6 text-zinc-400">You are responsible for safeguarding the password that you use to access the service and for any activities or actions under your password.</p>
 
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                     <span class="material-icons-round text-primary">block</span>
                     Prohibited Uses
                 </h2>
-                <p class="mb-6 text-slate-600 dark:text-slate-400">You may not use our service for any illegal or unauthorized purpose. You must not, in the use of the service, violate any laws in your jurisdiction.</p>
+                <p class="mb-6 text-zinc-400">You may not use our service for any illegal or unauthorized purpose. You must not, in the use of the service, violate any laws in your jurisdiction.</p>
 
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                     <span class="material-icons-round text-primary">copyright</span>
                     Intellectual Property
                 </h2>
-                <p class="mb-6 text-slate-600 dark:text-slate-400">The service and its original content, features, and functionality are and will remain the exclusive property of The Last Card and its licensors.</p>
+                <p class="mb-6 text-zinc-400">The service and its original content, features, and functionality are and will remain the exclusive property of The Last Card and its licensors.</p>
 
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                     <span class="material-icons-round text-primary">update</span>
                     Changes to Terms
                 </h2>
-                <p class="mb-6 text-slate-600 dark:text-slate-400">We reserve the right, at our sole discretion, to modify or replace these terms at any time. We will provide notice of any significant changes.</p>
+                <p class="mb-6 text-zinc-400">We reserve the right, at our sole discretion, to modify or replace these terms at any time. We will provide notice of any significant changes.</p>
 
-                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2">
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                     <span class="material-icons-round text-primary">email</span>
                     Contact Us
                 </h2>
-                <p class="text-slate-600 dark:text-slate-400">If you have any questions about these Terms, please contact us at <a href="mailto:support@thelastcard.com" class="text-primary hover:underline">support@thelastcard.com</a></p>
+                <p class="text-zinc-400">If you have any questions about these Terms, please contact us at <a href="mailto:support@thelastcard.com" class="text-primary hover:underline">support@thelastcard.com</a></p>
             </div>
         </div>
     </div>
 </div>
+{% endblock %}
 
+{% block footer %}
 {% include 'components/footer.html' %}
 {% endblock %}

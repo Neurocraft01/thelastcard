@@ -4,40 +4,13 @@
 {% block title %}About Us - The Last Card{% endblock %}
 
 {% block content %}
-<!-- Fixed Navigation -->
-<nav class="fixed w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-            <a href="{% url 'landing:home' %}" class="flex items-center gap-2">
-                <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
-                    <span class="material-icons-round text-black font-bold">contactless</span>
-                </div>
-                <span class="font-display text-xl tracking-wider hidden sm:block gold-text uppercase font-bold">The Last Card</span>
-            </a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="{% url 'landing:home' %}#features" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">Features</a>
-                <a href="{% url 'landing:pricing' %}" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">Pricing</a>
-                <a href="{% url 'landing:about' %}" class="text-primary transition-colors font-medium text-sm uppercase tracking-widest">About</a>
-                <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
-                    <span class="material-icons-round text-xl">dark_mode</span>
-                </button>
-                {% if user.is_authenticated %}
-                <a href="{% url 'accounts:dashboard_redirect' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Dashboard</a>
-                {% else %}
-                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Get Started</a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</nav>
-
 <!-- Hero Section -->
-<section class="pt-32 pb-20 bg-gradient-to-b from-slate-50 to-white dark:from-background-dark dark:to-zinc-950">
+<section class="pt-32 pb-20" style="background: linear-gradient(to bottom, #09090b, #18181b);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="font-display text-5xl md:text-6xl mb-6">
+        <h1 class="font-display text-5xl md:text-6xl mb-6 text-white">
             Redefining <span class="gold-text">Networking</span>
         </h1>
-        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto mb-8">
+        <p class="text-xl text-zinc-400 max-w-2xl mx-auto mb-8">
             We believe the future of professional connections is digital, sustainable, and beautifully crafted. 
             The Last Card combines luxury with innovation.
         </p>
@@ -46,30 +19,30 @@
 </section>
 
 <!-- Our Story Section -->
-<section class="py-24">
+<section class="py-24" style="background: #09090b;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid lg:grid-cols-2 gap-16 items-center">
             <div>
                 <p class="text-primary font-semibold uppercase tracking-widest mb-4">Our Story</p>
-                <h2 class="font-display text-4xl mb-6">Built for the Modern Professional</h2>
-                <p class="text-slate-600 dark:text-slate-400 text-lg mb-6 leading-relaxed">
+                <h2 class="font-display text-4xl mb-6 text-white">Built for the Modern Professional</h2>
+                <p class="text-zinc-400 text-lg mb-6 leading-relaxed">
                     In an age where first impressions matter more than ever, we recognized that traditional business cards were becoming a relic of the past. Paper cards get lost, thrown away, or become outdated the moment your information changes.
                 </p>
-                <p class="text-slate-600 dark:text-slate-400 text-lg mb-6 leading-relaxed">
+                <p class="text-zinc-400 text-lg mb-6 leading-relaxed">
                     The Last Card was born from a simple vision: create a networking tool that's as sophisticated as the professionals who use it. Our luxury NFC cards combine premium materials with cutting-edge technology to deliver an unforgettable first impression.
                 </p>
                 <div class="flex items-center gap-8 mt-8">
                     <div>
                         <p class="text-4xl font-bold gold-text">10K+</p>
-                        <p class="text-slate-500 text-sm">Active Users</p>
+                        <p class="text-zinc-500 text-sm">Active Users</p>
                     </div>
                     <div>
                         <p class="text-4xl font-bold gold-text">1M+</p>
-                        <p class="text-slate-500 text-sm">Cards Tapped</p>
+                        <p class="text-zinc-500 text-sm">Cards Tapped</p>
                     </div>
                     <div>
                         <p class="text-4xl font-bold gold-text">50+</p>
-                        <p class="text-slate-500 text-sm">Countries</p>
+                        <p class="text-zinc-500 text-sm">Countries</p>
                     </div>
                 </div>
             </div>
@@ -81,7 +54,7 @@
                                 <span class="material-icons-round text-black text-6xl">contactless</span>
                             </div>
                             <p class="font-display text-white text-2xl uppercase tracking-widest">The Last Card</p>
-                            <p class="text-slate-400 mt-2">Est. 2024</p>
+                            <p class="text-zinc-400 mt-2">Est. 2024</p>
                         </div>
                     </div>
                 </div>
@@ -93,43 +66,43 @@
 </section>
 
 <!-- Values Section -->
-<section class="py-24 bg-slate-50 dark:bg-zinc-950">
+<section class="py-24 bg-zinc-950">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
-            <h2 class="font-display text-4xl mb-4">Our <span class="gold-text">Values</span></h2>
+            <h2 class="font-display text-4xl mb-4 text-white">Our <span class="gold-text">Values</span></h2>
             <div class="w-24 h-1 bg-primary mx-auto"></div>
         </div>
         <div class="grid md:grid-cols-3 gap-8">
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 text-center">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 text-center">
                 <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <span class="material-icons-round text-primary text-3xl">eco</span>
                 </div>
-                <h3 class="text-xl font-bold mb-4">Sustainability</h3>
-                <p class="text-slate-500 dark:text-slate-400">One card replaces thousands of paper cards over your career. We're committed to reducing waste while elevating your professional presence.</p>
+                <h3 class="text-xl font-bold mb-4 text-white">Sustainability</h3>
+                <p class="text-zinc-400">One card replaces thousands of paper cards over your career. We're committed to reducing waste while elevating your professional presence.</p>
             </div>
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 text-center">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 text-center">
                 <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <span class="material-icons-round text-primary text-3xl">diamond</span>
                 </div>
-                <h3 class="text-xl font-bold mb-4">Luxury</h3>
-                <p class="text-slate-500 dark:text-slate-400">From our 24K gold-plated metal cards to premium wood finishes, every product is crafted to make a lasting impression.</p>
+                <h3 class="text-xl font-bold mb-4 text-white">Luxury</h3>
+                <p class="text-zinc-400">From our 24K gold-plated metal cards to premium wood finishes, every product is crafted to make a lasting impression.</p>
             </div>
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 text-center">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 text-center">
                 <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-6">
                     <span class="material-icons-round text-primary text-3xl">bolt</span>
                 </div>
-                <h3 class="text-xl font-bold mb-4">Innovation</h3>
-                <p class="text-slate-500 dark:text-slate-400">We continuously push the boundaries of NFC technology and digital networking to keep you ahead of the curve.</p>
+                <h3 class="text-xl font-bold mb-4 text-white">Innovation</h3>
+                <p class="text-zinc-400">We continuously push the boundaries of NFC technology and digital networking to keep you ahead of the curve.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- CTA Section -->
-<section class="py-24 bg-zinc-900 dark:bg-black">
+<section class="py-24 bg-zinc-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="font-display text-4xl md:text-5xl mb-6 text-white">Join the <span class="gold-text">Revolution</span></h2>
-        <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">Experience the future of networking. Get your luxury NFC business card today.</p>
+        <p class="text-xl text-zinc-400 mb-10 max-w-2xl mx-auto">Experience the future of networking. Get your luxury NFC business card today.</p>
         <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg shadow-primary/20">
             Get Started <span class="material-icons-round">arrow_forward</span>
         </a>

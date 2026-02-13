@@ -4,127 +4,100 @@
 {% block title %}Features - The Last Card{% endblock %}
 
 {% block content %}
-<!-- Fixed Navigation -->
-<nav class="fixed w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex justify-between items-center h-20">
-            <a href="{% url 'landing:home' %}" class="flex items-center gap-2">
-                <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
-                    <span class="material-icons-round text-black font-bold">contactless</span>
-                </div>
-                <span class="font-display text-xl tracking-wider hidden sm:block gold-text uppercase font-bold">The Last Card</span>
-            </a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="{% url 'landing:features' %}" class="text-primary transition-colors font-medium text-sm uppercase tracking-widest">Features</a>
-                <a href="{% url 'landing:pricing' %}" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">Pricing</a>
-                <a href="{% url 'landing:about' %}" class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest">About</a>
-                <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="toggleDarkMode()">
-                    <span class="material-icons-round text-xl">dark_mode</span>
-                </button>
-                {% if user.is_authenticated %}
-                <a href="{% url 'accounts:dashboard_redirect' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Dashboard</a>
-                {% else %}
-                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter">Get Started</a>
-                {% endif %}
-            </div>
-        </div>
-    </div>
-</nav>
-
 <!-- Hero Section -->
-<section class="pt-32 pb-20 bg-gradient-to-b from-slate-50 to-white dark:from-background-dark dark:to-zinc-950">
+<section class="pt-32 pb-20" style="background: linear-gradient(to bottom, #09090b, #18181b);">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h1 class="font-display text-5xl md:text-6xl mb-6">
+        <h1 class="font-display text-5xl md:text-6xl mb-6 text-white">
             Powerful <span class="gold-text">Features</span>
         </h1>
-        <p class="text-xl text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Everything you need to make unforgettable first impressions and track your networking success.</p>
+        <p class="text-xl text-zinc-400 max-w-2xl mx-auto">Everything you need to make unforgettable first impressions and track your networking success.</p>
     </div>
 </section>
 
 <!-- Core Features -->
-<section class="py-24">
+<section class="py-24" style="background: #09090b;">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                     <span class="material-icons-round text-primary text-2xl">tap_and_play</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">NFC Technology</h3>
-                <p class="text-slate-500 dark:text-slate-400">Tap to share. Works with all modern smartphones instantly without any app required.</p>
+                <h3 class="text-xl font-bold mb-3 text-white">NFC Technology</h3>
+                <p class="text-zinc-400">Tap to share. Works with all modern smartphones instantly without any app required.</p>
             </div>
             
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                     <span class="material-icons-round text-primary text-2xl">qr_code_2</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Dynamic QR Codes</h3>
-                <p class="text-slate-500 dark:text-slate-400">Auto-generated QR codes that update when your profile changes. Perfect for print materials.</p>
+                <h3 class="text-xl font-bold mb-3 text-white">Dynamic QR Codes</h3>
+                <p class="text-zinc-400">Auto-generated QR codes that update when your profile changes. Perfect for print materials.</p>
             </div>
             
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                     <span class="material-icons-round text-primary text-2xl">insights</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Advanced Analytics</h3>
-                <p class="text-slate-500 dark:text-slate-400">Track profile views, link clicks, geographic data, and device types in real-time.</p>
+                <h3 class="text-xl font-bold mb-3 text-white">Advanced Analytics</h3>
+                <p class="text-zinc-400">Track profile views, link clicks, geographic data, and device types in real-time.</p>
             </div>
             
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                     <span class="material-icons-round text-primary text-2xl">palette</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Custom Themes</h3>
-                <p class="text-slate-500 dark:text-slate-400">Choose from premium themes or customize colors, fonts, and layouts to match your brand.</p>
+                <h3 class="text-xl font-bold mb-3 text-white">Custom Themes</h3>
+                <p class="text-zinc-400">Choose from premium themes or customize colors, fonts, and layouts to match your brand.</p>
             </div>
             
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                     <span class="material-icons-round text-primary text-2xl">person_add</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Lead Capture</h3>
-                <p class="text-slate-500 dark:text-slate-400">Collect visitor information with customizable forms. Export to CRM or download as CSV.</p>
+                <h3 class="text-xl font-bold mb-3 text-white">Lead Capture</h3>
+                <p class="text-zinc-400">Collect visitor information with customizable forms. Export to CRM or download as CSV.</p>
             </div>
             
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                     <span class="material-icons-round text-primary text-2xl">sync</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Real-Time Updates</h3>
-                <p class="text-slate-500 dark:text-slate-400">Change your info anytime. Updates are instant - no need for a new card.</p>
+                <h3 class="text-xl font-bold mb-3 text-white">Real-Time Updates</h3>
+                <p class="text-zinc-400">Change your info anytime. Updates are instant - no need for a new card.</p>
             </div>
             
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                     <span class="material-icons-round text-primary text-2xl">groups</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Team Management</h3>
-                <p class="text-slate-500 dark:text-slate-400">Manage multiple cards for your team from a single dashboard with role-based access.</p>
+                <h3 class="text-xl font-bold mb-3 text-white">Team Management</h3>
+                <p class="text-zinc-400">Manage multiple cards for your team from a single dashboard with role-based access.</p>
             </div>
             
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                     <span class="material-icons-round text-primary text-2xl">shield</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Enterprise Security</h3>
-                <p class="text-slate-500 dark:text-slate-400">Bank-grade encryption, SSO integration, and GDPR compliance built-in.</p>
+                <h3 class="text-xl font-bold mb-3 text-white">Enterprise Security</h3>
+                <p class="text-zinc-400">Bank-grade encryption, SSO integration, and GDPR compliance built-in.</p>
             </div>
             
-            <div class="bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-slate-200 dark:border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all">
+            <div class="bg-zinc-900 rounded-2xl p-8 border border-zinc-800 hover:shadow-xl hover:-translate-y-2 transition-all hover:border-primary/30">
                 <div class="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mb-6">
                     <span class="material-icons-round text-primary text-2xl">integration_instructions</span>
                 </div>
-                <h3 class="text-xl font-bold mb-3">Integrations</h3>
-                <p class="text-slate-500 dark:text-slate-400">Connect with Zapier, HubSpot, Salesforce, and 1000+ other tools.</p>
+                <h3 class="text-xl font-bold mb-3 text-white">Integrations</h3>
+                <p class="text-zinc-400">Connect with Zapier, HubSpot, Salesforce, and 1000+ other tools.</p>
             </div>
         </div>
     </div>
 </section>
 
 <!-- CTA Section -->
-<section class="py-24 bg-zinc-900 dark:bg-black">
+<section class="py-24 bg-zinc-900">
     <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <h2 class="font-display text-4xl md:text-5xl mb-6 text-white">Ready to <span class="gold-text">Upgrade</span> Your Networking?</h2>
-        <p class="text-xl text-slate-400 mb-10">Get your luxury NFC business card and start making connections that last.</p>
+        <p class="text-xl text-zinc-400 mb-10">Get your luxury NFC business card and start making connections that last.</p>
         <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg shadow-primary/20">
             Get Started <span class="material-icons-round">arrow_forward</span>
         </a>
