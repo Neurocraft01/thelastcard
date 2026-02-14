@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from django.views.generic import CreateView, ListView, DetailView
+from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic import CreateView, ListView, DetailView, View
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.contrib import messages
@@ -59,3 +59,19 @@ class OrderDetailView(LoginRequiredMixin, DetailView):
     def get_queryset(self):
         # Users can only view their own orders
         return CardOrder.objects.filter(user=self.request.user)
+
+
+class OrderCancelView(LoginRequiredMixin, View):
+    """Cancel an order (only if status is pending)."""
+    
+    def post(self, request, pk):
+        order = get_object_or_404(CardOrder, pk=pk, user=request.user)
+        
+        if order.status == 'pending':
+            order.status = 'cancelled'
+            order.save()
+            messages.success(request, f'Order #{order.order_number} has been cancelled successfully.')
+        else:
+            messages.error(request, 'This order cannot be cancelled. Only pending orders can be cancelled.')
+        
+        return redirect('orders:order_detail', pk=pk)

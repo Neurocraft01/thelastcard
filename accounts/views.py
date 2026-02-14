@@ -599,7 +599,7 @@ class AdminExportCardView(AdminRequiredMixin, View):
             ['URL Slug', card.url_slug],
             ['Status', card.get_status_display()],
             ['Created', card.created_at.strftime('%Y-%m-%d %H:%M')],
-            ['Public URL', f"{settings.SITE_URL}/{card.url_slug}"],
+            ['Public URL', f"{settings.SITE_URL}/u/{card.url_slug}"],
         ]
         
         t = Table(card_data, colWidths=[2*inch, 4*inch])
@@ -652,7 +652,7 @@ class AdminExportCardView(AdminRequiredMixin, View):
         
         # Generate QR code
         qr = qrcode.QRCode(version=1, box_size=10, border=5)
-        qr.add_data(f"{settings.SITE_URL}/{card.url_slug}")
+        qr.add_data(f"{settings.SITE_URL}/u/{card.url_slug}")
         qr.make(fit=True)
         qr_img = qr.make_image(fill_color="#000000", back_color="white")
         
@@ -712,7 +712,7 @@ class AdminExportAllCardsView(AdminRequiredMixin, View):
                 card.card_uid,
                 card.url_slug,
                 card.get_status_display(),
-                f"{settings.SITE_URL}/{card.url_slug}",
+                f"{settings.SITE_URL}/u/{card.url_slug}",
                 card.user.email if card.user else '',
                 profile.full_name if profile else '',
                 profile.company if profile else '',
@@ -1198,7 +1198,7 @@ class ThemeSelectionView(LoginRequiredMixin, View):
         # Generate QR code for the card
         try:
             qr = qrcode.QRCode(version=1, box_size=10, border=5)
-            qr.add_data(f"{settings.SITE_URL}/{card.url_slug}")
+            qr.add_data(f"{settings.SITE_URL}/u/{card.url_slug}")
             qr.make(fit=True)
             qr_img = qr.make_image(fill_color="#000000", back_color="white")
             
@@ -1227,7 +1227,7 @@ class OnboardingCompleteView(LoginRequiredMixin, TemplateView):
         context['card'] = card
         
         if card:
-            context['profile_url'] = f"{settings.SITE_URL}/{card.url_slug}"
+            context['profile_url'] = f"{settings.SITE_URL}/u/{card.url_slug}"
         
         try:
             context['profile'] = self.request.user.profile

@@ -15,7 +15,7 @@
         <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
         
         <div class="relative z-10 max-w-md text-center">
-            <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-3 mb-12">
+            <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-3 mb-10">
                 <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center shadow-lg">
                     <span class="material-icons-round text-black text-2xl">contactless</span>
                 </div>
@@ -30,7 +30,7 @@
             </div>
             
             <h2 class="font-display text-4xl text-white mb-4">Congratulations!</h2>
-            <p class="text-slate-400 text-lg mb-8">
+            <p class="text-zinc-400 text-lg mb-6">
                 Your digital business card is ready to share with the world.
             </p>
             
@@ -44,6 +44,48 @@
                 </div>
                 <div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white">
                     <span class="material-icons-round text-sm">check</span>
+                </div>
+            </div>
+            
+            <!-- Next Steps Section -->
+            <div class="text-left">
+                <h3 class="text-sm uppercase tracking-widest text-zinc-500 font-medium mb-4 text-center">What's next?</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(251, 173, 5, 0.2);">
+                            <span class="material-icons-round" style="color: #fbad05;">share</span>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium text-sm">Share your profile</h4>
+                            <p class="text-zinc-400 text-xs">Send your link via WhatsApp, email or social media</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(251, 173, 5, 0.2);">
+                            <span class="material-icons-round" style="color: #fbad05;">shopping_bag</span>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium text-sm">Order your NFC card</h4>
+                            <p class="text-zinc-400 text-xs">Get the physical card for tap-to-share networking</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10">
+                        <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background: rgba(251, 173, 5, 0.2);">
+                            <span class="material-icons-round" style="color: #fbad05;">link</span>
+                        </div>
+                        <div>
+                            <h4 class="text-white font-medium text-sm">Add social links</h4>
+                            <p class="text-zinc-400 text-xs">Connect LinkedIn, Instagram, Twitter & more</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fun Stat -->
+            <div class="mt-8 bg-white/5 rounded-xl p-4 border border-white/10">
+                <div class="flex items-center justify-center gap-2 text-zinc-400 text-sm">
+                    <span class="material-icons-round text-green-500">trending_up</span>
+                    <span>Users with complete profiles get <span class="font-bold" style="color: #fbad05;">3x more</span> connections</span>
                 </div>
             </div>
         </div>

@@ -15,21 +15,56 @@
         <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
         
         <div class="relative z-10 max-w-md text-center">
-            <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-3 mb-12">
+            <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-3 mb-10">
                 <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center shadow-lg">
                     <span class="material-icons-round text-black text-2xl">contactless</span>
                 </div>
                 <span class="font-display text-2xl tracking-wider uppercase font-bold" style="color: #fbad05;">The Last Card</span>
             </a>
             
-            <h2 class="font-display text-4xl text-white mb-6">Start Your Digital Journey</h2>
-            <p class="text-zinc-400 text-lg mb-12">
-                Join thousands of professionals who have transformed their networking with luxury NFC business cards.
+            <h2 class="font-display text-4xl text-white mb-4">Start Your Digital Journey</h2>
+            <p class="text-zinc-400 text-lg mb-8">
+                Join thousands of professionals transforming their networking.
             </p>
             
-            <div class="bg-white/5 rounded-2xl p-6 border border-white/10 text-left">
-                <p class="text-white/90 italic text-lg mb-6 leading-relaxed">
-                    "This platform completely changed how I network. I've made more meaningful connections in the last month than in the entire previous year."
+            <!-- What You Get Section -->
+            <div class="text-left mb-8">
+                <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-4 font-medium">What you'll get</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">Premium NFC-enabled business card</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">Unlimited profile updates forever</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">Real-time tap analytics & insights</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">QR code for easy sharing</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">Multiple theme options</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonial Card -->
+            <div class="bg-white/5 rounded-2xl p-6 border border-white/10 text-left mb-8">
+                <div class="flex items-center gap-1 mb-4">
+                    <span class="material-icons-round text-yellow-400 text-lg">star</span>
+                    <span class="material-icons-round text-yellow-400 text-lg">star</span>
+                    <span class="material-icons-round text-yellow-400 text-lg">star</span>
+                    <span class="material-icons-round text-yellow-400 text-lg">star</span>
+                    <span class="material-icons-round text-yellow-400 text-lg">star</span>
+                </div>
+                <p class="text-white/90 italic text-base mb-5 leading-relaxed">
+                    "This card has completely changed how I network. I've made more meaningful connections in the last month than in the entire previous year."
                 </p>
                 <div class="flex items-center gap-4">
                     <div class="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-black font-bold">SJ</div>
@@ -37,6 +72,24 @@
                         <div class="text-white font-semibold">Sarah Johnson</div>
                         <div class="text-zinc-400 text-sm">Marketing Director at TechFlow</div>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Trust Indicators -->
+            <div class="flex items-center justify-center gap-6">
+                <div class="text-center">
+                    <div class="text-2xl font-bold" style="color: #fbad05;">4.9</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Rating</div>
+                </div>
+                <div class="w-px h-8 bg-zinc-700"></div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold" style="color: #fbad05;">10K+</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Users</div>
+                </div>
+                <div class="w-px h-8 bg-zinc-700"></div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold" style="color: #fbad05;">50+</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Countries</div>
                 </div>
             </div>
         </div>

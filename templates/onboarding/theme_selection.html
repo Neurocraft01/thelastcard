@@ -15,7 +15,7 @@
         <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
         
         <div class="relative z-10 max-w-md">
-            <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-3 mb-12">
+            <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-3 mb-10">
                 <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center shadow-lg">
                     <span class="material-icons-round text-black text-2xl">contactless</span>
                 </div>
@@ -23,7 +23,7 @@
             </a>
             
             <!-- Progress Steps -->
-            <div class="space-y-6">
+            <div class="space-y-6 mb-10">
                 <div class="flex items-center gap-4 opacity-50">
                     <div class="w-10 h-10 rounded-full bg-green-600 flex items-center justify-center text-white">
                         <span class="material-icons-round">check</span>
@@ -33,7 +33,7 @@
                         <p class="text-slate-400 text-sm">Completed</p>
                     </div>
                 </div>
-                <div class="ml-5 h-8 border-l-2 border-primary"></div>
+                <div class="ml-5 h-8 border-l-2" style="border-color: #fbad05;"></div>
                 <div class="flex items-center gap-4">
                     <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold">2</div>
                     <div>
@@ -48,6 +48,36 @@
                         <p class="text-white font-semibold">Your Profile URL</p>
                         <p class="text-slate-400 text-sm">Ready to share</p>
                     </div>
+                </div>
+            </div>
+            
+            <!-- Theme Selection Tips -->
+            <div class="bg-white/5 rounded-2xl p-5 border border-white/10 mb-6">
+                <h4 class="flex items-center gap-2 text-white font-medium mb-4">
+                    <span class="material-icons-round" style="color: #fbad05;">palette</span>
+                    Choosing Your Theme
+                </h4>
+                <div class="space-y-3 text-sm">
+                    <div class="flex gap-2">
+                        <span class="material-icons-round text-green-500 text-base flex-shrink-0">check</span>
+                        <span class="text-zinc-400">Match your industry or personal brand</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <span class="material-icons-round text-green-500 text-base flex-shrink-0">check</span>
+                        <span class="text-zinc-400">Dark themes are great for professional look</span>
+                    </div>
+                    <div class="flex gap-2">
+                        <span class="material-icons-round text-green-500 text-base flex-shrink-0">check</span>
+                        <span class="text-zinc-400">Bright colors work well for creatives</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fun Fact -->
+            <div class="bg-white/5 rounded-xl p-4 border border-white/10 text-center">
+                <div class="text-zinc-400 text-sm">
+                    <span class="material-icons-round text-lg align-middle mr-1" style="color: #fbad05;">info</span>
+                    You can change your theme anytime from dashboard
                 </div>
             </div>
         </div>

@@ -134,6 +134,7 @@ class QRCodeView(View):
         try:
             import qrcode
             from io import BytesIO
+            from django.conf import settings
             
             qr = qrcode.QRCode(
                 version=1,
@@ -141,7 +142,9 @@ class QRCodeView(View):
                 box_size=10,
                 border=4,
             )
-            qr.add_data(card.public_url)
+            # Use proper URL with /u/ prefix
+            profile_url = f"{settings.SITE_URL}/u/{slug}"
+            qr.add_data(profile_url)
             qr.make(fit=True)
             
             img = qr.make_image(fill_color='#D4AF37', back_color='white')

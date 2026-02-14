@@ -8,10 +8,10 @@
 {% block footer %}{% endblock %}
 
 {% block body %}
-<div class="flex min-h-screen bg-slate-50 dark:bg-zinc-950">
+<div class="flex min-h-screen bg-zinc-950">
     <!-- Sidebar -->
-    <aside class="hidden lg:flex lg:flex-col w-72 bg-white dark:bg-zinc-900 border-r border-slate-200 dark:border-zinc-800">
-        <div class="p-6 border-b border-slate-200 dark:border-zinc-800">
+    <aside class="hidden lg:flex lg:flex-col w-72 bg-zinc-900 border-r border-zinc-800">
+        <div class="p-6 border-b border-zinc-800">
             <a href="{% url 'landing:home' %}" class="flex items-center gap-3">
                 <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
                     <span class="material-icons-round text-black text-xl">contactless</span>
@@ -25,36 +25,36 @@
                 <span class="material-icons-round">dashboard</span>
                 Dashboard
             </a>
-            <a href="{% url 'cards:list' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors">
+            <a href="{% url 'cards:list' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 transition-colors">
                 <span class="material-icons-round">credit_card</span>
                 My Cards
             </a>
-            <a href="{% url 'orders:list' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors">
+            <a href="{% url 'orders:list' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 transition-colors">
                 <span class="material-icons-round">shopping_bag</span>
                 My Orders
             </a>
             {% if cards.first %}
-            <a href="/u/{{ request.user.username }}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors">
+            <a href="/u/{{ cards.first.url_slug }}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 transition-colors">
                 <span class="material-icons-round">visibility</span>
                 View My Profile
             </a>
             {% endif %}
-            <a href="{% url 'accounts:user_profile' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors">
+            <a href="{% url 'accounts:user_profile' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 transition-colors">
                 <span class="material-icons-round">edit</span>
                 Edit Profile
             </a>
-            <a href="{% url 'accounts:user_analytics' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors">
+            <a href="{% url 'accounts:user_analytics' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 transition-colors">
                 <span class="material-icons-round">insights</span>
                 Analytics
             </a>
-            <a href="{% url 'accounts:user_settings' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800 transition-colors">
+            <a href="{% url 'accounts:user_settings' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800 transition-colors">
                 <span class="material-icons-round">settings</span>
                 Settings
             </a>
         </nav>
         
-        <div class="p-4 border-t border-slate-200 dark:border-zinc-800">
-            <a href="{% url 'accounts:logout' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors">
+        <div class="p-4 border-t border-zinc-800">
+            <a href="{% url 'accounts:logout' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-900/20 transition-colors">
                 <span class="material-icons-round">logout</span>
                 Sign Out
             </a>
@@ -64,27 +64,24 @@
     <!-- Main Content -->
     <main class="flex-1 overflow-y-auto">
         <!-- Top Header -->
-        <header class="bg-white dark:bg-zinc-900 border-b border-slate-200 dark:border-zinc-800 px-6 py-4">
+        <header class="bg-zinc-900 border-b border-zinc-800 px-6 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center gap-4">
-                    <button class="lg:hidden p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800" onclick="toggleMobileSidebar()">
+                    <button class="lg:hidden p-2 rounded-lg hover:bg-zinc-800 text-white" onclick="toggleMobileSidebar()">
                         <span class="material-icons-round">menu</span>
                     </button>
                     <div>
-                        <h1 class="text-2xl font-display font-bold">Welcome back!</h1>
-                        <p class="text-slate-500 dark:text-slate-400 text-sm">Here's what's happening with your digital cards.</p>
+                        <h1 class="text-2xl font-display font-bold text-white">Welcome back!</h1>
+                        <p class="text-zinc-400 text-sm">Here's what's happening with your digital cards.</p>
                     </div>
                 </div>
                 <div class="flex items-center gap-4">
                     {% if cards.first %}
-                    <a href="/u/{{ request.user.username }}" target="_blank" class="hidden sm:flex items-center gap-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" title="View My Public Profile">
+                    <a href="/u/{{ cards.first.url_slug }}" target="_blank" class="hidden sm:flex items-center gap-2 text-zinc-400 hover:text-primary transition-colors" title="View My Public Profile">
                         <span class="material-icons-round">open_in_new</span>
                     </a>
                     {% endif %}
-                    <button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-zinc-800" onclick="toggleDarkMode()">
-                        <span class="material-icons-round">dark_mode</span>
-                    </button>
-                    <a href="{% url 'orders:create' %}" class="hidden sm:flex items-center gap-2 bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-white font-bold py-2 px-4 rounded-xl hover:shadow-lg transition-all">
+                    <a href="{% url 'orders:create' %}" class="hidden sm:flex items-center gap-2 gold-gradient text-black font-bold py-2 px-4 rounded-xl hover:shadow-lg transition-all">
                         <span class="material-icons-round text-xl">add_shopping_cart</span>
                         Order PVC Cards
                     </a>
@@ -95,26 +92,26 @@
         <div class="p-6">
             <!-- Stats Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                <div class="bg-zinc-900 rounded-2xl p-6 border border-zinc-800">
                     <div class="flex items-center gap-4">
                         <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
                             <span class="material-icons-round text-primary">credit_card</span>
                         </div>
                         <div>
-                            <p class="text-3xl font-bold">{{ card_count|default:0 }}</p>
-                            <p class="text-sm text-slate-500">Active Cards</p>
+                            <p class="text-3xl font-bold text-white">{{ card_count|default:0 }}</p>
+                            <p class="text-sm text-zinc-500">Active Cards</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                <div class="bg-zinc-900 rounded-2xl p-6 border border-zinc-800">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-900/30 flex items-center justify-center">
-                            <span class="material-icons-round text-green-600">visibility</span>
+                        <div class="w-12 h-12 rounded-xl bg-green-900/30 flex items-center justify-center">
+                            <span class="material-icons-round text-green-500">visibility</span>
                         </div>
                         <div>
-                            <p class="text-3xl font-bold">{{ analytics.total_views|default:0 }}</p>
-                            <p class="text-sm text-slate-500">Total Views</p>
+                            <p class="text-3xl font-bold text-white">{{ analytics.total_views|default:0 }}</p>
+                            <p class="text-sm text-zinc-500">Total Views</p>
                             {% if analytics.views_trend_percentage %}
                             <p class="text-xs {% if analytics.views_trend_percentage > 0 %}text-green-500{% else %}text-red-500{% endif %} flex items-center gap-1 mt-1">
                                 <span class="material-icons-round text-sm">{% if analytics.views_trend_percentage > 0 %}trending_up{% else %}trending_down{% endif %}</span>
@@ -125,26 +122,26 @@
                     </div>
                 </div>
                 
-                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                <div class="bg-zinc-900 rounded-2xl p-6 border border-zinc-800">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-blue-100 dark:bg-blue-900/30 flex items-center justify-center">
-                            <span class="material-icons-round text-blue-600">person_add</span>
+                        <div class="w-12 h-12 rounded-xl bg-blue-900/30 flex items-center justify-center">
+                            <span class="material-icons-round text-blue-500">person_add</span>
                         </div>
                         <div>
-                            <p class="text-3xl font-bold">{{ analytics.total_contact_saves|default:0 }}</p>
-                            <p class="text-sm text-slate-500">Contacts Saved</p>
+                            <p class="text-3xl font-bold text-white">{{ analytics.total_contact_saves|default:0 }}</p>
+                            <p class="text-sm text-zinc-500">Contacts Saved</p>
                         </div>
                     </div>
                 </div>
                 
-                <div class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800">
+                <div class="bg-zinc-900 rounded-2xl p-6 border border-zinc-800">
                     <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-xl bg-amber-100 dark:bg-amber-900/30 flex items-center justify-center">
-                            <span class="material-icons-round text-amber-600">verified</span>
+                        <div class="w-12 h-12 rounded-xl bg-amber-900/30 flex items-center justify-center">
+                            <span class="material-icons-round text-amber-500">verified</span>
                         </div>
                         <div>
-                            <p class="text-3xl font-bold">{{ completion|default:0 }}%</p>
-                            <p class="text-sm text-slate-500">Profile Complete</p>
+                            <p class="text-3xl font-bold text-white">{{ completion|default:0 }}%</p>
+                            <p class="text-sm text-zinc-500">Profile Complete</p>
                         </div>
                     </div>
                 </div>
@@ -153,43 +150,43 @@
             <!-- Main Grid -->
             <div class="grid lg:grid-cols-2 gap-6">
                 <!-- Your Cards -->
-                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
-                    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
-                        <h3 class="font-bold text-lg">Your Cards</h3>
+                <div class="bg-zinc-900 rounded-2xl border border-zinc-800">
+                    <div class="flex items-center justify-between px-6 py-4 border-b border-zinc-800">
+                        <h3 class="font-bold text-lg text-white">Your Cards</h3>
                         <a href="{% url 'cards:list' %}" class="text-sm text-primary hover:underline font-medium">View All</a>
                     </div>
                     <div class="p-6">
                         {% if cards %}
                         <div class="space-y-4">
                             {% for card in cards %}
-                            <div class="flex items-center gap-4 p-4 bg-slate-50 dark:bg-zinc-800 rounded-xl">
+                            <div class="flex items-center gap-4 p-4 bg-zinc-800 rounded-xl">
                                 <div class="w-12 h-12 rounded-xl gold-gradient flex items-center justify-center">
                                     <span class="material-icons-round text-black">credit_card</span>
                                 </div>
                                 <div class="flex-1">
-                                    <p class="font-semibold">{{ card.url_slug }}</p>
-                                    <p class="text-sm text-slate-500">{{ card.view_count }} views</p>
+                                    <p class="font-semibold text-white">{{ card.url_slug }}</p>
+                                    <p class="text-sm text-zinc-500">{{ card.view_count }} views</p>
                                 </div>
-                                <span class="px-3 py-1 rounded-full text-xs font-medium {% if card.is_active %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% else %}bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400{% endif %}">
+                                <span class="px-3 py-1 rounded-full text-xs font-medium {% if card.is_active %}bg-green-900/30 text-green-400{% else %}bg-amber-900/30 text-amber-400{% endif %}">
                                     {{ card.get_status_display }}
                                 </span>
-                                <a href="/u/{{ card.url_slug }}" target="_blank" class="p-2 hover:bg-slate-200 dark:hover:bg-zinc-700 rounded-lg transition-colors" title="View Public Profile">
+                                <a href="/u/{{ card.url_slug }}" target="_blank" class="p-2 hover:bg-zinc-700 rounded-lg transition-colors" title="View Public Profile">
                                     <span class="material-icons-round text-primary">visibility</span>
                                 </a>
-                                <a href="{% url 'cards:detail' card.id %}" class="p-2 hover:bg-slate-200 dark:hover:bg-zinc-700 rounded-lg transition-colors" title="Edit Card">
-                                    <span class="material-icons-round text-slate-400">edit</span>
+                                <a href="{% url 'cards:detail' card.id %}" class="p-2 hover:bg-zinc-700 rounded-lg transition-colors" title="Edit Card">
+                                    <span class="material-icons-round text-zinc-400">edit</span>
                                 </a>
                             </div>
                             {% endfor %}
                         </div>
                         {% else %}
                         <div class="text-center py-12">
-                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center">
-                                <span class="material-icons-round text-slate-400 text-3xl">credit_card</span>
+                            <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-zinc-800 flex items-center justify-center">
+                                <span class="material-icons-round text-zinc-400 text-3xl">credit_card</span>
                             </div>
-                            <h4 class="font-semibold mb-2">No cards yet</h4>
-                            <p class="text-slate-500 text-sm mb-4">Create your first digital business card to get started.</p>
-                            <a href="{% url 'orders:create' %}" class="inline-flex items-center gap-2 bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-white font-bold py-2 px-4 rounded-xl hover:shadow-lg transition-all">
+                            <h4 class="font-semibold mb-2 text-white">No cards yet</h4>
+                            <p class="text-zinc-500 text-sm mb-4">Create your first digital business card to get started.</p>
+                            <a href="{% url 'orders:create' %}" class="inline-flex items-center gap-2 gold-gradient text-black font-bold py-2 px-4 rounded-xl hover:shadow-lg transition-all">
                                 <span class="material-icons-round">add_shopping_cart</span>
                                 Order PVC Cards
                             </a>
@@ -199,16 +196,16 @@
                 </div>
 
                 <!-- Profile Completion -->
-                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800">
-                    <div class="flex items-center justify-between px-6 py-4 border-b border-slate-200 dark:border-zinc-800">
-                        <h3 class="font-bold text-lg">Profile Completion</h3>
+                <div class="bg-zinc-900 rounded-2xl border border-zinc-800">
+                    <div class="flex items-center justify-between px-6 py-4 border-b border-zinc-800">
+                        <h3 class="font-bold text-lg text-white">Profile Completion</h3>
                         <a href="{% url 'accounts:user_profile' %}" class="text-sm text-primary hover:underline font-medium">Edit Profile</a>
                     </div>
                     <div class="p-6">
                         <div class="flex items-center justify-center mb-8">
                             <div class="relative w-32 h-32">
                                 <svg class="w-full h-full transform -rotate-90">
-                                    <circle cx="64" cy="64" r="56" stroke="currentColor" stroke-width="8" fill="none" class="text-slate-200 dark:text-zinc-700"/>
+                                    <circle cx="64" cy="64" r="56" stroke="currentColor" stroke-width="8" fill="none" class="text-zinc-700"/>
                                     <circle cx="64" cy="64" r="56" stroke="currentColor" stroke-width="8" fill="none" 
                                         class="text-primary progress-circle" 
                                         stroke-dasharray="352" 
@@ -216,27 +213,27 @@
                                         stroke-linecap="round"/>
                                 </svg>
                                 <div class="absolute inset-0 flex items-center justify-center">
-                                    <span class="text-3xl font-bold">{{ completion|default:0 }}%</span>
+                                    <span class="text-3xl font-bold text-white">{{ completion|default:0 }}%</span>
                                 </div>
                             </div>
                         </div>
                         
                         <div class="space-y-3">
-                            <div class="flex items-center gap-3 p-3 rounded-lg {% if profile.full_name %}bg-green-50 dark:bg-green-900/20{% else %}bg-slate-50 dark:bg-zinc-800{% endif %}">
-                                <span class="material-icons-round {% if profile.full_name %}text-green-500{% else %}text-slate-400{% endif %}">{% if profile.full_name %}check_circle{% else %}radio_button_unchecked{% endif %}</span>
-                                <span class="{% if profile.full_name %}text-green-700 dark:text-green-400{% else %}text-slate-600 dark:text-slate-400{% endif %}">Add your name</span>
+                            <div class="flex items-center gap-3 p-3 rounded-lg {% if profile.full_name %}bg-green-900/20{% else %}bg-zinc-800{% endif %}">
+                                <span class="material-icons-round {% if profile.full_name %}text-green-500{% else %}text-zinc-400{% endif %}">{% if profile.full_name %}check_circle{% else %}radio_button_unchecked{% endif %}</span>
+                                <span class="{% if profile.full_name %}text-green-400{% else %}text-zinc-400{% endif %}">Add your name</span>
                             </div>
-                            <div class="flex items-center gap-3 p-3 rounded-lg {% if profile.profile_photo %}bg-green-50 dark:bg-green-900/20{% else %}bg-slate-50 dark:bg-zinc-800{% endif %}">
-                                <span class="material-icons-round {% if profile.profile_photo %}text-green-500{% else %}text-slate-400{% endif %}">{% if profile.profile_photo %}check_circle{% else %}radio_button_unchecked{% endif %}</span>
-                                <span class="{% if profile.profile_photo %}text-green-700 dark:text-green-400{% else %}text-slate-600 dark:text-slate-400{% endif %}">Upload profile photo</span>
+                            <div class="flex items-center gap-3 p-3 rounded-lg {% if profile.profile_photo %}bg-green-900/20{% else %}bg-zinc-800{% endif %}">
+                                <span class="material-icons-round {% if profile.profile_photo %}text-green-500{% else %}text-zinc-400{% endif %}">{% if profile.profile_photo %}check_circle{% else %}radio_button_unchecked{% endif %}</span>
+                                <span class="{% if profile.profile_photo %}text-green-400{% else %}text-zinc-400{% endif %}">Upload profile photo</span>
                             </div>
-                            <div class="flex items-center gap-3 p-3 rounded-lg {% if profile.bio %}bg-green-50 dark:bg-green-900/20{% else %}bg-slate-50 dark:bg-zinc-800{% endif %}">
-                                <span class="material-icons-round {% if profile.bio %}text-green-500{% else %}text-slate-400{% endif %}">{% if profile.bio %}check_circle{% else %}radio_button_unchecked{% endif %}</span>
-                                <span class="{% if profile.bio %}text-green-700 dark:text-green-400{% else %}text-slate-600 dark:text-slate-400{% endif %}">Write a bio</span>
+                            <div class="flex items-center gap-3 p-3 rounded-lg {% if profile.bio %}bg-green-900/20{% else %}bg-zinc-800{% endif %}">
+                                <span class="material-icons-round {% if profile.bio %}text-green-500{% else %}text-zinc-400{% endif %}">{% if profile.bio %}check_circle{% else %}radio_button_unchecked{% endif %}</span>
+                                <span class="{% if profile.bio %}text-green-400{% else %}text-zinc-400{% endif %}">Write a bio</span>
                             </div>
-                            <div class="flex items-center gap-3 p-3 rounded-lg {% if profile.phone_primary %}bg-green-50 dark:bg-green-900/20{% else %}bg-slate-50 dark:bg-zinc-800{% endif %}">
-                                <span class="material-icons-round {% if profile.phone_primary %}text-green-500{% else %}text-slate-400{% endif %}">{% if profile.phone_primary %}check_circle{% else %}radio_button_unchecked{% endif %}</span>
-                                <span class="{% if profile.phone_primary %}text-green-700 dark:text-green-400{% else %}text-slate-600 dark:text-slate-400{% endif %}">Add contact details</span>
+                            <div class="flex items-center gap-3 p-3 rounded-lg {% if profile.phone_primary %}bg-green-900/20{% else %}bg-zinc-800{% endif %}">
+                                <span class="material-icons-round {% if profile.phone_primary %}text-green-500{% else %}text-zinc-400{% endif %}">{% if profile.phone_primary %}check_circle{% else %}radio_button_unchecked{% endif %}</span>
+                                <span class="{% if profile.phone_primary %}text-green-400{% else %}text-zinc-400{% endif %}">Add contact details</span>
                             </div>
                         </div>
                     </div>
@@ -245,39 +242,39 @@
 
             <!-- Quick Actions -->
             <div class="mt-8 mb-8">
-                <h3 class="font-bold text-lg mb-4">Quick Actions</h3>
+                <h3 class="font-bold text-lg mb-4 text-white">Quick Actions</h3>
                 <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
                     {% if cards.first %}
-                    <a href="/u/{{ request.user.username }}" target="_blank" class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800 hover:border-primary/50 transition-all text-center group">
-                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                            <span class="material-icons-round text-slate-600 dark:text-slate-400 group-hover:text-primary">visibility</span>
+                    <a href="/u/{{ cards.first.url_slug }}" target="_blank" class="bg-zinc-900 rounded-2xl p-6 border border-zinc-800 hover:border-primary/50 transition-all text-center group">
+                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                            <span class="material-icons-round text-zinc-400 group-hover:text-primary">visibility</span>
                         </div>
-                        <p class="font-medium text-sm">View My Profile</p>
+                        <p class="font-medium text-sm text-white">View My Profile</p>
                     </a>
                     {% endif %}
-                    <a href="{% url 'accounts:user_profile' %}" class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800 hover:border-primary/50 transition-all text-center group">
-                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                            <span class="material-icons-round text-slate-600 dark:text-slate-400 group-hover:text-primary">edit</span>
+                    <a href="{% url 'accounts:user_profile' %}" class="bg-zinc-900 rounded-2xl p-6 border border-zinc-800 hover:border-primary/50 transition-all text-center group">
+                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                            <span class="material-icons-round text-zinc-400 group-hover:text-primary">edit</span>
                         </div>
-                        <p class="font-medium text-sm">Edit Profile</p>
+                        <p class="font-medium text-sm text-white">Edit Profile</p>
                     </a>
-                    <a href="{% url 'orders:create' %}" class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800 hover:border-primary/50 transition-all text-center group">
-                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                            <span class="material-icons-round text-slate-600 dark:text-slate-400 group-hover:text-primary">add_shopping_cart</span>
+                    <a href="{% url 'orders:create' %}" class="bg-zinc-900 rounded-2xl p-6 border border-zinc-800 hover:border-primary/50 transition-all text-center group">
+                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                            <span class="material-icons-round text-zinc-400 group-hover:text-primary">add_shopping_cart</span>
                         </div>
-                        <p class="font-medium text-sm">Order PVC Cards</p>
+                        <p class="font-medium text-sm text-white">Order PVC Cards</p>
                     </a>
-                    <a href="{% url 'accounts:user_analytics' %}" class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800 hover:border-primary/50 transition-all text-center group">
-                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                            <span class="material-icons-round text-slate-600 dark:text-slate-400 group-hover:text-primary">bar_chart</span>
+                    <a href="{% url 'accounts:user_analytics' %}" class="bg-zinc-900 rounded-2xl p-6 border border-zinc-800 hover:border-primary/50 transition-all text-center group">
+                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                            <span class="material-icons-round text-zinc-400 group-hover:text-primary">bar_chart</span>
                         </div>
-                        <p class="font-medium text-sm">Analytics</p>
+                        <p class="font-medium text-sm text-white">Analytics</p>
                     </a>
-                    <a href="{% url 'accounts:user_settings' %}" class="bg-white dark:bg-zinc-900 rounded-2xl p-6 border border-slate-200 dark:border-zinc-800 hover:border-primary/50 transition-all text-center group">
-                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-slate-100 dark:bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
-                            <span class="material-icons-round text-slate-600 dark:text-slate-400 group-hover:text-primary">settings</span>
+                    <a href="{% url 'accounts:user_settings' %}" class="bg-zinc-900 rounded-2xl p-6 border border-zinc-800 hover:border-primary/50 transition-all text-center group">
+                        <div class="w-12 h-12 mx-auto mb-3 rounded-xl bg-zinc-800 flex items-center justify-center group-hover:bg-primary/10 transition-colors">
+                            <span class="material-icons-round text-zinc-400 group-hover:text-primary">settings</span>
                         </div>
-                        <p class="font-medium text-sm">Settings</p>
+                        <p class="font-medium text-sm text-white">Settings</p>
                     </a>
                 </div>
             </div>
@@ -285,10 +282,10 @@
             <!-- Share Profile Section -->
             {% if cards.first %}
             <div class="mt-8">
-                <h3 class="font-bold text-lg mb-4">Share Your Profile</h3>
+                <h3 class="font-bold text-lg mb-4 text-white">Share Your Profile</h3>
                 <div class="grid lg:grid-cols-2 gap-6">
                     <!-- QR Code & Actions -->
-                    <div class="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-zinc-900 dark:to-zinc-950 rounded-2xl border border-slate-700 dark:border-zinc-800 shadow-xl overflow-hidden">
+                    <div class="bg-zinc-900 rounded-2xl border border-zinc-800 shadow-xl overflow-hidden">
                         <div class="p-6">
                             <div class="flex items-center gap-3 mb-6">
                                 <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center">
@@ -296,7 +293,7 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-white">Your QR Code</h4>
-                                    <p class="text-sm text-slate-400">Scan to view your profile</p>
+                                    <p class="text-sm text-zinc-400">Scan to view your profile</p>
                                 </div>
                             </div>
                             
@@ -305,11 +302,11 @@
                             </div>
                             
                             <div class="grid grid-cols-2 gap-3">
-                                <button onclick="showQRModal()" class="flex items-center justify-center gap-2 px-4 py-3 bg-slate-700/50 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
+                                <button onclick="showQRModal()" class="flex items-center justify-center gap-2 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl font-semibold transition-all">
                                     <span class="material-icons-round text-lg">fullscreen</span>
                                     <span class="text-sm">View Full</span>
                                 </button>
-                                <a href="{% url 'profiles:qr_code' cards.first.url_slug %}?download=true" class="flex items-center justify-center gap-2 px-4 py-3 bg-slate-700/50 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
+                                <a href="{% url 'profiles:qr_code' cards.first.url_slug %}?download=true" class="flex items-center justify-center gap-2 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl font-semibold transition-all">
                                     <span class="material-icons-round text-lg">download</span>
                                     <span class="text-sm">Download</span>
                                 </a>
@@ -318,7 +315,7 @@
                     </div>
 
                     <!-- Share Actions -->
-                    <div class="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-zinc-900 dark:to-zinc-950 rounded-2xl border border-slate-700 dark:border-zinc-800 shadow-xl overflow-hidden">
+                    <div class="bg-zinc-900 rounded-2xl border border-zinc-800 shadow-xl overflow-hidden">
                         <div class="p-6">
                             <div class="flex items-center gap-3 mb-6">
                                 <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center">
@@ -326,17 +323,17 @@
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-white">Share Options</h4>
-                                    <p class="text-sm text-slate-400">Share your digital card</p>
+                                    <p class="text-sm text-zinc-400">Share your digital card</p>
                                 </div>
                             </div>
                             
                             <!-- Profile URL -->
                             <div class="mb-4">
-                                <label class="block text-sm font-medium text-slate-300 mb-2">Your Profile URL</label>
+                                <label class="block text-sm font-medium text-zinc-300 mb-2">Your Profile URL</label>
                                 <div class="flex gap-2">
                                     <input type="text" id="profileURL" value="{{ request.scheme }}://{{ request.get_host }}/u/{{ cards.first.url_slug }}" readonly
-                                           class="flex-1 px-4 py-3 rounded-xl bg-slate-800 border border-slate-600 text-white text-sm">
-                                    <button onclick="copyProfileLink()" class="px-4 py-3 bg-slate-700/50 hover:bg-slate-700 text-white rounded-xl transition-all">
+                                           class="flex-1 px-4 py-3 rounded-xl bg-zinc-800 border border-zinc-700 text-white text-sm">
+                                    <button onclick="copyProfileLink()" class="px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl transition-all">
                                         <span class="material-icons-round">content_copy</span>
                                     </button>
                                 </div>
@@ -348,11 +345,11 @@
                                     <span class="material-icons-round text-lg">share</span>
                                     <span class="text-sm">Share</span>
                                 </button>
-                                <button onclick="openMobileView()" class="flex items-center justify-center gap-2 px-4 py-3 bg-slate-700/50 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
+                                <button onclick="openMobileView()" class="flex items-center justify-center gap-2 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl font-semibold transition-all">
                                     <span class="material-icons-round text-lg">phone_iphone</span>
                                     <span class="text-sm">Mobile View</span>
                                 </button>
-                                <a href="/u/{{ cards.first.url_slug }}" target="_blank" class="col-span-2 flex items-center justify-center gap-2 px-4 py-3 bg-slate-700/50 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
+                                <a href="/u/{{ cards.first.url_slug }}" target="_blank" class="col-span-2 flex items-center justify-center gap-2 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl font-semibold transition-all">
                                     <span class="material-icons-round text-lg">open_in_new</span>
                                     <span class="text-sm">View Public Profile</span>
                                 </a>
@@ -369,15 +366,15 @@
 <!-- Mobile Sidebar -->
 <div id="mobileSidebar" class="fixed inset-0 z-50 hidden">
     <div class="absolute inset-0 bg-black/50" onclick="toggleMobileSidebar()"></div>
-    <aside class="absolute left-0 top-0 bottom-0 w-72 bg-white dark:bg-zinc-900 shadow-xl">
-        <div class="p-6 border-b border-slate-200 dark:border-zinc-800 flex items-center justify-between">
+    <aside class="absolute left-0 top-0 bottom-0 w-72 bg-zinc-900 shadow-xl">
+        <div class="p-6 border-b border-zinc-800 flex items-center justify-between">
             <a href="{% url 'landing:home' %}" class="flex items-center gap-3">
                 <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center">
                     <span class="material-icons-round text-black text-xl">contactless</span>
                 </div>
                 <span class="font-display tracking-wider uppercase font-bold" style="color: #fbad05;">The Last Card</span>
             </a>
-            <button onclick="toggleMobileSidebar()" class="p-2 rounded-lg hover:bg-slate-100 dark:hover:bg-zinc-800">
+            <button onclick="toggleMobileSidebar()" class="p-2 rounded-lg hover:bg-zinc-800 text-white">
                 <span class="material-icons-round">close</span>
             </button>
         </div>
@@ -386,33 +383,33 @@
                 <span class="material-icons-round">dashboard</span>
                 Dashboard
             </a>
-            <a href="{% url 'cards:list' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800">
+            <a href="{% url 'cards:list' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800">
                 <span class="material-icons-round">credit_card</span>
                 My Cards
             </a>
-            <a href="{% url 'orders:create' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800">
+            <a href="{% url 'orders:create' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800">
                 <span class="material-icons-round">shopping_bag</span>
                 Order PVC Cards
             </a>
             {% if cards.first %}
-            <a href="/u/{{ request.user.username }}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800">
+            <a href="/u/{{ cards.first.url_slug }}" target="_blank" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800">
                 <span class="material-icons-round">visibility</span>
                 View My Profile
             </a>
             {% endif %}
-            <a href="{% url 'accounts:user_profile' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800">
+            <a href="{% url 'accounts:user_profile' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800">
                 <span class="material-icons-round">edit</span>
                 Edit Profile
             </a>
-            <a href="{% url 'accounts:user_analytics' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800">
+            <a href="{% url 'accounts:user_analytics' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800">
                 <span class="material-icons-round">insights</span>
                 Analytics
             </a>
-            <a href="{% url 'accounts:user_settings' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-zinc-800">
+            <a href="{% url 'accounts:user_settings' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-zinc-400 hover:bg-zinc-800">
                 <span class="material-icons-round">settings</span>
                 Settings
             </a>
-            <a href="{% url 'accounts:logout' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20">
+            <a href="{% url 'accounts:logout' %}" class="flex items-center gap-3 px-4 py-3 rounded-xl text-red-500 hover:bg-red-900/20">
                 <span class="material-icons-round">logout</span>
                 Sign Out
             </a>
@@ -423,8 +420,8 @@
 <!-- QR Code Modal -->
 {% if cards.first %}
 <div id="qrModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-    <div class="bg-gradient-to-br from-slate-900 to-slate-800 dark:from-zinc-900 dark:to-zinc-950 max-w-md w-full rounded-2xl p-6 relative border border-slate-700 dark:border-zinc-800 shadow-2xl animate-scale-in">
-        <button onclick="closeQRModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-lg bg-slate-700/50 hover:bg-slate-700 text-white transition-colors">
+    <div class="bg-zinc-900 max-w-md w-full rounded-2xl p-6 relative border border-zinc-800 shadow-2xl animate-scale-in">
+        <button onclick="closeQRModal()" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-lg bg-zinc-800 hover:bg-zinc-700 text-white transition-colors">
             <span class="material-icons-round">close</span>
         </button>
         
@@ -433,14 +430,14 @@
                 <span class="material-icons-round text-3xl text-black">qr_code_2</span>
             </div>
             <h3 class="text-2xl font-bold text-white mb-2">Scan QR Code</h3>
-            <p class="text-slate-400 text-sm mb-6">Anyone can scan this code to view your profile</p>
+            <p class="text-zinc-400 text-sm mb-6">Anyone can scan this code to view your profile</p>
             
             <div class="bg-white p-6 rounded-xl mb-6">
                 <img src="{% url 'profiles:qr_code' cards.first.url_slug %}" alt="QR Code" class="w-full h-auto">
             </div>
             
             <div class="grid grid-cols-2 gap-3">
-                <a href="{% url 'profiles:qr_code' cards.first.url_slug %}?download=true" class="flex items-center justify-center gap-2 px-4 py-3 bg-slate-700/50 hover:bg-slate-700 text-white rounded-xl font-semibold transition-all">
+                <a href="{% url 'profiles:qr_code' cards.first.url_slug %}?download=true" class="flex items-center justify-center gap-2 px-4 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl font-semibold transition-all">
                     <span class="material-icons-round text-lg">download</span>
                     Download
                 </a>
