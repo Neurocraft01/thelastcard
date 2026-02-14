@@ -42,6 +42,19 @@ services:
         sync: false
       - key: DEFAULT_FROM_EMAIL
         sync: false
+      # Media/File Storage - Configure R2 or S3 for persistent media files
+      - key: USE_R2_STORAGE
+        value: true
+      - key: R2_ACCOUNT_ID
+        sync: false
+      - key: R2_ACCESS_KEY_ID
+        sync: false
+      - key: R2_SECRET_ACCESS_KEY
+        sync: false
+      - key: R2_BUCKET_NAME
+        value: thelastcard-media
+      - key: R2_CUSTOM_DOMAIN
+        sync: false
 
 databases:
   # PostgreSQL Database (included in $7 plan)
