@@ -1143,6 +1143,31 @@ class ProfileSetupView(LoginRequiredMixin, View):
         if 'profile_photo' in request.FILES:
             profile.profile_photo = request.FILES['profile_photo']
         
+        # Handle cover photo
+        if 'cover_photo' in request.FILES:
+            profile.cover_photo = request.FILES['cover_photo']
+        
+        # Handle social media links
+        social_links = {}
+        for platform in ['instagram', 'facebook', 'twitter', 'linkedin']:
+            value = request.POST.get(platform, '').strip()
+            if value:
+                # Normalize URLs
+                if not value.startswith('http'):
+                    # Convert username to full URL
+                    if platform == 'instagram':
+                        value = f'https://instagram.com/{value.lstrip("@")}'
+                    elif platform == 'facebook':
+                        value = f'https://facebook.com/{value}'
+                    elif platform == 'twitter':
+                        value = f'https://twitter.com/{value.lstrip("@")}'
+                    elif platform == 'linkedin':
+                        value = f'https://linkedin.com/in/{value}'
+                social_links[platform] = value
+        
+        if social_links:
+            profile.social_links = social_links
+        
         profile.save()
         
         messages.success(request, 'Profile saved! Now choose your theme.')
