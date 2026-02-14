@@ -28,7 +28,23 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,0,0&display=block" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block" rel="stylesheet">
     
-    <!-- Tailwind CSS (Local Build) -->
+    <!-- Tailwind CSS CDN (JIT) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#ffcc00',
+                        'gold-dark': '#fbad05'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Tailwind CSS (Local Build - Backup) -->
     <link rel="stylesheet" href="{% static 'css/tailwind-output.css' %}">
     
     <!-- Custom Styles -->
@@ -135,7 +151,7 @@
     <a href="https://wa.me/919096928961?text=Hi!%20I%27m%20interested%20in%20The%20Last%20Card" 
        target="_blank" 
        rel="noopener noreferrer"
-       class="fixed bottom-6 right-6 z-50 group"
+       class="fixed bottom-6 left-6 z-50 group"
        aria-label="Chat on WhatsApp">
         <div class="relative">
             <!-- Main Button -->
