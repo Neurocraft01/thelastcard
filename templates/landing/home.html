@@ -130,99 +130,355 @@
     </div>
 </section>
 
-<!-- Pricing Section -->
-<section class="py-24 bg-zinc-950" id="pricing" style="overflow: visible;">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8" style="overflow: visible;">
-        <div class="text-center mb-16">
-            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-[.2em] mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Pricing</span>
-            <h2 class="font-display text-4xl md:text-5xl mb-4 uppercase" style="color: #fbad05;">Choose Your Card</h2>
-            <p class="text-zinc-400 max-w-xl mx-auto">One-time payment. Lifetime digital profile. No subscriptions.</p>
+<!-- Pricing Section - Premium Redesign -->
+<section class="py-20 sm:py-28 bg-zinc-950 relative" id="pricing" style="overflow: visible;">
+    <!-- Ambient Background Glow -->
+    <div class="absolute inset-0 pointer-events-none">
+        <div class="absolute top-1/4 left-1/4 w-96 h-96 rounded-full opacity-20" style="background:radial-gradient(circle, rgba(255,195,50,0.15) 0%, transparent 70%);filter:blur(80px);"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-96 h-96 rounded-full opacity-20" style="background:radial-gradient(circle, rgba(255,195,50,0.1) 0%, transparent 70%);filter:blur(80px);"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style="overflow: visible;">
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+            <div class="inline-flex items-center justify-center mb-5">
+                <span class="material-icons-round text-primary text-2xl mr-2">workspace_premium</span>
+                <span class="inline-flex items-center px-5 py-2 rounded-full text-xs font-black uppercase tracking-[.25em]" style="background:linear-gradient(135deg,rgba(255,195,50,.12),rgba(255,195,50,.06));color:#FFC332;border:1px solid rgba(255,195,50,.25);box-shadow:0 4px 15px rgba(255,195,50,.1);">
+                    Premium Pricing
+                </span>
+            </div>
+            <h2 class="font-display text-4xl sm:text-5xl lg:text-6xl mb-5 uppercase tracking-tight" style="background:linear-gradient(135deg, #FFC332 0%, #fff 50%, #FFC332 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;">
+                Choose Your Perfect Card
+            </h2>
+            <p class="text-zinc-400 text-base sm:text-lg max-w-2xl mx-auto leading-relaxed">
+                One-time investment. Lifetime digital identity. 
+                <span class="text-primary font-semibold">Zero subscriptions.</span>
+            </p>
         </div>
         
-        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto" style="padding-top: 1rem;">
-            <!-- Gloss Finish (Golden Black) - 10% OFF -->
-            <div class="relative p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);">
-                <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold" style="background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.2);z-index:10;">10% OFF</div>
-                <div class="mb-5 rounded-2xl overflow-hidden" style="aspect-ratio: 1.586/1; border:1px solid rgba(255,195,50,.2);">
-                    <img src="{% static 'img/blackgoldcard.jpeg' %}" alt="Gloss Golden Black Card" class="w-full h-full object-cover">
+        <!-- Finish Type Selector - Enhanced -->
+        <div class="max-w-5xl mx-auto mb-16">
+            <div class="relative">
+                <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 p-3 rounded-2xl" style="background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.05);backdrop-filter:blur(10px);">
+                    <button onclick="selectFinish('matte')" class="finish-btn group relative px-8 py-5 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 overflow-hidden" data-finish="matte" style="border:2px solid rgba(255,195,50,.4);color:#FFC332;background:linear-gradient(135deg,rgba(255,195,50,.12),rgba(255,195,50,.08));box-shadow:0 4px 20px rgba(255,195,50,.15);">
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:linear-gradient(135deg,rgba(255,195,50,.15),rgba(255,195,50,.05));"></div>
+                        <div class="relative flex items-center justify-center gap-2">
+                            <span class="material-icons-round text-xl">texture</span>
+                            <span>Matte Finish</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 transform scale-x-100 transition-transform" style="background:linear-gradient(90deg,#FFC332,#e6a800);"></div>
+                    </button>
+                    
+                    <button onclick="selectFinish('gloss')" class="finish-btn group relative px-8 py-5 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 overflow-hidden" data-finish="gloss" style="border:2px solid rgba(255,255,255,.15);color:#fff;background:rgba(255,255,255,.02);">
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:linear-gradient(135deg,rgba(255,195,50,.08),rgba(255,195,50,.02));"></div>
+                        <div class="relative flex items-center justify-center gap-2">
+                            <span class="material-icons-round text-xl">auto_awesome</span>
+                            <span>Gloss Finish</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-primary transform scale-x-0 transition-transform" style="background:linear-gradient(90deg,#FFC332,#e6a800);"></div>
+                    </button>
+                    
+                    <button onclick="selectFinish('metal')" class="finish-btn group relative px-8 py-5 rounded-xl font-bold text-base sm:text-lg transition-all duration-300 overflow-hidden" data-finish="metal" style="border:2px solid rgba(255,255,255,.15);color:#fff;background:rgba(255,255,255,.02);">
+                        <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300" style="background:linear-gradient(135deg,rgba(255,195,50,.08),rgba(255,195,50,.02));"></div>
+                        <div class="relative flex items-center justify-center gap-2">
+                            <span class="material-icons-round text-xl">shield</span>
+                            <span>Metal Card</span>
+                            <span class="px-2.5 py-0.5 rounded-full text-[10px] font-black uppercase tracking-wider" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;">Elite</span>
+                        </div>
+                        <div class="absolute bottom-0 left-0 right-0 h-1 bg-primary transform scale-x-0 transition-transform" style="background:linear-gradient(90deg,#FFC332,#e6a800);"></div>
+                    </button>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-1">Gloss Finish</h3>
-                <p class="text-zinc-500 text-xs mb-4">(Golden Black)</p>
-                <div class="flex items-baseline gap-2 mb-5">
-                    <span class="text-lg line-through text-zinc-600"><s>₹499</s> </span>
-                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹449</span>
+            </div>
+        </div>
+        
+        <!-- Color Options - Premium Grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 sm:gap-6 max-w-6xl mx-auto mb-16">
+            <!-- White Color -->
+            <div class="color-card group cursor-pointer relative rounded-3xl transition-all duration-500 hover:-translate-y-3 hover:scale-105" style="background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);box-shadow:0 10px 40px rgba(0,0,0,.3);" onclick="selectColor('white')">
+                <div class="absolute -top-2 -right-2 z-20">
+                    <div class="flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-black uppercase" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;box-shadow:0 4px 15px rgba(239,68,68,.4);">
+                        <span class="material-icons-round" style="font-size:12px;">local_fire_department</span>
+                        30% OFF
+                    </div>
                 </div>
-                <ul class="space-y-2.5 mb-6">
-                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
-                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Non-Erasable Printing</span></li>
-                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Edit Info Anytime (Unlimited)</span></li>
-                </ul>
-                <a href="{% url 'accounts:register' %}" class="block text-center py-3 rounded-xl font-bold text-sm transition-all hover:scale-[1.02]" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">Order Now</a>
+                <div class="p-6">
+                    <div class="mb-6 rounded-2xl overflow-hidden relative group-hover:scale-105 transition-transform duration-500" style="aspect-ratio: 1.586/1; border:2px solid rgba(255,255,255,.15);box-shadow:0 8px 25px rgba(0,0,0,.4);">
+                        <img src="{% static 'img/whitecard.png' %}" alt="White Card" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-white mb-3 flex items-center justify-center gap-2">
+                            <span>White</span>
+                        </h3>
+                        <div class="flex items-center justify-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-white border-3 shadow-xl relative" style="border:3px solid rgba(255,255,255,.3);">
+                                <div class="absolute inset-0 rounded-full animate-ping opacity-20 bg-white"></div>
+                            </div>
+                        </div>
+                        <p class="text-zinc-400 text-sm">Clean & Professional</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Gloss Finish (White and Colour) - 10% OFF -->
-            <div class="relative p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/10" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);">
-                <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold" style="background:rgba(16,185,129,.15);color:#10b981;border:1px solid rgba(16,185,129,.2);z-index:10;">10% OFF</div>
-                <div class="mb-5 rounded-2xl overflow-hidden" style="aspect-ratio: 1.586/1; border:1px solid rgba(255,255,255,.12);">
-                    <img src="{% static 'img/whitecard.png' %}" alt="Gloss White Card" class="w-full h-full object-cover">
+            <!-- Pink Color -->
+            <div class="color-card group cursor-pointer relative rounded-3xl transition-all duration-500 hover:-translate-y-3 hover:scale-105" style="background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);box-shadow:0 10px 40px rgba(0,0,0,.3);" onclick="selectColor('pink')">
+                <div class="absolute -top-2 -right-2 z-20">
+                    <div class="flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-black uppercase" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;box-shadow:0 4px 15px rgba(239,68,68,.4);">
+                        <span class="material-icons-round" style="font-size:12px;">local_fire_department</span>
+                        30% OFF
+                    </div>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-1">Gloss Finish</h3>
-                <p class="text-zinc-500 text-xs mb-4">(White and Colour)</p>
-                <div class="flex items-baseline gap-2 mb-5">
-                    <span class="text-lg line-through text-zinc-600"><s>₹499</s> </span>
-                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹449</span>
+                <div class="p-6">
+                    <div class="mb-6 rounded-2xl overflow-hidden relative group-hover:scale-105 transition-transform duration-500" style="aspect-ratio: 1.586/1; border:2px solid rgba(255,255,255,.15);box-shadow:0 8px 25px rgba(0,0,0,.4);">
+                        <img src="{% static 'img/pinkcard.jpeg' %}" alt="Pink Card" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-white mb-3 flex items-center justify-center gap-2">
+                            <span>Pink</span>
+                        </h3>
+                        <div class="flex items-center justify-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full bg-pink-400 border-3 shadow-xl relative" style="border:3px solid rgba(244,114,182,.5);">
+                                <div class="absolute inset-0 rounded-full animate-ping opacity-20 bg-pink-400"></div>
+                            </div>
+                        </div>
+                        <p class="text-zinc-400 text-sm">Bold & Stylish</p>
+                    </div>
                 </div>
-                <ul class="space-y-2.5 mb-6">
-                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
-                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Non-Erasable Printing</span></li>
-                    <li class="flex items-center gap-2"><span class="material-icons-round text-primary" style="font-size:16px;">check_circle</span><span class="text-zinc-300 text-xs">Edit Info Anytime (Unlimited)</span></li>
-                </ul>
-                <a href="{% url 'accounts:register' %}" class="block text-center py-3 rounded-xl font-bold text-sm transition-all hover:scale-[1.02]" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">Order Now</a>
             </div>
 
-            <!-- Matte Finish (Golden Black) - 30% OFF - MOST POPULAR -->
-            <div class="relative p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20" style="background:linear-gradient(135deg,rgba(255,195,50,.06),rgba(255,195,50,.02));border:2px solid rgba(255,195,50,.3);">
-                <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded-full text-[10px] font-black uppercase tracking-widest shadow-lg" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;z-index:10;">MOST POPULAR</div>
-                <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold" style="background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.2);z-index:10;">30% OFF</div>
-                <div class="mb-5 rounded-2xl overflow-hidden" style="aspect-ratio: 1.586/1; border:2px solid rgba(255,195,50,.35);box-shadow:0 8px 30px -8px rgba(255,195,50,.2);">
-                    <img src="{% static 'img/blackgoldcard.jpeg' %}" alt="Matte Golden Black Card" class="w-full h-full object-cover">
+            <!-- Black Gold - MOST POPULAR -->
+            <div class="color-card group cursor-pointer relative rounded-3xl transition-all duration-500 hover:-translate-y-3 hover:scale-105" style="background:linear-gradient(135deg,rgba(255,195,50,.12),rgba(255,195,50,.04));border:2px solid rgba(255,195,50,.4);box-shadow:0 10px 40px rgba(255,195,50,.2), 0 0 60px rgba(255,195,50,.1);" onclick="selectColor('blackgold')">
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 z-20">
+                    <div class="flex items-center gap-2 px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-wider whitespace-nowrap" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;box-shadow:0 6px 25px rgba(255,195,50,.5);">
+                        <span class="material-icons-round" style="font-size:14px;">star</span>
+                        MOST POPULAR
+                    </div>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-1">Matte Finish</h3>
-                <p class="text-zinc-500 text-xs mb-4">(Golden Black)</p>
-                <div class="flex items-baseline gap-2 mb-5">
-                    <span class="text-lg line-through text-zinc-600"><s>₹849</s> </span>
-                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹599</span>
+                <div class="absolute -top-2 -right-2 z-20">
+                    <div class="flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-black uppercase" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;box-shadow:0 4px 15px rgba(239,68,68,.4);">
+                        <span class="material-icons-round" style="font-size:12px;">local_fire_department</span>
+                        30% OFF
+                    </div>
                 </div>
-                <ul class="space-y-2.5 mb-6">
-                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
-                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Non-Erasable Printing</span></li>
-                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Edit Info Anytime (Unlimited)</span></li>
-                </ul>
-                <a href="{% url 'accounts:register' %}" class="block text-center py-3 rounded-xl font-bold text-sm transition-all hover:scale-[1.02]" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">Order Now</a>
+                <div class="p-6">
+                    <div class="mb-6 rounded-2xl overflow-hidden relative group-hover:scale-105 transition-transform duration-500" style="aspect-ratio: 1.586/1; border:3px solid rgba(255,195,50,.5);box-shadow:0 12px 35px rgba(255,195,50,.3);">
+                        <img src="{% static 'img/blackgoldcard.jpeg' %}" alt="Black Gold Card" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold mb-3 flex items-center justify-center gap-2" style="color:#FFC332;">
+                            <span class="material-icons-round text-2xl">diamond</span>
+                            <span>Black Gold</span>
+                        </h3>
+                        <div class="flex items-center justify-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full border-3 shadow-xl relative" style="background:linear-gradient(135deg,#000,#FFC332);border:3px solid #FFC332;">
+                                <div class="absolute inset-0 rounded-full animate-ping opacity-30" style="background:#FFC332;"></div>
+                            </div>
+                        </div>
+                        <p class="text-primary text-sm font-semibold">Premium Luxury</p>
+                    </div>
+                </div>
             </div>
 
-            <!-- Matte Finish (White and Colour) - 30% OFF -->
-            <div class="relative p-6 rounded-3xl transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl hover:shadow-primary/20" style="background:linear-gradient(135deg,rgba(255,195,50,.04),rgba(255,195,50,.01));border:2px solid rgba(255,195,50,.2);">
-                <div class="absolute top-3 right-3 px-3 py-1 rounded-full text-[10px] font-extrabold" style="background:rgba(239,68,68,.15);color:#ef4444;border:1px solid rgba(239,68,68,.2);z-index:10;">30% OFF</div>
-                <div class="mb-5 rounded-2xl overflow-hidden" style="aspect-ratio: 1.586/1; border:2px solid rgba(255,195,50,.25);box-shadow:0 8px 30px -8px rgba(255,195,50,.15);">
-                    <img src="{% static 'img/pinkcard.jpeg' %}" alt="Gloss White and Colour Card" class="w-full h-full object-cover">
+            <!-- Custom Color -->
+            <div class="color-card group cursor-pointer relative rounded-3xl transition-all duration-500 hover:-translate-y-3 hover:scale-105" style="background:linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02));border:1px solid rgba(255,255,255,.1);box-shadow:0 10px 40px rgba(0,0,0,.3);" onclick="selectColor('custom')">
+                <div class="absolute -top-2 -right-2 z-20">
+                    <div class="flex items-center gap-1 px-3 py-1.5 rounded-full text-[10px] font-black uppercase" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;box-shadow:0 4px 15px rgba(239,68,68,.4);">
+                        <span class="material-icons-round" style="font-size:12px;">local_fire_department</span>
+                        30% OFF
+                    </div>
                 </div>
-                <h3 class="text-lg font-bold text-white mb-1">Matte Finish</h3>
-                <p class="text-zinc-500 text-xs mb-4">(White and Colour)</p>
-                <div class="flex items-baseline gap-2 mb-5">
-                    <span class="text-lg line-through text-zinc-600"><s>₹849</s> </span>
-                    <span class="text-3xl font-extrabold" style="color: #fbad05;">₹599</span>
+                <div class="p-6">
+                    <div class="mb-6 rounded-2xl overflow-hidden flex items-center justify-center relative group-hover:scale-105 transition-transform duration-500" style="aspect-ratio: 1.586/1; border:2px solid rgba(255,255,255,.15);background:linear-gradient(135deg,#667eea,#764ba2,#f093fb,#4facfe);box-shadow:0 8px 25px rgba(102,126,234,.3);">
+                        <span class="material-icons-round text-white text-7xl animate-pulse">palette</span>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-white mb-3 flex items-center justify-center gap-2">
+                            <span class="material-icons-round">auto_fix_high</span>
+                            <span>Custom</span>
+                        </h3>
+                        <div class="flex items-center justify-center gap-3 mb-4">
+                            <div class="w-10 h-10 rounded-full border-3 shadow-xl relative" style="background:linear-gradient(135deg,#667eea,#764ba2,#f093fb,#4facfe);border:3px solid #667eea;">
+                                <div class="absolute inset-0 rounded-full animate-ping opacity-20" style="background:#667eea;"></div>
+                            </div>
+                        </div>
+                        <p class="text-zinc-400 text-sm">Your Imagination</p>
+                    </div>
                 </div>
-                <ul class="space-y-2.5 mb-6">
-                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Unlimited Taps</span></li>
-                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Non-Erasable Printing</span></li>
-                    <li class="flex items-center gap-2"><span class="material-icons-round" style="font-size:16px;color:#FFC332;">check_circle</span><span class="text-zinc-300 text-xs">Edit Info Anytime (Unlimited)</span></li>
-                </ul>
-                <a href="{% url 'accounts:register' %}" class="block text-center py-3 rounded-xl font-bold text-sm transition-all hover:scale-[1.02]" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">Order Now</a>
+            </div>
+        </div>
+        
+        <!-- Price Summary & Order Section - Ultra Premium -->
+        <div class="max-w-4xl mx-auto">
+            <div class="relative p-8 sm:p-10 rounded-3xl" style="background:linear-gradient(135deg,rgba(255,195,50,.08),rgba(255,195,50,.03));border:2px solid rgba(255,195,50,.3);box-shadow:0 20px 60px rgba(255,195,50,.2), inset 0 1px 0 rgba(255,255,255,.1);backdrop-filter:blur(20px);">
+                <!-- Decorative Corner Accents -->
+                <div class="absolute top-0 left-0 w-20 h-20 border-t-2 border-l-2 border-primary rounded-tl-3xl opacity-50"></div>
+                <div class="absolute bottom-0 right-0 w-20 h-20 border-b-2 border-r-2 border-primary rounded-br-3xl opacity-50"></div>
+                
+                <div class="relative z-10">
+                    <div class="text-center mb-8">
+                        <div class="inline-flex items-center gap-2 mb-4">
+                            <span class="material-icons-round text-primary text-sm">verified</span>
+                            <span class="text-zinc-400 text-sm font-medium">Your Selection</span>
+                        </div>
+                        <h3 class="text-2xl sm:text-3xl font-bold text-white mb-6">
+                            <span id="selected-finish" class="capitalize inline-flex items-center gap-2" style="color: #FFC332;">
+                                Matte
+                            </span>
+                            <span class="text-zinc-600 mx-2">•</span>
+                            <span id="selected-color" class="capitalize" style="color: #FFC332;">Black Gold</span>
+                        </h3>
+                        
+                        <!-- Pricing Display -->
+                        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8">
+                            <div class="flex items-baseline gap-3">
+                                <span class="text-2xl sm:text-3xl line-through text-zinc-600 font-medium" id="original-price">₹713</span>
+                                <span class="text-5xl sm:text-6xl font-black tracking-tight" style="background:linear-gradient(135deg, #FFC332 0%, #fff 50%, #FFC332 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;" id="discounted-price">₹499</span>
+                            </div>
+                            <div class="flex items-center gap-2 px-4 py-2 rounded-full" style="background:linear-gradient(135deg,rgba(239,68,68,.2),rgba(239,68,68,.1));border:2px solid rgba(239,68,68,.3);">
+                                <span class="material-icons-round text-red-500" style="font-size:18px;">local_offer</span>
+                                <span class="text-red-400 font-black text-base uppercase tracking-wider">Save 30%</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Features Grid -->
+                    <div class="grid sm:grid-cols-2 gap-3 mb-8 max-w-2xl mx-auto">
+                        <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(255,195,50,.15);">
+                                <span class="material-icons-round text-primary" style="font-size:18px;">all_inclusive</span>
+                            </div>
+                            <span class="text-zinc-300 text-sm font-medium">Unlimited Taps & Updates</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(255,195,50,.15);">
+                                <span class="material-icons-round text-primary" style="font-size:18px;">verified_user</span>
+                            </div>
+                            <span class="text-zinc-300 text-sm font-medium">Non-Erasable Printing</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(255,195,50,.15);">
+                                <span class="material-icons-round text-primary" style="font-size:18px;">cloud_done</span>
+                            </div>
+                            <span class="text-zinc-300 text-sm font-medium">Lifetime Profile Access</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);">
+                            <div class="w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0" style="background:rgba(255,195,50,.15);">
+                                <span class="material-icons-round text-primary" style="font-size:18px;">local_shipping</span>
+                            </div>
+                            <span class="text-zinc-300 text-sm font-medium">Fast Delivery (5-7 Days)</span>
+                        </div>
+                    </div>
+                    
+                    <!-- CTA Button -->
+                    <div class="text-center">
+                        <a href="{% url 'accounts:register' %}" id="order-btn" class="group inline-flex items-center justify-center gap-3 py-5 px-12 rounded-2xl font-black text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl relative overflow-hidden" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;box-shadow:0 12px 40px rgba(255,195,50,.4);">
+                            <span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></span>
+                            <span class="relative">Order Your Card Now</span>
+                            <span class="material-icons-round relative text-2xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                        <p class="text-zinc-500 text-sm mt-4 flex items-center justify-center gap-2">
+                            <span class="material-icons-round text-green-500" style="font-size:16px;">lock</span>
+                            Secure checkout • Free shipping on orders above ₹999
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </section>
+
+<script>
+let selectedFinish = 'matte';
+let selectedColor = 'blackgold';
+
+const pricing = {
+    'matte': { original: 713, discounted: 499 },
+    'gloss': { original: 713, discounted: 499 },
+    'metal': { original: 1427, discounted: 999 }
+};
+
+function selectFinish(finish) {
+    selectedFinish = finish;
+    
+    // Update button styles with enhanced animations
+    document.querySelectorAll('.finish-btn').forEach(btn => {
+        const underline = btn.querySelector('div:last-child');
+        if (btn.dataset.finish === finish) {
+            btn.style.border = '2px solid rgba(255,195,50,.4)';
+            btn.style.color = '#FFC332';
+            btn.style.background = 'linear-gradient(135deg,rgba(255,195,50,.12),rgba(255,195,50,.08))';
+            btn.style.boxShadow = '0 4px 20px rgba(255,195,50,.15)';
+            if (underline) underline.style.transform = 'scaleX(1)';
+        } else {
+            btn.style.border = '2px solid rgba(255,255,255,.15)';
+            btn.style.color = '#fff';
+            btn.style.background = 'rgba(255,255,255,.02)';
+            btn.style.boxShadow = 'none';
+            if (underline) underline.style.transform = 'scaleX(0)';
+        }
+    });
+    
+    updatePrice();
+}
+
+function selectColor(color) {
+    selectedColor = color;
+    
+    // Reset all cards to default state
+    document.querySelectorAll('.color-card').forEach(card => {
+        // Check if it's the black gold card (default has different border)
+        const isBlackGold = card.querySelector('img[alt="Black Gold Card"]') !== null;
+        if (isBlackGold && color !== 'blackgold') {
+            card.style.border = '1px solid rgba(255,255,255,.1)';
+            card.style.background = 'linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02))';
+            card.style.boxShadow = '0 10px 40px rgba(0,0,0,.3)';
+        } else if (!isBlackGold) {
+            card.style.border = '1px solid rgba(255,255,255,.1)';
+            card.style.background = 'linear-gradient(135deg,rgba(255,255,255,.05),rgba(255,255,255,.02))';
+            card.style.boxShadow = '0 10px 40px rgba(0,0,0,.3)';
+        }
+    });
+    
+    // Highlight selected card
+    const selectedCard = event.currentTarget;
+    selectedCard.style.border = '2px solid rgba(255,195,50,.4)';
+    selectedCard.style.background = 'linear-gradient(135deg,rgba(255,195,50,.12),rgba(255,195,50,.04))';
+    selectedCard.style.boxShadow = '0 10px 40px rgba(255,195,50,.2), 0 0 60px rgba(255,195,50,.1)';
+    
+    updatePrice();
+}
+
+function updatePrice() {
+    const prices = pricing[selectedFinish];
+    document.getElementById('original-price').textContent = '₹' + prices.original;
+    document.getElementById('discounted-price').textContent = '₹' + prices.discounted;
+    document.getElementById('selected-finish').textContent = selectedFinish.charAt(0).toUpperCase() + selectedFinish.slice(1);
+    
+    const colorNames = {
+        'white': 'White',
+        'pink': 'Pink',
+        'blackgold': 'Black Gold',
+        'custom': 'Custom Color'
+    };
+    document.getElementById('selected-color').textContent = colorNames[selectedColor] || selectedColor;
+    
+    // Update order button link with selected options
+    const orderBtn = document.getElementById('order-btn');
+    orderBtn.href = `{% url 'accounts:register' %}?finish=${selectedFinish}&color=${selectedColor}`;
+}
+
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', function() {
+    // Trigger initial selection to set default styles
+    const blackGoldCard = document.querySelector('.color-card img[alt="Black Gold Card"]').closest('.color-card');
+    if (blackGoldCard) {
+        blackGoldCard.click();
+    }
+});
+</script>
 
 <!-- Cards for Everyone Section (Black & Gold Theme) -->
 <section class="py-16 sm:py-24 bg-zinc-900" id="for-everyone">
