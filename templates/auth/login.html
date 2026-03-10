@@ -1,0 +1,184 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Sign In - The Last Card{% endblock %}
+
+{% block navigation %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen flex" style="background: #09090b;">
+    <!-- Left Side - Branding -->
+    <div class="hidden lg:flex lg:w-1/2 bg-zinc-900 relative overflow-hidden items-center justify-center p-12">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 max-w-md text-center">
+            <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-3 mb-12">
+                <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="material-icons-round text-black text-2xl">contactless</span>
+                </div>
+                <span class="font-display text-2xl tracking-wider uppercase font-bold" style="color: #fbad05;">The Last Card</span>
+            </a>
+            
+            <h2 class="font-display text-4xl text-white mb-6">Welcome Back!</h2>
+            <p class="text-zinc-400 text-lg mb-8">
+                Sign in to manage your luxury NFC business cards and track your networking success.
+            </p>
+            
+            <!-- Live Stats -->
+            <div class="grid grid-cols-3 gap-4 mb-10">
+                <div class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                    <div class="text-3xl font-bold" style="color: #fbad05;">10K+</div>
+                    <div class="text-zinc-400 text-xs uppercase tracking-wider mt-1">Active Users</div>
+                </div>
+                <div class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                    <div class="text-3xl font-bold" style="color: #fbad05;">1M+</div>
+                    <div class="text-zinc-400 text-xs uppercase tracking-wider mt-1">Card Taps</div>
+                </div>
+                <div class="bg-white/5 rounded-2xl p-4 border border-white/10">
+                    <div class="text-3xl font-bold" style="color: #fbad05;">50+</div>
+                    <div class="text-zinc-400 text-xs uppercase tracking-wider mt-1">Countries</div>
+                </div>
+            </div>
+            
+            <!-- Features List -->
+            <div class="space-y-4 text-left">
+                <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#fbad05]/30 transition-colors">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: rgba(251, 173, 5, 0.2);">
+                        <span class="material-icons-round" style="color: #fbad05;">tap_and_play</span>
+                    </div>
+                    <span class="text-zinc-300">Instant NFC profile sharing</span>
+                </div>
+                <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#fbad05]/30 transition-colors">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: rgba(251, 173, 5, 0.2);">
+                        <span class="material-icons-round" style="color: #fbad05;">insights</span>
+                    </div>
+                    <span class="text-zinc-300">Real-time analytics dashboard</span>
+                </div>
+                <div class="flex items-center gap-4 p-4 bg-white/5 rounded-xl border border-white/10 hover:border-[#fbad05]/30 transition-colors">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center" style="background: rgba(251, 173, 5, 0.2);">
+                        <span class="material-icons-round" style="color: #fbad05;">palette</span>
+                    </div>
+                    <span class="text-zinc-300">Unlimited profile customization</span>
+                </div>
+            </div>
+            
+            <!-- Customer Testimonial -->
+            <div class="mt-8 bg-white/5 rounded-2xl p-6 border border-white/10">
+                <div class="flex items-center gap-1 mb-3">
+                    <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                    <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                    <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                    <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                    <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                </div>
+                <p class="text-white italic text-sm leading-relaxed mb-4">
+                    "These NFC cards have revolutionized my networking. I close more deals because people actually save my contact info now!"
+                </p>
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold text-sm">MR</div>
+                    <div>
+                        <div class="text-white font-semibold text-sm">Michael Rodriguez</div>
+                        <div class="text-zinc-400 text-xs">CEO, TechVentures</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust Badge -->
+            <div class="mt-6 flex items-center justify-center gap-4">
+                <div class="flex items-center gap-2 text-zinc-500 text-sm">
+                    <span class="material-icons-round text-green-500 text-lg">verified_user</span>
+                    <span>Secure Login</span>
+                </div>
+                <div class="w-1 h-1 rounded-full bg-zinc-600"></div>
+                <div class="flex items-center gap-2 text-zinc-500 text-sm">
+                    <span class="material-icons-round text-green-500 text-lg">lock</span>
+                    <span>256-bit SSL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side - Form -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8" style="background: #09090b;">
+        <div class="w-full max-w-md">
+            <!-- Mobile Logo -->
+            <a href="{% url 'landing:home' %}" class="lg:hidden flex items-center justify-center gap-2 mb-8">
+                <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center">
+                    <span class="material-icons-round text-black">contactless</span>
+                </div>
+                <span class="font-display text-xl tracking-wider uppercase font-bold" style="color: #fbad05;">The Last Card</span>
+            </a>
+
+            <div class="mb-8">
+                <h1 class="font-display text-3xl mb-2 text-white">Sign In</h1>
+                <p class="text-zinc-400">Enter your credentials to access your account</p>
+            </div>
+
+            <!-- Login Form -->
+            <form method="post" novalidate class="space-y-5">
+                {% csrf_token %}
+
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-2 text-zinc-300">Email</label>
+                    <input type="email" id="email" name="email"
+                        class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white placeholder-zinc-500 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all {% if form.email.errors %}border-red-500{% endif %}"
+                        placeholder="name@company.com"
+                        value="{{ form.email.value|default:'' }}" autocomplete="email" required>
+                    {% if form.email.errors %}
+                    <p class="mt-1 text-sm text-red-500">{{ form.email.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium mb-2 text-zinc-300">Password</label>
+                    <div class="relative">
+                        <input type="password" id="password" name="password"
+                            class="w-full px-4 py-3 pr-12 rounded-xl border border-zinc-700 bg-zinc-800 text-white placeholder-zinc-500 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all {% if form.password.errors %}border-red-500{% endif %}"
+                            placeholder="Enter your password" autocomplete="current-password" required>
+                        <button type="button" class="absolute right-4 top-1/2 -translate-y-1/2 text-zinc-400 hover:text-zinc-200" onclick="togglePassword()">
+                            <span class="material-icons-round" id="eyeIcon">visibility</span>
+                        </button>
+                    </div>
+                    {% if form.password.errors %}
+                    <p class="mt-1 text-sm text-red-500">{{ form.password.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="flex items-center justify-between">
+                    <label class="flex items-center gap-2 cursor-pointer">
+                        <input type="checkbox" name="remember_me" class="w-4 h-4 rounded border-zinc-600 text-primary focus:ring-primary bg-zinc-800">
+                        <span class="text-sm text-zinc-400">Remember me</span>
+                    </label>
+                    <a href="{% url 'accounts:forgot_password' %}" class="text-sm text-primary hover:underline font-medium">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="w-full py-4 bg-primary text-black font-bold rounded-xl hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                    Sign In
+                    <span class="material-icons-round">arrow_forward</span>
+                </button>
+            </form>
+
+            <div class="mt-8 pt-6 border-t border-zinc-700 text-center">
+                <p class="text-sm text-zinc-500">Don't have an account? <a href="{% url 'accounts:register' %}" class="text-primary font-semibold hover:underline">Create one</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function togglePassword() {
+        const passwordInput = document.getElementById('password');
+        const eyeIcon = document.getElementById('eyeIcon');
+        if (passwordInput.type === 'password') {
+            passwordInput.type = 'text';
+            eyeIcon.textContent = 'visibility_off';
+        } else {
+            passwordInput.type = 'password';
+            eyeIcon.textContent = 'visibility';
+        }
+    }
+</script>
+{% endblock %}

@@ -1,0 +1,518 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Set Up Your Profile - The Last Card{% endblock %}
+
+{% block navigation %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen flex flex-col lg:flex-row">
+    <!-- Left Side - Live Preview -->
+    <div class="hidden lg:block lg:w-1/2 bg-[#0A0A0A] relative overflow-y-auto" style="max-height: 100vh;">
+        <div class="sticky top-0 p-4 bg-zinc-900/80 backdrop-blur-sm border-b border-zinc-800 z-10">
+            <div class="flex items-center justify-between">
+                <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-2">
+                    <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center shadow-lg">
+                        <span class="material-icons-round text-black text-xl">contactless</span>
+                    </div>
+                    <span class="font-display text-lg tracking-wider uppercase font-bold" style="color: #fbad05;">The Last Card</span>
+                </a>
+                <span class="text-xs text-zinc-500 uppercase tracking-wider bg-zinc-800 px-3 py-1 rounded-full">Live Preview</span>
+            </div>
+        </div>
+        
+        <!-- Profile Preview (matching public.html) -->
+        <div class="p-6" id="livePreview">
+            <div class="max-w-md mx-auto">
+                <!-- Cover Photo -->
+                <div class="h-40 w-full relative overflow-hidden rounded-t-2xl bg-[#161616]">
+                    <div class="w-full h-full gold-gradient"></div>
+                    <div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);"></div>
+                </div>
+
+                <div class="relative bg-[#161616] rounded-b-2xl pb-6 border border-zinc-800 border-t-0">
+                    <div class="flex flex-col items-center -mt-16 px-4">
+                        <!-- Profile Photo -->
+                        <div class="relative">
+                            <div id="previewPhoto" class="w-28 h-28 rounded-full border-[6px] border-[#0A0A0A] shadow-2xl overflow-hidden bg-[#161616] ring-2 ring-primary/30">
+                                <div class="w-full h-full gold-gradient flex items-center justify-center">
+                                    <span id="previewInitial" class="text-3xl font-bold text-black">?</span>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-2 right-2 w-4 h-4 bg-green-500 border-4 border-[#0A0A0A] rounded-full"></div>
+                        </div>
+
+                        <!-- Profile Info -->
+                        <div class="text-center mt-4">
+                            <h1 id="previewName" class="text-xl font-extrabold" style="color: #fbad05;">Your Name</h1>
+                            <p id="previewDesignation" class="text-sm text-slate-300 font-medium"></p>
+                            <p id="previewCompany" class="text-xs text-slate-400 mt-1 flex items-center justify-center gap-1">
+                                <span class="material-icons-round text-xs">business_center</span>
+                                <span></span>
+                            </p>
+                        </div>
+
+                        <!-- Action Buttons Preview -->
+                        <div class="grid grid-cols-2 gap-2 mt-6 w-full px-4">
+                            <div id="previewWhatsApp" class="col-span-2 flex items-center justify-center gap-2 bg-[#25D366]/50 text-white/50 px-4 py-2.5 rounded-lg font-bold text-sm hidden">
+                                <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                                WhatsApp
+                            </div>
+                            
+                            <div class="flex items-center justify-center gap-1 bg-zinc-800/80 border border-zinc-700 text-white/50 px-3 py-2.5 rounded-lg font-bold text-xs">
+                                <span class="material-icons-round text-base">person_add</span>
+                                Save
+                            </div>
+                            
+                            <div class="flex items-center justify-center gap-1 gold-gradient text-black/50 px-3 py-2.5 rounded-lg font-bold text-xs">
+                                <span class="material-icons-round text-base">share</span>
+                                Share
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- About Section Preview -->
+                <div id="previewBioSection" class="mt-4 bg-zinc-800/50 rounded-xl p-4 border border-zinc-700 hidden">
+                    <h3 class="text-sm font-bold mb-2" style="color: #fbad05;">About</h3>
+                    <p id="previewBio" class="text-slate-300 text-sm leading-relaxed"></p>
+                </div>
+
+                <!-- Contact Section Preview -->
+                <div id="previewContactSection" class="mt-4 bg-zinc-800/50 rounded-xl p-4 border border-zinc-700 hidden">
+                    <h3 class="text-xs font-bold mb-3 uppercase tracking-widest" style="color: #fbad05;">Contact Details</h3>
+                    <div class="space-y-2">
+                        <div id="previewPhoneRow" class="flex items-center gap-3 text-slate-300 hidden">
+                            <span class="material-icons-round text-lg text-primary">call</span>
+                            <span id="previewPhone" class="text-sm font-medium"></span>
+                        </div>
+                        <div id="previewEmailRow" class="flex items-center gap-3 text-slate-300 hidden">
+                            <span class="material-icons-round text-lg text-primary">mail</span>
+                            <span id="previewEmail" class="text-sm font-medium"></span>
+                        </div>
+                        <div id="previewWebsiteRow" class="flex items-center gap-3 text-slate-300 hidden">
+                            <span class="material-icons-round text-lg text-primary">language</span>
+                            <span id="previewWebsite" class="text-sm font-medium"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer Preview -->
+                <div class="mt-4 text-center py-4 border-t border-zinc-800">
+                    <p class="text-zinc-600 text-xs">Powered by The Last Card</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side - Form -->
+    <div class="w-full lg:w-1/2 flex items-start justify-center p-8 bg-zinc-950 overflow-y-auto" style="max-height: 100vh;">
+        <div class="w-full max-w-xl py-8">
+            <!-- Mobile Logo -->
+            <a href="{% url 'landing:home' %}" class="lg:hidden flex items-center justify-center gap-2 mb-6">
+                <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center">
+                    <span class="material-icons-round text-black">contactless</span>
+                </div>
+                <span class="font-display text-xl tracking-wider uppercase font-bold" style="color: #fbad05;">The Last Card</span>
+            </a>
+
+            <!-- Mobile Progress -->
+            <div class="lg:hidden flex items-center justify-center gap-2 mb-6">
+                <div class="w-8 h-8 rounded-full gold-gradient flex items-center justify-center text-black text-sm font-bold">1</div>
+                <div class="w-8 h-1 bg-zinc-700 rounded"></div>
+                <div class="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center text-sm font-bold">2</div>
+                <div class="w-8 h-1 bg-zinc-700 rounded"></div>
+                <div class="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center text-sm font-bold">3</div>
+            </div>
+
+            <!-- Progress Steps (Desktop) -->
+            <div class="hidden lg:flex items-center justify-between mb-8 bg-zinc-900 rounded-xl p-4 border border-zinc-800">
+                <div class="flex items-center gap-3">
+                    <div class="w-8 h-8 rounded-full gold-gradient flex items-center justify-center text-black text-sm font-bold">1</div>
+                    <span class="text-sm font-medium" style="color: #fbad05;">Profile Info</span>
+                </div>
+                <div class="flex-1 h-0.5 bg-zinc-700 mx-4"></div>
+                <div class="flex items-center gap-3 opacity-50">
+                    <div class="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center text-sm font-bold">2</div>
+                    <span class="text-sm">Theme</span>
+                </div>
+                <div class="flex-1 h-0.5 bg-zinc-700 mx-4"></div>
+                <div class="flex items-center gap-3 opacity-50">
+                    <div class="w-8 h-8 rounded-full bg-zinc-700 flex items-center justify-center text-sm font-bold">3</div>
+                    <span class="text-sm">Complete</span>
+                </div>
+            </div>
+
+            <div class="mb-8">
+                <h1 class="font-display text-3xl mb-2" style="color: #fbad05;">Set Up Your Profile</h1>
+                <p class="text-zinc-400">Just fill in the basics — you can add more details later from your dashboard</p>
+            </div>
+
+            <form method="post" enctype="multipart/form-data" class="space-y-6" id="profileForm">
+                {% csrf_token %}
+                
+                <!-- Profile Photo (simple) -->
+                <div class="flex items-center gap-6 bg-zinc-900 p-4 rounded-xl border border-zinc-800">
+                    <div class="relative">
+                        <div id="photoPreview" class="w-20 h-20 rounded-full bg-zinc-800 flex items-center justify-center overflow-hidden border-2 border-dashed border-zinc-600">
+                            {% if profile.profile_photo %}
+                            <img src="{{ profile.profile_photo.url }}" alt="Profile" class="w-full h-full object-cover">
+                            {% else %}
+                            <span class="material-icons-round text-3xl text-zinc-500">person</span>
+                            {% endif %}
+                        </div>
+                        <label for="profile_photo" class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full gold-gradient flex items-center justify-center cursor-pointer shadow-lg hover:scale-110 transition-transform">
+                            <span class="material-icons-round text-black text-sm">add_a_photo</span>
+                        </label>
+                        <input type="file" id="profile_photo" name="profile_photo" accept="image/*" class="hidden">
+                    </div>
+                    <div>
+                        <p class="font-medium text-white">Profile Photo</p>
+                        <p class="text-sm text-zinc-500">Optional — you can add later</p>
+                    </div>
+                </div>
+
+                <!-- Essential Fields -->
+                <div class="grid sm:grid-cols-2 gap-4">
+                    <!-- Full Name (Required) -->
+                    <div class="sm:col-span-2">
+                        <label for="full_name" class="block text-sm font-medium mb-2 text-zinc-300">Full Name <span class="text-red-500">*</span></label>
+                        <input type="text" id="full_name" name="full_name" required
+                            class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                            placeholder="John Doe"
+                            value="{{ profile.full_name }}">
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div>
+                        <label for="phone" class="block text-sm font-medium mb-2 text-zinc-300">Phone Number</label>
+                        <input type="tel" id="phone" name="phone"
+                            class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                            placeholder="+1 (555) 123-4567"
+                            value="{{ profile.phone_primary }}">
+                    </div>
+
+                    <!-- Public Email -->
+                    <div>
+                        <label for="email_public" class="block text-sm font-medium mb-2 text-zinc-300">Public Email</label>
+                        <input type="email" id="email_public" name="email_public"
+                            class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                            placeholder="john@company.com"
+                            value="{{ profile.email_public|default:request.user.email }}">
+                    </div>
+                </div>
+
+                <!-- Optional Fields (Collapsible) -->
+                <div class="bg-zinc-900 rounded-xl border border-zinc-800 overflow-hidden">
+                    <button type="button" onclick="document.getElementById('optionalFields').classList.toggle('hidden'); this.querySelector('.expand-icon').textContent = document.getElementById('optionalFields').classList.contains('hidden') ? 'expand_more' : 'expand_less';"
+                        class="w-full flex items-center justify-between p-4 hover:bg-zinc-800/50 transition-colors">
+                        <span class="text-sm font-semibold text-zinc-300 flex items-center gap-2">
+                            <span class="material-icons-round text-primary text-lg">tune</span>
+                            Add More Details (Optional)
+                        </span>
+                        <span class="material-icons-round text-zinc-400 expand-icon">expand_more</span>
+                    </button>
+                    <div id="optionalFields" class="hidden px-4 pb-4 space-y-4">
+                        <div class="grid sm:grid-cols-2 gap-4">
+                            <!-- Company -->
+                            <div>
+                                <label for="company" class="block text-sm font-medium mb-2 text-zinc-300">Company</label>
+                                <input type="text" id="company" name="company"
+                                    class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                    placeholder="Acme Inc."
+                                    value="{{ profile.company }}">
+                            </div>
+
+                            <!-- Job Title -->
+                            <div>
+                                <label for="designation" class="block text-sm font-medium mb-2 text-zinc-300">Job Title</label>
+                                <input type="text" id="designation" name="designation"
+                                    class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                    placeholder="Marketing Director"
+                                    value="{{ profile.designation }}">
+                            </div>
+
+                            <!-- Website -->
+                            <div class="sm:col-span-2">
+                                <label for="website" class="block text-sm font-medium mb-2 text-zinc-300">Website</label>
+                                <input type="url" id="website" name="website"
+                                    class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                    placeholder="https://yourwebsite.com"
+                                    value="{{ profile.website }}">
+                            </div>
+
+                            <!-- Bio -->
+                            <div class="sm:col-span-2">
+                                <label for="bio" class="block text-sm font-medium mb-2 text-zinc-300">Short Bio</label>
+                                <textarea id="bio" name="bio" rows="2"
+                                    class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all resize-none placeholder-zinc-500"
+                                    placeholder="Tell people a bit about yourself...">{{ profile.bio }}</textarea>
+                            </div>
+                        </div>
+
+                        <!-- Cover Photo -->
+                        <div>
+                            <div class="flex items-center gap-4 mb-2">
+                                <span class="material-icons-round text-primary text-lg">photo_library</span>
+                                <div>
+                                    <p class="font-medium text-white text-sm">Cover Photo</p>
+                                    <p class="text-xs text-zinc-500">Wide image, recommended 1200x400px</p>
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <div id="coverPreview" class="h-24 w-full rounded-lg bg-zinc-800 flex items-center justify-center overflow-hidden border-2 border-dashed border-zinc-600">
+                                    {% if profile.cover_photo %}
+                                    <img src="{{ profile.cover_photo.url }}" alt="Cover" class="w-full h-full object-cover">
+                                    {% else %}
+                                    <span class="text-zinc-500 text-sm">No cover photo</span>
+                                    {% endif %}
+                                </div>
+                                <label for="cover_photo" class="absolute bottom-2 right-2 px-3 py-1.5 rounded-lg gold-gradient flex items-center gap-1 cursor-pointer shadow-lg hover:scale-105 transition-transform">
+                                    <span class="material-icons-round text-black text-sm">add_photo_alternate</span>
+                                    <span class="text-black font-semibold text-xs">Upload</span>
+                                </label>
+                                <input type="file" id="cover_photo" name="cover_photo" accept="image/*" class="hidden">
+                            </div>
+                        </div>
+
+                        <!-- Social Media -->
+                        <div>
+                            <h4 class="text-sm font-semibold mb-3 text-white flex items-center gap-2">
+                                <span class="material-icons-round text-primary text-lg">share</span>
+                                Social Media Links
+                            </h4>
+                            <div class="grid sm:grid-cols-2 gap-3">
+                                <div>
+                                    <label for="instagram" class="block text-xs font-medium mb-1 text-zinc-400">Instagram</label>
+                                    <input type="text" id="instagram" name="instagram"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.instagram|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="linkedin" class="block text-xs font-medium mb-1 text-zinc-400">LinkedIn</label>
+                                    <input type="text" id="linkedin" name="linkedin"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.linkedin|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="twitter" class="block text-xs font-medium mb-1 text-zinc-400">Twitter / X</label>
+                                    <input type="text" id="twitter" name="twitter"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.twitter|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="facebook" class="block text-xs font-medium mb-1 text-zinc-400">Facebook</label>
+                                    <input type="text" id="facebook" name="facebook"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.facebook|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="youtube" class="block text-xs font-medium mb-1 text-zinc-400">YouTube</label>
+                                    <input type="text" id="youtube" name="youtube"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="channel or username"
+                                        value="{{ profile.social_links.youtube|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="snapchat" class="block text-xs font-medium mb-1 text-zinc-400">Snapchat</label>
+                                    <input type="text" id="snapchat" name="snapchat"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.snapchat|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="pinterest" class="block text-xs font-medium mb-1 text-zinc-400">Pinterest</label>
+                                    <input type="text" id="pinterest" name="pinterest"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.pinterest|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="tiktok" class="block text-xs font-medium mb-1 text-zinc-400">TikTok</label>
+                                    <input type="text" id="tiktok" name="tiktok"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.tiktok|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="github" class="block text-xs font-medium mb-1 text-zinc-400">GitHub</label>
+                                    <input type="text" id="github" name="github"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.github|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="telegram" class="block text-xs font-medium mb-1 text-zinc-400">Telegram</label>
+                                    <input type="text" id="telegram" name="telegram"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.telegram|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="threads" class="block text-xs font-medium mb-1 text-zinc-400">Threads</label>
+                                    <input type="text" id="threads" name="threads"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="username"
+                                        value="{{ profile.social_links.threads|default:'' }}">
+                                </div>
+                                <div>
+                                    <label for="whatsapp_channel" class="block text-xs font-medium mb-1 text-zinc-400">WhatsApp Channel</label>
+                                    <input type="text" id="whatsapp_channel" name="whatsapp_channel"
+                                        class="w-full px-3 py-2.5 rounded-lg border border-zinc-700 bg-zinc-800 text-white text-sm focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all placeholder-zinc-500"
+                                        placeholder="channel link or ID"
+                                        value="{{ profile.social_links.whatsapp_channel|default:'' }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-4 pt-4">
+                    <button type="submit" class="flex-1 py-4 bg-primary text-black font-bold rounded-xl hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                        Continue to Theme Selection
+                        <span class="material-icons-round">arrow_forward</span>
+                    </button>
+                </div>
+            </form>
+
+            <p class="mt-6 text-center text-sm text-zinc-500">
+                You can always update this information later from your dashboard
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+// Live Preview Updates
+function updatePreview() {
+    // Name
+    const fullName = document.getElementById('full_name').value || 'Your Name';
+    document.getElementById('previewName').textContent = fullName;
+    document.getElementById('previewInitial').textContent = fullName.charAt(0).toUpperCase() || '?';
+    
+    // Designation
+    const designation = document.getElementById('designation').value;
+    const previewDesignation = document.getElementById('previewDesignation');
+    previewDesignation.textContent = designation;
+    previewDesignation.style.display = designation ? 'block' : 'none';
+    
+    // Company
+    const company = document.getElementById('company').value;
+    const previewCompany = document.getElementById('previewCompany');
+    previewCompany.style.display = company ? 'flex' : 'none';
+    previewCompany.querySelector('span:last-child').textContent = company;
+    
+    // Phone
+    const phone = document.getElementById('phone').value;
+    const phoneRow = document.getElementById('previewPhoneRow');
+    const whatsApp = document.getElementById('previewWhatsApp');
+    phoneRow.classList.toggle('hidden', !phone);
+    whatsApp.classList.toggle('hidden', !phone);
+    document.getElementById('previewPhone').textContent = phone;
+    
+    // Email
+    const email = document.getElementById('email_public').value;
+    const emailRow = document.getElementById('previewEmailRow');
+    emailRow.classList.toggle('hidden', !email);
+    document.getElementById('previewEmail').textContent = email;
+    
+    // Website
+    const website = document.getElementById('website').value;
+    const websiteRow = document.getElementById('previewWebsiteRow');
+    websiteRow.classList.toggle('hidden', !website);
+    document.getElementById('previewWebsite').textContent = website.replace(/^https?:\/\//, '');
+    
+    // Bio
+    const bio = document.getElementById('bio').value;
+    const bioSection = document.getElementById('previewBioSection');
+    bioSection.classList.toggle('hidden', !bio);
+    document.getElementById('previewBio').textContent = bio;
+    
+    // Contact Section visibility
+    const contactSection = document.getElementById('previewContactSection');
+    contactSection.classList.toggle('hidden', !phone && !email && !website);
+}
+
+// Photo Preview
+function handlePhotoPreview(input) {
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        if (file.size > 512000) {
+            alert('Profile photo must be under 500KB. Please choose a smaller image.');
+            input.value = '';
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Update form preview
+            const formPreview = document.getElementById('photoPreview');
+            formPreview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="w-full h-full object-cover">`;
+            
+            // Update live preview
+            const livePreview = document.getElementById('previewPhoto');
+            livePreview.innerHTML = `<img src="${e.target.result}" alt="Preview" class="w-full h-full object-cover">`;
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Cover Photo Preview
+function handleCoverPreview(input) {
+    if (input.files && input.files[0]) {
+        const file = input.files[0];
+        if (file.size > 512000) {
+            alert('Cover photo must be under 500KB. Please choose a smaller image.');
+            input.value = '';
+            return;
+        }
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            // Update form preview
+            const formPreview = document.getElementById('coverPreview');
+            formPreview.innerHTML = `<img src="${e.target.result}" alt="Cover Preview" class="w-full h-full object-cover">`;
+            
+            // Update live preview cover (find the cover photo div in preview section)
+            const livePreviewCover = document.querySelector('#livePreview .h-40');
+            if (livePreviewCover) {
+                livePreviewCover.innerHTML = `<img src="${e.target.result}" alt="Cover" class="w-full h-full object-cover"><div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);"></div>`;
+            }
+        };
+        reader.readAsDataURL(file);
+    }
+}
+
+// Add event listeners
+document.getElementById('profile_photo').addEventListener('change', function() { handlePhotoPreview(this); });
+document.getElementById('cover_photo').addEventListener('change', function() { handleCoverPreview(this); });
+document.getElementById('full_name').addEventListener('input', updatePreview);
+document.getElementById('designation').addEventListener('input', updatePreview);
+document.getElementById('company').addEventListener('input', updatePreview);
+document.getElementById('phone').addEventListener('input', updatePreview);
+document.getElementById('email_public').addEventListener('input', updatePreview);
+document.getElementById('website').addEventListener('input', updatePreview);
+document.getElementById('bio').addEventListener('input', updatePreview);
+
+// Initialize preview on load
+document.addEventListener('DOMContentLoaded', function() {
+    updatePreview();
+    
+    // If there's an existing profile photo, show it in live preview
+    {% if profile.profile_photo %}
+    document.getElementById('previewPhoto').innerHTML = `<img src="{{ profile.profile_photo.url }}" alt="Preview" class="w-full h-full object-cover">`;
+    {% endif %}
+    
+    // If there's an existing cover photo, show it in live preview
+    {% if profile.cover_photo %}
+    const livePreviewCover = document.querySelector('#livePreview .h-40');
+    if (livePreviewCover) {
+        livePreviewCover.innerHTML = `<img src="{{ profile.cover_photo.url }}" alt="Cover" class="w-full h-full object-cover"><div class="absolute inset-0" style="background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.8) 100%);"></div>`;
+    }
+    {% endif %}
+});
+</script>
+{% endblock %}

@@ -1,0 +1,1096 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}The Last Card - Smart NFC Business Cards{% endblock %}
+{% block meta_description %}The Last Business Card You'll Ever Need. Smart. Tap. Connect. Share your contact info, social media, and portfolio in a single tap using luxury NFC technology.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 overflow-hidden" style="background: #09090b;">
+    <!-- Background Gradient for Luxurious Feel -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at top right, rgba(255,195,50,0.15), transparent 60%), linear-gradient(to bottom right, #18181b, #000, #09090b); opacity: 0.9;"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 hero-container">
+        <!-- LEFT SIDE: Text + Buttons -->
+        <div class="hero-text">
+            <h1 class="font-display mb-6 leading-tight" style="font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff;">
+                The <span style="color: #fbad05;">Last Business Card</span> You'll Ever Need.
+            </h1>
+            <p class="mb-6" style="font-size: 1.25rem; color: #cbd5e1; max-width: 36rem;">
+                   | Smart | Tap | Connect |  
+            </p>
+            <p class="mb-10" style="font-size: 1rem; color: #94a3b8; max-width: 36rem;">
+                Share your contact info, social media handles, website, and portfolio in a single tap using <span class="font-bold" style="color: #fbad05;">'THELASTCARD'</span>.
+            </p>
+            <div class="hero-buttons">
+                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-extrabold rounded-full hover:scale-105 transition-transform shadow-lg" style="padding: 1rem 2.5rem; font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    Get Your Card <span class="material-icons-round">shopping_bag</span>
+                </a>
+                <a href="#free-preview" class="text-primary font-bold rounded-full hover:bg-primary/10 transition-all" style="padding: 1rem 2.5rem; font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 2px solid rgba(255,195,50,0.3);">
+                    Get free preview<span class="material-icons-round">preview</span>
+                </a>
+            </div>
+            <div class="hero-trust">
+                <div class="flex -space-x-3">
+                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center text-black text-xs font-bold" style="border-color: #18181b;">JD</div>
+                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">AK</div>
+                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">SM</div>
+                </div>
+                <span style="font-size: 0.875rem; font-weight: 500; color: #94a3b8;">Trusted by 10,000+ Professionals</span>
+            </div>
+        </div>
+        
+        <!-- RIGHT SIDE: Video + Features Boxes -->
+        <div class="hero-video">
+            <div class="flex flex-col gap-4 w-full max-w-lg mx-auto">
+                <!-- Top Box: Video Placeholder -->
+                <div class="relative rounded-2xl overflow-hidden" style="aspect-ratio: 16/9; background: linear-gradient(135deg, #18181b, #09090b); border: 2px solid rgba(255,195,50,0.2); box-shadow: 0 10px 40px rgba(0,0,0,0.4);">
+                    <video src="{% static 'video/home2.mp4' %}" autoplay muted loop playsinline class="w-full h-full object-cover"></video>
+                    <!-- Glow -->
+                    <div class="absolute rounded-full hero-glow" style="top: -2rem; right: -2rem; width: 8rem; height: 8rem; background: rgba(255,195,50,0.2); filter: blur(40px); pointer-events: none;"></div>
+                </div>
+
+                <!-- Bottom Box: Six Feature Points with Popups -->
+                <div class="rounded-2xl p-5" style="background: linear-gradient(135deg, rgba(24,24,27,0.8), rgba(9,9,11,0.9)); border: 2px solid rgba(255,195,50,0.15); box-shadow: 0 10px 40px rgba(0,0,0,0.3);">
+                    <div class="grid grid-cols-2 gap-3">
+                        <!-- 1. Contact & Identity -->
+                        <div class="feature-chip" data-popup="popup-contact" onmouseenter="showFeaturePopup(event, 'popup-contact')">
+                            <span class="material-icons-round text-primary text-lg">contact_phone</span>
+                            <span class="text-white text-sm font-medium">Contact & Identity</span>
+                            <span class="material-icons-round text-zinc-500 text-sm ml-auto chip-arrow">expand_more</span>
+                        </div>
+                        <!-- 2. Social Media Presence -->
+                        <div class="feature-chip" data-popup="popup-social" onmouseenter="showFeaturePopup(event, 'popup-social')">
+                            <span class="material-icons-round text-primary text-lg">share</span>
+                            <span class="text-white text-sm font-medium">Social Media Presence</span>
+                            <span class="material-icons-round text-zinc-500 text-sm ml-auto chip-arrow">expand_more</span>
+                        </div>
+                        <!-- 3. Website & Portfolio -->
+                        <div class="feature-chip" data-popup="popup-website" onmouseenter="showFeaturePopup(event, 'popup-website')">
+                            <span class="material-icons-round text-primary text-lg">language</span>
+                            <span class="text-white text-sm font-medium">Website & Portfolio</span>
+                            <span class="material-icons-round text-zinc-500 text-sm ml-auto chip-arrow">expand_more</span>
+                        </div>
+                        <!-- 4. Media & Brand Showcase -->
+                        <div class="feature-chip" data-popup="popup-media" onmouseenter="showFeaturePopup(event, 'popup-media')">
+                            <span class="material-icons-round text-primary text-lg">perm_media</span>
+                            <span class="text-white text-sm font-medium">Media & Brand Showcase</span>
+                            <span class="material-icons-round text-zinc-500 text-sm ml-auto chip-arrow">expand_more</span>
+                        </div>
+                        <!-- 5. Business Tools & Payments -->
+                        <div class="feature-chip" data-popup="popup-business" onmouseenter="showFeaturePopup(event, 'popup-business')">
+                            <span class="material-icons-round text-primary text-lg">payments</span>
+                            <span class="text-white text-sm font-medium">Business Tools & Payments</span>
+                            <span class="material-icons-round text-zinc-500 text-sm ml-auto chip-arrow">expand_more</span>
+                        </div>
+                        <!-- 6. Lead Capture & Forms -->
+                        <div class="feature-chip" data-popup="popup-lead" onmouseenter="showFeaturePopup(event, 'popup-lead')">
+                            <span class="material-icons-round text-primary text-lg">assignment</span>
+                            <span class="text-white text-sm font-medium">Lead Capture & Forms</span>
+                            <span class="material-icons-round text-zinc-500 text-sm ml-auto chip-arrow">expand_more</span>
+                        </div>
+                    </div>
+
+                    <!-- Feature Popup (shared container, positioned below grid) -->
+                    <div id="feature-popup-container" class="feature-popup-container" style="display:none;">
+                        <div class="feature-popup-arrow"></div>
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span id="popup-icon" class="material-icons-round text-primary text-xl"></span>
+                                <h4 id="popup-title" class="text-white font-bold text-sm"></h4>
+                            </div>
+                            <span class="material-icons-round text-zinc-500 text-lg cursor-pointer hover:text-white transition-colors" onclick="closeFeaturePopup()">close</span>
+                        </div>
+                        <p id="popup-desc" class="text-zinc-400 text-xs mb-3 leading-relaxed"></p>
+                        <div id="popup-items" class="grid grid-cols-2 gap-1.5"></div>
+                        <p id="popup-footer" class="text-primary/70 text-xs mt-3 italic" style="display:none;"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Feature Popup Script -->
+<script>
+const featureData = {
+    'popup-contact': {
+        icon: 'contact_phone',
+        title: 'Contact & Identity',
+        desc: 'Everything needed to connect instantly.',
+        items: [
+            {icon: 'person', label: 'Name & Profile Photo'},
+            {icon: 'badge', label: 'Designation'},
+            {icon: 'business', label: 'Company Name'},
+            {icon: 'phone_in_talk', label: 'Phone (Tap to Call)'},
+            {icon: 'chat', label: 'WhatsApp'},
+            {icon: 'email', label: 'Email'},
+            {icon: 'contact_page', label: 'Save Contact (Add to Phone)'},
+            {icon: 'location_on', label: 'Location / Google Maps'}
+        ]
+    },
+    'popup-social': {
+        icon: 'share',
+        title: 'Social Media Presence',
+        desc: 'Build credibility and personal brand.',
+        items: [
+            {icon: 'work', label: 'LinkedIn'},
+            {icon: 'photo_camera', label: 'Instagram'},
+            {icon: 'facebook', label: 'Facebook'},
+            {icon: 'tag', label: 'X (Twitter)'},
+            {icon: 'play_circle', label: 'YouTube'},
+            {icon: 'send', label: 'Telegram'},
+            {icon: 'add_link', label: 'Custom Social Links'}
+        ]
+    },
+    'popup-website': {
+        icon: 'language',
+        title: 'Website & Portfolio',
+        desc: 'Showcase your work professionally.',
+        items: [
+            {icon: 'home', label: 'Personal Website'},
+            {icon: 'apartment', label: 'Company Website'},
+            {icon: 'palette', label: 'Portfolio'},
+            {icon: 'menu_book', label: 'Brochure'},
+            {icon: 'analytics', label: 'Case Studies'}
+        ],
+        footer: 'Perfect for consultants, designers, and founders.'
+    },
+    'popup-media': {
+        icon: 'perm_media',
+        title: 'Media & Brand Showcase',
+        desc: 'Turn your card into a mini website.',
+        items: [
+            {icon: 'photo_library', label: 'Image Gallery'},
+            {icon: 'inventory_2', label: 'Product Showcase'},
+            {icon: 'videocam', label: 'Video Introduction'},
+            {icon: 'format_quote', label: 'Testimonials'},
+            {icon: 'stars', label: 'Client Logos'}
+        ],
+        footer: 'This makes your card memorable.'
+    },
+    'popup-business': {
+        icon: 'payments',
+        title: 'Business Tools & Payments',
+        desc: 'Turn networking into action.',
+        items: [
+            {icon: 'account_balance_wallet', label: 'UPI / Payment Links'},
+            {icon: 'credit_card', label: 'Razorpay / Stripe Links'},
+            {icon: 'star_rate', label: 'Google Reviews Link'},
+            {icon: 'calendar_month', label: 'Meeting Booking Link'},
+            {icon: 'request_quote', label: 'Quote Request'}
+        ],
+        footer: 'This converts contacts into clients.'
+    },
+    'popup-lead': {
+        icon: 'assignment',
+        title: 'Lead Capture & Forms',
+        desc: 'Collect opportunities directly.',
+        items: [
+            {icon: 'contact_mail', label: 'Contact Form'},
+            {icon: 'help_center', label: 'Inquiry Form'},
+            {icon: 'event', label: 'Appointment Request'},
+            {icon: 'newspaper', label: 'Newsletter Signup'}
+        ],
+        footer: 'Your card becomes a lead machine.'
+    }
+};
+
+let activePopup = null;
+let closeTimer = null;
+
+function showFeaturePopup(e, popupId) {
+    // Clear any pending close
+    if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+
+    const container = document.getElementById('feature-popup-container');
+    const chip = e.currentTarget;
+
+    // If same popup already open, just keep it
+    if (activePopup === popupId) return;
+
+    // Remove active state from all chips
+    document.querySelectorAll('.feature-chip').forEach(c => c.classList.remove('active'));
+    chip.classList.add('active');
+
+    const data = featureData[popupId];
+    document.getElementById('popup-icon').textContent = data.icon;
+    document.getElementById('popup-title').textContent = data.title;
+    document.getElementById('popup-desc').textContent = data.desc;
+
+    // Build items
+    const itemsEl = document.getElementById('popup-items');
+    itemsEl.innerHTML = data.items.map(item =>
+        `<div class="feature-popup-item">
+            <span class="material-icons-round text-primary" style="font-size:14px;">${item.icon}</span>
+            <span class="text-zinc-300 text-xs">${item.label}</span>
+        </div>`
+    ).join('');
+
+    // Footer
+    const footerEl = document.getElementById('popup-footer');
+    if (data.footer) {
+        footerEl.textContent = data.footer;
+        footerEl.style.display = 'block';
+    } else {
+        footerEl.style.display = 'none';
+    }
+
+    // Position the arrow relative to the hovered chip
+    const grid = chip.closest('.grid');
+    const gridRect = grid.getBoundingClientRect();
+    const chipRect = chip.getBoundingClientRect();
+    const arrow = container.querySelector('.feature-popup-arrow');
+    const chipCenter = chipRect.left + chipRect.width / 2 - gridRect.left;
+    arrow.style.left = Math.max(20, Math.min(chipCenter - 6, gridRect.width - 20)) + 'px';
+
+    container.style.display = 'block';
+    container.style.animation = 'none';
+    container.offsetHeight; // trigger reflow
+    container.style.animation = 'popupSlideIn 0.3s ease';
+    activePopup = popupId;
+}
+
+function closeFeaturePopup() {
+    document.getElementById('feature-popup-container').style.display = 'none';
+    document.querySelectorAll('.feature-chip').forEach(c => c.classList.remove('active'));
+    activePopup = null;
+}
+
+function scheduleClose() {
+    closeTimer = setTimeout(closeFeaturePopup, 300);
+}
+
+// Attach hover-out on chips: close after a short delay
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.feature-chip').forEach(chip => {
+        chip.addEventListener('mouseleave', scheduleClose);
+    });
+
+    // Keep popup open while hovering over the popup itself
+    const popupContainer = document.getElementById('feature-popup-container');
+    popupContainer.addEventListener('mouseenter', function() {
+        if (closeTimer) { clearTimeout(closeTimer); closeTimer = null; }
+    });
+    popupContainer.addEventListener('mouseleave', scheduleClose);
+});
+</script>
+
+<!-- Free Preview Section -->
+<section class="py-24 bg-zinc-950" id="free-preview">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-[.2em] mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Free Preview</span>
+            <h2 class="font-display text-4xl md:text-5xl mb-4 uppercase" style="color: #fbad05;">Get Free Preview of Your Card</h2>
+            <p class="text-zinc-400 max-w-2xl mx-auto text-lg">Enter your details below to see how your digital business card will look. No payment required!</p>
+        </div>
+        
+        <div class="bg-zinc-900 rounded-3xl p-8 md:p-12 border border-zinc-800">
+            <form action="{% url 'accounts:register' %}" method="get" class="space-y-6">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-medium text-zinc-300 mb-2">Full Name</label>
+                        <input type="text" name="name" placeholder="John Doe" class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-zinc-300 mb-2">Email Address</label>
+                        <input type="email" name="email" placeholder="john@example.com" class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-zinc-300 mb-2">Phone Number</label>
+                        <input type="tel" name="phone" placeholder="+91 98765 43210" class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-zinc-300 mb-2">Company / Title</label>
+                        <input type="text" name="company" placeholder="CEO at Company" class="w-full px-4 py-3 bg-zinc-800 border border-zinc-700 rounded-xl text-white placeholder-zinc-500 focus:border-primary focus:ring-1 focus:ring-primary outline-none transition-all">
+                    </div>
+                </div>
+                <button type="submit" class="w-full py-4 bg-primary text-black font-extrabold rounded-xl hover:scale-[1.02] transition-transform text-lg shadow-lg" style="box-shadow: 0 8px 30px -6px rgba(255,195,50,.35);">
+                    Generate Free Preview <span class="material-icons-round align-middle ml-1">arrow_forward</span>
+                </button>
+                <p class="text-center text-zinc-500 text-sm">No credit card required. See your card design instantly.</p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works / Process Section -->
+<section class="py-24 bg-zinc-900" id="how-it-works">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-[.2em] mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">Process</span>
+            <h2 class="font-display text-4xl md:text-5xl mb-4 uppercase" style="color: #fbad05;">The 3-Step Success</h2>
+            <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-8">
+            <!-- Step 1: Tap -->
+            <div class="text-center p-8 bg-zinc-800/50 rounded-3xl border border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-primary/30">
+                <div class="mb-6 rounded-2xl overflow-hidden flex items-center justify-center" style="aspect-ratio: 4/3; background: rgba(255, 255, 255, 1);">
+                    <dotlottie-player src="{% static 'animation/Link Tap.lottie' %}" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></dotlottie-player>
+                </div>
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">1</div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide text-white">Tap</h3>
+                <p class="text-zinc-400">Simply tap your physical card on any modern smartphone. No apps required for your clients.</p>
+            </div>
+            <!-- Step 2: Share -->
+            <div class="text-center p-8 bg-zinc-800/50 rounded-3xl border border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-primary/30">
+                <div class="mb-6 rounded-2xl overflow-hidden flex items-center justify-center" style="aspect-ratio: 4/3; background: rgba(255, 255, 255, 1);">
+                    <dotlottie-player src="{% static 'animation/Card Sharing.lottie' %}" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></dotlottie-player>
+                </div>
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">2</div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide text-white">Share</h3>
+                <p class="text-zinc-400">Instantly share your digital profile containing contact info, social links, and media.</p>
+            </div>
+            <!-- Step 3: Save -->
+            <div class="text-center p-8 bg-zinc-800/50 rounded-3xl border border-zinc-700 transition-all hover:-translate-y-2 hover:shadow-xl hover:border-primary/30">
+                <div class="mb-6 rounded-2xl overflow-hidden flex items-center justify-center" style="aspect-ratio: 4/3; background: rgba(255, 255, 255, 1);">
+                    <dotlottie-player src="{% static 'animation/Link Connect.lottie' %}" background="transparent" speed="1" style="width: 100%; height: 100%;" loop autoplay></dotlottie-player>
+                </div>
+                <div class="w-12 h-12 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-4 text-xl font-bold">3</div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide text-white">Save</h3>
+                <p class="text-zinc-400">The recipient saves your contact information directly to their phone's contact list.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ============ PRICING SECTION — Complete Redesign ============ -->
+<section class="py-20 sm:py-28 relative overflow-hidden" id="pricing" style="background:linear-gradient(180deg,#09090b 0%,#0c0a14 50%,#09090b 100%);">
+    <!-- Animated ambient orbs -->
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="pricing-orb absolute w-[500px] h-[500px] rounded-full" style="top:-10%;left:-8%;background:radial-gradient(circle,rgba(255,195,50,.10) 0%,transparent 70%);filter:blur(80px);animation:orbFloat 12s ease-in-out infinite;"></div>
+        <div class="pricing-orb absolute w-[400px] h-[400px] rounded-full" style="bottom:-5%;right:-5%;background:radial-gradient(circle,rgba(255,195,50,.08) 0%,transparent 70%);filter:blur(70px);animation:orbFloat 15s ease-in-out infinite reverse;"></div>
+        <!-- Grid pattern overlay -->
+        <div class="absolute inset-0 opacity-[0.03]" style="background-image:linear-gradient(rgba(255,255,255,.1) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.1) 1px,transparent 1px);background-size:60px 60px;"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        <!-- Section Header -->
+        <div class="text-center mb-16 sm:mb-20">
+            <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full text-xs font-black uppercase tracking-[.25em] mb-6" style="background:linear-gradient(135deg,rgba(255,195,50,.12),rgba(255,195,50,.05));color:#FFC332;border:1px solid rgba(255,195,50,.2);box-shadow:0 0 30px rgba(255,195,50,.08);">
+                <span class="material-icons-round" style="font-size:16px;">workspace_premium</span>
+                Premium Collection
+            </div>
+            <h2 class="text-4xl sm:text-5xl lg:text-7xl font-black uppercase tracking-tight mb-6" style="background:linear-gradient(135deg,#FFC332 0%,#ffffff 40%,#FFC332 80%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1;">
+                Pick Your Style
+            </h2>
+            <p class="text-zinc-400 text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+                7 stunning designs. One-time payment. <span class="font-semibold" style="color:#FFC332;">No subscriptions ever.</span>
+            </p>
+        </div>
+
+        <!-- ======= Main 2-Column Layout ======= -->
+        <div class="flex flex-col lg:flex-row gap-10 lg:gap-14 items-start mb-16">
+
+            <!-- LEFT — Front and Back Card Preview -->
+            <div class="w-full lg:w-[45%] flex flex-col items-center lg:sticky lg:top-28">
+                <div id="hero-card-stage" class="relative w-full max-w-[720px] mx-auto">
+                    <div class="absolute inset-0 -m-6 rounded-3xl opacity-60 blur-2xl transition-all duration-700" id="card-glow" style="background:radial-gradient(circle,rgba(255,195,50,.20),transparent 70%);"></div>
+
+                    <div class="relative z-10 grid grid-cols-1 sm:grid-cols-2 gap-5 items-start">
+                        <div>
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[.2em] mb-4" style="background:rgba(255,195,50,.10);color:#FFC332;border:1px solid rgba(255,195,50,.18);">
+                                <span class="material-icons-round" style="font-size:14px;">crop_portrait</span>
+                                Front Side
+                            </div>
+                            <div class="relative rounded-2xl overflow-hidden border border-primary/20 bg-zinc-950" style="aspect-ratio:0.63/1;box-shadow:0 20px 60px rgba(0,0,0,.6);">
+                                <img id="hero-front-img" src="{% static 'img/card_design/design4 - front.jpeg' %}" alt="Card Front" class="w-full h-full object-cover rounded-2xl">
+                            </div>
+                        </div>
+                        <div class="sm:mt-10">
+                            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-[10px] font-black uppercase tracking-[.2em] mb-4" style="background:rgba(255,255,255,.05);color:#d4d4d8;border:1px solid rgba(255,255,255,.08);">
+                                <span class="material-icons-round" style="font-size:14px;">flip_to_back</span>
+                                Back Side
+                            </div>
+                            <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-zinc-950" style="aspect-ratio:0.63/1;box-shadow:0 20px 60px rgba(0,0,0,.6);">
+                                <img id="hero-back-img" src="{% static 'img/card_design/design4 - back.jpeg' %}" alt="Card Back" class="w-full h-full object-cover rounded-2xl">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="text-zinc-500 text-xs sm:text-sm mt-5 text-center max-w-md">
+                    Both sides of your card update instantly when you change the design.
+                </p>
+            </div>
+
+            <!-- RIGHT — Selection Panel -->
+            <div class="w-full lg:w-[55%]">
+
+                <!-- Step 1: Choose Design -->
+                <div class="mb-10">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-black" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;">1</div>
+                        <h3 class="text-white text-lg font-bold uppercase tracking-wide">Choose Design</h3>
+                    </div>
+                    <!-- 7-card thumbnail strip -->
+                    <div class="grid grid-cols-4 sm:grid-cols-7 gap-3">
+                        {% for i in "1234567" %}
+                        <button class="design-thumb group relative rounded-xl overflow-hidden transition-all duration-300 hover:scale-105 focus:outline-none" data-design="{{ i }}" onclick="selectDesign({{ i }})" style="aspect-ratio:0.63/1;{% if i == '4' %}border:2px solid #FFC332;box-shadow:0 0 20px rgba(255,195,50,.25);{% else %}border:2px solid rgba(255,255,255,.08);{% endif %}">
+                            <img src="{% static 'img/card_design/design' %}{{ i }} - front.jpeg" alt="Design {{ i }}" class="w-full h-full object-cover">
+                            <!-- Selected overlay checkmark -->
+                            <div class="design-check absolute inset-0 flex items-center justify-center transition-opacity duration-300 {% if i == '4' %}opacity-100{% else %}opacity-0{% endif %}" style="background:rgba(0,0,0,.45);">
+                                <span class="material-icons-round text-3xl" style="color:#FFC332;">check_circle</span>
+                            </div>
+                            {% if i == '4' %}
+                            <div class="absolute -top-1 -right-1 z-10">
+                                <div class="px-1.5 py-0.5 rounded-full text-[8px] font-black uppercase" style="background:#FFC332;color:#000;">HOT</div>
+                            </div>
+                            {% endif %}
+                        </button>
+                        {% endfor %}
+                    </div>
+                </div>
+
+                <!-- Step 2: Choose Finish -->
+                <div class="mb-10">
+                    <div class="flex items-center gap-3 mb-5">
+                        <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-black" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;">2</div>
+                        <h3 class="text-white text-lg font-bold uppercase tracking-wide">Choose Finish</h3>
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                        <!-- Matte -->
+                        <button onclick="selectFinish('matte')" data-finish="matte" class="finish-btn relative p-4 rounded-2xl text-left transition-all duration-300 group" style="background:linear-gradient(135deg,rgba(255,195,50,.10),rgba(255,195,50,.04));border:2px solid rgba(255,195,50,.4);">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-icons-round" style="color:#FFC332;font-size:22px;">texture</span>
+                                <span class="text-white font-bold text-base">Matte</span>
+                            </div>
+                            <p class="text-zinc-500 text-xs leading-snug">Smooth, fingerprint-resistant soft-touch feel</p>
+                            <div class="absolute top-3 right-3 w-5 h-5 rounded-full flex items-center justify-center finish-radio" style="border:2px solid #FFC332;background:rgba(255,195,50,.2);">
+                                <div class="w-2.5 h-2.5 rounded-full" style="background:#FFC332;"></div>
+                            </div>
+                        </button>
+                        <!-- Gloss -->
+                        <button onclick="selectFinish('gloss')" data-finish="gloss" class="finish-btn relative p-4 rounded-2xl text-left transition-all duration-300 group" style="background:rgba(255,255,255,.02);border:2px solid rgba(255,255,255,.08);">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-icons-round text-zinc-400" style="font-size:22px;">auto_awesome</span>
+                                <span class="text-white font-bold text-base">Gloss</span>
+                            </div>
+                            <p class="text-zinc-500 text-xs leading-snug">High-shine mirror-like vibrant surface</p>
+                            <div class="absolute top-3 right-3 w-5 h-5 rounded-full flex items-center justify-center finish-radio" style="border:2px solid rgba(255,255,255,.15);">
+                            </div>
+                        </button>
+                        <!-- Metal -->
+                        <button onclick="selectFinish('metal')" data-finish="metal" class="finish-btn relative p-4 rounded-2xl text-left transition-all duration-300 group" style="background:rgba(255,255,255,.02);border:2px solid rgba(255,255,255,.08);">
+                            <div class="flex items-center gap-3 mb-2">
+                                <span class="material-icons-round text-zinc-400" style="font-size:22px;">shield</span>
+                                <span class="text-white font-bold text-base">Metal</span>
+                                <span class="px-2 py-0.5 rounded-full text-[9px] font-black uppercase" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;">Elite</span>
+                            </div>
+                            <p class="text-zinc-500 text-xs leading-snug">Premium stainless steel, unmatched durability</p>
+                            <div class="absolute top-3 right-3 w-5 h-5 rounded-full flex items-center justify-center finish-radio" style="border:2px solid rgba(255,255,255,.15);">
+                            </div>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Price & CTA Box -->
+                <div class="relative p-6 sm:p-8 rounded-3xl" style="background:linear-gradient(160deg,rgba(255,195,50,.06) 0%,rgba(255,195,50,.02) 100%);border:1px solid rgba(255,195,50,.15);box-shadow:0 15px 50px rgba(0,0,0,.4);">
+                    <!-- Top ribbon -->
+                    <div class="absolute -top-3 left-6 flex items-center gap-1.5 px-4 py-1.5 rounded-full text-[10px] font-black uppercase tracking-wide" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;box-shadow:0 4px 15px rgba(239,68,68,.4);">
+                        <span class="material-icons-round" style="font-size:13px;">local_fire_department</span>
+                        Launch Offer — 30% OFF
+                    </div>
+
+                    <div class="mt-3">
+                        <!-- Selection summary -->
+                        <div class="flex items-center gap-2 text-zinc-500 text-sm mb-4">
+                            <span class="material-icons-round" style="font-size:16px;color:#FFC332;">verified</span>
+                            <span id="selected-finish" class="text-white font-semibold capitalize">Matte</span>
+                            <span>&bull;</span>
+                            <span id="selected-color" class="text-white font-semibold">Design 4</span>
+                        </div>
+
+                        <!-- Price -->
+                        <div class="flex flex-wrap items-end gap-4 mb-6">
+                            <div class="flex items-baseline gap-2">
+                                <span id="discounted-price" class="text-5xl sm:text-6xl font-black tracking-tight" style="background:linear-gradient(135deg,#FFC332 0%,#fff 60%,#FFC332 100%);background-clip:text;-webkit-background-clip:text;-webkit-text-fill-color:transparent;">&#8377;499</span>
+                                <span id="original-price" class="text-xl line-through text-zinc-600">&#8377;713</span>
+                            </div>
+                            <div class="flex items-center gap-1.5 px-3 py-1 rounded-full" style="background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.25);">
+                                <span class="material-icons-round text-emerald-400" style="font-size:14px;">savings</span>
+                                <span class="text-emerald-400 text-xs font-bold">You save &#8377;<span id="save-amount">214</span></span>
+                            </div>
+                        </div>
+
+                        <!-- Perks row -->
+                        <div class="flex flex-wrap gap-x-5 gap-y-2 mb-6">
+                            <div class="flex items-center gap-1.5 text-zinc-400 text-xs">
+                                <span class="material-icons-round text-primary" style="font-size:15px;">all_inclusive</span>
+                                Unlimited Taps
+                            </div>
+                            <div class="flex items-center gap-1.5 text-zinc-400 text-xs">
+                                <span class="material-icons-round text-primary" style="font-size:15px;">verified_user</span>
+                                Non-Erasable Print
+                            </div>
+                            <div class="flex items-center gap-1.5 text-zinc-400 text-xs">
+                                <span class="material-icons-round text-primary" style="font-size:15px;">cloud_done</span>
+                                Lifetime Access
+                            </div>
+                            <div class="flex items-center gap-1.5 text-zinc-400 text-xs">
+                                <span class="material-icons-round text-primary" style="font-size:15px;">local_shipping</span>
+                                Free Delivery
+                            </div>
+                        </div>
+
+                        <!-- CTA -->
+                        <a href="{% url 'accounts:register' %}" id="order-btn" class="group flex items-center justify-center gap-3 w-full py-4 sm:py-5 rounded-2xl font-black text-base sm:text-lg transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl relative overflow-hidden" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;box-shadow:0 10px 35px rgba(255,195,50,.35);">
+                            <span class="absolute inset-0 bg-gradient-to-r from-white/0 via-white/25 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></span>
+                            <span class="relative">Order Now</span>
+                            <span class="material-icons-round relative text-xl group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                        </a>
+                        <p class="text-center text-zinc-600 text-xs mt-3 flex items-center justify-center gap-1.5">
+                            <span class="material-icons-round text-green-500" style="font-size:14px;">lock</span>
+                            Secure checkout &bull; Ships in 5-7 days
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+(function() {
+    var selectedFinish = 'matte';
+    var selectedDesign = 4;
+
+    var pricing = {
+        'matte':  { original: 713, discounted: 499 },
+        'gloss':  { original: 713, discounted: 499 },
+        'metal':  { original: 1427, discounted: 999 }
+    };
+
+    var designImgBase = {
+        1: ["{% static 'img/card_design/design1 - front.jpeg' %}", "{% static 'img/card_design/design1 - back.jpeg' %}"],
+        2: ["{% static 'img/card_design/design2 - front.jpeg' %}", "{% static 'img/card_design/design2 - back.jpeg' %}"],
+        3: ["{% static 'img/card_design/design3 - front.jpeg' %}", "{% static 'img/card_design/design3 - back.jpeg' %}"],
+        4: ["{% static 'img/card_design/design4 - front.jpeg' %}", "{% static 'img/card_design/design4 - back.jpeg' %}"],
+        5: ["{% static 'img/card_design/design5 - front.jpeg' %}", "{% static 'img/card_design/design5 - back.jpeg' %}"],
+        6: ["{% static 'img/card_design/design6 - front.jpeg' %}", "{% static 'img/card_design/design6 - back.jpeg' %}"],
+        7: ["{% static 'img/card_design/design7 - front.jpeg' %}", "{% static 'img/card_design/design7 - back.jpeg' %}"]
+    };
+
+    /* ---------- Design Selection ---------- */
+    window.selectDesign = function(num) {
+        selectedDesign = num;
+        // Update thumbnails
+        document.querySelectorAll('.design-thumb').forEach(function(btn) {
+            var d = parseInt(btn.dataset.design);
+            var check = btn.querySelector('.design-check');
+            if (d === num) {
+                btn.style.border = '2px solid #FFC332';
+                btn.style.boxShadow = '0 0 20px rgba(255,195,50,.25)';
+                if (check) check.style.opacity = '1';
+            } else {
+                btn.style.border = '2px solid rgba(255,255,255,.08)';
+                btn.style.boxShadow = 'none';
+                if (check) check.style.opacity = '0';
+            }
+        });
+        // Update hero card images
+        document.getElementById('hero-front-img').src = designImgBase[num][0];
+        document.getElementById('hero-back-img').src = designImgBase[num][1];
+        updateSummary();
+    };
+
+    /* ---------- Finish Selection ---------- */
+    window.selectFinish = function(finish) {
+        selectedFinish = finish;
+        document.querySelectorAll('.finish-btn').forEach(function(btn) {
+            var radio = btn.querySelector('.finish-radio');
+            var icon = btn.querySelector('.material-icons-round');
+            if (btn.dataset.finish === finish) {
+                btn.style.background = 'linear-gradient(135deg,rgba(255,195,50,.10),rgba(255,195,50,.04))';
+                btn.style.border = '2px solid rgba(255,195,50,.4)';
+                radio.style.border = '2px solid #FFC332';
+                radio.style.background = 'rgba(255,195,50,.2)';
+                radio.innerHTML = '<div class="w-2.5 h-2.5 rounded-full" style="background:#FFC332;"></div>';
+                if (icon) icon.style.color = '#FFC332';
+            } else {
+                btn.style.background = 'rgba(255,255,255,.02)';
+                btn.style.border = '2px solid rgba(255,255,255,.08)';
+                radio.style.border = '2px solid rgba(255,255,255,.15)';
+                radio.style.background = 'transparent';
+                radio.innerHTML = '';
+                if (icon) icon.style.color = '#71717a';
+            }
+        });
+        updateSummary();
+    };
+
+    /* ---------- Update Price & Summary ---------- */
+    function updateSummary() {
+        var p = pricing[selectedFinish];
+        document.getElementById('original-price').textContent = '\u20B9' + p.original;
+        document.getElementById('discounted-price').textContent = '\u20B9' + p.discounted;
+        document.getElementById('save-amount').textContent = p.original - p.discounted;
+        document.getElementById('selected-finish').textContent = selectedFinish.charAt(0).toUpperCase() + selectedFinish.slice(1);
+        document.getElementById('selected-color').textContent = 'Design ' + selectedDesign;
+        document.getElementById('order-btn').href = "{% url 'accounts:register' %}?finish=" + selectedFinish + "&design=" + selectedDesign;
+    }
+
+    /* ---------- Init ---------- */
+    selectDesign(4);
+})();
+</script>
+
+<!-- Cards for Everyone Section (Black & Gold Theme) -->
+<section class="py-16 sm:py-24 bg-zinc-900" id="for-everyone">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 sm:mb-16">
+            <span class="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.2em] mb-4 sm:mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">For Everyone</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-3 sm:mb-4 uppercase px-4" style="color: #fbad05;">Cards for Everyone</h2>
+            <div class="w-16 sm:w-24 h-1 bg-primary mx-auto mb-4 sm:mb-6"></div>
+            <p class="text-zinc-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg px-4">Your premium visiting card, no matter who you are. Built for professionals, loved by everyone.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 max-w-5xl mx-auto">
+            <!-- Creators -->
+            <div class="group text-center p-6 sm:p-8 bg-zinc-800/60 rounded-2xl sm:rounded-3xl border border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-xl sm:rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-black text-3xl sm:text-4xl">brush</span>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 uppercase tracking-wide text-white">Creators</h3>
+                <p class="text-zinc-400 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed">Artists, designers, photographers, influencers. Share your portfolio, social links, and creative identity with a single tap.</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Artists</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Designers</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Influencers</span>
+                </div>
+            </div>
+
+            <!-- Business Professionals -->
+            <div class="group text-center p-6 sm:p-8 rounded-2xl sm:rounded-3xl border-2 border-primary/40 md:scale-105 shadow-2xl transition-all hover:-translate-y-3 hover:shadow-primary/20 relative" style="background:linear-gradient(135deg,rgba(255,195,50,.08),rgba(255,195,50,.02));">
+                <div class="absolute -top-2 sm:-top-3 left-1/2 -translate-x-1/2 px-3 sm:px-4 py-1 rounded-full text-[9px] sm:text-[10px] font-black uppercase tracking-widest whitespace-nowrap" style="background:linear-gradient(135deg,#FFC332,#e6a800);color:#000;">Most Popular</div>
+                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-xl sm:rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-black text-3xl sm:text-4xl">business_center</span>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 uppercase tracking-wide text-white">Businessmen</h3>
+                <p class="text-zinc-400 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed">Entrepreneurs, CEOs, sales teams, consultants. Make every handshake count. Instant contact exchange that impresses.</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.15);color:#FFC332;border:1px solid rgba(255,195,50,.3);">Entrepreneurs</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.15);color:#FFC332;border:1px solid rgba(255,195,50,.3);">CEOs</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.15);color:#FFC332;border:1px solid rgba(255,195,50,.3);">Consultants</span>
+                </div>
+            </div>
+
+            <!-- Everyday People -->
+            <div class="group text-center p-6 sm:p-8 bg-zinc-800/60 rounded-2xl sm:rounded-3xl border border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
+                <div class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 sm:mb-6 rounded-xl sm:rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-black text-3xl sm:text-4xl">people</span>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-2 sm:mb-3 uppercase tracking-wide text-white">Everyone</h3>
+                <p class="text-zinc-400 mb-3 sm:mb-4 text-xs sm:text-sm leading-relaxed">Students, freelancers, everyday professionals. One card for all your contacts, socials, and personal brand. Simple &amp; affordable.</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Students</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Freelancers</span>
+                    <span class="px-2 sm:px-3 py-1 rounded-full text-xs font-medium" style="background:rgba(255,195,50,.1);color:#FFC332;border:1px solid rgba(255,195,50,.2);">Professionals</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQs Section -->
+<section class="py-16 sm:py-24 bg-zinc-950" id="faqs">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 sm:mb-14">
+            <span class="inline-flex items-center px-3 sm:px-4 py-1.5 rounded-full text-[10px] sm:text-[11px] font-extrabold uppercase tracking-[.2em] mb-4 sm:mb-6" style="background:rgba(255,195,50,.08);color:#FFC332;border:1px solid rgba(255,195,50,.15);">FAQs</span>
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 px-4" style="color: #fbad05;">Frequently Asked Questions</h2>
+        </div>
+        <div class="space-y-2 sm:space-y-3">
+            <div class="faq-item rounded-xl sm:rounded-2xl p-4 sm:p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-xs sm:text-sm pr-3 sm:pr-4">Is there a monthly subscription fee?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform flex-shrink-0" style="font-size:18px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-xs sm:text-sm leading-relaxed pt-2 sm:pt-3">No! The price you see is a one-time payment for your physical card. Basic digital profile features are included forever with no recurring fees.</p></div>
+            </div>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">Can I update my information after purchase?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">Yes, you can update your digital profile unlimited times without ordering a new card. That's the beauty of NFC technology!</p></div>
+            </div>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">Do recipients need an app to view my card?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">No app needed! When someone taps your card, your profile opens directly in their phone's web browser. It works on all modern smartphones.</p></div>
+            </div>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">Will this work on all phones?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">Absolutely. The Last Card supports both NFC tap and QR scan. Even if the other person's phone doesn't have NFC, they can scan the QR code and access your details immediately.</p></div>
+            </div>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">Which technology does The Last Card use?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">The Last Card uses a combination of NFC (Near Field Communication) and QR code technology. You can share your profile instantly by tapping the card on NFC-enabled phones or by scanning the QR code on any smartphone.</p></div>
+            </div>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">What's the difference between Matte and Gloss?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">Matte finish has a smooth, non-reflective surface that feels premium. Gloss finish has a high-shine, reflective coating that makes colors pop and adds a luxury feel.</p></div>
+            </div>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">How long does shipping take?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">Standard shipping is 5-7 business days. Express shipping (2-3 days) is available at checkout for an additional fee.</p></div>
+            </div>
+            <div class="faq-item rounded-2xl p-5 cursor-pointer transition-all hover:border-primary/30" style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);" onclick="this.classList.toggle('active')">
+                <div class="flex items-center justify-between">
+                    <h3 class="font-bold text-white text-sm pr-4">What information can I share with my card?</h3>
+                    <span class="material-icons-round text-zinc-400 faq-chevron transition-transform" style="font-size:20px;">expand_more</span>
+                </div>
+                <div class="faq-answer"><p class="text-zinc-400 text-sm leading-relaxed pt-3">You can share your contact info, social media handles, website, portfolio, and more - all in a single tap using 'THELASTCARD'.</p></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-16 sm:py-24 bg-zinc-900">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="absolute inset-0 rounded-full hidden sm:block" style="background:rgba(255,195,50,.06);filter:blur(100px);pointer-events:none;"></div>
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 text-white relative leading-tight px-4">Ready to Make Your <span style="color: #fbad05;">First & Last</span> Impression?</h2>
+        <p class="text-base sm:text-lg md:text-xl text-zinc-400 mb-6 sm:mb-10 max-w-2xl mx-auto relative px-4">Join thousands of professionals who have upgraded their networking game with luxury NFC digital business cards.</p>
+        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center relative px-4">
+            <a href="{% url 'accounts:register' %}" class="inline-flex items-center justify-center gap-2 bg-primary text-black font-extrabold py-3 sm:py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-transform text-base sm:text-lg shadow-lg" style="box-shadow:0 8px 30px -6px rgba(255,195,50,.35);">
+                Get Your Card Now <span class="material-icons-round text-xl">arrow_forward</span>
+            </a>
+            <a href="#free-preview" class="inline-flex items-center justify-center gap-2 font-bold py-3 sm:py-4 px-8 sm:px-10 rounded-full hover:bg-white/5 transition-all text-base sm:text-lg" style="border:2px solid rgba(255,195,50,.3);color:#FFC332;">
+                <span class="material-icons-round text-xl">palette</span> Design for free
+            </a>
+        </div>
+    </div>
+</section>
+
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Pricing section */
+    #hero-flip-wrap { transform-style: preserve-3d; }
+    .design-thumb img { transition: transform .3s ease; }
+    .design-thumb:hover img { transform: scale(1.08); }
+    @keyframes orbFloat { 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-30px) scale(1.05); } }
+
+    /* Hero Section - Desktop First */
+    .hero-container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+    }
+
+    .hero-text {
+        flex: 1;
+        text-align: left;
+    }
+
+    .hero-video {
+        flex: 1;
+        position: relative;
+    }
+
+    .hero-buttons {
+        display: flex;
+        flex-direction: row;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    .hero-trust {
+        margin-top: 3rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .hero-glow {
+        display: block;
+    }
+
+    /* Mobile Overrides */
+    @media (max-width: 1023px) {
+        .hero-container {
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-text {
+            text-align: center;
+        }
+
+        .hero-text h1 {
+            font-size: clamp(2rem, 6vw, 2.5rem) !important;
+        }
+
+        .hero-text p:first-of-type {
+            font-size: 1rem !important;
+        }
+
+        .hero-text p:nth-of-type(2) {
+            font-size: 0.875rem !important;
+            margin-bottom: 2rem !important;
+        }
+
+        .hero-buttons {
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        .hero-buttons a {
+            padding: 0.875rem 1.5rem !important;
+            font-size: 1rem !important;
+        }
+
+        .hero-trust {
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .hero-trust span {
+            font-size: 0.75rem !important;
+        }
+
+        .hero-video .grid span.text-sm {
+            font-size: 0.75rem !important;
+        }
+
+        .hero-glow {
+            display: none !important;
+        }
+    }
+
+    @media (min-width: 640px) and (max-width: 1023px) {
+        .hero-buttons {
+            flex-direction: row;
+        }
+
+        .hero-buttons a {
+            padding: 1rem 2rem !important;
+        }
+
+        .hero-trust span {
+            font-size: 0.875rem !important;
+        }
+    }
+
+    /* FAQ Styles */
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease;
+    }
+    .faq-item.active .faq-answer {
+        max-height: 200px;
+    }
+    .faq-item.active .faq-chevron {
+        transform: rotate(180deg);
+    }
+
+    /* Feature Chip Styles */
+    .feature-chip {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.625rem;
+        border-radius: 0.75rem;
+        background: rgba(255,195,50,0.05);
+        border: 1px solid rgba(255,195,50,0.1);
+        cursor: pointer;
+        transition: all 0.25s ease;
+        user-select: none;
+    }
+    .feature-chip:hover {
+        background: rgba(255,195,50,0.12);
+        border-color: rgba(255,195,50,0.3);
+        transform: translateY(-1px);
+    }
+    .feature-chip.active {
+        background: rgba(255,195,50,0.15);
+        border-color: rgba(255,195,50,0.4);
+        box-shadow: 0 0 12px rgba(255,195,50,0.15);
+    }
+    .feature-chip.active .chip-arrow {
+        transform: rotate(180deg);
+        color: #FFC332;
+    }
+    .chip-arrow {
+        transition: transform 0.25s ease, color 0.25s ease;
+        flex-shrink: 0;
+    }
+
+    /* Feature Popup */
+    .feature-popup-container {
+        margin-top: 0.75rem;
+        padding: 1rem 1.25rem;
+        border-radius: 1rem;
+        background: linear-gradient(135deg, rgba(24,24,27,0.95), rgba(9,9,11,0.98));
+        border: 1px solid rgba(255,195,50,0.25);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.5), 0 0 20px rgba(255,195,50,0.08);
+        animation: popupSlideIn 0.3s ease;
+        position: relative;
+    }
+    .feature-popup-arrow {
+        position: absolute;
+        top: -6px;
+        left: 2rem;
+        width: 12px;
+        height: 12px;
+        background: rgba(24,24,27,0.95);
+        border-left: 1px solid rgba(255,195,50,0.25);
+        border-top: 1px solid rgba(255,195,50,0.25);
+        transform: rotate(45deg);
+        transition: left 0.25s ease;
+    }
+    .feature-popup-item {
+        display: flex;
+        align-items: center;
+        gap: 0.375rem;
+        padding: 0.35rem 0.5rem;
+        border-radius: 0.5rem;
+        transition: background 0.2s ease;
+    }
+    .feature-popup-item:hover {
+        background: rgba(255,195,50,0.08);
+    }
+
+    @keyframes popupSlideIn {
+        from { opacity: 0; transform: translateY(-6px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Persistent floating video – bottom-left, portrait/reel */
+    .floating-video-widget {
+        position: fixed !important;
+        left: 1rem;
+        bottom: 1rem;
+        width: 160px;
+        z-index: 9999;
+        border-radius: 14px;
+        overflow: hidden;
+        background: #000;
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.55);
+        animation: floatVideoIn 0.5s ease-out;
+        pointer-events: auto;
+    }
+    .floating-video-player {
+        width: 100%;
+        display: block;
+        background: #000;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+        border-radius: 14px;
+    }
+    .floating-video-close {
+        position: absolute;
+        top: 6px;
+        right: 6px;
+        width: 26px;
+        height: 26px;
+        border-radius: 999px;
+        border: 1.5px solid rgba(255, 255, 255, 0.5);
+        background: rgba(0, 0, 0, 0.55);
+        color: #fff;
+        font-size: 18px;
+        line-height: 1;
+        cursor: pointer;
+        z-index: 2;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease, transform 0.2s ease;
+    }
+    .floating-video-close:hover {
+        background: rgba(0, 0, 0, 0.78);
+        transform: scale(1.1);
+    }
+
+    @keyframes floatVideoIn {
+        from { opacity: 0; transform: translateY(16px) scale(0.94); }
+        to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    @media (max-width: 640px) {
+        .floating-video-widget {
+            left: 0.6rem;
+            bottom: max(0.6rem, env(safe-area-inset-bottom));
+            width: 130px;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+<script>
+function attachFloatingVideoToBody() {
+    const widget = document.getElementById('floatingVideoWidget');
+    if (!widget) return;
+
+    // Keep widget independent from any transformed/positioned containers.
+    if (widget.parentElement !== document.body) {
+        document.body.appendChild(widget);
+    }
+}
+
+function startFloatingVideo() {
+    const video = document.getElementById('floatingVideo');
+    if (!video) return;
+
+    video.muted = true;
+    const tryPlay = () => {
+        const playPromise = video.play();
+        if (playPromise && typeof playPromise.catch === 'function') {
+            playPromise.catch(() => {
+                // Autoplay can be blocked by some browsers until interaction.
+            });
+        }
+    };
+
+    tryPlay();
+    video.addEventListener('canplay', tryPlay, { once: true });
+}
+
+function closeFloatingVideo() {
+    const widget = document.getElementById('floatingVideoWidget');
+    const video = document.getElementById('floatingVideo');
+    if (!widget) return;
+    widget.style.display = 'none';
+    if (video) {
+        video.pause();
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    attachFloatingVideoToBody();
+    startFloatingVideo();
+});
+</script>
+{% endblock %}
+
+{% block footer %}
+<!-- Floating Video – fixed to viewport, outside <main> -->
+<div id="floatingVideoWidget" class="floating-video-widget" aria-label="Demo video player">
+    <button type="button" class="floating-video-close" onclick="closeFloatingVideo()" aria-label="Close video">&times;</button>
+    <video id="floatingVideo" class="floating-video-player" autoplay muted loop playsinline preload="auto">
+        <source src="{% static 'video/home1.mp4' %}" type="video/mp4">
+    </video>
+</div>
+{% include 'components/footer.html' %}
+{% endblock %}

@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Edit Card - The Last Card{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <div class="mb-8">
+                <a href="{% url 'cards:detail' card.id %}" class="inline-flex items-center gap-1 text-slate-500 hover:text-primary transition-colors mb-4">
+                    <span class="material-icons-round text-xl">arrow_back</span>
+                    Back to Card
+                </a>
+                <h1 class="text-2xl font-bold">Edit Card Settings</h1>
+            </div>
+
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 max-w-2xl">
+                <div class="p-8">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+
+                        <div class="mb-6">
+                            <label for="url_slug" class="block text-sm font-medium mb-2">Card URL Slug</label>
+                            <div class="flex">
+                                <span class="px-4 py-3 bg-slate-100 dark:bg-zinc-800 border border-r-0 border-slate-200 dark:border-zinc-700 rounded-l-xl text-slate-500 text-sm">
+                                    {{ request.get_host }}/p/
+                                </span>
+                                <input type="text" name="url_slug" id="url_slug" required pattern="[a-zA-Z0-9-]+" value="{{ form.url_slug.value|default:card.url_slug }}"
+                                       class="flex-1 px-4 py-3 rounded-r-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                            </div>
+                            <p class="mt-2 text-sm text-slate-500">Unique identifier for your card URL. Changing this will break old links!</p>
+                            {% if form.url_slug.errors %}
+                            <p class="mt-2 text-sm text-red-500">{{ form.url_slug.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="theme" class="block text-sm font-medium mb-2">Theme</label>
+                            <select name="theme" id="theme" class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                                {% for theme in form.fields.theme.queryset %}
+                                <option value="{{ theme.id }}" {% if theme.id == card.theme.id %}selected{% endif %}>
+                                    {{ theme.name }} ({% if theme.dark_mode %}Dark{% else %}Light{% endif %})
+                                </option>
+                                {% endfor %}
+                            </select>
+                            {% if form.theme.errors %}
+                            <p class="mt-2 text-sm text-red-500">{{ form.theme.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="flex items-center gap-3 mb-4">
+                            <input type="checkbox" name="is_private" id="is_private" {% if card.is_private %}checked{% endif %}
+                                   class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary">
+                            <label for="is_private" class="text-sm font-medium">Private Profile (Password Protected)</label>
+                        </div>
+
+                        <div class="flex items-center gap-3 mb-6">
+                            <input type="checkbox" name="hide_from_search" id="hide_from_search" {% if card.hide_from_search %}checked{% endif %}
+                                   class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary">
+                            <label for="hide_from_search" class="text-sm font-medium">Hide from Search Engines</label>
+                        </div>
+
+                        <button type="submit" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-black bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] hover:shadow-lg hover:shadow-primary/25 transition-all">
+                            <span class="material-icons-round">save</span>
+                            Save Changes
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

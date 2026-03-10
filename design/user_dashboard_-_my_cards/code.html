@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Last Card - My Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Montserrat:wght@400;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#D4AF37", // Elegant Gold
+              "background-light": "#F8F9FA",
+              "background-dark": "#0F0F0F",
+              "card-dark": "#1A1A1A",
+              "card-light": "#FFFFFF",
+            },
+            fontFamily: {
+              display: ["Montserrat", "sans-serif"],
+              sans: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.75rem",
+              "xl": "1rem",
+            },
+          },
+        },
+      };
+    </script>
+<style>
+        .gold-gradient {
+            background: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+        }
+        .sidebar-item-active {
+            @apply border-r-4 border-primary bg-primary/10 text-primary;
+        }
+        .glass-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-800 dark:text-slate-100 font-sans transition-colors duration-200">
+<div class="flex h-screen overflow-hidden">
+<aside class="w-64 flex-shrink-0 hidden lg:flex flex-col border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark">
+<div class="p-6 flex flex-col items-center">
+<img alt="The Last Card Logo" class="h-16 w-auto mb-2" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_KC1vDvWdHhkxKjN0UE_Xor9WQMqjYMU1yVepxnR4kfk3wpcq3WFg44EZxmaStw4zWBvowUIkKtm_2WeITNkqU4XkD2NUN-P3uV750nsDqr_tVevmYBjzHLkrDTRqdTpsRvdL8PZi3qPcOyltgAQyvKwcB_tv2M0QrthvnmWYW-HS0jo-ThZF3oOR885eF_uAuSmhnZkUMa-jt4nBTjxWKZ5wnQcGLmsozoJOlRYwLBseoyKUgNCKs2C9J7ex7-V_ektky4ZMFuk1"/>
+<p class="text-[10px] tracking-[0.2em] font-display font-semibold text-primary uppercase">Smart . Tap . Connect</p>
+</div>
+<nav class="flex-1 px-4 space-y-2 mt-8">
+<a class="flex items-center space-x-3 px-4 py-3 text-primary bg-primary/10 rounded-lg font-medium" href="#">
+<span class="material-icons-round">credit_card</span>
+<span>My Cards</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-all" href="#">
+<span class="material-icons-round">analytics</span>
+<span>Analytics</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-all" href="#">
+<span class="material-icons-round">contacts</span>
+<span>Contacts</span>
+</a>
+<a class="flex items-center space-x-3 px-4 py-3 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-white/5 rounded-lg transition-all" href="#">
+<span class="material-icons-round">settings</span>
+<span>Settings</span>
+</a>
+</nav>
+<div class="p-6 mt-auto">
+<div class="p-4 rounded-xl bg-gradient-to-br from-slate-100 to-slate-200 dark:from-white/5 dark:to-white/10 border border-slate-200 dark:border-white/5">
+<p class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2">Upgrade Pro</p>
+<p class="text-xs mb-3 text-slate-600 dark:text-slate-300">Get unlimited digital cards and premium templates.</p>
+<button class="w-full py-2 bg-primary text-black font-bold text-xs rounded-lg hover:brightness-110 transition-all uppercase tracking-tighter">Upgrade Now</button>
+</div>
+</div>
+</aside>
+<main class="flex-1 flex flex-col min-w-0 overflow-hidden">
+<header class="h-16 flex items-center justify-between px-8 border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-background-dark bg-opacity-80 backdrop-blur-md z-10">
+<div class="flex items-center lg:hidden">
+<img alt="Logo" class="h-10" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCP9uJqB8l1qmOqW50RWHKJ4NQFcOCUi11Q518YRBg7ggBju_eVD45qQbpujhm3RNtaOrTGC6os9anVkSQQWW7S9fLHJnLVrEOooKWpGIKAhVNkp0XfKcluUghPUJ69Pq0I1i3P4myJ66QIAIC32GbQAr3KC7Zm6wcMvM7bj8Gb-XU1eZDEclwmVOsTYFhmfpB5RaMHZ_sdpcVGywZu3ozho4IeH2rTxEunedt1sfWaxtHNtxeZxRw6HlxrOXA6fEax8DR4vOUVlZ3u"/>
+</div>
+<div class="hidden md:block">
+<h1 class="text-xl font-display font-bold">My Cards</h1>
+</div>
+<div class="flex items-center space-x-4">
+<div class="relative hidden sm:block">
+<span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+<span class="material-icons-round text-lg">search</span>
+</span>
+<input class="pl-10 pr-4 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-white/5 focus:ring-1 focus:ring-primary focus:border-primary text-sm w-64" placeholder="Search cards..." type="text"/>
+</div>
+<button class="p-2 text-slate-500 dark:text-slate-400 hover:text-primary transition-colors">
+<span class="material-icons-round">notifications</span>
+</button>
+<div class="h-8 w-px bg-slate-200 dark:bg-slate-700 mx-1"></div>
+<div class="flex items-center space-x-3 cursor-pointer group">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold group-hover:text-primary transition-colors">Alexander Pierce</p>
+<p class="text-[10px] text-slate-500 dark:text-slate-400">Premium Member</p>
+</div>
+<img alt="Profile" class="h-9 w-9 rounded-full border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHdd3st3nsPYdZUtp0vaFJX89NWAAjCNA87XvD7YCxgXcxfs9Plwee9rJhnsGHWVH3qHeFq4xUTvjIZupKumShWJ55eRrDowzGnGMhPo8oaaX6QZETH2VcqXcJWiz4FfI9IzVkhsc27s3uYF43WDo8v2r0UDXZ7yJPTv26nm5fBNAZcFdfI6fMJK1Ebbb176W2dS5waKBWeTI1HIyir7R1yk7_jnj0jOfw7U0lFQJn9DDZMl2RSr6c5gPY_ytK6Hrk1n21iTCQf5ZR"/>
+</div>
+</div>
+</header>
+<div class="flex-1 overflow-y-auto p-8 space-y-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="text-2xl font-bold mb-1">Welcome back, Alex!</h2>
+<p class="text-slate-500 dark:text-slate-400">You have 3 active cards and 1,240 total views this month.</p>
+</div>
+<button class="flex items-center justify-center space-x-2 px-6 py-3 bg-primary text-black font-bold rounded-xl hover:shadow-lg hover:shadow-primary/20 transition-all transform hover:-translate-y-0.5 active:scale-95">
+<span class="material-icons-round">add</span>
+<span>CREATE NEW CARD</span>
+</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="p-6 rounded-2xl bg-white dark:bg-card-dark border border-slate-200 dark:border-white/5 flex items-center space-x-4 shadow-sm">
+<div class="p-3 bg-emerald-100 dark:bg-emerald-500/10 rounded-xl">
+<span class="material-icons-round text-emerald-600 dark:text-emerald-400">visibility</span>
+</div>
+<div>
+<p class="text-sm text-slate-500 dark:text-slate-400">Total Views</p>
+<p class="text-xl font-bold">24,592</p>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-white dark:bg-card-dark border border-slate-200 dark:border-white/5 flex items-center space-x-4 shadow-sm">
+<div class="p-3 bg-blue-100 dark:bg-blue-500/10 rounded-xl">
+<span class="material-icons-round text-blue-600 dark:text-blue-400">share</span>
+</div>
+<div>
+<p class="text-sm text-slate-500 dark:text-slate-400">Contact Saves</p>
+<p class="text-xl font-bold">1,824</p>
+</div>
+</div>
+<div class="p-6 rounded-2xl bg-white dark:bg-card-dark border border-slate-200 dark:border-white/5 flex items-center space-x-4 shadow-sm">
+<div class="p-3 bg-amber-100 dark:bg-amber-500/10 rounded-xl">
+<span class="material-icons-round text-amber-600 dark:text-amber-400">bolt</span>
+</div>
+<div>
+<p class="text-sm text-slate-500 dark:text-slate-400">NFC Taps</p>
+<p class="text-xl font-bold">892</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+<div class="group flex flex-col bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm overflow-hidden hover:border-primary/50 transition-all">
+<div class="h-48 relative overflow-hidden bg-slate-100 dark:bg-slate-900">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<img alt="Card Background" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgRViAqvUHq_HJSPCBKmeAjhMNZEZmOJcFVRlvx4Ft7KWJufn5jiz8EkXbzYrAU92GnWshTxoPlcUMvFM3MQNkXTYd5rcLxXfOOJcNdMTME25NyBrNqYdvTWzquqG2bZqdPutDR2JFOnYyApUBIuuUafU8l5VVGKGhKMOMQwFHpz40H5Zuss9pdGSG4WohkoAsXUtRD-XIEj8AQDd3aQmNJADaX2wFYrgLTohLYCxghESiiJRrQF9Y3GbjnyVT2FSyC_37tucxPe42"/>
+<div class="absolute top-4 left-4 z-20 flex items-center space-x-2">
+<span class="bg-emerald-500 text-[10px] text-white px-2 py-0.5 rounded-full font-bold uppercase">Active</span>
+</div>
+<div class="absolute bottom-4 left-4 z-20">
+<h3 class="text-lg font-bold text-white">Main Professional</h3>
+<p class="text-xs text-slate-300">Executive Director @ TechCorp</p>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
+<span class="material-icons-round text-sm">visibility</span>
+<span class="text-sm font-medium">8.4k Views</span>
+</div>
+<div class="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
+<span class="material-icons-round text-sm">event</span>
+<span class="text-sm">Updated 2d ago</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-2">
+<button class="flex items-center justify-center space-x-2 py-2.5 border border-primary text-primary hover:bg-primary/5 rounded-xl font-semibold text-sm transition-all">
+<span class="material-icons-round text-base">edit</span>
+<span>Edit Profile</span>
+</button>
+<button class="flex items-center justify-center space-x-2 py-2.5 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 rounded-xl font-semibold text-sm transition-all">
+<span class="material-icons-round text-base">qr_code_2</span>
+<span>Get QR</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm overflow-hidden hover:border-primary/50 transition-all">
+<div class="h-48 relative overflow-hidden bg-slate-100 dark:bg-slate-900">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<img alt="Card Background" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCXmdIeHPNi96OK6nme8KoRHksMXYJ6xL1rL1joseUg4ihIplOC3eZZ8O83G3J88J8UjUUdy83LqBoZqSXAXyogB-C2MrSBGcSz2Yz3pfkQSwj0VOcogInD1Wu_-MZQgbKjNFmkqItIHs-_Fs2R2USwT1Hi83FewZxFWUomeFVeE4s1_DA7vsVZ3N-T2x4rxaIsthmF1G4dRRQTIQrt0aZJ4MNXciBqqb0XsZOOhIKTwf5ogeB0iXJ8dG3k5TYEPYp4InWomRIKZeGn"/>
+<div class="absolute top-4 left-4 z-20 flex items-center space-x-2">
+<span class="bg-emerald-500 text-[10px] text-white px-2 py-0.5 rounded-full font-bold uppercase">Active</span>
+</div>
+<div class="absolute bottom-4 left-4 z-20">
+<h3 class="text-lg font-bold text-white">Social Networking</h3>
+<p class="text-xs text-slate-300">Creator &amp; Personal Brand</p>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
+<span class="material-icons-round text-sm">visibility</span>
+<span class="text-sm font-medium">15.2k Views</span>
+</div>
+<div class="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
+<span class="material-icons-round text-sm">event</span>
+<span class="text-sm">Updated 1w ago</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-2">
+<button class="flex items-center justify-center space-x-2 py-2.5 border border-primary text-primary hover:bg-primary/5 rounded-xl font-semibold text-sm transition-all">
+<span class="material-icons-round text-base">edit</span>
+<span>Edit Profile</span>
+</button>
+<button class="flex items-center justify-center space-x-2 py-2.5 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 rounded-xl font-semibold text-sm transition-all">
+<span class="material-icons-round text-base">qr_code_2</span>
+<span>Get QR</span>
+</button>
+</div>
+</div>
+</div>
+<div class="group flex flex-col bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-white/5 shadow-sm overflow-hidden hover:border-primary/50 transition-all opacity-80 hover:opacity-100">
+<div class="h-48 relative overflow-hidden bg-slate-100 dark:bg-slate-900 grayscale">
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+<img alt="Card Background" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAVgbX47f8nkL3o6cqtTZKENSXfOVSo0t-PjHLofu7rX5ZyZL_UJfareL69YHdVMpnh6GED5sB-4zWtubO5h40RAoIe_F9Qn6CqdnHS6yoUoYRPcBMhaBUuNbB6TczmzbG_3avJfV9XCqEFtLX0ueowmxWVjb6CSrAnH_rOc6Q-l-JiSB_kLUqsKXKNsoOjLPN4N-UWwhcJVt-yB0hXO7NyMAeoJy2sGfSEzGR7zLqb-vaSWnEMTI4VtU2Ud0Ptlp6dYvFhxEEgvZxv"/>
+<div class="absolute top-4 left-4 z-20 flex items-center space-x-2">
+<span class="bg-slate-500 text-[10px] text-white px-2 py-0.5 rounded-full font-bold uppercase">Inactive</span>
+</div>
+<div class="absolute bottom-4 left-4 z-20">
+<h3 class="text-lg font-bold text-white">Event Pass - Gala</h3>
+<p class="text-xs text-slate-300">Expired Oct 2023</p>
+</div>
+</div>
+<div class="p-6 space-y-4">
+<div class="flex justify-between items-center">
+<div class="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
+<span class="material-icons-round text-sm">visibility</span>
+<span class="text-sm font-medium">1.2k Views</span>
+</div>
+<div class="flex items-center space-x-2 text-slate-500 dark:text-slate-400">
+<span class="material-icons-round text-sm">block</span>
+<span class="text-sm">Disabled</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 pt-2">
+<button class="flex items-center justify-center space-x-2 py-2.5 border border-slate-300 dark:border-slate-700 text-slate-400 hover:text-primary hover:border-primary rounded-xl font-semibold text-sm transition-all">
+<span class="material-icons-round text-base">settings_backup_restore</span>
+<span>Reactivate</span>
+</button>
+<button class="flex items-center justify-center space-x-2 py-2.5 bg-slate-100 dark:bg-white/5 text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-white/10 rounded-xl font-semibold text-sm transition-all">
+<span class="material-icons-round text-base">delete_outline</span>
+<span>Delete</span>
+</button>
+</div>
+</div>
+</div>
+<div class="flex flex-col items-center justify-center bg-slate-50/50 dark:bg-white/[0.02] rounded-2xl border-2 border-dashed border-slate-200 dark:border-white/10 hover:border-primary/40 hover:bg-slate-100 dark:hover:bg-white/[0.04] transition-all group cursor-pointer h-[380px]">
+<div class="p-5 rounded-full bg-white dark:bg-white/5 mb-4 group-hover:scale-110 transition-transform">
+<span class="material-icons-round text-4xl text-primary">add_circle_outline</span>
+</div>
+<p class="font-bold text-lg">Add New Card</p>
+<p class="text-sm text-slate-500 dark:text-slate-400 mt-1 px-8 text-center">Expand your digital presence with a new custom profile.</p>
+</div>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-2xl border border-slate-200 dark:border-white/5 p-6 shadow-sm">
+<h3 class="text-lg font-bold mb-6">Recent Connections</h3>
+<div class="space-y-6">
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<img alt="Contact" class="h-10 w-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDwvJu9LlwkFEiO_HJb6NswLTCGo4uW206AQo_hSM1mtXpIIX0gKukO1n2q8AsHx72LDErssc_T7dzU00ZsnYLd5ZhCDY60shaySh1ItzevebnKbvRIyZ6_fkGFQOq1jHkheQN7XFanM8KTrq8RkNds2XNILS0-v2DR3yPNMs3vhWsP-ri3KPvvm1icJb53eE6vwFwK-NkIpVFl_eIuRJpFecISBBgq8B6ZHYzxFR1dAM2oLOp_8sRy5gNbwux05AC0GlCutJ0ux6h7"/>
+<div>
+<p class="font-semibold text-sm">Marcus Thompson</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Scanned your 'Professional' card at WebSummit</p>
+</div>
+</div>
+<span class="text-xs text-slate-400">2 hours ago</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<img alt="Contact" class="h-10 w-10 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT2hfRnXPgVaVMUQcOj0ppna1ahjHm-iXz5kJwCiLoZl5nCVpGHyPQ9geOitvJcWU3_I0ejgN-hPl8EKi85H7bMnPyme4OO1dpOjwk2Gn2MSfptvK5wpwv2uqNeXjF-RAWcJr-Y1vsKFxxT4bpfi8JzcmXZ_PLyLQJ2INLKBjA86cRMOSmxZRS_dzcySc3ozPSyctgZ8fnZedO3k6Own1K9AV1K6L8ltGrYrWg84v_w4akd-aEYPfi2wvOx9tMXBG3kmFgKMzviW6f"/>
+<div>
+<p class="font-semibold text-sm">Elena Rodriguez</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">Saved your contact details from LinkedIn link</p>
+</div>
+</div>
+<span class="text-xs text-slate-400">Yesterday</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center space-x-4">
+<div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center text-primary">
+<span class="material-icons-round">qr_code</span>
+</div>
+<div>
+<p class="font-semibold text-sm">Anonymous Scan</p>
+<p class="text-xs text-slate-500 dark:text-slate-400">QR Code scan from London, UK</p>
+</div>
+</div>
+<span class="text-xs text-slate-400">2 days ago</span>
+</div>
+</div>
+<button class="w-full mt-6 py-2 text-primary font-semibold text-sm hover:underline">View All Activity</button>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

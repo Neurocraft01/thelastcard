@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}My Cards - The Last Card{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+                <div>
+                    <h1 class="text-2xl font-bold">My Cards</h1>
+                    <p class="text-slate-500 dark:text-slate-400">Manage your digital business cards.</p>
+                </div>
+                <a href="{% url 'cards:create' %}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-black bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] hover:shadow-lg hover:shadow-primary/25 transition-all">
+                    <span class="material-icons-round">add</span>
+                    New Card
+                </a>
+            </div>
+
+            {% if cards %}
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 overflow-hidden">
+                <div class="overflow-x-auto">
+                    <table class="w-full">
+                        <thead class="bg-slate-50 dark:bg-zinc-800">
+                            <tr>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Card Info</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Views</th>
+                                <th class="px-6 py-4 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Created</th>
+                                <th class="px-6 py-4 text-right text-xs font-semibold text-slate-500 uppercase tracking-wider">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200 dark:divide-zinc-800">
+                            {% for card in cards %}
+                            <tr class="hover:bg-slate-50 dark:hover:bg-zinc-800/50">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-3">
+                                        <div class="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center">
+                                            <span class="material-icons-round text-primary">credit_card</span>
+                                        </div>
+                                        <div>
+                                            <div class="font-semibold">{{ card.url_slug }}</div>
+                                            <div class="text-xs text-slate-500 dark:text-slate-400">{{ card.public_url }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="px-2 py-1 {% if card.is_active %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% else %}bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400{% endif %} rounded-lg text-xs font-medium">
+                                        {{ card.get_status_display }}
+                                    </span>
+                                </td>
+                                <td class="px-6 py-4">{{ card.view_count }}</td>
+                                <td class="px-6 py-4 text-sm text-slate-500">{{ card.created_at|date:"M d, Y" }}</td>
+                                <td class="px-6 py-4 text-right">
+                                    <div class="flex items-center justify-end gap-2">
+                                        <a href="{% url 'cards:detail' card.id %}" class="p-2 text-slate-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="View Details">
+                                            <span class="material-icons-round text-xl">visibility</span>
+                                        </a>
+                                        <a href="{% url 'cards:edit' card.id %}" class="p-2 text-slate-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Edit">
+                                            <span class="material-icons-round text-xl">edit</span>
+                                        </a>
+                                        <a href="{{ card.public_url }}" target="_blank" class="p-2 text-slate-500 hover:text-primary hover:bg-primary/10 rounded-lg transition-colors" title="Public Link">
+                                            <span class="material-icons-round text-xl">open_in_new</span>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 p-12 text-center">
+                <div class="w-20 h-20 mx-auto bg-primary/10 rounded-2xl flex items-center justify-center mb-6">
+                    <span class="material-icons-round text-primary text-4xl">credit_card</span>
+                </div>
+                <h3 class="text-xl font-bold mb-2">No cards found</h3>
+                <p class="text-slate-500 dark:text-slate-400 mb-6">You haven't created any digital cards yet.</p>
+                <a href="{% url 'cards:create' %}" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-black bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] hover:shadow-lg hover:shadow-primary/25 transition-all">
+                    Create Your First Card
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+</div>
+{% endblock %}

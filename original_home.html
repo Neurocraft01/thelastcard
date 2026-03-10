@@ -1,0 +1,461 @@
+﻿{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}The Last Card - Smart NFC Business Cards{% endblock %}
+{% block meta_description %}The Last Business Card You'll Ever Need. Smart. Tap. Connect. Share your contact info, social media, and portfolio in a single tap using luxury NFC technology.{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="relative pt-32 pb-20 overflow-hidden" style="background: #09090b;">
+    <!-- Background Gradient for Luxurious Feel -->
+    <div class="absolute inset-0" style="background: radial-gradient(ellipse at top right, rgba(212,175,55,0.15), transparent 60%), linear-gradient(to bottom right, #18181b, #000, #09090b); opacity: 0.9;"></div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10" style="display: flex; flex-direction: row; align-items: center; gap: 3rem;">
+        <!-- LEFT SIDE: Text + Buttons -->
+        <div style="flex: 1; text-align: left;">
+            <h1 class="font-display mb-6 leading-tight" style="font-size: clamp(2.5rem, 5vw, 4.5rem); color: #fff;">
+                The <span class="gold-text">Last Business Card</span> You'll Ever Need.
+            </h1>
+            <p class="mb-10" style="font-size: 1.25rem; color: #cbd5e1; max-width: 36rem;">
+                Smart. Tap. Connect. Share your contact info, social media, and portfolio in a single tap using luxury NFC technology.
+            </p>
+            <div style="display: flex; flex-direction: row; gap: 1rem; flex-wrap: wrap;">
+                <a href="{% url 'accounts:register' %}" class="bg-primary text-black font-extrabold rounded-full hover:scale-105 transition-transform shadow-lg" style="padding: 1rem 2.5rem; font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem;">
+                    Get Your Card <span class="material-icons-round">shopping_bag</span>
+                </a>
+                <a href="#how-it-works" class="text-primary font-bold rounded-full hover:bg-primary/10 transition-all" style="padding: 1rem 2.5rem; font-size: 1.125rem; display: inline-flex; align-items: center; gap: 0.5rem; border: 2px solid rgba(212,175,55,0.3);">
+                    View Demo <span class="material-icons-round">play_circle</span>
+                </a>
+            </div>
+            <div style="margin-top: 3rem; display: flex; align-items: center; gap: 1rem;">
+                <div class="flex -space-x-3">
+                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-primary to-gold-dark flex items-center justify-center text-black text-xs font-bold" style="border-color: #18181b;">JD</div>
+                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-slate-600 to-slate-800 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">AK</div>
+                    <div class="w-10 h-10 rounded-full border-2 bg-gradient-to-br from-zinc-700 to-zinc-900 flex items-center justify-center text-white text-xs font-bold" style="border-color: #18181b;">SM</div>
+                </div>
+                <span style="font-size: 0.875rem; font-weight: 500; color: #94a3b8;">Trusted by 10,000+ Professionals</span>
+            </div>
+        </div>
+        
+        <!-- RIGHT SIDE: Card Animation -->
+        <div style="flex: 1; position: relative;">
+            <div class="relative w-full max-w-lg mx-auto flex items-center justify-center" style="height: 600px;">
+                <!-- Phone Mockup -->
+                <div class="phone-mockup relative z-10">
+                    <div class="bg-zinc-900 shadow-2xl relative overflow-hidden" style="width: 280px; height: 560px; border-radius: 48px; border: 8px solid #27272a;">
+                        <!-- Phone Screen -->
+                        <div class="absolute bg-gradient-to-br from-zinc-800 to-zinc-900 overflow-hidden" style="inset: 1rem; border-radius: 36px;">
+                            <!-- Status Bar -->
+                            <div class="flex items-center justify-between text-white" style="height: 2rem; background: rgba(24,24,27,0.5); padding: 0 1.5rem; font-size: 0.75rem;">
+                                <span>9:41</span>
+                                <div class="flex gap-1">
+                                    <span class="material-icons-round text-sm">signal_cellular_alt</span>
+                                    <span class="material-icons-round text-sm">wifi</span>
+                                    <span class="material-icons-round text-sm">battery_full</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Screen Content -->
+                            <div class="flex flex-col items-center justify-center h-full px-8 pb-12">
+                                <div id="nfcRipple" class="w-32 h-32 rounded-full border-4 border-primary/30 flex items-center justify-center mb-6 relative">
+                                    <span class="material-icons-round text-primary text-6xl animate-pulse">contactless</span>
+                                    <div class="absolute inset-0 rounded-full border-4 border-primary/20 animate-ping"></div>
+                                </div>
+                                <p class="text-white text-center text-sm mb-2">Ready to Connect</p>
+                                <p class="text-zinc-500 text-xs text-center">Tap your card to share profile</p>
+                            </div>
+                            
+                            <!-- NFC Success Indicator -->
+                            <div id="nfcSuccess" class="absolute inset-0 flex items-center justify-center flex-col pointer-events-none" style="background: rgba(212,175,55,0.95); opacity: 0;">
+                                <div class="w-20 h-20 rounded-full flex items-center justify-center mb-4" style="background: rgba(255,255,255,0.2);">
+                                    <span class="material-icons-round text-white text-5xl">check_circle</span>
+                                </div>
+                                <p class="text-white font-bold text-lg">Connected!</p>
+                                <p style="color: rgba(255,255,255,0.8); font-size: 0.875rem;">Profile Shared</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Notch -->
+                        <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-zinc-800" style="width: 8rem; height: 1.5rem; border-radius: 0 0 1rem 1rem;"></div>
+                    </div>
+                </div>
+                
+                <!-- NFC Card with Tap Animation -->
+                <div class="nfc-card absolute top-0 right-0">
+                    <div class="bg-gradient-to-br from-zinc-800 to-black p-1 gold-border card-shadow relative" style="width: 280px; border-radius: 28px;">
+                        <div class="w-full bg-zinc-900 relative overflow-hidden flex flex-col items-center justify-center p-8" style="border-radius: 26px; aspect-ratio: 1.586/1;">
+                            <div class="w-20 h-20 gold-gradient flex items-center justify-center mb-4 shadow-lg" style="border-radius: 1rem; opacity: 0.9;">
+                                <span class="material-icons-round text-black text-4xl">contactless</span>
+                            </div>
+                            <div class="absolute" style="bottom: 1.5rem; left: 2rem;">
+                                <p class="text-primary uppercase" style="letter-spacing: 0.1em; font-size: 10px; margin-bottom: 0.25rem; opacity: 0.6;">NFC Enabled</p>
+                                <p class="font-display text-white uppercase" style="font-size: 0.875rem; letter-spacing: 0.1em;">James Sterling</p>
+                            </div>
+                            <div class="absolute text-primary" style="top: 1.5rem; right: 2rem;">
+                                <span class="material-icons-round text-2xl">nfc</span>
+                            </div>
+                        </div>
+                        <div class="card-trail absolute inset-0 pointer-events-none" style="border-radius: 28px;"></div>
+                    </div>
+                </div>
+                
+                <!-- Glow Effects -->
+                <div class="absolute rounded-full" style="top: -2.5rem; right: -2.5rem; width: 10rem; height: 10rem; background: rgba(212,175,55,0.2); filter: blur(48px);"></div>
+                <div class="absolute rounded-full" style="bottom: -2.5rem; left: -2.5rem; width: 10rem; height: 10rem; background: rgba(212,175,55,0.1); filter: blur(48px);"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works Section -->
+<section class="py-24 bg-slate-50 dark:bg-zinc-950" id="how-it-works">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-4xl mb-4 gold-text uppercase">The 3-Step Success</h2>
+            <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-12">
+            <div class="text-center p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 transition-all hover:-translate-y-2 hover:shadow-xl">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="material-icons-round text-3xl">tap_and_play</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide">1. Tap</h3>
+                <p class="text-slate-500 dark:text-zinc-400">Simply tap your physical card on any modern smartphone. No apps required for your clients.</p>
+            </div>
+            <div class="text-center p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 transition-all hover:-translate-y-2 hover:shadow-xl">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="material-icons-round text-3xl">share</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide">2. Share</h3>
+                <p class="text-slate-500 dark:text-zinc-400">Instantly share your digital profile containing contact info, social links, and media.</p>
+            </div>
+            <div class="text-center p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 transition-all hover:-translate-y-2 hover:shadow-xl">
+                <div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+                    <span class="material-icons-round text-3xl">save</span>
+                </div>
+                <h3 class="text-xl font-bold mb-4 uppercase tracking-wide">3. Save</h3>
+                <p class="text-slate-500 dark:text-zinc-400">The recipient saves your contact information directly to their phone's contact list.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Features Section -->
+<section class="py-24" id="features">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <div class="h-48 rounded-2xl bg-zinc-800 dark:bg-zinc-900 border border-primary/20 flex items-center justify-center overflow-hidden">
+                            <div class="text-center p-4">
+                                <span class="material-icons-round text-primary text-5xl mb-2">credit_card</span>
+                                <p class="text-sm text-slate-400">Matte Black</p>
+                            </div>
+                        </div>
+                        <div class="h-64 rounded-2xl bg-gradient-to-br from-primary/40 to-primary/5 p-6 border border-primary/30 flex flex-col justify-end">
+                            <p class="text-xs uppercase tracking-[0.2em] mb-2 text-slate-600 dark:text-slate-400">Exclusive</p>
+                            <h4 class="text-2xl font-display font-bold">24K Metal Series</h4>
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-12">
+                        <div class="h-64 rounded-2xl bg-zinc-900 border border-zinc-700 p-6 flex flex-col justify-end shadow-2xl">
+                            <div class="bg-white p-2 w-fit rounded-lg mb-4">
+                                <span class="material-icons-round text-black text-3xl">qr_code_2</span>
+                            </div>
+                            <h4 class="text-xl font-bold text-white">Dynamic QR Codes</h4>
+                        </div>
+                        <div class="h-48 rounded-2xl bg-zinc-800 dark:bg-zinc-900 border border-primary/20 flex items-center justify-center">
+                            <div class="text-center p-4">
+                                <span class="material-icons-round text-primary text-5xl mb-2">analytics</span>
+                                <p class="text-sm text-slate-400">Dashboard</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <h2 class="font-display text-4xl mb-8 gold-text">Next-Gen Networking Features</h2>
+                <ul class="space-y-8">
+                    <li class="flex gap-4">
+                        <div class="mt-1 text-primary"><span class="material-icons-round">insights</span></div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Advanced Analytics</h4>
+                            <p class="text-slate-500 dark:text-zinc-400">Track how many times your card is tapped, which links are clicked, and where your leads are coming from.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="mt-1 text-primary"><span class="material-icons-round">group</span></div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Lead Capture CRM</h4>
+                            <p class="text-slate-500 dark:text-zinc-400">Collect visitor information instantly and export it to your favorite CRM tools or Zapier.</p>
+                        </div>
+                    </li>
+                    <li class="flex gap-4">
+                        <div class="mt-1 text-primary"><span class="material-icons-round">sync</span></div>
+                        <div>
+                            <h4 class="text-xl font-bold mb-2">Real-Time Updates</h4>
+                            <p class="text-slate-500 dark:text-zinc-400">Changed your phone number or job title? Update your profile instantly without ordering a new card.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Pricing Section -->
+<section class="py-24 bg-zinc-50 dark:bg-zinc-950/50" id="pricing">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16" data-animate>
+            <h2 class="font-display text-4xl mb-4 gold-text uppercase">Choose Your Card</h2>
+            <p class="text-slate-500 dark:text-zinc-400 max-w-xl mx-auto">One-time payment. Lifetime digital profile. No subscriptions.</p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            <!-- PVC Standard -->
+            <div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800 relative hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 scroll-reveal delay-100 pricing-card card-tilt" data-animate>
+                <h3 class="text-2xl font-bold mb-2">PVC Standard</h3>
+                <p class="text-slate-500 dark:text-zinc-400 text-sm mb-6">High-Quality PVC Card</p>
+                <div class="flex items-baseline mb-8">
+                    <span class="text-5xl font-bold text-gradient">Γé╣449</span>
+                    <span class="text-slate-500 dark:text-zinc-400 ml-2">One-time</span>
+                </div>
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center gap-3 scroll-reveal delay-100">
+                        <span class="material-icons-round text-primary text-xl pulse">check_circle</span>
+                        <span class="text-sm">High-Quality PVC Material</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-200">
+                        <span class="material-icons-round text-primary text-xl pulse">check_circle</span>
+                        <span class="text-sm">Water Resistant Coating</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-300">
+                        <span class="material-icons-round text-primary text-xl pulse">check_circle</span>
+                        <span class="text-sm">Smart QR + NFC Technology</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-400">
+                        <span class="material-icons-round text-primary text-xl pulse">check_circle</span>
+                        <span class="text-sm">Full Color Printing</span>
+                    </li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-4 border-2 border-primary rounded-xl hover:bg-primary hover:text-black font-bold transition-all stagger-item">Order Standard</a>
+            </div>
+            
+            <!-- Metallic Premium - PREMIUM -->
+            <div class="bg-gradient-to-br from-zinc-900 via-zinc-800 to-zinc-900 p-8 rounded-3xl border-2 border-primary relative transform md:scale-105 shadow-2xl z-10 hover:shadow-primary/20 hover:-translate-y-2 transition-all duration-300 pricing-card glow card-tilt" data-animate>
+                <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-yellow-400 text-black text-[10px] font-black uppercase py-2 px-6 rounded-full tracking-widest shadow-lg">
+                    Γ¡É PREMIUM CHOICE
+                </div>
+                <h3 class="text-2xl font-bold mb-2 text-white">Metallic Premium</h3>
+                <p class="text-zinc-400 text-sm mb-6">Luxury Metal Finish</p>
+                <div class="flex items-baseline mb-8">
+                    <span class="text-5xl font-bold text-gradient">Γé╣649</span>
+                    <span class="text-zinc-400 ml-2">One-time</span>
+                </div>
+                <ul class="space-y-4 mb-10">
+                    <li class="flex items-center gap-3 scroll-reveal delay-100">
+                        <span class="material-icons-round text-yellow-400 text-xl pulse">check_circle</span>
+                        <span class="text-sm text-white">Brushed Metal Finish</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-200">
+                        <span class="material-icons-round text-yellow-400 text-xl pulse">check_circle</span>
+                        <span class="text-sm text-white">Laser Engraved Details</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-300">
+                        <span class="material-icons-round text-yellow-400 text-xl pulse">check_circle</span>
+                        <span class="text-sm text-white">Heavyweight Premium Feel</span>
+                    </li>
+                    <li class="flex items-center gap-3 scroll-reveal delay-400">
+                        <span class="material-icons-round text-yellow-400 text-xl pulse">check_circle</span>
+                        <span class="text-sm text-white">Advanced Analytics Dashboard</span>
+                    </li>
+                </ul>
+                <a href="{% url 'accounts:register' %}" class="block text-center py-4 bg-primary text-black rounded-xl hover:brightness-110 font-bold transition-all shadow-lg glow stagger-item">Get Metal Card</a>
+            </div>
+        </div>
+        
+        <!-- Special Launch Offer -->
+        <div class="mt-16 max-w-5xl mx-auto">
+            <div class="bg-zinc-900 border border-primary/30 rounded-3xl p-8 md:p-12 relative overflow-hidden group">
+                <!-- Background Effects -->
+                <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2 group-hover:bg-primary/20 transition-all duration-700"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-primary/5 rounded-full blur-[80px] translate-y-1/2 -translate-x-1/2"></div>
+                
+                <div class="relative z-10 flex flex-col md:flex-row items-center justify-between gap-10">
+                    <!-- Offer Details -->
+                    <div class="md:w-1/2 text-center md:text-left">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 bg-red-500/10 border border-red-500/20 rounded-full text-red-500 text-xs font-bold uppercase tracking-wider mb-6 animate-pulse">
+                            <span class="w-1.5 h-1.5 rounded-full bg-red-500"></span>
+                            Limited Time Launch Offer
+                        </div>
+                        
+                        <h3 class="text-3xl md:text-4xl font-display font-bold text-white mb-4">
+                            Get 30% OFF <br>
+                            <span class="text-gradient">Premium Metal Cards</span>
+                        </h3>
+                        
+                        <p class="text-slate-400 mb-8 max-w-md mx-auto md:mx-0">
+                            Upgrade your networking game today. Includes verified profile badge, advanced analytics, and priority shipping.
+                        </p>
+                        
+                        <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                            <a href="{% url 'accounts:register' %}" class="px-8 py-4 bg-primary text-black font-bold rounded-xl hover:scale-105 transition-transform shadow-lg shadow-primary/25">
+                                Claim Offer Now
+                            </a>
+                            <div class="flex items-center gap-2 text-sm text-slate-400 px-4 py-4">
+                                <span class="material-icons-round text-base">verified</span>
+                                30-Day Money Back
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Countdown UI -->
+                    <div class="md:w-auto">
+                        <div class="p-6 bg-black/40 backdrop-blur-md rounded-2xl border border-white/10 text-center">
+                            <p class="text-sm font-medium text-slate-400 mb-6 uppercase tracking-widest">Offer Expires In</p>
+                            
+                            <div class="flex gap-4" id="countdown-timer">
+                                <div class="flex flex-col gap-2">
+                                    <div class="w-16 h-20 bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-x-0 h-[1px] bg-black/50 top-1/2"></div>
+                                        <span class="text-3xl font-mono font-bold text-white" id="days">02</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 font-medium">DAYS</span>
+                                </div>
+                                <span class="text-2xl font-bold text-primary mt-6">:</span>
+                                <div class="flex flex-col gap-2">
+                                    <div class="w-16 h-20 bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-x-0 h-[1px] bg-black/50 top-1/2"></div>
+                                        <span class="text-3xl font-mono font-bold text-white" id="hours">14</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 font-medium">HOURS</span>
+                                </div>
+                                <span class="text-2xl font-bold text-primary mt-6">:</span>
+                                <div class="flex flex-col gap-2">
+                                    <div class="w-16 h-20 bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-x-0 h-[1px] bg-black/50 top-1/2"></div>
+                                        <span class="text-3xl font-mono font-bold text-white" id="minutes">45</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 font-medium">MINS</span>
+                                </div>
+                                <span class="text-2xl font-bold text-primary mt-6">:</span>
+                                <div class="flex flex-col gap-2">
+                                    <div class="w-16 h-20 bg-zinc-800 rounded-xl border border-zinc-700 flex items-center justify-center relative overflow-hidden">
+                                        <div class="absolute inset-x-0 h-[1px] bg-black/50 top-1/2"></div>
+                                        <span class="text-3xl font-mono font-bold text-primary" id="seconds">12</span>
+                                    </div>
+                                    <span class="text-xs text-slate-500 font-medium">SECS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <!-- Simple script for the countdown -->
+            <script>
+                (function() {
+                    // Set end date to 48 hours from now
+                    const endDate = new Date();
+                    endDate.setHours(endDate.getHours() + 48);
+
+                    function updateClock() {
+                        const t = Date.parse(endDate) - Date.parse(new Date());
+                        const seconds = Math.floor((t / 1000) % 60);
+                        const minutes = Math.floor((t / 1000 / 60) % 60);
+                        const hours = Math.floor((t / (1000 * 60 * 60)) % 24);
+                        const days = Math.floor(t / (1000 * 60 * 60 * 24));
+
+                        if (t <= 0) return;
+
+                        document.getElementById('days').innerText = ('0' + days).slice(-2);
+                        document.getElementById('hours').innerText = ('0' + hours).slice(-2);
+                        document.getElementById('minutes').innerText = ('0' + minutes).slice(-2);
+                        document.getElementById('seconds').innerText = ('0' + seconds).slice(-2);
+                    }
+
+                    updateClock();
+                    setInterval(updateClock, 1000);
+                })();
+            </script>
+        </div>
+    </div>
+</section>
+
+<!-- Cards for Everyone Section -->
+<section class="py-24 bg-white dark:bg-zinc-900" id="for-everyone">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="font-display text-4xl md:text-5xl mb-4 gold-text uppercase">Cards for Everyone</h2>
+            <div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+            <p class="text-slate-500 dark:text-zinc-400 max-w-2xl mx-auto text-lg">Your premium visiting card, no matter who you are. Built for professionals, loved by everyone.</p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <!-- Creators -->
+            <div class="group text-center p-8 bg-slate-50 dark:bg-zinc-800 rounded-3xl border border-slate-200 dark:border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-white text-4xl">brush</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 uppercase tracking-wide">Creators</h3>
+                <p class="text-slate-500 dark:text-zinc-400 mb-4 text-sm leading-relaxed">Artists, designers, photographers, influencers. Share your portfolio, social links, and creative identity with a single tap.</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 rounded-full text-xs font-medium">Artists</span>
+                    <span class="px-3 py-1 bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-300 rounded-full text-xs font-medium">Designers</span>
+                    <span class="px-3 py-1 bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-300 rounded-full text-xs font-medium">Influencers</span>
+                </div>
+            </div>
+
+            <!-- Business Professionals -->
+            <div class="group text-center p-8 bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl border-2 border-primary/40 transform md:scale-105 shadow-2xl transition-all hover:-translate-y-3 hover:shadow-primary/20 relative">
+                <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-gradient-to-r from-primary to-yellow-400 text-black text-[10px] font-black uppercase py-1.5 px-4 rounded-full tracking-widest">Most Popular</div>
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl gold-gradient flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-black text-4xl">business_center</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 uppercase tracking-wide text-white">Businessmen</h3>
+                <p class="text-zinc-400 mb-4 text-sm leading-relaxed">Entrepreneurs, CEOs, sales teams, consultants. Make every handshake count. Instant contact exchange that impresses.</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">Entrepreneurs</span>
+                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">CEOs</span>
+                    <span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium">Consultants</span>
+                </div>
+            </div>
+
+            <!-- Everyday People -->
+            <div class="group text-center p-8 bg-slate-50 dark:bg-zinc-800 rounded-3xl border border-slate-200 dark:border-zinc-700 transition-all hover:-translate-y-3 hover:shadow-2xl hover:border-primary/40">
+                <div class="w-20 h-20 mx-auto mb-6 rounded-2xl bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                    <span class="material-icons-round text-white text-4xl">people</span>
+                </div>
+                <h3 class="text-xl font-bold mb-3 uppercase tracking-wide">Everyone</h3>
+                <p class="text-slate-500 dark:text-zinc-400 mb-4 text-sm leading-relaxed">Students, freelancers, everyday professionals. One card for all your contacts, socials, and personal brand. Simple &amp; affordable.</p>
+                <div class="flex flex-wrap justify-center gap-2">
+                    <span class="px-3 py-1 bg-blue-100 dark:bg-blue-900/30 text-blue-700 dark:text-blue-300 rounded-full text-xs font-medium">Students</span>
+                    <span class="px-3 py-1 bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300 rounded-full text-xs font-medium">Freelancers</span>
+                    <span class="px-3 py-1 bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300 rounded-full text-xs font-medium">Professionals</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-12">
+            <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg shadow-primary/20">
+                Get Your Card Now <span class="material-icons-round">arrow_forward</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="py-24 bg-zinc-900 dark:bg-black">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="font-display text-4xl md:text-5xl mb-6 text-white">Ready to Make Your <span class="gold-text">Last</span> Impression?</h2>
+        <p class="text-xl text-slate-400 mb-10 max-w-2xl mx-auto">Join thousands of professionals who have upgraded their networking game with luxury NFC digital business cards.</p>
+        <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg shadow-primary/20">
+            Get Started Now <span class="material-icons-round">arrow_forward</span>
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+{% include 'components/footer.html' %}
+{% endblock %}

@@ -1,0 +1,28 @@
+Django
+djangorestframework
+django-cors-headers
+python-dotenv
+python-decouple
+Pillow
+gunicorn
+whitenoise
+dj-database-url
+django-allauth
+PyJWT
+psycopg2-binary
+
+# Neon PostgreSQL
+psycopg[binary]
+neon-api
+
+# Cloudflare R2 (S3-compatible)
+django-storages[s3]
+boto3
+
+# Payment Gateway
+razorpay
+
+# PDF/Export generation
+reportlab
+qrcode[pil]
+xhtml2pdf

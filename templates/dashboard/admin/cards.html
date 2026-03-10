@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Cards - Admin Dashboard{% endblock %}
+
+{% block navigation %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-zinc-950">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+                <div>
+                    <h1 class="text-2xl font-display font-bold">All Cards</h1>
+                    <p class="text-slate-500 dark:text-slate-400">View all user cards with details for printing</p>
+                </div>
+                <div class="flex items-center gap-3">
+                    <a href="{% url 'accounts:admin_export_all_cards' %}" class="flex items-center gap-2 px-4 py-2 bg-green-600 text-white rounded-xl hover:bg-green-700 transition-colors font-medium">
+                        <span class="material-icons-round text-lg">download</span>
+                        Export CSV
+                    </a>
+                    <button onclick="printSelectedCards()" class="flex items-center gap-2 px-4 py-2 bg-primary text-black rounded-xl hover:brightness-110 transition-all font-medium">
+                        <span class="material-icons-round text-lg">print</span>
+                        Print Selected
+                    </button>
+                </div>
+            </div>
+
+            <!-- Cards Grid View -->
+            <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-6 mb-8">
+                {% for card in cards %}
+                <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 overflow-hidden hover:shadow-lg transition-shadow">
+                    <!-- Card Header -->
+                    <div class="p-4 border-b border-slate-200 dark:border-zinc-800 flex items-center justify-between bg-gradient-to-r from-primary/5 to-primary/10">
+                        <div class="flex items-center gap-3">
+                            <input type="checkbox" name="selected_cards" value="{{ card.id }}" class="card-checkbox w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary">
+                            <div class="w-10 h-10 rounded-xl gold-gradient flex items-center justify-center">
+                                <span class="material-icons-round text-black">credit_card</span>
+                            </div>
+                            <div>
+                                <h3 class="font-bold">{{ card.url_slug }}</h3>
+                                <span class="text-xs text-slate-500">{{ card.card_uid }}</span>
+                            </div>
+                        </div>
+                        <span class="px-2 py-1 rounded-full text-xs font-medium {% if card.status == 'ACTIVE' %}bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400{% elif card.status == 'PENDING' %}bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400{% else %}bg-slate-100 text-slate-700 dark:bg-zinc-800{% endif %}">
+                            {{ card.get_status_display }}
+                        </span>
+                    </div>
+
+                    <!-- User Info -->
+                    <div class="p-4">
+                        {% if card.user %}
+                        <div class="flex items-start gap-3 mb-4">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 overflow-hidden">
+                                {% if card.user.profile and card.user.profile.profile_photo %}
+                                <img src="{{ card.user.profile.profile_photo.url }}" alt="Profile" class="w-full h-full object-cover">
+                                {% else %}
+                                <span class="text-lg font-bold text-primary">{{ card.user.email|slice:":2"|upper }}</span>
+                                {% endif %}
+                            </div>
+                            <div class="flex-1 min-w-0">
+                                <h4 class="font-semibold truncate">{% if card.user.profile %}{{ card.user.profile.full_name }}{% else %}{{ card.user.email }}{% endif %}</h4>
+                                <p class="text-sm text-slate-500 truncate">{{ card.user.email }}</p>
+                                {% if card.user.profile and card.user.profile.designation %}
+                                <p class="text-xs text-primary">{{ card.user.profile.designation }}</p>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <!-- User Details -->
+                        <div class="space-y-2 text-sm">
+                            {% if card.user.profile %}
+                            {% if card.user.profile.company %}
+                            <div class="flex items-center gap-2">
+                                <span class="material-icons-round text-slate-400 text-sm">business</span>
+                                <span class="truncate">{{ card.user.profile.company }}</span>
+                            </div>
+                            {% endif %}
+                            {% if card.user.profile.phone_primary %}
+                            <div class="flex items-center gap-2">
+                                <span class="material-icons-round text-slate-400 text-sm">phone</span>
+                                <span>{{ card.user.profile.phone_primary }}</span>
+                            </div>
+                            {% endif %}
+                            {% if card.user.profile.location %}
+                            <div class="flex items-center gap-2">
+                                <span class="material-icons-round text-slate-400 text-sm">location_on</span>
+                                <span class="truncate">{{ card.user.profile.location }}</span>
+                            </div>
+                            {% endif %}
+                            {% endif %}
+                        </div>
+                        {% else %}
+                        <div class="text-center py-4 text-slate-500">
+                            <span class="material-icons-round text-3xl mb-2 block">person_off</span>
+                            <p class="text-sm">No user assigned</p>
+                        </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- QR & Stats -->
+                    <div class="px-4 py-3 border-t border-slate-200 dark:border-zinc-800 bg-slate-50 dark:bg-zinc-800/50">
+                        <div class="flex items-center justify-between text-sm">
+                            <div class="flex items-center gap-4">
+                                <div class="flex items-center gap-1 text-slate-500">
+                                    <span class="material-icons-round text-sm">visibility</span>
+                                    <span>{{ card.view_count }}</span>
+                                </div>
+                                <div class="flex items-center gap-1 text-slate-500">
+                                    <span class="material-icons-round text-sm">calendar_today</span>
+                                    <span>{{ card.created_at|date:"M d" }}</span>
+                                </div>
+                            </div>
+                            <a href="{{ card.public_url }}" target="_blank" class="text-primary hover:underline flex items-center gap-1">
+                                <span class="material-icons-round text-sm">qr_code_2</span>
+                                View
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Actions -->
+                    <div class="px-4 py-3 border-t border-slate-200 dark:border-zinc-800 flex items-center gap-2">
+                        <a href="{% url 'accounts:admin_card_detail' card.id %}" class="flex-1 text-center py-2 bg-primary text-black font-medium rounded-lg hover:brightness-110 transition-all text-sm">
+                            View Details
+                        </a>
+                        <a href="{% url 'accounts:admin_export_card' card.id %}" class="p-2 bg-slate-100 dark:bg-zinc-800 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors" title="Export PDF">
+                            <span class="material-icons-round text-lg">download</span>
+                        </a>
+                        {% if card.user %}
+                        <a href="{% url 'accounts:admin_user_detail' card.user.id %}" class="p-2 bg-slate-100 dark:bg-zinc-800 rounded-lg hover:bg-slate-200 dark:hover:bg-zinc-700 transition-colors" title="View User">
+                            <span class="material-icons-round text-lg">person</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% empty %}
+                <div class="md:col-span-2 xl:col-span-3 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 p-12 text-center">
+                    <div class="w-20 h-20 mx-auto mb-6 rounded-full bg-slate-100 dark:bg-zinc-800 flex items-center justify-center">
+                        <span class="material-icons-round text-slate-400 text-4xl">credit_card</span>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2">No Cards Yet</h3>
+                    <p class="text-slate-500">No cards have been created yet.</p>
+                </div>
+                {% endfor %}
+            </div>
+
+            <!-- Select All -->
+            {% if cards %}
+            <div class="bg-white dark:bg-zinc-900 rounded-xl border border-slate-200 dark:border-zinc-800 p-4 flex items-center justify-between">
+                <label class="flex items-center gap-3 cursor-pointer">
+                    <input type="checkbox" id="selectAll" class="w-5 h-5 rounded border-slate-300 text-primary focus:ring-primary">
+                    <span class="font-medium">Select All Cards</span>
+                </label>
+                <span id="selectedCount" class="text-sm text-slate-500">0 selected</span>
+            </div>
+            {% endif %}
+        </div>
+    </main>
+</div>
+
+<script>
+    // Select all functionality
+    const selectAllCheckbox = document.getElementById('selectAll');
+    const cardCheckboxes = document.querySelectorAll('.card-checkbox');
+    const selectedCountEl = document.getElementById('selectedCount');
+
+    function updateSelectedCount() {
+        const checked = document.querySelectorAll('.card-checkbox:checked').length;
+        if (selectedCountEl) {
+            selectedCountEl.textContent = checked + ' selected';
+        }
+    }
+
+    if (selectAllCheckbox) {
+        selectAllCheckbox.addEventListener('change', function() {
+            cardCheckboxes.forEach(cb => cb.checked = this.checked);
+            updateSelectedCount();
+        });
+    }
+
+    cardCheckboxes.forEach(cb => {
+        cb.addEventListener('change', updateSelectedCount);
+    });
+
+    function printSelectedCards() {
+        const selected = Array.from(document.querySelectorAll('.card-checkbox:checked')).map(cb => cb.value);
+        if (selected.length === 0) {
+            alert('Please select at least one card to print.');
+            return;
+        }
+        const url = "{% url 'accounts:admin_print_cards' %}?cards=" + selected.join('&cards=');
+        window.open(url, '_blank');
+    }
+</script>
+{% endblock %}

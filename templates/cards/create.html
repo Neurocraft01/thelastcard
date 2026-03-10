@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create New Card - The Last Card{% endblock %}
+
+{% block body %}
+<div class="min-h-screen bg-slate-50 dark:bg-background-dark">
+    {% include 'dashboard/components/sidebar.html' %}
+
+    <main class="lg:ml-[280px] min-h-screen">
+        <div class="p-6 lg:p-8">
+            <div class="mb-8">
+                <a href="{% url 'accounts:dashboard_redirect' %}" class="inline-flex items-center gap-1 text-slate-500 hover:text-primary transition-colors mb-4">
+                    <span class="material-icons-round text-xl">arrow_back</span>
+                    Back to Dashboard
+                </a>
+                <h1 class="text-2xl font-bold">Create New Card</h1>
+            </div>
+
+            <div class="bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 max-w-2xl">
+                <div class="p-8">
+                    <form method="post" novalidate>
+                        {% csrf_token %}
+
+                        <div class="mb-6">
+                            <label for="url_slug" class="block text-sm font-medium mb-2">Card URL Slug</label>
+                            <div class="flex">
+                                <span class="px-4 py-3 bg-slate-100 dark:bg-zinc-800 border border-r-0 border-slate-200 dark:border-zinc-700 rounded-l-xl text-slate-500 text-sm">
+                                    {{ request.get_host }}/p/
+                                </span>
+                                <input type="text" name="url_slug" id="url_slug" required pattern="[a-zA-Z0-9-]+" minlength="3" placeholder="john-doe"
+                                       class="flex-1 px-4 py-3 rounded-r-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                            </div>
+                            <p class="mt-2 text-sm text-slate-500">Unique identifier for your card URL. Letters, numbers, and hyphens only.</p>
+                            {% if form.url_slug.errors %}
+                            <p class="mt-2 text-sm text-red-500">{{ form.url_slug.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <div class="mb-6">
+                            <label for="card_uid" class="block text-sm font-medium mb-2">NFC Chip UID (Optional)</label>
+                            <input type="text" name="card_uid" id="card_uid" placeholder="e.g. 04:A3:56:..."
+                                   class="w-full px-4 py-3 rounded-xl border border-slate-200 dark:border-zinc-700 bg-white dark:bg-zinc-800 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all">
+                            <p class="mt-2 text-sm text-slate-500">Enter the UID of your physical NFC card if you have one. You can add this later.</p>
+                            {% if form.card_uid.errors %}
+                            <p class="mt-2 text-sm text-red-500">{{ form.card_uid.errors.0 }}</p>
+                            {% endif %}
+                        </div>
+
+                        <button type="submit" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold text-black bg-gradient-to-r from-[#BF953F] via-[#FCF6BA] to-[#B38728] hover:shadow-lg hover:shadow-primary/25 transition-all">
+                            <span class="material-icons-round">add</span>
+                            Create Card
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}

@@ -1,0 +1,110 @@
+from django.db import models
+from django.conf import settings
+import uuid
+
+
+class CardOrder(models.Model):
+    """Model for physical NFC card orders."""
+    
+    STATUS_CHOICES = (
+        ('pending', 'Pending'),
+        ('payment_pending', 'Payment Pending'),
+        ('paid', 'Paid'),
+        ('processing', 'Processing'),
+        ('shipped', 'Shipped'),
+        ('delivered', 'Delivered'),
+        ('cancelled', 'Cancelled'),
+    )
+    
+    PAYMENT_STATUS_CHOICES = (
+        ('pending', 'Pending'),
+        ('created', 'Order Created'),
+        ('authorized', 'Authorized'),
+        ('captured', 'Captured'),
+        ('failed', 'Failed'),
+        ('refunded', 'Refunded'),
+    )
+    
+    CARD_TYPE_CHOICES = (
+        ('white_pvc', 'White PVC Card - ₹449'),
+        ('pink_pvc', 'Pink PVC Card - ₹449'),
+        ('metallic', 'Metallic Premium Card - ₹649'),
+    )
+    
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='card_orders'
+    )
+    
+    # Order Details
+    card_type = models.CharField(
+        max_length=20,
+        choices=CARD_TYPE_CHOICES,
+        default='white_pvc'
+    )
+    quantity = models.PositiveIntegerField(default=1)
+    
+    # Customization
+    custom_design = models.ImageField(
+        upload_to='orders/designs/',
+        blank=True,
+        null=True,
+        help_text="Upload your custom design/logo (optional)"
+    )
+    custom_text = models.CharField(
+        max_length=100,
+        blank=True,
+        help_text="Name or text to print on card"
+    )
+    
+    # Shipping
+    shipping_address = models.TextField()
+    
+    # Status & Tracking
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_CHOICES,
+        default='pending'
+    )
+    tracking_number = models.CharField(max_length=100, blank=True)
+    notes = models.TextField(blank=True, help_text="Special instructions")
+    
+    # Payment (Razorpay)
+    razorpay_order_id = models.CharField(max_length=100, blank=True, null=True)
+    razorpay_payment_id = models.CharField(max_length=100, blank=True, null=True)
+    razorpay_signature = models.CharField(max_length=200, blank=True, null=True)
+    payment_status = models.CharField(
+        max_length=20,
+        choices=PAYMENT_STATUS_CHOICES,
+        default='pending'
+    )
+    amount_paid = models.DecimalField(max_digits=10, decimal_places=2, default=0)
+    
+    # Timestamps
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = 'Card Order'
+        verbose_name_plural = 'Card Orders'
+    
+    def __str__(self):
+        return f"Order #{self.id} - {self.user.email} - {self.get_status_display()}"
+    
+    @property
+    def order_number(self):
+        return f"TLC-{str(self.id)[:8].upper()}"
+    
+    @property
+    def total_price(self):
+        """Calculate total price based on card type and quantity."""
+        PRICES = {
+            'white_pvc': 449,
+            'pink_pvc': 449,
+            'metallic': 649,
+        }
+        base_price = PRICES.get(self.card_type, 449)
+        return base_price * self.quantity

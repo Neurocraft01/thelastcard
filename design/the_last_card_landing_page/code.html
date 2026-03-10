@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Last Card | Smart. Tap. Connect.</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#D4AF37", // Classic Metallic Gold
+                        "gold-light": "#F9F295",
+                        "gold-dark": "#B38728",
+                        "background-light": "#FDFCFB",
+                        "background-dark": "#0A0A0A",
+                    },
+                    fontFamily: {
+                        display: ["Playfair Display", "serif"],
+                        sans: ["Montserrat", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "12px",
+                    },
+                },
+            },
+        };
+    </script>
+<style>.gold-text {
+    background: linear-gradient(to right, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent
+    }
+.gold-border {
+    border: 1px solid transparent;
+    background: linear-gradient(theme("colors.background-dark"), theme("colors.background-dark")) padding-box, linear-gradient(to right, #BF953F, #FCF6BA, #AA771C) border-box
+    }
+.noise-bg {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuCeUBFn63GNuSL1xTShDYMEChNcd-0IUCLW7Au_hQmJ3BUSFBehD1Qd-dOX_8sCtKd87nLgkx0Ru0e2A8DPAIdtxOzgd1cKYuXkRh9s2SJk0c9bGgKqLPBYLH6X7e-2AVnersOW9hrRMYaR_OUC-6JJpTV1Ox97ff9vOhmym1BrkLamo0VBd6iStp-EQMn3gtHf-JBffBO4DrNGP9-7RaKxUrHarT1BYQO9yFVp5igt8EhvgQAoycy73-uoOYsbBtcXpnm5Hoc_3NFh)
+    }
+.card-shadow {
+    box-shadow: 0 20px 50px rgba(212, 175, 55, 0.15)
+    }</style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-slate-100 font-sans transition-colors duration-300">
+<nav class="fixed w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex items-center gap-2">
+<img alt="The Last Card Logo" class="h-10 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCVCNstwHL96S9QHMEq9qEeChMbJ30VrJTcUbnp_R-gTPNETbUGataRUfyPNpNw_sRnjjThTnOVTiDRYFKGI7jLXyd88wGeAabDikXuZTackhSo7dUsL6Pn5GRSZLeGnxILixVhqKmAUcuQvGyRj_HboOqgNIqefN6v8yOTPq-H1c__VYwD1gBYG8r5bp6eILkLvwyHEIYzB5sVtINStge8ANQqZljuYxiGlv9l10VKNQDu2Q8XmBU8aw5Jj3_fsFbnLHEmYqp7MGdg"/>
+<span class="font-display text-xl tracking-wider hidden sm:block gold-text uppercase font-bold">The Last Card</span>
+</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest" href="#how-it-works">How it Works</a>
+<a class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest" href="#features">Features</a>
+<a class="hover:text-primary transition-colors font-medium text-sm uppercase tracking-widest" href="#pricing">Pricing</a>
+<button class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors" onclick="document.documentElement.classList.toggle('dark')">
+<span class="material-icons text-xl">dark_mode</span>
+</button>
+<a class="bg-primary text-black font-bold py-2 px-6 rounded-full hover:brightness-110 transition-all text-sm uppercase tracking-tighter" href="#">Get Your Card</a>
+</div>
+</div>
+</div>
+</nav>
+<section class="relative pt-32 pb-20 overflow-hidden noise-bg">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center gap-12">
+<div class="flex-1 text-center lg:text-left z-10">
+<h1 class="font-display text-5xl md:text-7xl mb-6 leading-tight">
+                    The <span class="gold-text">Last Business Card</span> You'll Ever Need.
+                </h1>
+<p class="text-xl md:text-2xl text-slate-600 dark:text-slate-400 mb-10 max-w-2xl mx-auto lg:mx-0">
+                    Smart. Tap. Connect. Share your contact info, social media, and portfolio in a single tap using luxury NFC technology.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+<a class="bg-primary text-black font-extrabold py-4 px-10 rounded-full hover:scale-105 transition-transform text-lg shadow-lg flex items-center justify-center gap-2" href="#">
+                        Get Your Card <span class="material-icons">shopping_bag</span>
+</a>
+<a class="border-2 border-primary/30 text-primary py-4 px-10 rounded-full hover:bg-primary/10 transition-all text-lg font-bold flex items-center justify-center gap-2" href="#">
+                        View Demo <span class="material-icons">play_circle</span>
+</a>
+</div>
+<div class="mt-12 flex items-center gap-4 justify-center lg:justify-start">
+<div class="flex -space-x-3">
+<img alt="User profile" class="w-10 h-10 rounded-full border-2 border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCO9dZDTX-x7dX0d2gOiYv8JcaHmU_Dsw_yCwqh2Th0Mm28j731AvHg4TLsBrr9ATvYDT9JGcFVMpEkhGd2d0ch7toUKjS1eO_LgwHepJg5rCpQunLLnZSpBDf5ULtLdZnHLCk1iHxaLY43jUhrYqhtxGoT_a5NleFeiQYW4K86Pm8z6JIIUodIL2kDe42_BWCjrj1AXU_6o_KWh0uSG6CAFQBEVvmluYzH3w1bYok5JZHlAVzdVu8DW8hoiiQVPT1PaHuvViv6CWrU"/>
+<img alt="User profile" class="w-10 h-10 rounded-full border-2 border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD10a495FKacK2Nsavei1K-W_O2v0hmbKs8lx85aI0JA4BpcgQyPr_a_9pN4Kpl0Oa2u6mscalSbFcJ4hdNMJsY6We3KmueHueLTBrN6h8fIQaGwCPM-riAKl1zK-QU1fPxj7GFGEMKUSz1k7BRLTwQ_qHqyyMI9HCxk4uLdW5_z6WTpw62vEXLkqvCRB9U2mnbd9i6VZCbnLv6pM9wkE9ysd4X4mkqHnSDb3hKS7tKzaQtR-TShIWFcrkIG8xPP0TzwCF4Yd_dp2kM"/>
+<img alt="User profile" class="w-10 h-10 rounded-full border-2 border-background-dark" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_ilQHeDY3SHYKblr-OQNz4O6mKlHLDMjxI2g4_u8ULT3LoG7Iavi2VqW_EqAl3ojRoBCav0cpSBFnGDswGlI_tCX7gp70s2ElA37YwdZVxIWfoql8F3zlh5NNd-35-7PTO7szGj_IQ2cPd2UOPVYWqcHgACcHv9CHTU1gVtr-KAayTaE5K9w-JXvgXQD1Nu03dTdtHTUkNHj2bbYiKwwTS8_afPSldlbt0Kx6G60bEj2w225HI0ETMM2xU_9qqqPEIqzVm4yGEMgK"/>
+</div>
+<span class="text-sm font-medium text-slate-500">Trusted by 10,000+ Professionals</span>
+</div>
+</div>
+<div class="flex-1 relative">
+<div class="relative w-full max-w-lg mx-auto">
+<div class="bg-gradient-to-br from-zinc-800 to-black p-1 rounded-[24px] gold-border card-shadow transform -rotate-12 transition-transform hover:rotate-0 duration-500">
+<div class="aspect-[1.586/1] w-full rounded-[22px] bg-zinc-900 relative overflow-hidden flex flex-col items-center justify-center p-8">
+<img alt="Gold Logo on Card" class="w-32 opacity-80 mb-4" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpSSyWjISt0X7lIcZ0HDEvhnU6PjX53Phb0jfyQRl1g55ZotSgHTnCuiAad45ki0Lt4udjlmj0xuKMJJwJQb2zWLd2BFk41Mw9INyiMVcK9Jpx8QB2g9fQRbUFw3xWaWjMQuNAr1SEVPswxE_6LZe-3kCmlcJfb9Yxu2pGaslHvJgX9jfytnP11gLpkWeUl66JSD8WIvGsQzkkjHu9xyyiGO1GzqE3-e6gFa6LIcNGUHGyw7jbT-dplh9GGjnvW3nQznomflaphTjn"/>
+<div class="absolute bottom-6 left-8">
+<p class="text-primary tracking-widest text-xs mb-1 uppercase opacity-50">NFC Enabled</p>
+<p class="font-display text-white text-xl uppercase tracking-widest">James Sterling</p>
+</div>
+<div class="absolute top-6 right-8 text-primary">
+<span class="material-icons text-3xl">nfc</span>
+</div>
+</div>
+</div>
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 blur-3xl rounded-full"></div>
+<div class="absolute -bottom-10 -left-10 w-40 h-40 bg-primary/10 blur-3xl rounded-full"></div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-slate-50 dark:bg-zinc-950" id="how-it-works">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="font-display text-4xl mb-4 gold-text uppercase">The 3-Step Success</h2>
+<div class="w-24 h-1 bg-primary mx-auto mb-6"></div>
+</div>
+<div class="grid md:grid-cols-3 gap-12">
+<div class="text-center p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 transition-all hover:-translate-y-2">
+<div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-icons text-3xl">tap_and_play</span>
+</div>
+<h3 class="text-xl font-bold mb-4 uppercase tracking-wide">1. Tap</h3>
+<p class="text-slate-500 dark:text-zinc-400">Simply tap your physical card on any modern smartphone. No apps required for your clients.</p>
+</div>
+<div class="text-center p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 transition-all hover:-translate-y-2">
+<div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-icons text-3xl">share</span>
+</div>
+<h3 class="text-xl font-bold mb-4 uppercase tracking-wide">2. Share</h3>
+<p class="text-slate-500 dark:text-zinc-400">Instantly share your digital profile containing contact info, social links, and media.</p>
+</div>
+<div class="text-center p-8 bg-white dark:bg-zinc-900 rounded-2xl border border-slate-200 dark:border-zinc-800 transition-all hover:-translate-y-2">
+<div class="w-16 h-16 bg-primary/10 text-primary rounded-full flex items-center justify-center mx-auto mb-6">
+<span class="material-icons text-3xl">save</span>
+</div>
+<h3 class="text-xl font-bold mb-4 uppercase tracking-wide">3. Save</h3>
+<p class="text-slate-500 dark:text-zinc-400">The recipient saves your contact information directly to their phone's contact list.</p>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24" id="features">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid lg:grid-cols-2 gap-20 items-center">
+<div class="relative">
+<div class="grid grid-cols-2 gap-4">
+<div class="space-y-4">
+<div class="h-48 rounded-2xl bg-zinc-800 border border-primary/20 flex items-center justify-center overflow-hidden">
+<img alt="Matte Black Card" class="object-cover w-full h-full opacity-60 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD1bITgHtGrgPNcwOpmE8IncDEDs3cMheB8ymummtlArB9Smou5_VxHrpHQneLOtAfUB_8yjLehKbijhnzS2AodlOIG2KkxUisF9DZVlH79QvOYdzBth2eMAFkHxXmaWTWjzxSPKn5aAi-laRIif1L6SlhM58f-zf67ipb5PobktAnPq9iAbf_ZPpRXY8Lxr3H_b4WSzwG0WzqbO1H8f-R61Y83o5eg2XyVrQUrap0DyIbELXWAsvYeSFwDeVb9apzsJmzMn4v_7DHD"/>
+</div>
+<div class="h-64 rounded-2xl bg-gradient-to-br from-primary/40 to-primary/5 p-6 border border-primary/30 flex flex-col justify-end">
+<p class="text-xs uppercase tracking-[0.2em] mb-2">Exclusive</p>
+<h4 class="text-2xl font-display font-bold">24K Metal Series</h4>
+</div>
+</div>
+<div class="space-y-4 pt-12">
+<div class="h-64 rounded-2xl bg-zinc-900 border border-zinc-700 p-6 flex flex-col justify-end shadow-2xl">
+<div class="bg-white p-2 w-fit rounded-lg mb-4">
+<span class="material-icons text-black text-3xl">qr_code_2</span>
+</div>
+<h4 class="text-xl font-bold">Dynamic QR Codes</h4>
+</div>
+<div class="h-48 rounded-2xl bg-zinc-800 border border-primary/20 overflow-hidden">
+<img alt="Dashboard" class="object-cover w-full h-full opacity-60 hover:opacity-100 transition-opacity" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBiLtiFpnlclLSWmer1330WUsI10r5HYGOyE_X7kkDxC4eiG4p_uRRa7TBDwnwFsu4EwJjjRS2jpdFAwmDLJ0Zfpav6le0t9cTJQ8hWmSVNsD6856vRWnB9UAXX2FDy9BYsZ2QRocs32qLH4JjxT361oaw_TpVHwo_lzWE7olgU6zANgjk5JLJasJy9xDMfzGHLkLEXplX70sPU4Rt4UjHUJOARLKDNmvwp4h5zz3-eyt_vaXMx52rc19rgLXg3ewL8rjFJxcXXqPUC"/>
+</div>
+</div>
+</div>
+</div>
+<div>
+<h2 class="font-display text-4xl mb-8 gold-text">Next-Gen Networking Features</h2>
+<ul class="space-y-8">
+<li class="flex gap-4">
+<div class="mt-1 text-primary"><span class="material-icons">insights</span></div>
+<div>
+<h4 class="text-xl font-bold mb-2">Advanced Analytics</h4>
+<p class="text-slate-500 dark:text-zinc-400">Track how many times your card is tapped, which links are clicked, and where your leads are coming from.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<div class="mt-1 text-primary"><span class="material-icons">group</span></div>
+<div>
+<h4 class="text-xl font-bold mb-2">Lead Capture CRM</h4>
+<p class="text-slate-500 dark:text-zinc-400">Collect visitor information instantly and export it to your favorite CRM tools or Zapier.</p>
+</div>
+</li>
+<li class="flex gap-4">
+<div class="mt-1 text-primary"><span class="material-icons">sync</span></div>
+<div>
+<h4 class="text-xl font-bold mb-2">Real-Time Updates</h4>
+<p class="text-slate-500 dark:text-zinc-400">Changed your phone number or job title? Update your profile instantly without ordering a new card.</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-zinc-50 dark:bg-zinc-950/50" id="pricing">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="font-display text-4xl mb-4 gold-text uppercase">Choose Your Luxury</h2>
+<p class="text-slate-500 max-w-xl mx-auto">One-time payment for the card. No monthly subscriptions for basic features.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800 relative">
+<h3 class="text-xl font-bold mb-2">Eco-Classic</h3>
+<p class="text-slate-500 text-sm mb-6">Recycled Matte PVC</p>
+<div class="flex items-baseline mb-8">
+<span class="text-4xl font-bold">$29</span>
+<span class="text-slate-500 ml-2">One-time</span>
+</div>
+<ul class="space-y-4 mb-10 text-sm">
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> NFC Enabled</li>
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> Profile Builder</li>
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> 1 Dynamic QR Code</li>
+<li class="flex items-center gap-2 opacity-30"><span class="material-icons text-lg">cancel</span> Metal Finish</li>
+</ul>
+<a class="block text-center py-4 border-2 border-primary/30 rounded-xl hover:bg-primary/5 font-bold transition-all" href="#">Order Classic</a>
+</div>
+<div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border-2 border-primary relative transform scale-105 shadow-2xl z-10">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-black text-[10px] font-black uppercase py-1 px-4 rounded-full tracking-widest">Most Popular</div>
+<h3 class="text-xl font-bold mb-2">Midnight Matte</h3>
+<p class="text-slate-500 text-sm mb-6">Laser-engraved Wood or PVC</p>
+<div class="flex items-baseline mb-8">
+<span class="text-4xl font-bold">$49</span>
+<span class="text-slate-500 ml-2">One-time</span>
+</div>
+<ul class="space-y-4 mb-10 text-sm">
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> Everything in Classic</li>
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> Custom Logo Engraving</li>
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> Lead Capture Dashboard</li>
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> Premium Themes</li>
+</ul>
+<a class="block text-center py-4 bg-primary text-black rounded-xl hover:brightness-110 font-bold transition-all" href="#">Order Midnight</a>
+</div>
+<div class="bg-white dark:bg-zinc-900 p-8 rounded-3xl border border-slate-200 dark:border-zinc-800 relative">
+<h3 class="text-xl font-bold mb-2">Imperial Gold</h3>
+<p class="text-slate-500 text-sm mb-6">24K Gold Plated Metal</p>
+<div class="flex items-baseline mb-8">
+<span class="text-4xl font-bold">$129</span>
+<span class="text-slate-500 ml-2">One-time</span>
+</div>
+<ul class="space-y-4 mb-10 text-sm">
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> Solid Stainless Steel</li>
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> Real Gold Plating</li>
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> Full Analytics Suite</li>
+<li class="flex items-center gap-2"><span class="material-icons text-primary text-lg">check_circle</span> Personal Success Manager</li>
+</ul>
+<a class="block text-center py-4 border-2 border-primary/30 rounded-xl hover:bg-primary/5 font-bold transition-all" href="#">Order Imperial</a>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-white dark:bg-black border-t border-slate-200 dark:border-zinc-900 pt-20 pb-10">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid md:grid-cols-4 gap-12 mb-16">
+<div class="col-span-1 md:col-span-2">
+<img alt="Logo" class="h-12 w-auto mb-6" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBf6eoExqdrWam43pEWPhat4GJZIJS4RREZU6W4DN6off7wNxTJR0T6sfcvB1xrJcNcJxJazcD992qNrYHDB0yu6teF7Be0tWWav6Ti9GUW1s0IQXCFMXsDwPZwvkUa2duAgprMkFe0Iyk6ubvIRfqeec3nGRkx1l8QKeWzIAnDQb29W70fDSmMA4Cr4sLV5bhXfM0G3J5ttELdQvu7pH0e340coxOI_zx0J__lWz8AGw7vdDbKiRUDA367-qaQY0Lo3PyUvf60Pk39"/>
+<p class="text-slate-500 max-w-sm mb-6">
+                        The Last Card is revolutionizing how professionals connect. Luxury design meets cutting-edge NFC technology.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full border border-slate-200 dark:border-zinc-800 flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-all" href="#">
+<i class="material-icons text-lg">facebook</i>
+</a>
+<a class="w-10 h-10 rounded-full border border-slate-200 dark:border-zinc-800 flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-all" href="#">
+<i class="material-icons text-lg">camera_alt</i>
+</a>
+<a class="w-10 h-10 rounded-full border border-slate-200 dark:border-zinc-800 flex items-center justify-center hover:bg-primary/10 hover:text-primary transition-all" href="#">
+<i class="material-icons text-lg">alternate_email</i>
+</a>
+</div>
+</div>
+<div>
+<h5 class="font-bold mb-6 uppercase tracking-widest text-sm">Quick Links</h5>
+<ul class="space-y-4 text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Order Now</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">How it Works</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Affiliate Program</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-bold mb-6 uppercase tracking-widest text-sm">Legal &amp; Support</h5>
+<ul class="space-y-4 text-slate-500">
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Shipping Info</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Help Center</a></li>
+</ul>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-zinc-900 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
+<p>© 2024 The Last Card. All rights reserved.</p>
+<p>Designed for the Modern Executive.</p>
+</div>
+</div>
+</footer>
+
+</body></html>

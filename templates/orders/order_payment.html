@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payment - Order #{{ order.order_number }} - TLC{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-zinc-950 py-10 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-2xl mx-auto">
+        <!-- Header -->
+        <div class="mb-8 text-center">
+            <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-[#fbad05] to-[#f59e0b] mb-4">
+                <span class="material-icons-round text-black text-3xl">payment</span>
+            </div>
+            <h1 class="text-3xl font-bold text-white tracking-tight">Complete Payment</h1>
+            <p class="text-zinc-400 mt-2">Order #{{ order.order_number }}</p>
+        </div>
+
+        <!-- Order Summary Card -->
+        <div class="bg-zinc-900 rounded-2xl border border-zinc-800 p-6 shadow-sm mb-8">
+            <h2 class="text-lg font-bold text-white mb-4 flex items-center gap-2">
+                <span class="material-icons-round" style="color: #fbad05;">receipt_long</span>
+                Order Summary
+            </h2>
+            
+            <div class="space-y-3 text-sm">
+                <div class="flex justify-between py-2 border-b border-zinc-800">
+                    <span class="text-zinc-400">Card Type</span>
+                    <span class="font-semibold text-white">{{ order.get_card_type_display }}</span>
+                </div>
+                <div class="flex justify-between py-2 border-b border-zinc-800">
+                    <span class="text-zinc-400">Quantity</span>
+                    <span class="font-semibold text-white">{{ order.quantity }}</span>
+                </div>
+                {% if order.custom_text %}
+                <div class="flex justify-between py-2 border-b border-zinc-800">
+                    <span class="text-zinc-400">Custom Text</span>
+                    <span class="font-semibold text-white">{{ order.custom_text }}</span>
+                </div>
+                {% endif %}
+                <div class="flex justify-between py-2 border-b border-zinc-800">
+                    <span class="text-zinc-400">Shipping</span>
+                    <span class="font-semibold text-green-400">FREE</span>
+                </div>
+                <div class="flex justify-between pt-3">
+                    <span class="font-bold text-white text-lg">Total</span>
+                    <span class="font-bold text-2xl" style="color: #fbad05;">₹{{ order.total_price|floatformat:0 }}</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Payment Status -->
+        {% if order.payment_status == 'failed' %}
+        <div class="mb-6 bg-red-900/20 border border-red-800 rounded-xl p-4">
+            <div class="flex items-center gap-2 text-red-300 font-semibold">
+                <span class="material-icons-round">error</span>
+                Payment failed. Please try again.
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- Pay Button -->
+        <button id="rzp-button" class="w-full group relative overflow-hidden flex items-center justify-center gap-3 py-5 px-6 bg-gradient-to-r from-[#0f172a] to-[#1e293b] text-white rounded-2xl font-bold text-lg shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+            <span class="material-icons-round text-2xl relative z-10">lock</span>
+            <span class="relative z-10">Pay ₹{{ order.total_price|floatformat:0 }}</span>
+            <div class="absolute inset-0 bg-gradient-to-r from-[#fbad05] to-[#f59e0b] opacity-0 group-hover:opacity-100 transition-opacity"></div>
+        </button>
+
+        <div class="mt-6 text-center space-y-2">
+            <p class="text-xs text-zinc-500 flex items-center justify-center gap-2">
+                <span class="material-icons-round text-sm">verified_user</span>
+                Secured by Razorpay | 256-bit SSL encryption
+            </p>
+            <p class="text-xs text-zinc-500">
+                UPI, Cards, Net Banking, Wallets accepted
+            </p>
+        </div>
+
+        <!-- Cancel Link -->
+        <div class="mt-8 text-center">
+            <form method="post" action="{% url 'orders:cancel' order.pk %}" class="inline">
+                {% csrf_token %}
+                <button type="submit" class="text-sm text-zinc-500 hover:text-red-400 transition-colors" onclick="return confirm('Cancel this order?')">
+                    Cancel Order
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var options = {
+    "key": "{{ razorpay_key_id }}",
+    "amount": "{{ amount }}",
+    "currency": "{{ currency }}",
+    "name": "The Last Card",
+    "description": "Order #{{ order.order_number }} - {{ order.get_card_type_display }}",
+    "image": "{% static 'img/logo.png' %}",
+    "order_id": "{{ razorpay_order_id }}",
+    "callback_url": "{{ callback_url }}",
+    "prefill": {
+        "name": "{{ user_name }}",
+        "email": "{{ user_email }}"
+    },
+    "theme": {
+        "color": "#fbad05"
+    },
+    "modal": {
+        "ondismiss": function() {
+            // User closed the payment modal
+        }
+    }
+};
+
+var rzp = new Razorpay(options);
+
+document.getElementById('rzp-button').onclick = function(e) {
+    e.preventDefault();
+    rzp.open();
+};
+</script>
+{% endblock %}

@@ -1,0 +1,258 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create Account - The Last Card{% endblock %}
+
+{% block navigation %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block body %}
+<div class="min-h-screen flex" style="background: #09090b;">
+    <!-- Left Side - Branding -->
+    <div class="hidden lg:flex lg:w-1/2 bg-zinc-900 relative overflow-hidden items-center justify-center p-12">
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/20 via-transparent to-transparent"></div>
+        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl"></div>
+        
+        <div class="relative z-10 max-w-md text-center">
+            <a href="{% url 'landing:home' %}" class="inline-flex items-center gap-3 mb-10">
+                <div class="w-14 h-14 gold-gradient rounded-xl flex items-center justify-center shadow-lg">
+                    <span class="material-icons-round text-black text-2xl">contactless</span>
+                </div>
+                <span class="font-display text-2xl tracking-wider uppercase font-bold" style="color: #fbad05;">The Last Card</span>
+            </a>
+            
+            <h2 class="font-display text-4xl text-white mb-4">Start Your Digital Journey</h2>
+            <p class="text-zinc-400 text-lg mb-8">
+                Join thousands of professionals transforming their networking.
+            </p>
+            
+            <!-- What You Get Section -->
+            <div class="text-left mb-8">
+                <h3 class="text-sm uppercase tracking-widest text-zinc-500 mb-4 font-medium">What you'll get</h3>
+                <div class="space-y-3">
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">Premium NFC-enabled business card</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">Unlimited profile updates forever</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">Real-time tap analytics & insights</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">QR code for easy sharing</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <span class="material-icons-round text-lg" style="color: #fbad05;">check_circle</span>
+                        <span class="text-zinc-300 text-sm">Multiple theme options</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Testimonials Stack -->
+            <div class="space-y-4 mb-6">
+                <!-- Testimonial 1 -->
+                <div class="bg-white/5 rounded-2xl p-5 border border-white/10 text-left">
+                    <div class="flex items-center gap-1 mb-3">
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                    </div>
+                    <p class="text-white/90 italic text-sm mb-4 leading-relaxed">
+                        "This card changed how I network. I've made more meaningful connections in one month than in the entire previous year!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold text-sm">SJ</div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">Sarah Johnson</div>
+                            <div class="text-zinc-400 text-xs">Marketing Director, TechFlow</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-white/5 rounded-2xl p-5 border border-white/10 text-left">
+                    <div class="flex items-center gap-1 mb-3">
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                        <span class="material-icons-round text-yellow-400 text-sm">star</span>
+                    </div>
+                    <p class="text-white/90 italic text-sm mb-4 leading-relaxed">
+                        "Best investment for my business. The analytics show exactly when prospects check my profile. Game changer!"
+                    </p>
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 rounded-full gold-gradient flex items-center justify-center text-black font-bold text-sm">DK</div>
+                        <div>
+                            <div class="text-white font-semibold text-sm">David Kim</div>
+                            <div class="text-zinc-400 text-xs">Real Estate Agent</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Trust Indicators -->
+            <div class="flex items-center justify-center gap-6">
+                <div class="text-center">
+                    <div class="text-2xl font-bold" style="color: #fbad05;">4.9</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Rating</div>
+                </div>
+                <div class="w-px h-8 bg-zinc-700"></div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold" style="color: #fbad05;">10K+</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Users</div>
+                </div>
+                <div class="w-px h-8 bg-zinc-700"></div>
+                <div class="text-center">
+                    <div class="text-2xl font-bold" style="color: #fbad05;">50+</div>
+                    <div class="text-xs text-zinc-500 uppercase tracking-wider">Countries</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Right Side - Form -->
+    <div class="w-full lg:w-1/2 flex items-center justify-center p-8 overflow-y-auto" style="background: #09090b;">
+        <div class="w-full max-w-md">
+            <!-- Mobile Logo -->
+            <a href="{% url 'landing:home' %}" class="lg:hidden flex items-center justify-center gap-2 mb-6">
+                <div class="w-10 h-10 gold-gradient rounded-lg flex items-center justify-center">
+                    <span class="material-icons-round text-black">contactless</span>
+                </div>
+                <span class="font-display text-xl tracking-wider uppercase font-bold" style="color: #fbad05;">The Last Card</span>
+            </a>
+
+            <div class="mb-6">
+                <h1 class="font-display text-3xl mb-2 text-white">Create Account</h1>
+                <p class="text-zinc-400">Get started with your luxury digital business card</p>
+            </div>
+
+            <!-- Register Form -->
+            <form method="post" novalidate class="space-y-4">
+                {% csrf_token %}
+
+                <div>
+                    <label for="email" class="block text-sm font-medium mb-2 text-zinc-300">Email</label>
+                    <input type="email" id="email" name="email"
+                        class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white placeholder-zinc-500 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all {% if form.email.errors %}border-red-500{% endif %}"
+                        placeholder="name@company.com"
+                        value="{{ form.email.value|default:'' }}" autocomplete="email" required>
+                    {% if form.email.errors %}
+                    <p class="mt-1 text-sm text-red-500">{{ form.email.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="password" class="block text-sm font-medium mb-2 text-zinc-300">Password</label>
+                    <input type="password" id="password" name="password"
+                        class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white placeholder-zinc-500 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all {% if form.password.errors %}border-red-500{% endif %}"
+                        placeholder="Create a strong password" autocomplete="new-password" required>
+                    <div class="mt-2 p-3 bg-zinc-800/50 rounded-lg hidden" id="passwordRequirements">
+                        <div class="text-xs space-y-1">
+                            <div class="flex items-center gap-2 text-zinc-400" id="req-length">
+                                <span class="material-icons-round text-sm">radio_button_unchecked</span>
+                                At least 8 characters
+                            </div>
+                            <div class="flex items-center gap-2 text-zinc-400" id="req-upper">
+                                <span class="material-icons-round text-sm">radio_button_unchecked</span>
+                                One uppercase letter
+                            </div>
+                            <div class="flex items-center gap-2 text-zinc-400" id="req-lower">
+                                <span class="material-icons-round text-sm">radio_button_unchecked</span>
+                                One lowercase letter
+                            </div>
+                            <div class="flex items-center gap-2 text-zinc-400" id="req-number">
+                                <span class="material-icons-round text-sm">radio_button_unchecked</span>
+                                One number
+                            </div>
+                        </div>
+                    </div>
+                    {% if form.password.errors %}
+                    <p class="mt-1 text-sm text-red-500">{{ form.password.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div>
+                    <label for="password_confirm" class="block text-sm font-medium mb-2 text-zinc-300">Confirm Password</label>
+                    <input type="password" id="password_confirm" name="password_confirm"
+                        class="w-full px-4 py-3 rounded-xl border border-zinc-700 bg-zinc-800 text-white placeholder-zinc-500 focus:ring-2 focus:ring-primary/50 focus:border-primary outline-none transition-all {% if form.password_confirm.errors %}border-red-500{% endif %}"
+                        placeholder="Confirm your password" autocomplete="new-password" required>
+                    {% if form.password_confirm.errors %}
+                    <p class="mt-1 text-sm text-red-500">{{ form.password_confirm.errors.0 }}</p>
+                    {% endif %}
+                </div>
+
+                <div class="flex items-start gap-2">
+                    <input type="checkbox" id="terms_accepted" name="terms_accepted" 
+                        class="mt-1 w-4 h-4 rounded border-zinc-600 text-primary focus:ring-primary bg-zinc-800" required>
+                    <label for="terms_accepted" class="text-sm text-zinc-400">
+                        I agree to the <a href="{% url 'landing:terms' %}" target="_blank" class="text-primary hover:underline">Terms of Service</a>
+                        and <a href="{% url 'landing:privacy' %}" target="_blank" class="text-primary hover:underline">Privacy Policy</a>
+                    </label>
+                </div>
+                {% if form.terms_accepted.errors %}
+                <p class="text-sm text-red-500">{{ form.terms_accepted.errors.0 }}</p>
+                {% endif %}
+
+                <button type="submit" class="w-full py-4 bg-primary text-black font-bold rounded-xl hover:brightness-110 transition-all flex items-center justify-center gap-2">
+                    Create Account
+                    <span class="material-icons-round">arrow_forward</span>
+                </button>
+            </form>
+
+            <div class="mt-6 pt-4 border-t border-zinc-700 text-center">
+                <p class="text-sm text-zinc-500">Already have an account? <a href="{% url 'accounts:login' %}" class="text-primary font-semibold hover:underline">Sign in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const passwordInput = document.getElementById('password');
+        const requirements = document.getElementById('passwordRequirements');
+
+        if (passwordInput) {
+            passwordInput.addEventListener('focus', function () {
+                requirements.classList.remove('hidden');
+            });
+
+            passwordInput.addEventListener('blur', function () {
+                if (!this.value) {
+                    requirements.classList.add('hidden');
+                }
+            });
+
+            passwordInput.addEventListener('input', function () {
+                const password = this.value;
+                updateRequirement('req-length', password.length >= 8);
+                updateRequirement('req-upper', /[A-Z]/.test(password));
+                updateRequirement('req-lower', /[a-z]/.test(password));
+                updateRequirement('req-number', /[0-9]/.test(password));
+            });
+        }
+
+        function updateRequirement(id, met) {
+            const element = document.getElementById(id);
+            const icon = element.querySelector('.material-icons-round');
+            if (met) {
+                element.classList.remove('text-zinc-400');
+                element.classList.add('text-green-500');
+                icon.textContent = 'check_circle';
+            } else {
+                element.classList.remove('text-green-500');
+                element.classList.add('text-zinc-400');
+                icon.textContent = 'radio_button_unchecked';
+            }
+        }
+    });
+</script>
+{% endblock %}

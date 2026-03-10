@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - The Last Card{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="pt-24 pb-12 sm:pt-32 sm:pb-20" style="background: linear-gradient(to bottom, #09090b, #18181b);">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h1 class="font-display text-3xl sm:text-4xl md:text-5xl lg:text-6xl mb-4 sm:mb-6 text-white leading-tight">
+            About <span style="color: #fbad05;">Us</span>
+        </h1>
+        <p class="text-base sm:text-lg md:text-xl text-zinc-400 max-w-3xl mx-auto mb-6 sm:mb-8 px-4">
+            Every year, over <span class="text-white font-semibold">10 billion</span> paper business cards are printed worldwide.
+            Nearly <span class="text-white font-semibold">88%</span> of them are thrown away within a week.
+        </p>
+        <p class="text-base sm:text-lg md:text-xl text-zinc-400 max-w-2xl mx-auto mb-6 sm:mb-8 px-4">
+            That's millions of trees, endless reprints, and unnecessary waste — all for a few seconds of networking.
+            <span class="text-white font-semibold">We believed there had to be a smarter way.</span>
+        </p>
+        <div class="w-16 sm:w-24 h-1 bg-primary mx-auto"></div>
+    </div>
+</section>
+
+<!-- Our Mission Section -->
+<section class="py-24" style="background: #09090b;">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+                <p class="text-primary font-semibold uppercase tracking-widest mb-4">Our Mission</p>
+                <h2 class="font-display text-3xl sm:text-4xl mb-6 text-white">One Smart Card. <span style="color: #fbad05;">Zero Waste.</span></h2>
+                <p class="text-zinc-400 text-lg mb-6 leading-relaxed">
+                    THELASTCARD was created to replace disposable paper cards with one premium, durable smart card that lasts for years. Update your details anytime. Share your complete profile in one tap. No reprinting. No waste.
+                </p>
+                <p class="text-zinc-400 text-lg mb-6 leading-relaxed">
+                    When you choose THELASTCARD, you're not just upgrading your networking — you're choosing a more responsible way to connect.
+                </p>
+                <p class="text-zinc-400 text-lg leading-relaxed">
+                    One smart card can replace <span class="text-white font-semibold">hundreds — even thousands</span> — of paper cards over its lifetime.
+                </p>
+                <div class="grid grid-cols-3 gap-4 sm:gap-8 mt-10">
+                    <div class="text-center sm:text-left">
+                        <p class="text-2xl sm:text-3xl md:text-4xl font-bold" style="color: #fbad05;">10B+</p>
+                        <p class="text-zinc-500 text-xs sm:text-sm">Paper Cards Printed Yearly</p>
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <p class="text-2xl sm:text-3xl md:text-4xl font-bold" style="color: #fbad05;">88%</p>
+                        <p class="text-zinc-500 text-xs sm:text-sm">Thrown Away in a Week</p>
+                    </div>
+                    <div class="text-center sm:text-left">
+                        <p class="text-2xl sm:text-3xl md:text-4xl font-bold" style="color: #fbad05;">1</p>
+                        <p class="text-zinc-500 text-xs sm:text-sm">Card Is All You Need</p>
+                    </div>
+                </div>
+            </div>
+            <div class="relative">
+                <div class="aspect-square rounded-3xl overflow-hidden bg-zinc-900 p-8 gold-border">
+                    <div class="h-full w-full bg-gradient-to-br from-primary/20 to-transparent rounded-2xl flex items-center justify-center">
+                        <div class="text-center px-6">
+                            <img src="{% static 'img/logo.png' %}" alt="The Last Card logo" class="w-full max-w-[280px] mx-auto object-contain drop-shadow-[0_12px_40px_rgba(251,173,5,0.18)]">
+                            <p class="text-zinc-400 mt-4 uppercase tracking-[0.35em] text-xs sm:text-sm">Est. 2024</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute -top-6 -right-6 w-32 h-32 bg-primary/20 rounded-full blur-3xl"></div>
+                <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-primary/10 rounded-full blur-3xl"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Values Section -->
+<section class="py-16 sm:py-24 bg-zinc-950">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12 sm:mb-16">
+            <h2 class="font-display text-2xl sm:text-3xl md:text-4xl mb-3 sm:mb-4 text-white px-4">Why <span style="color: #fbad05;">THELASTCARD</span></h2>
+            <div class="w-16 sm:w-24 h-1 bg-primary mx-auto"></div>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+            <div class="bg-zinc-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-zinc-800 text-center">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <span class="material-icons-round text-primary text-2xl sm:text-3xl">eco</span>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Zero Waste</h3>
+                <p class="text-sm sm:text-base text-zinc-400">One premium card replaces hundreds — even thousands — of paper cards. No reprinting. No waste. A more responsible way to connect.</p>
+            </div>
+            <div class="bg-zinc-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-zinc-800 text-center">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <span class="material-icons-round text-primary text-2xl sm:text-3xl">sync</span>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Always Up to Date</h3>
+                <p class="text-sm sm:text-base text-zinc-400">Update your details anytime from your phone. Your card never goes out of date — share your complete profile in one tap.</p>
+            </div>
+            <div class="bg-zinc-900 rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-zinc-800 text-center">
+                <div class="w-14 h-14 sm:w-16 sm:h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4 sm:mb-6">
+                    <span class="material-icons-round text-primary text-2xl sm:text-3xl">diamond</span>
+                </div>
+                <h3 class="text-lg sm:text-xl font-bold mb-3 sm:mb-4 text-white">Premium & Durable</h3>
+                <p class="text-sm sm:text-base text-zinc-400">Built to last for years with luxury materials and cutting-edge NFC technology. One card is all you'll ever need.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Closing Statement -->
+<section class="py-16 sm:py-24" style="background: #09090b;">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <p class="text-base sm:text-lg md:text-xl text-zinc-400 mb-8 sm:mb-10 max-w-2xl mx-auto px-4 italic">
+            Because the future of networking shouldn't cost our earth.
+        </p>
+        <h2 class="font-display text-2xl sm:text-3xl md:text-4xl lg:text-5xl mb-4 sm:mb-6 text-white leading-tight px-4">
+            One Card. <span style="color: #fbad05;">Zero Waste.</span> Infinite Connections.
+        </h2>
+        <div class="w-16 sm:w-24 h-1 bg-primary mx-auto mb-8 sm:mb-10"></div>
+        <a href="{% url 'accounts:register' %}" class="inline-flex items-center gap-2 bg-primary text-black font-extrabold py-3 sm:py-4 px-8 sm:px-10 rounded-full hover:scale-105 transition-transform text-base sm:text-lg shadow-lg shadow-primary/20">
+            Get Started <span class="material-icons-round text-xl">arrow_forward</span>
+        </a>
+    </div>
+</section>
+{% endblock %}
+
+{% block footer %}
+{% include 'components/footer.html' %}
+{% endblock %}

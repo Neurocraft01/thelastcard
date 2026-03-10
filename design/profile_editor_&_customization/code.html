@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profile Editor - The Last Card</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet"/>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#D4AF37", // Classic Gold
+                        "background-light": "#F8F9FA",
+                        "background-dark": "#0A0A0A",
+                        "card-dark": "#161616",
+                        "gold-muted": "#B8860B",
+                    },
+                    fontFamily: {
+                        display: ["Montserrat", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                        "xl": "1rem",
+                    },
+                },
+            },
+        };
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+        }
+    </script>
+<style>
+        .gold-gradient {
+            background: linear-gradient(135deg, #D4AF37 0%, #F9E29B 50%, #B8860B 100%);
+        }
+        .gold-border {
+            border-image: linear-gradient(to right, #D4AF37, #F9E29B, #B8860B) 1;
+        }
+        .preview-phone-shadow {
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D4AF37;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-gray-900 dark:text-gray-100 font-body transition-colors duration-300">
+<header class="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10 px-6 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 gold-gradient rounded flex items-center justify-center shadow-lg">
+<span class="material-symbols-outlined text-black font-bold">contactless</span>
+</div>
+<h1 class="font-display font-bold text-xl tracking-tight hidden md:block">
+                    THE LAST <span class="text-primary">CARD</span>
+</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+<a class="text-primary border-b-2 border-primary pb-1" href="#">Editor</a>
+<a class="hover:text-primary transition-colors" href="#">Analytics</a>
+<a class="hover:text-primary transition-colors" href="#">Contacts</a>
+<a class="hover:text-primary transition-colors" href="#">Settings</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-white/10 transition-colors" onclick="toggleDarkMode()">
+<span class="material-symbols-outlined text-xl">dark_mode</span>
+</button>
+<div class="flex items-center gap-3 pl-4 border-l border-gray-200 dark:border-white/10">
+<div class="text-right hidden sm:block">
+<p class="text-sm font-semibold">Alex Rivera</p>
+<p class="text-xs text-gray-500">Premium Member</p>
+</div>
+<img alt="User avatar" class="w-10 h-10 rounded-full border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDZt2opycSVa-XvNl5fK7HqGZUqMFH8uZWnyahsDgTmoc0b0EGhhQTDEySGLCYdcm3YDEIHFTNuFlA7PA8AeTMnPClGF7euqBGhqq10J_nwipKNLW0sQDIx5_7ai9VkgCSaglab8OCq0AnsZVpkmvlgErXFpSDL2eD9ggEYkmgGAWo4wfWY9cGHjOrFrF-F9se4d604TM3ppwe_-h7WJQF-tvEa8za7Ke7Dt11YvvtfElfdTZF4hFycOJAL277AnepwXe3NlG8yxL5J"/>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-7xl mx-auto px-6 py-8">
+<div class="flex flex-col lg:flex-row gap-12">
+<div class="flex-1 space-y-8 pb-20">
+<section>
+<h2 class="font-display text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">person_edit</span>
+                        Personal Information
+                    </h2>
+<div class="bg-white dark:bg-card-dark rounded-xl p-8 border border-gray-100 dark:border-white/5 shadow-sm space-y-6">
+<div class="flex items-center gap-6">
+<div class="relative group">
+<img alt="Profile" class="w-24 h-24 rounded-2xl object-cover border-2 border-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlxEowPk7q0hDekiHZWfUZzPk8e1ZcH2ZS1px-UGjV7HW39e4JbyDALsnFhO9nFnP1tXSW8uXRFvxy6kvBqpxCMHkYMkHzXJcZNBBgUjuI1PewlamwakiVdbwsaTC0iy72GVfqg6FONllfXX9ABP98PiblxjjnZBAym8zVe-nNPmVrMwMZ2Nk8u0hGMCfuiPx2Qh6kAUf36RB_oiN6TCzNQODl8Xj-XBvI88tGH7n-SXvF_BH8pnCR0jk1jjVXN5ypthZjt2spuST3"/>
+<button class="absolute -bottom-2 -right-2 bg-primary text-black p-2 rounded-lg shadow-lg hover:scale-105 transition-transform">
+<span class="material-symbols-outlined text-sm">photo_camera</span>
+</button>
+</div>
+<div class="flex-1">
+<p class="text-sm font-medium mb-1">Cover Image</p>
+<div class="w-full h-24 rounded-xl border-2 border-dashed border-gray-300 dark:border-white/10 flex items-center justify-center cursor-pointer hover:border-primary transition-colors">
+<span class="text-xs text-gray-500">Upload cover (1200x400)</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1">
+<label class="text-xs font-semibold uppercase tracking-wider text-gray-500">Full Name</label>
+<input class="w-full bg-transparent border-gray-200 dark:border-white/10 focus:border-primary dark:focus:border-primary rounded-lg py-3 px-4 outline-none transition-all" type="text" value="Alex Rivera"/>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-semibold uppercase tracking-wider text-gray-500">Designation</label>
+<input class="w-full bg-transparent border-gray-200 dark:border-white/10 focus:border-primary dark:focus:border-primary rounded-lg py-3 px-4 outline-none transition-all" type="text" value="Creative Director"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-semibold uppercase tracking-wider text-gray-500">Bio</label>
+<textarea class="w-full bg-transparent border-gray-200 dark:border-white/10 focus:border-primary dark:focus:border-primary rounded-lg py-3 px-4 outline-none transition-all" placeholder="Tell the world who you are..." rows="3">Crafting digital experiences at the intersection of luxury and technology.</textarea>
+</div>
+</div>
+</section>
+<section>
+<h2 class="font-display text-2xl font-bold mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">contact_page</span>
+                        Contact Details
+                    </h2>
+<div class="bg-white dark:bg-card-dark rounded-xl p-8 border border-gray-100 dark:border-white/5 shadow-sm space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-1">
+<label class="text-xs font-semibold uppercase tracking-wider text-gray-500">WhatsApp</label>
+<div class="relative">
+<span class="absolute left-4 top-1/2 -translate-y-1/2 text-primary font-bold">+</span>
+<input class="w-full pl-8 bg-transparent border-gray-200 dark:border-white/10 focus:border-primary dark:focus:border-primary rounded-lg py-3 px-4 outline-none transition-all" type="text" value="1 234 567 890"/>
+</div>
+</div>
+<div class="space-y-1">
+<label class="text-xs font-semibold uppercase tracking-wider text-gray-500">Email Address</label>
+<input class="w-full bg-transparent border-gray-200 dark:border-white/10 focus:border-primary dark:focus:border-primary rounded-lg py-3 px-4 outline-none transition-all" type="email" value="alex@thelastcard.com"/>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-display text-2xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">share</span>
+                            Social Links
+                        </h2>
+<button class="text-sm font-semibold text-primary flex items-center gap-1 hover:opacity-80 transition-opacity">
+<span class="material-symbols-outlined text-lg">add_circle</span> Add New
+                        </button>
+</div>
+<div class="space-y-4">
+<div class="bg-white dark:bg-card-dark rounded-xl p-4 border border-gray-100 dark:border-white/5 shadow-sm flex items-center gap-4">
+<div class="w-10 h-10 bg-blue-600 rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined">link</span>
+</div>
+<div class="flex-1">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-sm font-medium" type="text" value="linkedin.com/in/alexrivera"/>
+</div>
+<button class="text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+<div class="bg-white dark:bg-card-dark rounded-xl p-4 border border-gray-100 dark:border-white/5 shadow-sm flex items-center gap-4">
+<div class="w-10 h-10 bg-pink-600 rounded flex items-center justify-center text-white">
+<span class="material-symbols-outlined">camera_alt</span>
+</div>
+<div class="flex-1">
+<input class="w-full bg-transparent border-none focus:ring-0 p-0 text-sm font-medium" type="text" value="instagram.com/alexdesign"/>
+</div>
+<button class="text-gray-400 hover:text-red-500 transition-colors">
+<span class="material-symbols-outlined">delete</span>
+</button>
+</div>
+</div>
+</section>
+<div class="pt-8 flex items-center gap-4">
+<button class="flex-1 gold-gradient text-black font-bold py-4 px-8 rounded-xl shadow-xl hover:scale-[1.02] active:scale-95 transition-all duration-200">
+                        SAVE CHANGES
+                    </button>
+<button class="px-8 py-4 rounded-xl border border-gray-200 dark:border-white/10 font-bold hover:bg-gray-50 dark:hover:bg-white/5 transition-all">
+                        CANCEL
+                    </button>
+</div>
+</div>
+<div class="w-full lg:w-[420px] shrink-0">
+<div class="sticky top-28">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-sm font-bold uppercase tracking-widest text-gray-400">Live Preview</h3>
+<span class="flex items-center gap-1 text-green-500 text-xs font-bold bg-green-500/10 px-2 py-1 rounded">
+<span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span> SYNCED
+                        </span>
+</div>
+<div class="relative mx-auto w-full max-w-[320px] aspect-[9/18.5] bg-black rounded-[2.5rem] border-[8px] border-zinc-800 dark:border-zinc-900 overflow-hidden preview-phone-shadow">
+<div class="h-full w-full bg-white dark:bg-[#121212] overflow-y-auto overflow-x-hidden">
+<div class="h-32 bg-primary relative">
+<img alt="Abstract gradient banner" class="w-full h-full object-cover opacity-50" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAAGAV2IAZBLFMGBLx8DA1BgA1QEYxEk7Li0b8QHFDvo2GWTD4OGQlS785yUKPxuCARqXm1XQITY8MxvoMdLhHmLt82k0OmAwq_v8uvHM4d4x1UbACymCOYELyJPOibOvIaOQnW122NUdAZdM2wcXbJl0LB_MFPqsAi8Hv0fZCT7IdhVNdgmegiMASv7VpX-j5drnA91VFGhREvnxbs7jLHKOdN26J7xJ_Mf7lmtzF8vbgaMxMwpmcRwICc6IB5RkeQdjyUhiHC-q7"/>
+</div>
+<div class="px-6 -mt-10 relative">
+<img alt="Avatar preview" class="w-20 h-20 rounded-2xl border-4 border-white dark:border-[#121212] shadow-xl bg-gray-200" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRFzjP8LpT2aise0VPUSMwNaQ9Gm7IU-UNUYbxmZEFG53rwWlZnevOibwogRuVsUVbCC5sqtkUPEcOR0vyLq3fkxRh-XYjvEG9pYe8_ofRIA3909ds29LLvhKSHdyXmKlXCxtpLOVQoiY_Lwtt8FR-IE9TDMHVa6xmnbqfV8ft13KI_YBxwk-6r62ZDDgNlowuAVrwOKAgv1BydDCoQjCBc2WonBmlJrSvcwJtFtbJpE0YTEqLvsEmCSA_X_JiZjQ9dk64jktgtPwN"/>
+<div class="mt-4">
+<h4 class="font-display font-bold text-lg dark:text-white">Alex Rivera</h4>
+<p class="text-xs font-medium text-primary">Creative Director</p>
+<p class="text-[10px] mt-2 text-gray-500 dark:text-gray-400 leading-relaxed line-clamp-2">
+                                        Crafting digital experiences at the intersection of luxury and technology.
+                                    </p>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-6">
+<div class="bg-primary text-black text-[10px] font-bold py-2 rounded-lg flex items-center justify-center gap-1">
+<span class="material-symbols-outlined text-[14px]">add</span> SAVE CONTACT
+                                    </div>
+<div class="bg-zinc-100 dark:bg-white/5 text-[10px] font-bold py-2 rounded-lg flex items-center justify-center gap-1 dark:text-white">
+<span class="material-symbols-outlined text-[14px]">share</span> SHARE
+                                    </div>
+</div>
+<div class="mt-8 space-y-3 pb-10">
+<div class="bg-zinc-100 dark:bg-zinc-900 border border-transparent dark:border-white/5 p-3 rounded-xl flex items-center justify-between group cursor-pointer hover:border-primary transition-all">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-blue-600/10 text-blue-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">link</span>
+</div>
+<span class="text-xs font-semibold dark:text-white">LinkedIn</span>
+</div>
+<span class="material-symbols-outlined text-xs text-gray-400">chevron_right</span>
+</div>
+<div class="bg-zinc-100 dark:bg-zinc-900 border border-transparent dark:border-white/5 p-3 rounded-xl flex items-center justify-between group cursor-pointer hover:border-primary transition-all">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-pink-600/10 text-pink-600 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">camera_alt</span>
+</div>
+<span class="text-xs font-semibold dark:text-white">Instagram</span>
+</div>
+<span class="material-symbols-outlined text-xs text-gray-400">chevron_right</span>
+</div>
+<div class="bg-zinc-100 dark:bg-zinc-900 border border-transparent dark:border-white/5 p-3 rounded-xl flex items-center justify-between group cursor-pointer hover:border-primary transition-all">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-green-500/10 text-green-500 flex items-center justify-center">
+<span class="material-symbols-outlined text-sm">chat</span>
+</div>
+<span class="text-xs font-semibold dark:text-white">WhatsApp</span>
+</div>
+<span class="material-symbols-outlined text-xs text-gray-400">chevron_right</span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-6 left-0 right-0 text-center">
+<p class="text-[8px] font-bold text-gray-400 dark:text-zinc-600 uppercase tracking-widest">Powered by THE LAST CARD</p>
+</div>
+</div>
+<div class="absolute top-2 left-1/2 -translate-x-1/2 w-24 h-5 bg-black rounded-full"></div>
+</div>
+<div class="mt-8 flex justify-center gap-4">
+<button class="p-2 rounded-full border border-gray-200 dark:border-white/10 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">smartphone</span>
+</button>
+<button class="p-2 rounded-full border border-gray-200 dark:border-white/10 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">tablet</span>
+</button>
+<button class="p-2 rounded-full border border-gray-200 dark:border-white/10 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">laptop</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-20 border-t border-gray-200 dark:border-white/10 py-10">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<div class="flex items-center justify-center gap-2 mb-4">
+<span class="material-symbols-outlined text-primary">contactless</span>
+<span class="font-display font-bold text-gray-400">THE LAST CARD</span>
+</div>
+<p class="text-xs text-gray-500">© 2024 The Last Card NFC Systems. All rights reserved. Professional Networking Redefined.</p>
+</div>
+</footer>
+
+</body></html>

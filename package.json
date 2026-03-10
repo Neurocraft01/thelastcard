@@ -1,0 +1,28 @@
+{
+  "name": "customcard",
+  "version": "1.0.0",
+  "description": "A comprehensive NFC business card management platform built with Django 6.0.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Neurocraft01/thelastcard.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Neurocraft01/thelastcard/issues"
+  },
+  "homepage": "https://github.com/Neurocraft01/thelastcard#readme",
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.11",
+    "@tailwindcss/typography": "^0.5.19",
+    "autoprefixer": "^10.4.24",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19"
+  }
+}
