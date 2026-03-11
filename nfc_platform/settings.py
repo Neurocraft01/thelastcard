@@ -392,6 +392,17 @@ RAZORPAY_KEY_SECRET = config('RAZORPAY_KEY_SECRET', default='')
 
 
 # =============================================================================
+# SUPABASE CLIENT SDK
+# =============================================================================
+# Used for Supabase Auth, Storage, Realtime, and Edge Functions via supabase-py.
+# The database connection (PostgreSQL) uses DATABASE_URL separately.
+# SUPABASE_KEY is the publishable anon key — safe to use server-side.
+
+SUPABASE_URL = config('SUPABASE_URL', default='')
+SUPABASE_KEY = config('SUPABASE_KEY', default='')
+
+
+# =============================================================================
 # LOGGING
 # =============================================================================
 

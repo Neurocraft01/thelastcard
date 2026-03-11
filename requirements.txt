@@ -11,6 +11,9 @@ django-allauth
 PyJWT
 psycopg2-binary
 
+# Supabase Python client (Auth, Storage, Realtime, Edge Functions)
+supabase
+
 # Cloudflare R2 (S3-compatible)
 django-storages[s3]
 boto3
