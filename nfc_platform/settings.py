@@ -149,7 +149,9 @@ if DATABASE_URL:
             DATABASE_URL,
             conn_max_age=600,        # Persistent connection reuse (10 min)
             conn_health_checks=True,  # Discard unhealthy connections automatically
-            ssl_require=True,         # Always enforce SSL for external databases
+            # ssl_require is intentionally omitted: include ?sslmode=require in
+            # DATABASE_URL itself so it is not applied to SQLite fallback and
+            # does not conflict with Supabase session-pooler SSL negotiation.
         )
     }
 else:
