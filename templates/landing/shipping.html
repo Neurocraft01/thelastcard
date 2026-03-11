@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+
+{% block title %}Shipping Policy - The Last Card{% endblock %}
+
+{% block content %}
+<div class="min-h-screen pt-24" style="background: #09090b;">
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4 text-white">Shipping Policy</h1>
+            <p class="text-zinc-400">Last updated: {% now "F Y" %}</p>
+        </div>
+
+        <div class="bg-zinc-900 rounded-2xl border border-zinc-800 p-8 lg:p-12">
+            <div class="prose prose-invert max-w-none">
+
+                <p class="mb-8 text-zinc-400">Thank you for choosing THELASTCARD. All orders are processed and shipped from Sambhajinagar, Maharashtra, India.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">inventory_2</span>
+                    Order Processing
+                </h2>
+                <p class="mb-3 text-zinc-400">Once an order is successfully placed and payment is confirmed, our team begins the customization and production of your card.</p>
+                <ul class="mb-3 text-zinc-400 list-disc pl-6 space-y-1">
+                    <li>Production time: 3–5 business days</li>
+                    <li>Orders are processed only on business days (Monday–Saturday), excluding public holidays.</li>
+                </ul>
+                <p class="mb-6 text-zinc-400">Because THELASTCARD products are customized based on the information you provide, production begins shortly after order confirmation.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">local_shipping</span>
+                    Shipping &amp; Delivery
+                </h2>
+                <p class="mb-3 text-zinc-400">After production is completed, the order will be dispatched through our logistics partners.</p>
+                <ul class="mb-3 text-zinc-400 list-disc pl-6 space-y-1">
+                    <li>Estimated delivery time across India: <strong class="text-white">5–7 working days</strong> after dispatch</li>
+                </ul>
+                <p class="mb-6 text-zinc-400">Delivery times may vary depending on your location, courier partner availability, and unforeseen circumstances.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">payments</span>
+                    Shipping Charges
+                </h2>
+                <p class="mb-6 text-zinc-400">We currently offer <strong class="text-green-400">free shipping across India</strong> on all orders.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">track_changes</span>
+                    Order Tracking
+                </h2>
+                <p class="mb-6 text-zinc-400">Once your order has been dispatched, you will receive a tracking link or tracking details via email or SMS.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">report_problem</span>
+                    Delivery Issues
+                </h2>
+                <p class="text-zinc-400">If your order is delayed or you experience issues with delivery, please contact our support team at <a href="mailto:support@thelastcard.in" class="text-primary hover:underline">support@thelastcard.in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'components/footer.html' %}
+{% endblock %}

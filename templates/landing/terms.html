@@ -1,52 +1,77 @@
 {% extends 'base.html' %}
 
-{% block title %}Terms of Service - The Last Card{% endblock %}
+{% block title %}Terms &amp; Conditions - The Last Card{% endblock %}
 
 {% block content %}
 <div class="min-h-screen pt-24" style="background: #09090b;">
     <div class="max-w-4xl mx-auto px-4 py-16">
         <div class="text-center mb-12">
-            <h1 class="text-4xl font-bold mb-4 text-white">Terms of Service</h1>
-            <p class="text-zinc-400">Last updated: {% now "F j, Y" %}</p>
+            <h1 class="text-4xl font-bold mb-4 text-white">Terms &amp; Conditions</h1>
+            <p class="text-zinc-400">Last updated: {% now "F Y" %}</p>
         </div>
 
         <div class="bg-zinc-900 rounded-2xl border border-zinc-800 p-8 lg:p-12">
             <div class="prose prose-invert max-w-none">
+
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-                    <span class="material-icons-round text-primary">gavel</span>
-                    Acceptance of Terms
+                    <span class="material-icons-round text-primary">info</span>
+                    Overview
                 </h2>
-                <p class="mb-6 text-zinc-400">By accessing and using The Last Card platform, you accept and agree to be bound by the terms and provisions of this agreement.</p>
+                <p class="mb-6 text-zinc-400">This website is operated by THELASTCARD, a proprietorship based in Sambhajinagar, Maharashtra, India. By accessing or using our website, creating an account, or purchasing any product from us, you agree to be bound by these Terms &amp; Conditions.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">nfc</span>
+                    Services
+                </h2>
+                <p class="mb-6 text-zinc-400">THELASTCARD provides NFC-enabled smart networking cards, digital profile hosting linked to the card, and a user dashboard for managing profile information.</p>
 
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                     <span class="material-icons-round text-primary">person</span>
-                    User Accounts
+                    Account Registration
                 </h2>
-                <p class="mb-6 text-zinc-400">You are responsible for safeguarding the password that you use to access the service and for any activities or actions under your password.</p>
+                <p class="mb-6 text-zinc-400">Users may need to create an account. You agree to provide accurate information and keep your login credentials secure.</p>
 
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-                    <span class="material-icons-round text-primary">block</span>
-                    Prohibited Uses
+                    <span class="material-icons-round text-primary">verified_user</span>
+                    User Responsibilities
                 </h2>
-                <p class="mb-6 text-zinc-400">You may not use our service for any illegal or unauthorized purpose. You must not, in the use of the service, violate any laws in your jurisdiction.</p>
+                <p class="mb-6 text-zinc-400">Users agree not to misuse the platform or share harmful, illegal, or misleading information.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">inventory_2</span>
+                    Product Information
+                </h2>
+                <p class="mb-6 text-zinc-400">THELASTCARD products are customized networking cards created based on information provided by the customer.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">payment</span>
+                    Orders &amp; Payments
+                </h2>
+                <p class="mb-6 text-zinc-400">Orders are processed after successful payment confirmation. We reserve the right to cancel or refuse orders if necessary.</p>
 
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                     <span class="material-icons-round text-primary">copyright</span>
                     Intellectual Property
                 </h2>
-                <p class="mb-6 text-zinc-400">The service and its original content, features, and functionality are and will remain the exclusive property of The Last Card and its licensors.</p>
+                <p class="mb-6 text-zinc-400">All website content including logos, designs, graphics, and text belongs to THELASTCARD and may not be reproduced without permission.</p>
 
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
-                    <span class="material-icons-round text-primary">update</span>
-                    Changes to Terms
+                    <span class="material-icons-round text-primary">block</span>
+                    Limitation of Liability
                 </h2>
-                <p class="mb-6 text-zinc-400">We reserve the right, at our sole discretion, to modify or replace these terms at any time. We will provide notice of any significant changes.</p>
+                <p class="mb-6 text-zinc-400">THELASTCARD is not responsible for service interruptions, compatibility issues, or data loss caused by user actions.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">gavel</span>
+                    Governing Law
+                </h2>
+                <p class="mb-6 text-zinc-400">These Terms are governed by the laws of India.</p>
 
                 <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
                     <span class="material-icons-round text-primary">email</span>
                     Contact Us
                 </h2>
-                <p class="text-zinc-400">If you have any questions about these Terms, please contact us at <a href="mailto:support@thelastcard.com" class="text-primary hover:underline">support@thelastcard.com</a></p>
+                <p class="text-zinc-400">If you have any questions about these Terms, please contact us at <a href="mailto:support@thelastcard.in" class="text-primary hover:underline">support@thelastcard.in</a></p>
             </div>
         </div>
     </div>

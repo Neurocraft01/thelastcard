@@ -15,4 +15,6 @@ urlpatterns = [
     path('features/', views.FeaturesView.as_view(), name='features'),
     path('privacy/', views.PrivacyView.as_view(), name='privacy'),
     path('terms/', views.TermsView.as_view(), name='terms'),
+    path('shipping-policy/', views.ShippingPolicyView.as_view(), name='shipping'),
+    path('refund-policy/', views.RefundPolicyView.as_view(), name='refund'),
 ]

@@ -9,7 +9,7 @@ from django.urls import reverse_lazy, reverse
 from django.contrib import messages
 from django.conf import settings
 from django.http import JsonResponse
-from .models import CardOrder
+from .models import CardOrder, Coupon
 from .forms import OrderForm
 
 
@@ -97,6 +97,8 @@ class OrderPaymentView(LoginRequiredMixin, DetailView):
         context['callback_url'] = self.request.build_absolute_uri(
             reverse('orders:payment_callback', kwargs={'pk': order.pk})
         )
+        context['apply_coupon_url'] = reverse('orders:apply_coupon', kwargs={'pk': order.pk})
+        context['remove_coupon_url'] = reverse('orders:remove_coupon', kwargs={'pk': order.pk})
         return context
 
 
@@ -128,6 +130,11 @@ class OrderPaymentCallbackView(View):
             order.amount_paid = order.total_price
             order.status = 'paid'
             order.save()
+
+            # Increment coupon usage
+            if order.coupon:
+                order.coupon.used_count += 1
+                order.coupon.save(update_fields=['used_count'])
 
             messages.success(request, f'Payment successful! Your order #{order.order_number} has been placed.')
             return redirect('orders:order_detail', pk=order.pk)
@@ -180,3 +187,106 @@ class OrderCancelView(LoginRequiredMixin, View):
             messages.error(request, 'This order cannot be cancelled. Only pending orders can be cancelled.')
         
         return redirect('orders:order_detail', pk=pk)
+
+
+class ApplyCouponView(LoginRequiredMixin, View):
+    """Apply a coupon code to an order (AJAX)."""
+
+    def post(self, request, pk):
+        order = get_object_or_404(CardOrder, pk=pk, user=request.user)
+
+        if order.payment_status == 'captured':
+            return JsonResponse({'success': False, 'error': 'This order is already paid.'})
+
+        code = request.POST.get('coupon_code', '').strip().upper()
+        if not code:
+            return JsonResponse({'success': False, 'error': 'Please enter a coupon code.'})
+
+        try:
+            coupon = Coupon.objects.get(code__iexact=code)
+        except Coupon.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Invalid coupon code.'})
+
+        if not coupon.is_valid:
+            return JsonResponse({'success': False, 'error': 'This coupon has expired or is no longer valid.'})
+
+        subtotal = order.subtotal
+        if subtotal < coupon.min_order_amount:
+            return JsonResponse({
+                'success': False,
+                'error': f'Minimum order of ₹{coupon.min_order_amount:.0f} required for this coupon.'
+            })
+
+        discount = coupon.get_discount(subtotal)
+        order.coupon = coupon
+        order.discount_amount = discount
+        order.save(update_fields=['coupon', 'discount_amount'])
+
+        # Re-create Razorpay order with new total
+        try:
+            client = get_razorpay_client()
+            amount_in_paise = int(order.total_price * 100)
+            razorpay_order = client.order.create({
+                'amount': amount_in_paise,
+                'currency': 'INR',
+                'receipt': str(order.id),
+                'notes': {
+                    'order_number': order.order_number,
+                    'email': request.user.email,
+                    'coupon': coupon.code,
+                }
+            })
+            order.razorpay_order_id = razorpay_order['id']
+            order.save(update_fields=['razorpay_order_id'])
+        except Exception:
+            pass
+
+        return JsonResponse({
+            'success': True,
+            'discount': float(discount),
+            'total': float(order.total_price),
+            'subtotal': float(subtotal),
+            'coupon_code': coupon.code,
+            'message': f'Coupon applied! You save ₹{discount:.0f}',
+            'razorpay_order_id': order.razorpay_order_id,
+        })
+
+
+class RemoveCouponView(LoginRequiredMixin, View):
+    """Remove a coupon from an order (AJAX)."""
+
+    def post(self, request, pk):
+        order = get_object_or_404(CardOrder, pk=pk, user=request.user)
+
+        if order.payment_status == 'captured':
+            return JsonResponse({'success': False, 'error': 'This order is already paid.'})
+
+        order.coupon = None
+        order.discount_amount = 0
+        order.save(update_fields=['coupon', 'discount_amount'])
+
+        # Re-create Razorpay order with original total
+        try:
+            client = get_razorpay_client()
+            amount_in_paise = int(order.total_price * 100)
+            razorpay_order = client.order.create({
+                'amount': amount_in_paise,
+                'currency': 'INR',
+                'receipt': str(order.id),
+                'notes': {
+                    'order_number': order.order_number,
+                    'email': request.user.email,
+                }
+            })
+            order.razorpay_order_id = razorpay_order['id']
+            order.save(update_fields=['razorpay_order_id'])
+        except Exception:
+            pass
+
+        return JsonResponse({
+            'success': True,
+            'total': float(order.total_price),
+            'subtotal': float(order.subtotal),
+            'message': 'Coupon removed.',
+            'razorpay_order_id': order.razorpay_order_id,
+        })

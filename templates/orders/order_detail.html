@@ -176,8 +176,14 @@
                     <div class="space-y-3">
                         <div class="flex justify-between text-sm">
                             <span class="text-zinc-400">Subtotal</span>
-                            <span class="font-semibold text-white">₹{{ order.total_price|floatformat:0 }}</span>
+                            <span class="font-semibold text-white">₹{{ order.subtotal|floatformat:0 }}</span>
                         </div>
+                        {% if order.coupon %}
+                        <div class="flex justify-between text-sm">
+                            <span class="text-zinc-400">Coupon ({{ order.coupon.code }})</span>
+                            <span class="font-semibold text-green-400">-₹{{ order.discount_amount|floatformat:0 }}</span>
+                        </div>
+                        {% endif %}
                         <div class="flex justify-between text-sm">
                             <span class="text-zinc-400">Shipping</span>
                             <span class="font-semibold text-green-400">FREE</span>

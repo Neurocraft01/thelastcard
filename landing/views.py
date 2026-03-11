@@ -38,3 +38,13 @@ class PrivacyView(TemplateView):
 class TermsView(TemplateView):
     """Terms of service page view."""
     template_name = 'landing/terms.html'
+
+
+class ShippingPolicyView(TemplateView):
+    """Shipping policy page view."""
+    template_name = 'landing/shipping.html'
+
+
+class RefundPolicyView(TemplateView):
+    """Cancellation, refund & replacement policy page view."""
+    template_name = 'landing/refund.html'

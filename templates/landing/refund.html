@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block title %}Cancellation, Refund &amp; Replacement Policy - The Last Card{% endblock %}
+
+{% block content %}
+<div class="min-h-screen pt-24" style="background: #09090b;">
+    <div class="max-w-4xl mx-auto px-4 py-16">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold mb-4 text-white">Cancellation, Refund &amp; Replacement Policy</h1>
+            <p class="text-zinc-400">Last updated: {% now "F Y" %}</p>
+        </div>
+
+        <div class="bg-zinc-900 rounded-2xl border border-zinc-800 p-8 lg:p-12">
+            <div class="prose prose-invert max-w-none">
+
+                <p class="mb-8 text-zinc-400">At THELASTCARD, each product is customized based on the information provided by the customer.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">cancel</span>
+                    Order Cancellation
+                </h2>
+                <p class="mb-6 text-zinc-400">Orders can be cancelled within <strong class="text-white">24 hours</strong> of placing the order. After this period, production may already have started and the order cannot be cancelled.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">design_services</span>
+                    Customized Product Policy
+                </h2>
+                <p class="mb-6 text-zinc-400">THELASTCARD products are personalized and customized. Customized products <strong class="text-white">cannot be returned or refunded</strong> unless there is a manufacturing defect or an error from our side.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">swap_horiz</span>
+                    Replacement Policy
+                </h2>
+                <p class="mb-3 text-zinc-400">We will offer a replacement free of cost in the following cases:</p>
+                <ul class="mb-3 text-zinc-400 list-disc pl-6 space-y-1">
+                    <li>The card arrives damaged</li>
+                    <li>The NFC functionality is not working</li>
+                    <li>Incorrect details were printed due to our error</li>
+                </ul>
+                <p class="mb-6 text-zinc-400">Customers must provide clear photo or video proof of the issue.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">schedule</span>
+                    Replacement Request Window
+                </h2>
+                <p class="mb-6 text-zinc-400">Replacement requests must be submitted within <strong class="text-white">7 days</strong> of receiving the order.</p>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">block</span>
+                    Non-Eligible Cases
+                </h2>
+                <p class="mb-3 text-zinc-400">Replacement or refund requests may not be accepted if:</p>
+                <ul class="mb-6 text-zinc-400 list-disc pl-6 space-y-1">
+                    <li>Incorrect information was provided by the customer</li>
+                    <li>Damage occurred due to misuse or mishandling</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold mb-4 flex items-center gap-2 text-white">
+                    <span class="material-icons-round text-primary">email</span>
+                    Support Contact
+                </h2>
+                <p class="text-zinc-400">For any cancellation, refund, or replacement queries, please reach out to us at <a href="mailto:support@thelastcard.in" class="text-primary hover:underline">support@thelastcard.in</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block footer %}
+{% include 'components/footer.html' %}
+{% endblock %}
