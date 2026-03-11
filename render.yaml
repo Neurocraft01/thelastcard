@@ -17,9 +17,7 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
-        fromDatabase:
-          name: thelastcard-db
-          property: connectionString
+        sync: false  # Set to your Supabase session-pooler URL in Render dashboard
       - key: ALLOWED_HOSTS
         sync: false
       - key: CSRF_TRUSTED_ORIGINS
@@ -52,14 +50,10 @@ services:
       - key: R2_SECRET_ACCESS_KEY
         sync: false
       - key: R2_BUCKET_NAME
-        value: thelastcard-media
+        value: thelastcard
       - key: R2_CUSTOM_DOMAIN
         sync: false
 
-databases:
-  # PostgreSQL Database (included in $7 plan)
-  - name: thelastcard-db
-    region: oregon
-    plan: starter  # Free PostgreSQL included with starter plan
-    databaseName: thelastcard
-    user: thelastcard_user
+# No Render-managed database — using Supabase PostgreSQL (external).
+# Set DATABASE_URL manually in the Render service environment variables:
+#   postgresql://thelastcard.[ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres

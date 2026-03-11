@@ -8,7 +8,7 @@ import os
 from pathlib import Path
 from decouple import config, Csv
 from dotenv import load_dotenv
-from urllib.parse import urlparse, parse_qsl
+import dj_database_url
 
 # Load environment variables
 load_dotenv()
@@ -40,6 +40,9 @@ if not DEBUG:
     CSRF_COOKIE_SECURE = True
     SECURE_CONTENT_TYPE_NOSNIFF = True
     SECURE_BROWSER_XSS_FILTER = True
+else:
+    # Ensure no HTTPS redirect in local development
+    SECURE_SSL_REDIRECT = False
 
 # Clickjacking protection
 X_FRAME_OPTIONS = 'DENY'
@@ -130,45 +133,27 @@ WSGI_APPLICATION = 'nfc_platform.wsgi.application'
 
 
 # =============================================================================
-# DATABASE - Supabase PostgreSQL
+# DATABASE - PostgreSQL (Supabase) / SQLite fallback
 # =============================================================================
 
-# Supabase Database Configuration
-# Set DATABASE_URL in .env file:
-# DATABASE_URL=postgresql://postgres.[project-ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres
-#
-# Supabase free tier: 500 MB storage, unlimited API requests
-# Get your connection string from: Supabase Dashboard > Settings > Database > Connection string > URI
-#
-# Also supports Neon, Railway, or any PostgreSQL provider via DATABASE_URL
+# Set DATABASE_URL in .env:
+# Supabase session pooler (IPv4-safe, port 6543):
+#   postgresql://postgres.[ref]:[password]@aws-0-[region].pooler.supabase.com:6543/postgres
+# Render PostgreSQL (auto-injected via render.yaml fromDatabase property)
 
-DATABASE_URL = os.getenv("DATABASE_URL", "")
+DATABASE_URL = config('DATABASE_URL', default='')
 
 if DATABASE_URL:
-    # Use PostgreSQL (Supabase / Neon / any provider)
-    tmpPostgres = urlparse(DATABASE_URL)
-    
-    # Extract sslmode from query string if present
-    query_params = dict(parse_qsl(tmpPostgres.query))
-    db_options = {}
-    if query_params.get('sslmode') == 'require':
-        db_options['sslmode'] = 'require'
-    
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': tmpPostgres.path.lstrip('/'),
-            'USER': tmpPostgres.username,
-            'PASSWORD': tmpPostgres.password,
-            'HOST': tmpPostgres.hostname,
-            'PORT': tmpPostgres.port or 6543,
-            'OPTIONS': db_options,
-            'CONN_MAX_AGE': 600,
-            'CONN_HEALTH_CHECKS': True,
-        }
+        'default': dj_database_url.parse(
+            DATABASE_URL,
+            conn_max_age=600,        # Persistent connection reuse (10 min)
+            conn_health_checks=True,  # Discard unhealthy connections automatically
+            ssl_require=True,         # Always enforce SSL for external databases
+        )
     }
 else:
-    # Local development fallback: Use SQLite
+    # Local development fallback: SQLite
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
@@ -224,6 +209,8 @@ else:
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_EMAIL_VERIFICATION = 'optional'
 ACCOUNT_UNIQUE_EMAIL = True
+# Use HTTP in development so allauth doesn't generate https:// redirect URLs
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = 'http' if DEBUG else 'https'
 
 # Password reset token expiry (in seconds) - 1 hour
 PASSWORD_RESET_TIMEOUT = 3600
@@ -253,8 +240,7 @@ STORAGES = {
         "BACKEND": "django.core.files.storage.FileSystemStorage",
     },
     "staticfiles": {
-        # Using CompressedStaticFilesStorage instead of ManifestStaticFilesStorage
-        # to avoid 500 errors when referenced files are missing (common in free tier/dev)
+        # CompressedStaticFilesStorage avoids 500 errors when hashed refs go missing
         "BACKEND": "whitenoise.storage.CompressedStaticFilesStorage",
     },
 }
@@ -267,59 +253,67 @@ STORAGES = {
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-# File upload limits (500KB max for images)
-FILE_UPLOAD_MAX_MEMORY_SIZE = 2 * 1024 * 1024  # 2MB (Django's in-memory buffer)
-DATA_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024  # 5MB (total form data)
+# File upload limits
+FILE_UPLOAD_MAX_MEMORY_SIZE = 2 * 1024 * 1024   # 2 MB in-memory buffer
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5 * 1024 * 1024   # 5 MB total form data
 
 
 # =============================================================================
 # CLOUDFLARE R2 STORAGE (S3-Compatible)
 # =============================================================================
-
-# Set these in your .env file:
-# USE_R2_STORAGE=True
-# R2_ACCOUNT_ID=your_account_id
-# R2_ACCESS_KEY_ID=your_access_key
-# R2_SECRET_ACCESS_KEY=your_secret_key
-# R2_BUCKET_NAME=your_bucket_name
-# R2_CUSTOM_DOMAIN=your_custom_domain.com (optional, for public access)
+#
+# Required .env keys:
+#   USE_R2_STORAGE=True
+#   R2_ACCOUNT_ID      — found in Cloudflare dashboard → R2 → Overview
+#   R2_ACCESS_KEY_ID   — R2 API token (S3 access key)
+#   R2_SECRET_ACCESS_KEY — R2 API token (S3 secret)
+#   R2_BUCKET_NAME     — name of your R2 bucket
+#
+# Optional:
+#   R2_CUSTOM_DOMAIN   — e.g. media.thelastcard.in (set in R2 → Custom Domains)
+#                        Required for public file serving without presigned URLs.
+#
+# If R2_CUSTOM_DOMAIN is not set, ensure the bucket has "Public Access" enabled
+# in the Cloudflare R2 dashboard so the r2.dev public URL works.
 
 USE_R2_STORAGE = config('USE_R2_STORAGE', default=False, cast=bool)
 
 if USE_R2_STORAGE:
-    # Cloudflare R2 is S3-compatible
     if 'storages' not in INSTALLED_APPS:
         INSTALLED_APPS += ['storages']
-    
-    # R2 Configuration
-    R2_ACCOUNT_ID = config('R2_ACCOUNT_ID', default='')
-    AWS_ACCESS_KEY_ID = config('R2_ACCESS_KEY_ID', default='')
-    AWS_SECRET_ACCESS_KEY = config('R2_SECRET_ACCESS_KEY', default='')
-    AWS_STORAGE_BUCKET_NAME = config('R2_BUCKET_NAME', default='nfc-platform')
+
+    R2_ACCOUNT_ID = config('R2_ACCOUNT_ID')
+    AWS_ACCESS_KEY_ID = config('R2_ACCESS_KEY_ID')
+    AWS_SECRET_ACCESS_KEY = config('R2_SECRET_ACCESS_KEY')
+    AWS_STORAGE_BUCKET_NAME = config('R2_BUCKET_NAME', default='thelastcard')
+
+    # S3-compatible write endpoint (used by boto3 for uploads/downloads)
     AWS_S3_ENDPOINT_URL = f'https://{R2_ACCOUNT_ID}.r2.cloudflarestorage.com'
-    
-    # R2 Settings
+
+    # R2-specific settings
+    AWS_S3_REGION_NAME = 'auto'          # R2 only supports the 'auto' region
+    AWS_S3_SIGNATURE_VERSION = 's3v4'    # Must use Signature Version 4
+    AWS_DEFAULT_ACL = None               # R2 has no per-object ACL support
+    AWS_QUERYSTRING_AUTH = False         # Serve files via plain URLs (no presigned)
+    AWS_S3_FILE_OVERWRITE = False        # Never silently overwrite existing uploads
     AWS_S3_OBJECT_PARAMETERS = {
-        'CacheControl': 'max-age=86400',  # 1 day cache
+        'CacheControl': 'max-age=86400',  # CDN / browser cache: 1 day
     }
-    AWS_DEFAULT_ACL = None  # R2 doesn't support ACLs
-    AWS_QUERYSTRING_AUTH = False
-    AWS_S3_FILE_OVERWRITE = False
-    AWS_S3_REGION_NAME = 'auto'  # R2 uses 'auto' region
-    AWS_S3_SIGNATURE_VERSION = 's3v4'
-    
-    # Custom domain for R2 public access (required for serving files)
+
+    # Public serve URL — use custom domain if configured, else the r2.dev URL
     R2_CUSTOM_DOMAIN = config('R2_CUSTOM_DOMAIN', default='')
     if R2_CUSTOM_DOMAIN:
         AWS_S3_CUSTOM_DOMAIN = R2_CUSTOM_DOMAIN
-        MEDIA_URL = f'https://{R2_CUSTOM_DOMAIN}/'
+        MEDIA_URL = f'https://{R2_CUSTOM_DOMAIN}/media/'
     else:
-        # Without custom domain, use the R2 endpoint directly
-        MEDIA_URL = f'{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/'
-    
-    # Use R2 for media files (Django 5.x STORAGES syntax)
+        # No custom domain: rely on the bucket's public r2.dev URL.
+        # Enable public access in Cloudflare R2 → your bucket → Settings → Public Access.
+        AWS_S3_CUSTOM_DOMAIN = f'pub-{R2_ACCOUNT_ID}.r2.dev'
+        MEDIA_URL = f'https://pub-{R2_ACCOUNT_ID}.r2.dev/media/'
+
+    # Route all media uploads through the R2 storage backend
     STORAGES["default"] = {
-        "BACKEND": "storages.backends.s3boto3.S3Boto3Storage",
+        "BACKEND": "nfc_platform.storages.R2MediaStorage",
     }
 
 
